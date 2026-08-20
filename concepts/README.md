@@ -1,0 +1,28 @@
+# Concepts
+
+This directory materializes the candidate Core primitives described by the architectural specification.
+
+Concepts are grouped by semantic responsibility layer rather than by runtime implementation:
+
+- `foundations.yaml` — identity, context, State, Source, Projection, and semantic versioning;
+- `epistemic.yaml` — Observation, Claim, Evidence, Inference, Finding, and correction-relevant epistemic status;
+- `teleological.yaml` — Goal, DesiredState, Intent, Direction, Trajectory, and Progress;
+- `agency.yaml` — Actor, Role, Capability, Action, Process, Transformation, Transfer, Persistence, Composition, and ExternalEffect;
+- `governance.yaml` — Authority, Constraint, Permission, Contract, Validation, Admission, Review, Binding, Commitment, Revocation, and Accountability.
+
+## Authority
+
+Every concept is `experimental` and `candidate-core-primitive` in v0.1. Inclusion here does not make a concept canonical. A concept should move upward in authority only after its derivation, boundaries, lifecycle, and cross-domain necessity remain stable across multiple mappings.
+
+## Record discipline
+
+Each record declares:
+
+- what question the concept helps answer;
+- a definition;
+- what the concept is not;
+- required and conditional relations;
+- anti-collapse boundaries;
+- derivation rationale.
+
+The exact YAML serialization is non-authoritative. Stable IDs and semantic obligations are the referencable contract.

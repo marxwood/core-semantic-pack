@@ -1,0 +1,70 @@
+id: core.concept-index
+version: 0.1.0
+status: experimental
+groups:
+- layer: foundations
+  file: concepts/foundations.yaml
+  concepts:
+  - core.entity
+  - core.identity
+  - core.relation
+  - core.context
+  - core.boundary
+  - core.state
+  - core.state-change
+  - core.source
+  - core.derivative
+  - core.projection
+  - core.interpretation
+  - core.semantic-version
+- layer: epistemic
+  file: concepts/epistemic.yaml
+  concepts:
+  - core.observation
+  - core.statement
+  - core.claim
+  - core.evidence
+  - core.inference
+  - core.finding
+  - core.provenance
+  - core.support
+  - core.contradiction
+  - core.uncertainty
+  - core.validity
+  - core.contestation
+- layer: teleological
+  file: concepts/teleological.yaml
+  concepts:
+  - core.goal
+  - core.desired-state
+  - core.intent
+  - core.direction
+  - core.trajectory
+  - core.progress
+- layer: agency
+  file: concepts/agency.yaml
+  concepts:
+  - core.actor
+  - core.role
+  - core.capability
+  - core.action
+  - core.process
+  - core.transformation
+  - core.transfer
+  - core.persistence
+  - core.composition
+  - core.external-effect
+- layer: governance
+  file: concepts/governance.yaml
+  concepts:
+  - core.authority
+  - core.constraint
+  - core.permission
+  - core.contract
+  - core.validation
+  - core.admission
+  - core.review
+  - core.binding
+  - core.commitment
+  - core.revocation
+  - core.accountability

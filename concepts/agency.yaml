@@ -1,0 +1,313 @@
+id: core.concept-group.agency
+version: 0.1.0
+status: experimental
+layer: agency
+concepts:
+- id: core.actor
+  name: Actor
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An Entity to which a Role, Intent, Action, Review, decision, or responsibility may be attributed.
+  answers:
+  - Who or what acted?
+  - Who holds the Intent or responsibility?
+  what_it_is_not:
+  - Authority by default
+  - a human only
+  - an agent only
+  - a Capability
+  required_relations:
+  - core.rel.has-identity
+  conditional_relations:
+  - core.rel.occupies-role
+  - core.rel.has-capability
+  - core.rel.accountable-for
+  - core.rel.exists-in
+  boundaries:
+  - core.boundary.capability-not-authority
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Attribution must work across humans, agents, organizations, and composite actors without
+      granting implicit legitimacy.
+  layer: agency
+- id: core.role
+  name: Role
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: A contextual position of responsibility that constrains expected, permitted, or accountable
+    participation in a Process or governance act.
+  answers:
+  - In which capacity is the Actor participating?
+  - Which responsibilities and constraints apply?
+  what_it_is_not:
+  - Actor
+  - Capability
+  - Authority by default
+  - job title by necessity
+  required_relations: []
+  conditional_relations:
+  - core.rel.occupied-by
+  - core.rel.has-capability
+  - core.rel.constrained-by
+  - core.rel.governed-by
+  - core.rel.exists-in
+  boundaries:
+  - core.boundary.capability-not-authority
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: The same Actor may participate under different responsibilities and permissions in different
+      contexts.
+  layer: agency
+- id: core.capability
+  name: Capability
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: A declared ability to perform an operation, transformation, interpretation, or other class
+    of work.
+  answers:
+  - What can this Actor or Role do?
+  - Which operation can be performed?
+  what_it_is_not:
+  - Authority
+  - Permission
+  - Intent
+  - successful execution
+  required_relations: []
+  conditional_relations:
+  - core.rel.held-by
+  - core.rel.constrained-by
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.capability-not-authority
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Ability must remain separate from legitimacy; increasing capability must not silently expand
+      authority.
+  layer: agency
+- id: core.action
+  name: Action
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An attributable attempt or performance by an Actor to realize an Intent, participate in
+    a Process, transform an object, or produce an effect.
+  answers:
+  - What was attempted or performed?
+  - Who performed it?
+  - Which Intent and Process does it realize?
+  what_it_is_not:
+  - Intent
+  - StateChange
+  - Authority
+  - proof of GoalProgress
+  required_relations:
+  - core.rel.performed-by
+  - core.rel.realizes
+  - core.rel.participates-in
+  conditional_relations:
+  - core.rel.authorized-by
+  - core.rel.permitted-by
+  - core.rel.constrained-by
+  - core.rel.transforms
+  - core.rel.produces
+  - core.rel.causes
+  - core.rel.exists-in
+  boundaries:
+  - core.boundary.action-not-intent
+  - core.boundary.action-not-state-change
+  - core.boundary.operational-success-not-goal-progress
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Execution must remain traceable to purpose, process, actor, and authority without being
+      equated with its consequence.
+  layer: agency
+- id: core.process
+  name: Process
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An abstract semantic structure of possible transformations, causal relations, State transition
+    logic, and invariants.
+  answers:
+  - How can change occur in this semantic domain?
+  - Which transformations and invariants define the change structure?
+  what_it_is_not:
+  - ExecutionContract
+  - ExecutionPlan
+  - Workflow implementation
+  - Runtime
+  required_relations: []
+  conditional_relations:
+  - core.rel.comprises-transformation
+  - core.rel.governed-by
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.process-not-execution-contract
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: The ontology of change must remain distinct from the contextual legitimacy and implementation
+      of execution.
+  layer: agency
+- id: core.transformation
+  name: Transformation
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: A declared conversion of semantic inputs, objects, or States into outputs, Derivatives,
+    or resulting States.
+  answers:
+  - Which conversion occurred or is defined?
+  - What inputs and outputs does it relate?
+  what_it_is_not:
+  - Process as a whole
+  - StateChange by definition
+  - Action by definition
+  - Runtime step by necessity
+  required_relations: []
+  conditional_relations:
+  - core.rel.input-of
+  - core.rel.output-of
+  - core.rel.part-of-process
+  - core.rel.produced-by
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.action-not-state-change
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Transformation meaning should survive whether realized by a human, agent, tool, model,
+      or other runtime mechanism.
+  layer: agency
+- id: core.transfer
+  name: Transfer
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: The movement of a semantic object or responsibility between Actors, Contexts, or Boundaries
+    under declared interpretation and provenance obligations.
+  answers:
+  - What moved?
+  - From where and to where?
+  - Which meaning and obligations must survive?
+  what_it_is_not:
+  - a copy by definition
+  - a runtime handoff by definition
+  - Admission into the receiving context
+  required_relations:
+  - core.rel.transfers-object
+  - core.rel.from-context
+  - core.rel.to-context
+  conditional_relations:
+  - core.rel.has-provenance
+  - core.rel.governed-by
+  - core.rel.authorized-by
+  boundaries:
+  - core.boundary.persistence-not-admission
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Semantic status and provenance must survive movement across system and organizational boundaries.
+  layer: agency
+- id: core.persistence
+  name: Persistence
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: The retention of a semantic object or State across time or a processing boundary.
+  answers:
+  - What is retained?
+  - Under which lifecycle and semantic status?
+  - What may later read or reuse it?
+  what_it_is_not:
+  - Admission
+  - validity
+  - authority
+  - institutional truth
+  required_relations:
+  - core.rel.persists-object
+  conditional_relations:
+  - core.rel.governed-by
+  - core.rel.has-provenance
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.persistence-not-admission
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Storage must not manufacture governed status or erase the type and lineage of what is stored.
+  layer: agency
+- id: core.composition
+  name: Composition
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: The governed creation of a Derivative from multiple semantic objects under declared selection,
+    ordering, and interpretation rules.
+  answers:
+  - Which objects were combined?
+  - Which rules produced the composed Derivative?
+  what_it_is_not:
+  - aggregation without meaning
+  - a Projection by necessity
+  - authority inherited from components
+  required_relations:
+  - core.rel.composes-object
+  - core.rel.produces
+  conditional_relations:
+  - core.rel.has-provenance
+  - core.rel.governed-by
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.source-not-projection
+  - core.boundary.projection-not-state
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Composite outputs must preserve lineage and cannot silently inherit status or authority
+      from their inputs.
+  layer: agency
+- id: core.external-effect
+  name: ExternalEffect
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An authorized consequence that changes State outside the declared boundary of the governed
+    Process or semantic environment.
+  answers:
+  - What changed outside the governed boundary?
+  - Which Action and Authority permitted the effect?
+  what_it_is_not:
+  - a Projection
+  - Recommendation
+  - tool output
+  - an internal StateChange only
+  required_relations:
+  - core.rel.caused-by
+  - core.rel.authorized-by
+  - core.rel.crosses-boundary
+  conditional_relations:
+  - core.rel.has-provenance
+  - core.rel.resulting-state
+  - core.rel.exists-in
+  boundaries:
+  - core.boundary.review-not-binding
+  - core.boundary.capability-not-authority
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Consequences beyond a governed process require explicit legitimacy and reconstructable
+      causation.
+  layer: agency

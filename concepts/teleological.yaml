@@ -1,0 +1,189 @@
+id: core.concept-group.teleological
+version: 0.1.0
+status: experimental
+layer: teleological
+concepts:
+- id: core.goal
+  name: Goal
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An authorized objective that gives direction to interpretation, planning, and action within
+    a declared scope.
+  answers:
+  - Why is this direction being pursued?
+  - Which objective legitimizes the trajectory?
+  what_it_is_not:
+  - DesiredState
+  - Intent
+  - Action
+  - a metric alone
+  required_relations:
+  - core.rel.specifies
+  - core.rel.authorized-by
+  conditional_relations:
+  - core.rel.exists-in
+  - core.rel.implies-direction
+  - core.rel.versioned-by
+  - core.rel.supersedes
+  boundaries:
+  - core.boundary.goal-not-desired-state
+  - core.boundary.intent-not-goal
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Autonomous action requires explicit normative direction rather than hidden objectives embedded
+      in prompts or implementation.
+  layer: teleological
+- id: core.desired-state
+  name: DesiredState
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An explicit representation of a future State whose realization or approximation would indicate
+    advancement of a Goal.
+  answers:
+  - What should reality look like if the Goal is advanced?
+  - Against what future condition is progress evaluated?
+  what_it_is_not:
+  - CurrentState
+  - Prediction
+  - Plan
+  - Goal
+  required_relations:
+  - core.rel.desired-by
+  conditional_relations:
+  - core.rel.exists-in
+  - core.rel.has-validity
+  - core.rel.versioned-by
+  - core.rel.supersedes
+  boundaries:
+  - core.boundary.goal-not-desired-state
+  - core.boundary.desired-state-not-prediction
+  - core.boundary.desired-state-not-plan
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Goals need inspectable future-state representations so trajectory can be assessed independently
+      from action completion.
+  layer: teleological
+- id: core.intent
+  name: Intent
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: A contextual aim that translates a Goal into the immediate purpose of an Action or Process
+    participation.
+  answers:
+  - What is the Actor trying to accomplish now?
+  - Which Goal does this immediate purpose advance?
+  what_it_is_not:
+  - Goal
+  - Authority
+  - Action
+  - Permission
+  required_relations:
+  - core.rel.advances
+  conditional_relations:
+  - core.rel.held-by
+  - core.rel.exists-in
+  - core.rel.constrained-by
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.intent-not-goal
+  - core.boundary.intent-not-authority
+  - core.boundary.action-not-intent
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: The immediate purpose of action must remain traceable to the larger Goal without becoming
+      the Goal or its own authority.
+  layer: teleological
+- id: core.direction
+  name: Direction
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: The qualitative orientation of change implied by the relationship between CurrentState and
+    DesiredState under a Goal.
+  answers:
+  - Which way should change move?
+  - What orientation does the Goal imply?
+  what_it_is_not:
+  - Trajectory
+  - Plan
+  - Goal
+  - a single Action
+  required_relations:
+  - core.rel.from-state
+  - core.rel.toward-state
+  conditional_relations:
+  - core.rel.implied-by
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.operational-success-not-goal-progress
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Direction allows qualitative alignment to be assessed even when no complete plan or deterministic
+      path exists.
+  layer: teleological
+- id: core.trajectory
+  name: Trajectory
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: An observed or proposed sequence of StateChanges over time that can be evaluated against
+    a Direction or DesiredState.
+  answers:
+  - How has State changed over time?
+  - Is the sequence moving toward the intended future?
+  what_it_is_not:
+  - Goal
+  - Direction
+  - ExecutionPlan
+  - proof of progress
+  required_relations:
+  - core.rel.comprises-state-change
+  conditional_relations:
+  - core.rel.evaluated-against
+  - core.rel.exists-in
+  - core.rel.versioned-by
+  boundaries:
+  - core.boundary.operational-success-not-goal-progress
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: Autonomous systems need longitudinal assessment rather than isolated success signals.
+  layer: teleological
+- id: core.progress
+  name: Progress
+  version: 0.1.0
+  status: experimental
+  kind: candidate-core-primitive
+  definition: A contextual assessment of how CurrentState or Trajectory relates to a DesiredState under
+    declared criteria.
+  answers:
+  - Is the system moving toward DesiredState?
+  - By which criteria is advancement or regression assessed?
+  what_it_is_not:
+  - operational success
+  - activity volume
+  - Goal
+  - Direction
+  required_relations:
+  - core.rel.evaluates
+  - core.rel.evaluated-against
+  conditional_relations:
+  - core.rel.has-provenance
+  - core.rel.has-uncertainty
+  - core.rel.has-validity
+  - core.rel.exists-in
+  boundaries:
+  - core.boundary.operational-success-not-goal-progress
+  derivation:
+    source: CORE-SEMANTIC-PACK.md
+    status: working-reference
+    rationale: A successful action does not establish that the system moved toward the intended state.
+  layer: teleological
