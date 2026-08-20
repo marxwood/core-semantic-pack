@@ -1,0 +1,382 @@
+id: core.boundary-catalog
+version: 0.1.0
+status: experimental
+boundaries:
+- id: core.boundary.source-not-projection
+  version: 0.1.0
+  status: experimental
+  left: core.source
+  relation: not-equivalent-to
+  right: core.projection
+  rule: A Projection must remain distinguishable from the Source or State it represents.
+  rationale: Derived representations do not redefine their source.
+  failure_code: SEM-BOUNDARY-001
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.observation-not-claim
+  version: 0.1.0
+  status: experimental
+  left: core.observation
+  relation: not-equivalent-to
+  right: core.claim
+  rule: An Observation must not be represented as a Claim without an explicit assertion or interpretation
+    transition.
+  rationale: Perception and assertion are different epistemic acts.
+  failure_code: SEM-BOUNDARY-002
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.claim-not-evidence
+  version: 0.1.0
+  status: experimental
+  left: core.claim
+  relation: not-equivalent-to
+  right: core.evidence
+  rule: A Claim must not be used as Evidence for itself or acquire Evidence status without a declared
+    Admission.
+  rationale: Assertions do not provide their own support.
+  failure_code: SEM-BOUNDARY-003
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.evidence-not-truth
+  version: 0.1.0
+  status: experimental
+  left: core.evidence
+  relation: not-equivalent-to
+  right: semantic-category:truth
+  rule: Evidence must not be represented as universal truth; it supports or contradicts Claims under declared
+    conditions.
+  rationale: Evidence remains contextual, contestable, and regime-bound.
+  failure_code: SEM-BOUNDARY-004
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.inference-not-finding
+  version: 0.1.0
+  status: experimental
+  left: core.inference
+  relation: not-equivalent-to
+  right: core.finding
+  rule: An Inference must not be represented as a Finding without the declared evaluation, validity, and
+    governance conditions required for a Finding.
+  rationale: Intermediate reasoning does not silently become a governed result.
+  failure_code: SEM-BOUNDARY-005
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.finding-not-binding-decision
+  version: 0.1.0
+  status: experimental
+  left: core.finding
+  relation: not-equivalent-to
+  right: semantic-category:binding-decision
+  rule: A Finding must not create institutional commitment or external consequence without a separate
+    Binding act.
+  rationale: Epistemic result and normative decision are different responsibilities.
+  failure_code: SEM-BOUNDARY-006
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.projection-not-state
+  version: 0.1.0
+  status: experimental
+  left: core.projection
+  relation: not-equivalent-to
+  right: core.state
+  rule: A Projection must not be represented or persisted as maintained State without an explicit Admission
+    and StateChange.
+  rationale: Visibility, polish, or downstream use does not create authority.
+  failure_code: SEM-BOUNDARY-007
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.validation-not-admission
+  version: 0.1.0
+  status: experimental
+  left: core.validation
+  relation: not-equivalent-to
+  right: core.admission
+  rule: Successful Validation must not automatically admit a candidate into maintained State.
+  rationale: Conformance and governed acceptance are distinct transitions.
+  failure_code: SEM-BOUNDARY-008
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.review-not-binding
+  version: 0.1.0
+  status: experimental
+  left: core.review
+  relation: not-equivalent-to
+  right: core.binding
+  rule: Review must not be treated as Binding unless a separately authorized Binding act is declared.
+  rationale: Evaluation and institutional commitment are different responsibilities.
+  failure_code: SEM-BOUNDARY-009
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.capability-not-authority
+  version: 0.1.0
+  status: experimental
+  left: core.capability
+  relation: not-equivalent-to
+  right: core.authority
+  rule: Capability must not create or imply Authority, Permission, or legitimacy.
+  rationale: Ability to act is not authorization to act.
+  failure_code: SEM-BOUNDARY-010
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.persistence-not-admission
+  version: 0.1.0
+  status: experimental
+  left: core.persistence
+  relation: not-equivalent-to
+  right: core.admission
+  rule: Persisting an object must not admit it into maintained governed State or change its epistemic
+    status.
+  rationale: Storage does not manufacture institutional truth.
+  failure_code: SEM-BOUNDARY-011
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.repetition-not-validation
+  version: 0.1.0
+  status: experimental
+  left: semantic-category:repetition
+  relation: not-equivalent-to
+  right: core.validation
+  rule: Repeated appearance or downstream reuse of an object must not be treated as Validation.
+  rationale: Propagation does not add evidence or evaluate conformance.
+  failure_code: SEM-BOUNDARY-012
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.goal-not-desired-state
+  version: 0.1.0
+  status: experimental
+  left: core.goal
+  relation: not-equivalent-to
+  right: core.desired-state
+  rule: A Goal must remain distinct from the DesiredState used to represent its future condition.
+  rationale: Normative objective and future-state representation serve different functions.
+  failure_code: SEM-BOUNDARY-013
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.desired-state-not-prediction
+  version: 0.1.0
+  status: experimental
+  left: core.desired-state
+  relation: not-equivalent-to
+  right: semantic-category:prediction
+  rule: DesiredState must not be represented as a Prediction of what will occur.
+  rationale: Normative future and expected future are different semantics.
+  failure_code: SEM-BOUNDARY-014
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.desired-state-not-plan
+  version: 0.1.0
+  status: experimental
+  left: core.desired-state
+  relation: not-equivalent-to
+  right: semantic-category:plan
+  rule: DesiredState must not be represented as the plan or sequence by which it may be reached.
+  rationale: Target condition and execution path are different semantics.
+  failure_code: SEM-BOUNDARY-015
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.intent-not-goal
+  version: 0.1.0
+  status: experimental
+  left: core.intent
+  relation: not-equivalent-to
+  right: core.goal
+  rule: Intent must remain traceable to a Goal without being represented as the Goal itself.
+  rationale: Immediate purpose and enduring normative objective are different levels.
+  failure_code: SEM-BOUNDARY-016
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.intent-not-authority
+  version: 0.1.0
+  status: experimental
+  left: core.intent
+  relation: not-equivalent-to
+  right: core.authority
+  rule: Intent must not create Authority or Permission to act.
+  rationale: Purpose does not legitimize consequence.
+  failure_code: SEM-BOUNDARY-017
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.action-not-intent
+  version: 0.1.0
+  status: experimental
+  left: core.action
+  relation: not-equivalent-to
+  right: core.intent
+  rule: Action must remain distinguishable from the Intent it realizes.
+  rationale: What was done and why it was done must remain separately inspectable.
+  failure_code: SEM-BOUNDARY-018
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.action-not-state-change
+  version: 0.1.0
+  status: experimental
+  left: core.action
+  relation: not-equivalent-to
+  right: core.state-change
+  rule: Action must not be represented as StateChange without evidence of an actual attributable transition.
+  rationale: Attempted or completed execution is not identical to changed reality.
+  failure_code: SEM-BOUNDARY-019
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.process-not-execution-contract
+  version: 0.1.0
+  status: experimental
+  left: core.process
+  relation: not-equivalent-to
+  right: core.pattern.execution-contract
+  rule: Process must remain distinct from the ExecutionContract that governs when and under which conditions
+    it may be realized.
+  rationale: Ontology of change and legitimacy of execution are separate layers.
+  failure_code: SEM-BOUNDARY-020
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.execution-contract-not-execution-plan
+  version: 0.1.0
+  status: experimental
+  left: core.pattern.execution-contract
+  relation: not-equivalent-to
+  right: semantic-category:execution-plan
+  rule: ExecutionContract must not be reduced to the concrete ordering, bindings, or orchestration of
+    an ExecutionPlan.
+  rationale: Semantic legitimacy must survive changes in runtime realization.
+  failure_code: SEM-BOUNDARY-021
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.execution-plan-not-runtime
+  version: 0.1.0
+  status: experimental
+  left: semantic-category:execution-plan
+  relation: not-equivalent-to
+  right: semantic-category:runtime
+  rule: ExecutionPlan must remain distinguishable from the execution that actually occurred.
+  rationale: Planned realization and historical execution are different states.
+  failure_code: SEM-BOUNDARY-022
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
+- id: core.boundary.operational-success-not-goal-progress
+  version: 0.1.0
+  status: experimental
+  left: semantic-category:operational-success
+  relation: not-equivalent-to
+  right: core.progress
+  rule: Successful execution must not be represented as GoalProgress without evaluation against DesiredState
+    or Direction.
+  rationale: A correct Action can move the system in the wrong direction.
+  failure_code: SEM-BOUNDARY-023
+  severity: semantic-error
+  applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
