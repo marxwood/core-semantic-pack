@@ -1,0 +1,143 @@
+id: core.conformance.coverage
+version: 0.1.0
+status: experimental
+summary:
+  rules: 18
+  valid_fixtures: 5
+  invalid_fixtures: 24
+  boundaries: 23
+  question_families: 9
+boundary_coverage:
+- boundary: core.boundary.source-not-projection
+  covered_by:
+  - core.fixture.invalid.source-as-projection
+  - core.fixture.valid.non-authoritative-projection
+- boundary: core.boundary.observation-not-claim
+  covered_by:
+  - core.fixture.invalid.observation-as-claim
+  - core.fixture.valid.traceable-claim
+- boundary: core.boundary.claim-not-evidence
+  covered_by:
+  - core.fixture.invalid.claim-as-evidence
+  - core.fixture.valid.admitted-finding
+- boundary: core.boundary.evidence-not-truth
+  covered_by:
+  - core.fixture.invalid.evidence-as-truth
+  - core.fixture.valid.admitted-finding
+- boundary: core.boundary.inference-not-finding
+  covered_by:
+  - core.fixture.invalid.inference-as-finding
+  - core.fixture.valid.admitted-finding
+- boundary: core.boundary.finding-not-binding-decision
+  covered_by:
+  - core.fixture.invalid.finding-as-binding
+  - core.fixture.valid.admitted-finding
+- boundary: core.boundary.projection-not-state
+  covered_by:
+  - core.fixture.invalid.projection-as-state
+  - core.fixture.valid.non-authoritative-projection
+- boundary: core.boundary.validation-not-admission
+  covered_by:
+  - core.fixture.invalid.validation-as-admission
+  - core.fixture.valid.admitted-finding
+- boundary: core.boundary.review-not-binding
+  covered_by:
+  - core.fixture.invalid.review-as-binding
+- boundary: core.boundary.capability-not-authority
+  covered_by:
+  - core.fixture.invalid.capability-as-authority
+  - core.fixture.valid.authorized-action
+- boundary: core.boundary.persistence-not-admission
+  covered_by:
+  - core.fixture.invalid.persistence-as-admission
+  - core.fixture.invalid.inference-to-maintained-state
+- boundary: core.boundary.repetition-not-validation
+  covered_by:
+  - core.fixture.invalid.inference-to-maintained-state
+- boundary: core.boundary.goal-not-desired-state
+  covered_by:
+  - core.fixture.invalid.goal-as-desired-state
+  - core.fixture.valid.authorized-action
+- boundary: core.boundary.desired-state-not-prediction
+  covered_by:
+  - core.fixture.invalid.desired-state-as-prediction
+- boundary: core.boundary.desired-state-not-plan
+  covered_by:
+  - core.fixture.invalid.desired-state-as-plan
+- boundary: core.boundary.intent-not-goal
+  covered_by:
+  - core.fixture.invalid.intent-as-goal
+  - core.fixture.invalid.action-without-goal
+  - core.fixture.valid.authorized-action
+- boundary: core.boundary.intent-not-authority
+  covered_by:
+  - core.fixture.invalid.intent-as-authority
+  - core.fixture.valid.authorized-action
+- boundary: core.boundary.action-not-intent
+  covered_by:
+  - core.fixture.invalid.action-as-intent
+  - core.fixture.valid.authorized-action
+- boundary: core.boundary.action-not-state-change
+  covered_by:
+  - core.fixture.invalid.action-as-state-change
+  - core.fixture.valid.reconstructable-state-change
+- boundary: core.boundary.process-not-execution-contract
+  covered_by:
+  - core.fixture.invalid.process-as-execution-contract
+- boundary: core.boundary.execution-contract-not-execution-plan
+  covered_by:
+  - core.fixture.invalid.execution-plan-as-contract
+- boundary: core.boundary.execution-plan-not-runtime
+  covered_by:
+  - core.fixture.invalid.execution-plan-as-runtime
+- boundary: core.boundary.operational-success-not-goal-progress
+  covered_by:
+  - core.fixture.invalid.operational-success-as-progress
+  - core.fixture.valid.reconstructable-state-change
+question_coverage:
+- question_family: core.question-family.ontological
+  covered_by:
+  - core.fixture.valid.traceable-claim
+  coverage: partial
+- question_family: core.question-family.state
+  covered_by:
+  - core.fixture.valid.reconstructable-state-change
+  coverage: representative
+- question_family: core.question-family.epistemic
+  covered_by:
+  - core.fixture.valid.traceable-claim
+  - core.fixture.valid.admitted-finding
+  coverage: representative
+- question_family: core.question-family.interpretive
+  covered_by:
+  - core.fixture.valid.non-authoritative-projection
+  coverage: partial
+- question_family: core.question-family.teleological
+  covered_by:
+  - core.fixture.valid.authorized-action
+  - core.fixture.valid.reconstructable-state-change
+  coverage: representative
+- question_family: core.question-family.agency
+  covered_by:
+  - core.fixture.valid.authorized-action
+  coverage: representative
+- question_family: core.question-family.governance
+  covered_by:
+  - core.fixture.valid.admitted-finding
+  - core.fixture.invalid.review-as-binding
+  coverage: representative
+- question_family: core.question-family.memory
+  covered_by:
+  - core.fixture.invalid.persistence-as-admission
+  - core.fixture.invalid.inference-to-maintained-state
+  coverage: representative-negative
+- question_family: core.question-family.reflective
+  covered_by:
+  - core.fixture.valid.reconstructable-state-change
+  - core.fixture.invalid.operational-success-as-progress
+  coverage: partial
+known_gaps:
+- Ontological identity continuity across representation changes requires a multi-version fixture.
+- Revocation and supersession require end-to-end lifecycle fixtures.
+- Question coverage is representative rather than exhaustive for every canonical wording.
+- Runtime behavioral enforcement remains outside the structural validator.

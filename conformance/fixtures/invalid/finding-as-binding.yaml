@@ -1,0 +1,24 @@
+id: core.fixture.invalid.finding-as-binding
+version: 0.1.0
+status: illustrative
+description: A non-binding Finding is treated as an operative institutional decision.
+expected: invalid
+objects:
+- id: finding:risk
+  type: core.finding
+  attributes:
+    represented_as: semantic-category:binding-decision
+- id: commitment:act
+  type: core.commitment
+  attributes:
+    binding_status: binding
+relations:
+- relation: core.rel.established-by
+  source: commitment:act
+  target: finding:risk
+expectations:
+  rules_pass: []
+  rules_fail:
+  - core.rule.binding-explicit
+  boundaries_triggered:
+  - core.boundary.finding-not-binding-decision

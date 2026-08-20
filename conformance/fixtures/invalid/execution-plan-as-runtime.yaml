@@ -1,0 +1,16 @@
+id: core.fixture.invalid.execution-plan-as-runtime
+version: 0.1.0
+status: illustrative
+description: A planned execution graph is represented as proof of what actually executed.
+expected: invalid
+objects:
+- id: plan:runtime-dag
+  type: architecture.execution-plan
+  attributes:
+    represented_as: semantic-category:runtime
+relations: []
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+  - core.boundary.execution-plan-not-runtime

@@ -1,0 +1,17 @@
+id: core.fixture.invalid.observation-as-claim
+version: 0.1.0
+status: illustrative
+description: An Observation is persisted as an asserted Claim without an explicit interpretation or assertion
+  transition.
+expected: invalid
+objects:
+- id: observation:signal
+  type: core.observation
+  attributes:
+    represented_as: core.claim
+relations: []
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+  - core.boundary.observation-not-claim

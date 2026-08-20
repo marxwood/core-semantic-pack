@@ -1,0 +1,86 @@
+id: core.composition.model
+version: 0.1.0
+status: experimental
+layers:
+- type: core-semantic-pack
+  authority: cross-domain semantic kernel
+  may:
+  - define candidate Core primitives
+  - define cross-domain relations
+  - define anti-collapse boundaries
+  - define Core question obligations
+  must_not:
+  - define domain-specific meaning
+  - define runtime implementation objects
+  - declare concrete execution legitimacy for every Process
+- type: domain-semantic-pack
+  authority: declared domain only
+  requires:
+  - compatible Core Semantic Pack
+  may:
+  - specialize Core concepts
+  - restrict Core meaning
+  - add domain concepts and relations
+  - declare domain-specific questions
+  must_not:
+  - silently redefine a Core concept
+  - weaken a Core boundary
+  - claim authority outside the declared domain
+- type: regime-pack
+  authority: declared Context and governance scope only
+  requires:
+  - compatible Core Semantic Pack
+  may:
+  - declare validity conditions
+  - declare Evidence admission requirements
+  - declare Review and Binding rules
+  - declare Authority and Constraint applicability
+  must_not:
+  - turn contextual validity into universal truth
+  - replace Core concept definitions
+  - grant Authority through Capability alone
+- type: execution-contract
+  authority: declared Process and execution Context only
+  requires:
+  - core.pattern.execution-contract
+  - referenced Process
+  - applicable Authority and Constraints
+  may:
+  - bind a Process to execution conditions
+  - declare permitted and forbidden transitions
+  - declare required validation, admission, review, and escalation
+  - declare consequences when answerability fails
+  must_not:
+  - be inferred from an ExecutionPlan
+  - be replaced by a workflow implementation
+  - manufacture Authority from a runtime capability
+- type: resolved-semantic-pack
+  authority: immutable composition for a declared consumer and Context
+  requires:
+  - exact component versions
+  - compatibility result
+  - composition checksum
+  - resolution time
+  may:
+  - be supplied to runtime adapters
+  - generate non-authoritative runtime artifacts
+  - serve as historical semantic reconstruction evidence
+  must_not:
+  - silently float to latest versions
+  - change after resolution
+  - erase rejected or overridden conflict information
+resolution_order:
+- load exact Core release
+- verify Domain Pack compatibility
+- apply domain specializations and restrictions without Core redefinition
+- verify Regime Pack compatibility and Context applicability
+- bind applicable Execution Contract
+- evaluate boundary and relation conflicts
+- record immutable component versions and checksum
+conflict_policy:
+  core_boundary_conflict: reject-resolution
+  core_definition_redefinition: reject-resolution
+  relation_domain_or_range_conflict: reject-resolution
+  domain_specialization_conflict: require-explicit-adoption-decision
+  regime_applicability_ambiguity: require-escalation
+  execution_authority_ambiguity: forbid-external-effect

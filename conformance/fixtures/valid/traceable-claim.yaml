@@ -1,0 +1,43 @@
+id: core.fixture.valid.traceable-claim
+version: 0.1.0
+status: illustrative
+description: A Claim remains attributable to an Actor, grounded in an Observation and Source, contextualized,
+  and provenanced.
+expected: valid
+objects:
+- id: source:records
+  type: core.source
+- id: observation:expiry-count
+  type: core.observation
+- id: claim:coverage-decrease
+  type: core.claim
+  attributes:
+    epistemic_status: candidate
+- id: actor:analyst
+  type: core.actor
+- id: context:portfolio-review
+  type: core.context
+- id: provenance:claim-trace
+  type: core.provenance
+relations:
+- relation: core.rel.observed-from
+  source: observation:expiry-count
+  target: source:records
+- relation: core.rel.asserted-by
+  source: claim:coverage-decrease
+  target: actor:analyst
+- relation: core.rel.derived-from
+  source: claim:coverage-decrease
+  target: observation:expiry-count
+- relation: core.rel.has-provenance
+  source: claim:coverage-decrease
+  target: provenance:claim-trace
+- relation: core.rel.exists-in
+  source: claim:coverage-decrease
+  target: context:portfolio-review
+expectations:
+  rules_pass:
+  - core.rule.known-semantic-references
+  - core.rule.semantic-version-retained
+  rules_fail: []
+  boundaries_triggered: []

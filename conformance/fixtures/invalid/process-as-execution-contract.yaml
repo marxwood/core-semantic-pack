@@ -1,0 +1,17 @@
+id: core.fixture.invalid.process-as-execution-contract
+version: 0.1.0
+status: illustrative
+description: The abstract Process is treated as sufficient authorization and governance for its own execution.
+expected: invalid
+objects:
+- id: process:change-model
+  type: core.process
+  attributes:
+    represented_as: core.pattern.execution-contract
+relations: []
+expectations:
+  rules_pass: []
+  rules_fail:
+  - core.rule.execution-contract-required
+  boundaries_triggered:
+  - core.boundary.process-not-execution-contract

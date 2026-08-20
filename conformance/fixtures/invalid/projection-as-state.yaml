@@ -1,0 +1,31 @@
+id: core.fixture.invalid.projection-as-state
+version: 0.1.0
+status: illustrative
+description: A visible report Projection is marked as maintained State without Admission or StateChange.
+expected: invalid
+objects:
+- id: projection:report
+  type: core.projection
+  attributes:
+    admission_status: admitted
+- id: state:institutional
+  type: core.state
+- id: provenance:report
+  type: core.provenance
+relations:
+- relation: core.rel.projects
+  source: projection:report
+  target: state:institutional
+- relation: core.rel.has-provenance
+  source: projection:report
+  target: provenance:report
+- relation: core.rel.supersedes
+  source: projection:report
+  target: state:institutional
+expectations:
+  rules_pass: []
+  rules_fail:
+  - core.rule.projection-non-authoritative
+  - core.rule.admission-explicit
+  boundaries_triggered:
+  - core.boundary.projection-not-state

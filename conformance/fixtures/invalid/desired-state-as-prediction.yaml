@@ -1,0 +1,16 @@
+id: core.fixture.invalid.desired-state-as-prediction
+version: 0.1.0
+status: illustrative
+description: A normative DesiredState is represented as a forecast of what will happen.
+expected: invalid
+objects:
+- id: desired-state:safe-outcome
+  type: core.desired-state
+  attributes:
+    represented_as: semantic-category:prediction
+relations: []
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+  - core.boundary.desired-state-not-prediction

@@ -1,0 +1,34 @@
+id: core.fixture.valid.non-authoritative-projection
+version: 0.1.0
+status: illustrative
+description: A report Projection remains tied to its underlying Finding and Provenance and declares non-binding,
+  non-admitted status.
+expected: valid
+objects:
+- id: finding:protection-gap
+  type: core.finding
+- id: projection:recommendation-report
+  type: core.projection
+  attributes:
+    binding_status: non-binding
+    admission_status: not-evaluated
+- id: provenance:report
+  type: core.provenance
+- id: context:customer-facing
+  type: core.context
+relations:
+- relation: core.rel.projects
+  source: projection:recommendation-report
+  target: finding:protection-gap
+- relation: core.rel.has-provenance
+  source: projection:recommendation-report
+  target: provenance:report
+- relation: core.rel.exists-in
+  source: projection:recommendation-report
+  target: context:customer-facing
+expectations:
+  rules_pass:
+  - core.rule.derived-object-provenance
+  - core.rule.projection-non-authoritative
+  rules_fail: []
+  boundaries_triggered: []

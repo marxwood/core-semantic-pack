@@ -1,0 +1,16 @@
+id: core.fixture.invalid.intent-as-goal
+version: 0.1.0
+status: illustrative
+description: A local Intent silently replaces the authorized Goal it should advance.
+expected: invalid
+objects:
+- id: intent:optimize-local-metric
+  type: core.intent
+  attributes:
+    represented_as: core.goal
+relations: []
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+  - core.boundary.intent-not-goal

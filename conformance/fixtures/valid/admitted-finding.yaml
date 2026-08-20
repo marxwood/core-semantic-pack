@@ -1,0 +1,82 @@
+id: core.fixture.valid.admitted-finding
+version: 0.1.0
+status: illustrative
+description: A retrieved Source is observed, explicitly admitted as Evidence, used in an Inference, and
+  evaluated into a non-binding Finding.
+expected: valid
+objects:
+- id: source:patent-status
+  type: core.source
+- id: observation:seventeen-expiries
+  type: core.observation
+- id: claim:coverage-will-decrease
+  type: core.claim
+- id: evidence:expiry-records
+  type: core.evidence
+  attributes:
+    admission_status: admitted
+- id: inference:exposure-increase
+  type: core.inference
+- id: finding:protection-gap
+  type: core.finding
+  attributes:
+    binding_status: non-binding
+- id: admission:evidence
+  type: core.admission
+- id: authority:evidence-regime
+  type: core.authority
+- id: validity:finding
+  type: core.validity
+  attributes:
+    validity_status: valid-under-context
+- id: context:portfolio-review
+  type: core.context
+- id: provenance:evidence
+  type: core.provenance
+- id: provenance:finding
+  type: core.provenance
+relations:
+- relation: core.rel.observed-from
+  source: observation:seventeen-expiries
+  target: source:patent-status
+- relation: core.rel.has-provenance
+  source: evidence:expiry-records
+  target: provenance:evidence
+- relation: core.rel.exists-in
+  source: evidence:expiry-records
+  target: context:portfolio-review
+- relation: core.rel.admitted-by
+  source: evidence:expiry-records
+  target: admission:evidence
+- relation: core.rel.admits-object
+  source: admission:evidence
+  target: evidence:expiry-records
+- relation: core.rel.authorized-by
+  source: admission:evidence
+  target: authority:evidence-regime
+- relation: core.rel.supports
+  source: evidence:expiry-records
+  target: claim:coverage-will-decrease
+- relation: core.rel.inferred-from
+  source: inference:exposure-increase
+  target: evidence:expiry-records
+- relation: core.rel.derived-from
+  source: finding:protection-gap
+  target: inference:exposure-increase
+- relation: core.rel.supported-by
+  source: finding:protection-gap
+  target: evidence:expiry-records
+- relation: core.rel.has-provenance
+  source: finding:protection-gap
+  target: provenance:finding
+- relation: core.rel.has-validity
+  source: finding:protection-gap
+  target: validity:finding
+expectations:
+  rules_pass:
+  - core.rule.derived-object-provenance
+  - core.rule.evidence-admitted-and-provenanced
+  - core.rule.finding-governed
+  - core.rule.binding-explicit
+  rules_fail: []
+  boundaries_triggered: []

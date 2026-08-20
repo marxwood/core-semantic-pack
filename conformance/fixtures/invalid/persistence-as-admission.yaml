@@ -1,0 +1,22 @@
+id: core.fixture.invalid.persistence-as-admission
+version: 0.1.0
+status: illustrative
+description: A persisted Claim is marked admitted merely because it was stored.
+expected: invalid
+objects:
+- id: persistence:memory-write
+  type: core.persistence
+- id: claim:stored-assumption
+  type: core.claim
+  attributes:
+    admission_status: admitted
+relations:
+- relation: core.rel.persists-object
+  source: persistence:memory-write
+  target: claim:stored-assumption
+expectations:
+  rules_pass: []
+  rules_fail:
+  - core.rule.admission-explicit
+  boundaries_triggered:
+  - core.boundary.persistence-not-admission

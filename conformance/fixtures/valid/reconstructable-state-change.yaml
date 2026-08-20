@@ -1,0 +1,51 @@
+id: core.fixture.valid.reconstructable-state-change
+version: 0.1.0
+status: illustrative
+description: A StateChange retains before/after State, Context, attributable Action, Provenance, and a
+  separate evaluation against DesiredState.
+expected: valid
+objects:
+- id: state:before
+  type: core.state
+- id: state:after
+  type: core.state
+- id: state-change:coverage-update
+  type: core.state-change
+- id: action:update-portfolio
+  type: core.action
+- id: desired-state:coverage-retained
+  type: core.desired-state
+- id: progress:coverage-assessment
+  type: core.progress
+- id: context:portfolio-management
+  type: core.context
+- id: provenance:state-change
+  type: core.provenance
+relations:
+- relation: core.rel.previous-state
+  source: state-change:coverage-update
+  target: state:before
+- relation: core.rel.resulting-state
+  source: state-change:coverage-update
+  target: state:after
+- relation: core.rel.caused-by
+  source: state-change:coverage-update
+  target: action:update-portfolio
+- relation: core.rel.exists-in
+  source: state-change:coverage-update
+  target: context:portfolio-management
+- relation: core.rel.has-provenance
+  source: state-change:coverage-update
+  target: provenance:state-change
+- relation: core.rel.evaluates
+  source: progress:coverage-assessment
+  target: state-change:coverage-update
+- relation: core.rel.evaluated-against
+  source: progress:coverage-assessment
+  target: desired-state:coverage-retained
+expectations:
+  rules_pass:
+  - core.rule.state-change-reconstructable
+  - core.rule.goal-progress-independent
+  rules_fail: []
+  boundaries_triggered: []

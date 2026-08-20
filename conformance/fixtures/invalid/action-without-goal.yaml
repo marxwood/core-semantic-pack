@@ -1,0 +1,32 @@
+id: core.fixture.invalid.action-without-goal
+version: 0.1.0
+status: illustrative
+description: An Action has an immediate Intent and Actor but the Intent is detached from any Goal and
+  DesiredState.
+expected: invalid
+objects:
+- id: action:optimize-metric
+  type: core.action
+- id: intent:increase-throughput
+  type: core.intent
+- id: actor:agent
+  type: core.actor
+- id: process:optimization
+  type: core.process
+relations:
+- relation: core.rel.realizes
+  source: action:optimize-metric
+  target: intent:increase-throughput
+- relation: core.rel.performed-by
+  source: action:optimize-metric
+  target: actor:agent
+- relation: core.rel.participates-in
+  source: action:optimize-metric
+  target: process:optimization
+expectations:
+  rules_pass: []
+  rules_fail:
+  - core.rule.action-purpose-chain
+  - core.rule.answerability-gates-consequence
+  boundaries_triggered:
+  - core.boundary.intent-not-goal
