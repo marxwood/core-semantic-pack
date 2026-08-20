@@ -1,0 +1,46 @@
+id: core.question-family.teleological
+version: 0.1.0
+status: experimental
+family: teleological
+canonical_questions:
+- Why is this being done?
+- Which Goal is being pursued?
+- Which DesiredState does that Goal imply?
+- Which direction of change follows?
+- Which Intent operationalizes the Goal here?
+- Is the resulting StateChange advancing the DesiredState?
+- Has the Goal changed?
+requires_concepts:
+- core.goal
+- core.desired-state
+- core.intent
+- core.direction
+- core.trajectory
+- core.progress
+- core.state
+- core.state-change
+requires_relations:
+- core.rel.specifies
+- core.rel.advances
+- core.rel.implies-direction
+- core.rel.evaluated-against
+- core.rel.supersedes
+must_preserve:
+- core.boundary.goal-not-desired-state
+- core.boundary.desired-state-not-prediction
+- core.boundary.intent-not-goal
+- core.boundary.operational-success-not-goal-progress
+answer_requirements:
+- goal_identified
+- goal_authority_traceable
+- desired_state_explicit
+- intent_linked_to_goal
+- progress_evaluated_independently
+failure_states:
+- unresolved_goal
+- missing_desired_state
+- intent_goal_detached
+- success_used_as_progress
+consequence_on_failure:
+  material_action: requires_escalation
+  external_effect: forbidden

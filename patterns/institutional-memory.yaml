@@ -1,0 +1,38 @@
+id: core.pattern.institutional-memory
+version: 0.1.0
+status: experimental
+kind: composite-pattern
+definition: Persistent semantic continuity in which typed objects retain provenance, admission status,
+  validity, context, lifecycle, and SemanticVersion across time and reuse.
+composes_concepts:
+- core.persistence
+- core.state
+- core.admission
+- core.provenance
+- core.context
+- core.semantic-version
+- core.validity
+- core.contestation
+- core.state-change
+required_relations:
+- core.rel.persists-object
+- core.rel.admitted-by
+- core.rel.has-provenance
+- core.rel.exists-in
+- core.rel.versioned-by
+- core.rel.has-validity
+- core.rel.contested-by
+- core.rel.supersedes
+invariants:
+- Persistence does not create Admission.
+- Stored objects retain semantic type and status.
+- Historical meaning remains reconstructable.
+- Contradiction, supersession, and revocation remain visible.
+architecture_mappings:
+- graph memory
+- relational store
+- document store
+- conversation state
+- vector index
+- event log
+not_a_primitive: true

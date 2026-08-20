@@ -1,0 +1,106 @@
+id: core.lifecycle.transition-rules
+version: 0.1.0
+status: experimental
+requirements_for_material_transition:
+- source object or status is identified
+- resulting object or status is identified
+- transition is attributable
+- governing Context is identified
+- semantic version is retained
+- provenance and rationale are retained
+- required Authority is traceable when the transition changes admission or binding
+- revocation and supersession preserve historical reconstructability
+families:
+- family: concept-authority
+  allowed:
+  - proposed -> experimental
+  - proposed -> rejected
+  - experimental -> adopted
+  - experimental -> restricted
+  - experimental -> rejected
+  - adopted -> restricted
+  - adopted -> deprecated
+  - adopted -> superseded
+  - restricted -> adopted
+  - restricted -> deprecated
+  - deprecated -> retired
+  - deprecated -> superseded
+  - superseded -> retired
+  requires_authority: true
+- family: epistemic
+  allowed:
+  - candidate -> supported
+  - candidate -> contradicted
+  - candidate -> mixed
+  - candidate -> contested
+  - supported -> mixed
+  - supported -> contradicted
+  - supported -> contested
+  - contradicted -> mixed
+  - contradicted -> supported
+  - contradicted -> contested
+  - mixed -> supported
+  - mixed -> contradicted
+  - mixed -> contested
+  - '* -> invalidated'
+  - '* -> superseded'
+  - '* -> retired'
+  requires_authority: false
+  requires_evidence_or_contestation: true
+- family: validity
+  allowed:
+  - unassessed -> valid-under-context
+  - unassessed -> conditionally-valid
+  - unassessed -> invalid
+  - valid-under-context -> conditionally-valid
+  - valid-under-context -> invalid
+  - valid-under-context -> contested
+  - conditionally-valid -> valid-under-context
+  - conditionally-valid -> invalid
+  - conditionally-valid -> expired
+  - '* -> contested'
+  - '* -> revoked'
+  requires_validation: true
+- family: admission
+  allowed:
+  - not-evaluated -> pending
+  - pending -> admitted
+  - pending -> rejected
+  - admitted -> revoked
+  - admitted -> superseded
+  requires_admission: true
+  requires_authority: true
+- family: binding
+  allowed:
+  - non-binding -> proposed
+  - proposed -> binding
+  - proposed -> non-binding
+  - binding -> suspended
+  - suspended -> binding
+  - binding -> revoked
+  - binding -> superseded
+  - binding -> expired
+  requires_binding_or_revocation: true
+  requires_authority: true
+forbidden_implicit_transitions:
+- trigger: persistence
+  must_not_imply: admission
+  boundary: core.boundary.persistence-not-admission
+- trigger: validation
+  must_not_imply: admission
+  boundary: core.boundary.validation-not-admission
+- trigger: review
+  must_not_imply: binding
+  boundary: core.boundary.review-not-binding
+- trigger: repetition or downstream reuse
+  must_not_imply: validation or epistemic support
+  boundary: core.boundary.repetition-not-validation
+- trigger: capability availability
+  must_not_imply: authority
+  boundary: core.boundary.capability-not-authority
+- trigger: projection visibility
+  must_not_imply: maintained State
+  boundary: core.boundary.projection-not-state
+- trigger: operational success
+  must_not_imply: GoalProgress
+  boundary: core.boundary.operational-success-not-goal-progress

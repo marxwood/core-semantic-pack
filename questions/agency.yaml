@@ -1,0 +1,45 @@
+id: core.question-family.agency
+version: 0.1.0
+status: experimental
+family: agency
+canonical_questions:
+- Who or what is acting?
+- Which Role is being occupied?
+- What can the Actor do?
+- Which Action is being attempted?
+- Which Process does it participate in?
+- Which Transformation is being performed?
+requires_concepts:
+- core.actor
+- core.role
+- core.capability
+- core.action
+- core.process
+- core.transformation
+- core.intent
+requires_relations:
+- core.rel.occupies-role
+- core.rel.has-capability
+- core.rel.performed-by
+- core.rel.realizes
+- core.rel.participates-in
+- core.rel.comprises-transformation
+must_preserve:
+- core.boundary.capability-not-authority
+- core.boundary.action-not-intent
+- core.boundary.action-not-state-change
+- core.boundary.process-not-execution-contract
+answer_requirements:
+- actor_attributable
+- role_context_known
+- capability_declared
+- intent_traceable
+- process_identified
+failure_states:
+- anonymous_action
+- role_ambiguous
+- capability_treated_as_authority
+- process_execution_collapsed
+consequence_on_failure:
+  action_status: untrusted
+  external_effect: forbidden

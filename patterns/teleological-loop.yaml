@@ -1,0 +1,28 @@
+id: core.pattern.teleological-loop
+version: 0.1.0
+status: experimental
+kind: composite-pattern
+definition: A correction loop connecting CurrentState, Goal, DesiredState, Intent, Action, StateChange,
+  and Progress assessment.
+composes_concepts:
+- core.state
+- core.goal
+- core.desired-state
+- core.intent
+- core.action
+- core.state-change
+- core.direction
+- core.trajectory
+- core.progress
+required_relations:
+- core.rel.specifies
+- core.rel.advances
+- core.rel.realizes
+- core.rel.previous-state
+- core.rel.resulting-state
+- core.rel.evaluated-against
+invariants:
+- Goal remains distinct from DesiredState.
+- Action success is evaluated independently from GoalProgress.
+- Goal revision and State revision remain visible.
+not_a_primitive: true

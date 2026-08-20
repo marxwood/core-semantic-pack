@@ -1,0 +1,25 @@
+id: core.pattern.semantic-status-collapse
+version: 0.1.0
+status: experimental
+kind: failure-pattern
+definition: A failure in which a semantic object acquires a stronger epistemic, admission, or authority
+  status without the explicit governed transition required for that status.
+examples:
+- Inference persisted and later treated as Finding.
+- Projection reused as maintained State.
+- Repeated Claim treated as validated knowledge.
+- Review treated as Binding.
+- Capability treated as Authority.
+detects_boundaries:
+- core.boundary.inference-not-finding
+- core.boundary.projection-not-state
+- core.boundary.repetition-not-validation
+- core.boundary.review-not-binding
+- core.boundary.capability-not-authority
+- core.boundary.persistence-not-admission
+required_response:
+- preserve original object and status
+- record the invalid transition attempt
+- prevent stronger consequence
+- request Validation, Admission, Review, Binding, or Authority as applicable
+not_a_primitive: true

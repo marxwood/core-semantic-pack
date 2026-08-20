@@ -1,0 +1,22 @@
+id: core.question-index
+version: 0.1.0
+status: experimental
+families:
+- id: core.question-family.ontological
+  file: questions/ontological.yaml
+- id: core.question-family.state
+  file: questions/state.yaml
+- id: core.question-family.epistemic
+  file: questions/epistemic.yaml
+- id: core.question-family.interpretive
+  file: questions/interpretive.yaml
+- id: core.question-family.teleological
+  file: questions/teleological.yaml
+- id: core.question-family.agency
+  file: questions/agency.yaml
+- id: core.question-family.governance
+  file: questions/governance.yaml
+- id: core.question-family.memory
+  file: questions/memory.yaml
+- id: core.question-family.reflective
+  file: questions/reflective.yaml

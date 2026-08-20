@@ -1,0 +1,56 @@
+id: core.question-family.governance
+version: 0.1.0
+status: experimental
+family: governance
+canonical_questions:
+- Who authorized this?
+- Under which Constraint?
+- What is permitted?
+- What may only be recommended?
+- What must be validated?
+- What may enter maintained State?
+- Which transition requires Review?
+- Which decision is Binding?
+- Can the commitment be revoked?
+requires_concepts:
+- core.authority
+- core.constraint
+- core.permission
+- core.contract
+- core.validation
+- core.admission
+- core.review
+- core.binding
+- core.commitment
+- core.revocation
+- core.accountability
+requires_relations:
+- core.rel.authorized-by
+- core.rel.constrained-by
+- core.rel.permits
+- core.rel.governed-by
+- core.rel.validates-object
+- core.rel.admits-object
+- core.rel.reviews-object
+- core.rel.establishes-commitment
+- core.rel.revokes-object
+must_preserve:
+- core.boundary.capability-not-authority
+- core.boundary.validation-not-admission
+- core.boundary.review-not-binding
+- core.boundary.persistence-not-admission
+answer_requirements:
+- authority_in_scope
+- constraints_known
+- permission_traceable
+- admission_explicit
+- review_binding_separated
+- revocation_path_known
+failure_states:
+- implicit_authority
+- validation_used_as_admission
+- review_used_as_binding
+- revocation_impossible
+consequence_on_failure:
+  binding: forbidden
+  external_effect: forbidden

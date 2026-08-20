@@ -1,0 +1,36 @@
+id: core.pattern.execution-contract
+version: 0.1.0
+status: experimental
+kind: composite-pattern
+definition: A context-bound Contract that declares when and under which Authority, Constraints, validity
+  conditions, and admission rules a Process may be realized.
+composes_concepts:
+- core.process
+- core.contract
+- core.context
+- core.constraint
+- core.authority
+- core.permission
+- core.validation
+- core.admission
+- core.role
+- core.accountability
+required_relations:
+- core.rel.applies-to
+- core.rel.exists-in
+- core.rel.authorized-by
+- core.rel.constrained-by
+- core.rel.permits
+- core.rel.validates-object
+- core.rel.admits-object
+- core.rel.accountable-for
+invariants:
+- Process defines possible change; ExecutionContract defines legitimate realization.
+- ExecutionContract remains distinct from ExecutionPlan and Runtime.
+- Capability never substitutes for Authority.
+- ExternalEffect is forbidden when required authority or answerability is unresolved.
+architecture_terms:
+  execution_plan: optional concrete materialization
+  workflow: possible orchestration representation
+  runtime: actual execution realization
+not_a_primitive: true
