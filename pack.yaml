@@ -1,0 +1,84 @@
+id: semantic-pack.core
+name: Core Semantic Pack
+version: 0.1.0
+status: experimental
+authority:
+  class: working-reference-model
+  canonical: false
+  note: The pack is derived from the architectural specification; serialization is not semantic authority.
+scope:
+  domain_neutral: true
+  runtime_neutral: true
+  implementation_neutral: true
+  complete_ontology: false
+specification: CORE-SEMANTIC-PACK.md
+entrypoints:
+  concepts: concepts/index.yaml
+  relations: relations/core-relations.yaml
+  boundaries: boundaries/core-boundaries.yaml
+  questions: questions/index.yaml
+  patterns: patterns/
+  lifecycle: lifecycle/status-families.yaml
+  composition: composition/composition-model.yaml
+  conformance: conformance/rules.yaml
+semantic_layers:
+- foundations
+- epistemic
+- teleological
+- agency
+- governance
+- reflection-through-composition
+question_families:
+- core.question-family.ontological
+- core.question-family.state
+- core.question-family.epistemic
+- core.question-family.interpretive
+- core.question-family.teleological
+- core.question-family.agency
+- core.question-family.governance
+- core.question-family.memory
+- core.question-family.reflective
+patterns:
+- core.pattern.semantic-trace
+- core.pattern.teleological-loop
+- core.pattern.institutional-memory
+- core.pattern.execution-contract
+- core.pattern.semantic-status-collapse
+guarantees:
+- provenance-preservation
+- projection-state-separation
+- claim-evidence-separation
+- capability-authority-separation
+- validation-admission-separation
+- review-binding-separation
+- persistence-admission-separation
+- explicit-state-change
+- explicit-goal-relation
+- desired-state-traceability
+- process-execution-separation
+- revocability
+- question-answerability
+- historical-semantic-reconstructability
+composition:
+  extensible: true
+  core_redefinable: false
+  resolved_pack_immutable: true
+  allowed_extensions:
+  - domain-semantic-pack
+  - regime-pack
+  - execution-contract
+  - architecture-mapping
+counts:
+  concepts: 51
+  relations: 89
+  boundaries: 23
+  question_families: 9
+  patterns: 5
+  status_families: 5
+  conformance_rules: 18
+  valid_fixtures: 5
+  invalid_fixtures: 24
+validation:
+  command: python scripts/validate_pack.py
+  structural_only: true
+  does_not_determine_truth: true
