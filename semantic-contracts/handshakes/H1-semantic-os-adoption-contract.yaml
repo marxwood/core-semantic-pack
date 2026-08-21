@@ -1,0 +1,172 @@
+id: core.handshake.semantic-os-adoption
+version: 0.1.0
+status: experimental
+kind: semantic-handshake-contract
+order: H1
+
+symbol: SemanticOSAdoptionHandshake
+
+definition: >-
+  A pre-adoption semantic protocol through which a runtime demonstrates that it can operate under an exact,
+  versioned Semantic Pack while preserving the authority boundary, local semantic sovereignty, historical
+  meaning, and explicit governance of future updates.
+
+purpose:
+  - Distinguish Semantic Pack consumption from semantic governance.
+  - Establish whether a runtime can enforce the Pack rather than merely retrieve it as context.
+  - Bind adoption to an exact semantic release and declared environment.
+  - Prevent a provider, runtime, or upstream update from acquiring undeclared semantic authority.
+  - Produce a reconstructable decision before governed operation begins.
+
+participants:
+  semantic_authority_source:
+    responsibility: Defines governed meaning and its legitimate versioned changes.
+  semantic_pack_provider:
+    responsibility: Compiles, resolves, versions, and distributes governed semantic meaning without becoming its authority.
+  runtime_consumer:
+    responsibility: Declares and demonstrates how Pack obligations constrain interpretation, state, and action.
+  environment_authority:
+    responsibility: Owns the environment-specific goals, constraints, information boundaries, and update decisions.
+
+preconditions:
+  - The requested Core and resolved Semantic Pack components are identifiable by stable ID and exact version.
+  - The runtime and target environment are identified.
+  - The environment authority is explicit.
+  - Unknown capabilities, mappings, and conflicts remain Unknown rather than being inferred as compatible.
+
+required_declarations:
+  semantic_identity:
+    - Exact Pack IDs, versions, checksums, derivation sources, and resolution inputs.
+    - Exact runtime, adapter, provider, and environment identities.
+  execution_claim:
+    - Whether the Pack is retrieved as context, mapped into runtime structures, behaviorally enforced, or all three.
+    - Which obligations are enforceable and which remain advisory.
+  authority_boundary:
+    - Which source governs Core meaning.
+    - Which authority governs environment-local goals, constraints, meanings, and information boundaries.
+    - Which provider and runtime capabilities carry no semantic authority.
+  precedence_and_conflict:
+    - Explicit precedence rules for Core, Domain, Regime, Execution Contract, and environment-local semantics.
+    - A non-silent conflict path that can reject adoption or require an authorized adaptation.
+  synchronization:
+    - Version pinning, update detection, semantic diff, impact classification, compatibility validation, acceptance, and rollback policy.
+    - Historical reconstruction policy for objects produced under earlier semantic environments.
+  evidence:
+    - Inspectable artifacts demonstrating every claimed enforcement and synchronization capability.
+
+phases:
+  - id: identity-binding
+    establishes:
+      - Exact Pack and participant identity.
+      - The semantic authority source and target environment.
+  - id: capability-proof
+    establishes:
+      - The difference between context availability and enforced semantic behavior.
+      - Evidence for each claimed runtime capability.
+  - id: authority-boundary
+    establishes:
+      - Semantic authority, implementation capability, and environment authority remain distinct.
+      - Upstream meaning cannot silently override environment-local semantic commitments.
+  - id: conformance-evaluation
+    establishes:
+      - Required distinctions, questions, provenance, and consequence policies remain operationally preservable.
+  - id: synchronization-commitment
+    establishes:
+      - Updates are detected but do not become active through an implicit floating-latest policy.
+      - Diff, validation, acceptance, provenance, and rollback are explicit.
+  - id: adoption-decision
+    establishes:
+      - An accepted, conditional, or rejected outcome with reasons and unresolved conditions.
+
+required_questions:
+  - What exact Semantic Pack release would govern this runtime and environment?
+  - Is the Pack merely available as context, or are its contracts behaviorally enforced?
+  - Where is the boundary between upstream semantic authority and environment-local semantic authority?
+  - What prevents a provider or runtime capability from becoming undeclared semantic authority?
+  - Can an upstream update alter local goals, constraints, ontology, information boundaries, or existing meaning without explicit acceptance?
+  - How are semantic differences detected, classified, validated, accepted, rejected, and rolled back?
+  - Can historical reasoning and StateChange be reconstructed under the exact semantic environment that governed them?
+  - What inspectable evidence supports every affirmative capability claim?
+
+invariants:
+  - Reading or retrieving a Semantic Pack does not establish semantic governance.
+  - Runtime capability does not establish semantic Authority.
+  - A Semantic Pack Provider does not become the semantic authority by compiling or distributing a Pack.
+  - Synchronization detects upstream change; it does not admit that change into an active environment.
+  - No active governed environment floats silently to the latest Semantic Pack version.
+  - Conflict does not resolve automatically in favor of upstream or local meaning.
+  - An update cannot retroactively rewrite the meaning of historical objects or StateChange.
+  - Missing implementation evidence cannot be replaced by a model assertion of capability.
+  - A Handshake Prompt may initiate this Contract but cannot redefine it.
+
+acceptance:
+  requires:
+    - Exact semantic and participant identities are recorded.
+    - Enforcement claims are separated from context-consumption claims and supported by evidence.
+    - Semantic and environment authority boundaries are explicit.
+    - Conflicts cannot be silently collapsed or auto-admitted.
+    - The active resolved semantic environment is immutable and version-pinned.
+    - Upstream changes pass semantic diff, compatibility validation, and explicit acceptance before activation.
+    - Rollback and historical reconstruction remain possible.
+  forbids:
+    - Floating-latest activation.
+    - Implicit authority transfer to the provider or runtime.
+    - Silent local override of Core meaning.
+    - Silent upstream override of environment-local semantic commitments.
+    - Capability claims without inspectable evidence.
+
+outcomes:
+  accepted:
+    meaning: All required declarations and evidence satisfy this Contract for the identified versions and environment.
+    effect: A version-pinned governed runtime binding may be established.
+  conditional:
+    meaning: The authority boundary is preserved, but named capabilities or evidence remain incomplete.
+    effect: Only explicitly permitted non-material or review-gated operation may proceed.
+  rejected:
+    meaning: A required identity, authority boundary, invariant, conflict policy, or evidence obligation is absent or violated.
+    effect: The runtime must not claim to be governed by the Semantic OS.
+
+handshake_record:
+  required:
+    - Contract ID and version.
+    - Timestamp and participant identities.
+    - Requested and resolved Pack identities, versions, and checksums.
+    - Environment identity and declared environment authority.
+    - Capability claims and evidence references.
+    - Authority, precedence, conflict, synchronization, and rollback declarations.
+    - Outcome, reasons, unresolved conditions, and deciding authority.
+  lifecycle:
+    - A material runtime, adapter, provider, Pack, authority, or environment change requires revalidation.
+    - A new upstream version creates an update candidate, not an implicit replacement binding.
+    - Superseded and rejected records remain reconstructable.
+
+prompt_surface:
+  name: HandshakePrompt
+  authoritative: false
+  purpose: Initiates the Contract against a particular runtime or provider.
+  portability: Wording may vary by model, vendor, language, interface, or deployment environment.
+  constraint: A prompt cannot weaken, omit, or silently reinterpret Contract obligations.
+
+failure_states:
+  - code: PACK_CONTEXT_MISTAKEN_FOR_GOVERNANCE
+    meaning: The runtime can retrieve the Pack but cannot demonstrate that Pack obligations govern behavior.
+  - code: UNDECLARED_SEMANTIC_AUTHORITY
+    meaning: A provider, runtime, adapter, or update path can change meaning without declared Authority.
+  - code: FLOATING_SEMANTIC_ENVIRONMENT
+    meaning: An active environment can silently move to an unaccepted Pack version.
+  - code: LOCAL_SEMANTIC_SOVEREIGNTY_LOST
+    meaning: Upstream change can silently alter environment-local goals, constraints, ontology, information boundaries, or existing meaning.
+  - code: SEMANTIC_CONFLICT_COLLAPSED
+    meaning: Conflicting upstream and local semantics are merged or prioritized without an explicit governed decision.
+  - code: HISTORICAL_MEANING_UNRECONSTRUCTABLE
+    meaning: Prior reasoning or StateChange cannot be interpreted under the semantic environment that governed it.
+  - code: CAPABILITY_CLAIM_UNPROVEN
+    meaning: Adoption relies on a system assertion rather than inspectable implementation evidence.
+
+derivation:
+  source: Semantic OS provider and runtime-adoption exploration
+  status: working-reference
+
+  rationale: >-
+    A system is not governed by a Semantic OS merely because it has read a Semantic Pack. Governance begins only
+    after an explicit, evidence-bearing, version-bound Semantic Handshake preserves authority and semantic continuity.

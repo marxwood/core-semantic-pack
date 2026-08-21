@@ -78,6 +78,23 @@ must_preserve:
 
 See [`semantic/questions/`](semantic/questions/) and [`docs/question-contract-model.md`](docs/question-contract-model.md).
 
+## Semantic Handshakes
+
+A runtime is not governed by the Semantic OS merely because it can retrieve or read a Semantic Pack. Governance begins through an explicit, evidence-bearing, version-bound Semantic Handshake.
+
+The first contract, `SemanticOSAdoptionHandshake`, establishes:
+
+- exact Pack, runtime, provider, adapter, environment, and authority identities;
+- the difference between context consumption and behavioral enforcement;
+- the boundary between upstream semantic authority and environment-local semantic authority;
+- version pinning, semantic diff, compatibility validation, explicit update acceptance, and rollback;
+- an `accepted`, `conditional`, or `rejected` adoption decision;
+- a reconstructable Handshake Record.
+
+Handshake Prompts are portable invocation surfaces. They may vary by runtime or model, but they are non-authoritative and cannot weaken the underlying Contract.
+
+See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [illustrative adoption prompt](examples/handshake-prompts/semantic-os-adoption.md).
+
 ## Repository map
 
 | Area | Responsibility |
@@ -88,6 +105,7 @@ See [`semantic/questions/`](semantic/questions/) and [`docs/question-contract-mo
 | [`semantic/relations/`](semantic/relations/) | Typed relations that form the semantic graph |
 | [`semantic/boundaries/`](semantic/boundaries/) | Anti-collapse rules and semantic safety properties |
 | [`semantic/questions/`](semantic/questions/) | Atomic questions organized under taxonomy-only primary families |
+| [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) | Runtime-neutral pre-adoption contracts and their registry |
 | [`semantic/references/`](semantic/references/) | Explicit non-Core comparison categories used by structured notation |
 | [`semantic/patterns/`](semantic/patterns/) | Composite structures built from Core primitives |
 | [`semantic/lifecycle/`](semantic/lifecycle/) | Separate lifecycle and status families |
@@ -109,6 +127,7 @@ The Markdown specification explains the architecture. The repository records mat
 ```bash
 python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
+python scripts/validate_handshakes.py
 ```
 
 The validator checks registry identity, canonical-symbol uniqueness and resolution, boundary expressions, question atomicity and family topology, all checked authoring surfaces, indexes, fixtures, and release manifests. It does not determine semantic truth and is not the source of semantic authority.

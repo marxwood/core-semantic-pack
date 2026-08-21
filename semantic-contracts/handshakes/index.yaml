@@ -1,0 +1,16 @@
+id: core.handshake.index
+version: 0.1.0
+status: experimental
+
+handshake_model:
+  explicit_adoption_required: true
+  prompt_is_authoritative: false
+  consumption_is_governance: false
+  accepted_binding_is_version_pinned: true
+  upstream_updates_require_revalidation: true
+
+handshakes:
+  - order: H1
+    symbol: SemanticOSAdoptionHandshake
+    id: core.handshake.semantic-os-adoption
+    file: semantic-contracts/handshakes/H1-semantic-os-adoption-contract.yaml

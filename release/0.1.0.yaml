@@ -19,6 +19,8 @@ includes:
     - semantic/boundaries/
   questions:
     - semantic/questions/
+  handshakes:
+    - semantic-contracts/handshakes/
   patterns:
     - semantic/patterns/semantic-trace.yaml
     - semantic/patterns/teleological-loop.yaml
@@ -47,6 +49,7 @@ counts:
   boundaries: 23
   question_families: 9
   question_contracts: 66
+  handshake_contracts: 1
   patterns: 5
   status_families: 5
   conformance_rules: 18

@@ -63,6 +63,21 @@ A question contract includes:
 
 Question families do not carry these requirements. They are taxonomy-only views containing `questions` and optional cross-family `related_questions` canonical references.
 
+## Semantic Handshake Contract
+
+A Semantic Handshake Contract includes:
+
+- a stable ID, version, status, kind, and ordered handshake identifier;
+- one isolated canonical `symbol`;
+- participants and their distinct semantic responsibilities;
+- preconditions, required declarations, ordered phases, and required questions;
+- invariants protecting authority boundaries and local semantic sovereignty;
+- explicit acceptance requirements and exactly three outcomes: `accepted`, `conditional`, and `rejected`;
+- Handshake Record requirements, revalidation conditions, and stable failure codes;
+- a non-authoritative Handshake Prompt surface that may vary by runtime without changing the Contract.
+
+Handshake contract filenames end in `-contract.yaml` and use an ordered `H<number>-` prefix. Prompt wording and provider-specific adapters are not canonical semantic declarations.
+
 ## Pattern record
 
 A pattern composes Core primitives and relations. It must declare `not_a_primitive: true` unless it has separately passed Core admission criteria.

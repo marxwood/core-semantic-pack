@@ -133,6 +133,7 @@ required_entrypoints = {
     "relations": "semantic/relations/index.yaml",
     "boundaries": "semantic/boundaries/index.yaml",
     "questions": "semantic/questions/index.yaml",
+    "handshakes": "semantic-contracts/handshakes/index.yaml",
     "patterns": "semantic/patterns/",
     "lifecycle": "semantic/lifecycle/status-families.yaml",
     "composition": "semantic/composition/composition-model.yaml",
@@ -153,6 +154,7 @@ CONCEPT_INDEX_PATH = entrypoint_path("concepts")
 RELATION_INDEX_PATH = entrypoint_path("relations")
 BOUNDARY_INDEX_PATH = entrypoint_path("boundaries")
 QUESTION_INDEX_PATH = entrypoint_path("questions")
+HANDSHAKE_INDEX_PATH = entrypoint_path("handshakes")
 PATTERN_ROOT = ROOT / entrypoint_path("patterns")
 LIFECYCLE_CATALOG_PATH = entrypoint_path("lifecycle")
 COMPOSITION_MODEL_PATH = entrypoint_path("composition")
@@ -163,6 +165,7 @@ CONCEPT_ROOT = (ROOT / CONCEPT_INDEX_PATH).parent
 RELATION_ROOT = (ROOT / RELATION_INDEX_PATH).parent
 BOUNDARY_ROOT = (ROOT / BOUNDARY_INDEX_PATH).parent
 QUESTION_ROOT = (ROOT / QUESTION_INDEX_PATH).parent
+HANDSHAKE_ROOT = (ROOT / HANDSHAKE_INDEX_PATH).parent
 LIFECYCLE_ROOT = (ROOT / LIFECYCLE_CATALOG_PATH).parent
 COMPOSITION_ROOT = (ROOT / COMPOSITION_MODEL_PATH).parent
 CONFORMANCE_ROOT = (ROOT / CONFORMANCE_RULES_PATH).parent
@@ -180,6 +183,91 @@ if SEMANTIC_ROOT.is_dir():
             f"found {sorted(actual_semantic_directories)!r}"
         )
 
+
+# Semantic Handshakes: ordered portable contracts plus the index bridge.
+handshake_index = loaded.get(HANDSHAKE_INDEX_PATH)
+if not isinstance(handshake_index, dict):
+    fail("semantic-contracts/handshakes/index.yaml must contain a mapping")
+    handshake_index = {}
+
+required_handshake_model = {
+    "explicit_adoption_required": True,
+    "prompt_is_authoritative": False,
+    "consumption_is_governance": False,
+    "accepted_binding_is_version_pinned": True,
+    "upstream_updates_require_revalidation": True,
+}
+if handshake_index.get("handshake_model") != required_handshake_model:
+    fail("semantic-contracts/handshakes/index.yaml: handshake_model does not preserve required adoption invariants")
+
+handshake_records: list[dict[str, Any]] = []
+handshake_entries = handshake_index.get("handshakes", [])
+if not isinstance(handshake_entries, list):
+    fail("semantic-contracts/handshakes/index.yaml: handshakes must be a list")
+    handshake_entries = []
+for entry in handshake_entries:
+    if not isinstance(entry, dict):
+        fail("semantic-contracts/handshakes/index.yaml: each handshake entry must be a mapping")
+        continue
+    require_fields(entry, ["order", "symbol", "id", "file"], "semantic-contracts/handshakes/index.yaml handshake")
+    if set(entry) != {"order", "symbol", "id", "file"}:
+        fail("semantic-contracts/handshakes/index.yaml: handshake entries must contain lookup metadata only")
+    order = entry.get("order")
+    file_name = entry.get("file")
+    if not isinstance(order, str) or not re.fullmatch(r"H[1-9][0-9]*", order):
+        fail(f"semantic-contracts/handshakes/index.yaml: invalid handshake order {order!r}")
+    if not isinstance(file_name, str) or not re.fullmatch(
+        r"semantic-contracts/handshakes/H[1-9][0-9]*-[a-z0-9-]+-contract\.yaml", file_name or ""
+    ):
+        fail(f"semantic-contracts/handshakes/index.yaml: invalid handshake contract path {file_name!r}")
+        continue
+    if not Path(file_name).name.startswith(f"{order}-"):
+        fail(f"{file_name}: filename order differs from declared order")
+    record = loaded.get(file_name)
+    if not isinstance(record, dict):
+        fail(f"{file_name}: missing or invalid Semantic Handshake Contract")
+        continue
+    require_fields(
+        record,
+        [
+            "id", "version", "status", "kind", "order", "symbol", "definition", "participants",
+            "required_declarations", "phases", "required_questions", "invariants", "acceptance", "outcomes",
+            "handshake_record", "prompt_surface", "failure_states", "derivation",
+        ],
+        file_name,
+    )
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "order", "symbol", "definition", "purpose", "participants",
+            "preconditions", "required_declarations", "phases", "required_questions", "invariants", "acceptance",
+            "outcomes", "handshake_record", "prompt_surface", "failure_states", "derivation",
+        ],
+        file_name,
+    )
+    for field in ("id", "symbol", "order"):
+        if record.get(field) != entry.get(field):
+            fail(f"{file_name}: {field} differs from semantic-contracts/handshakes/index.yaml")
+    if record.get("kind") != "semantic-handshake-contract":
+        fail(f"{file_name}: kind must be 'semantic-handshake-contract'")
+    if set(record.get("outcomes", {})) != {"accepted", "conditional", "rejected"}:
+        fail(f"{file_name}: outcomes must be exactly accepted, conditional, and rejected")
+    if record.get("prompt_surface", {}).get("authoritative") is not False:
+        fail(f"{file_name}: Handshake Prompt must remain non-authoritative")
+    handshake_records.append(record)
+
+handshake_by_id = index_unique(handshake_records, "id", "handshake contract ID")
+handshake_by_symbol = index_unique(handshake_records, "symbol", "handshake contract symbol")
+actual_handshake_paths = {
+    relpath(path) for path in HANDSHAKE_ROOT.glob("H*-contract.yaml")
+}
+indexed_handshake_paths = {
+    entry.get("file") for entry in handshake_entries if isinstance(entry, dict) and isinstance(entry.get("file"), str)
+}
+if actual_handshake_paths != indexed_handshake_paths:
+    fail("semantic-contracts/handshakes/index.yaml: indexed and physical handshake contract files differ")
+if len(handshake_by_id) != 1 or "SemanticOSAdoptionHandshake" not in handshake_by_symbol:
+    fail("semantic-contracts/handshakes/: H1 SemanticOSAdoptionHandshake is required")
 
 # Concepts: atomic records plus the concept index bridge.
 concept_index = loaded.get(CONCEPT_INDEX_PATH)
@@ -1030,6 +1118,7 @@ actual_counts = {
     "boundaries": len(boundary_by_id),
     "question_families": len(family_by_id),
     "question_contracts": len(question_by_id),
+    "handshake_contracts": len(handshake_by_id),
     "patterns": len(pattern_by_id),
     "status_families": len(status_by_id),
     "conformance_rules": len(rule_by_id),
@@ -1051,6 +1140,7 @@ expected_release_includes = {
     "relations": ["semantic/relations/"],
     "boundaries": ["semantic/boundaries/"],
     "questions": ["semantic/questions/"],
+    "handshakes": ["semantic-contracts/handshakes/"],
     "patterns": [
         "semantic/patterns/semantic-trace.yaml",
         "semantic/patterns/teleological-loop.yaml",
@@ -1125,6 +1215,7 @@ print(f"  Boundaries:              {len(boundary_by_id)}")
 print(f"  Reference-only symbols:  {len(reference_by_id)}")
 print(f"  Question families:       {len(family_by_id)}")
 print(f"  Question contracts:      {len(question_by_id)}")
+print(f"  Handshake contracts:     {len(handshake_by_id)}")
 print(f"  Patterns:                {len(pattern_by_id)}")
 print(f"  Status families:         {len(status_by_id)}")
 print(f"  Conformance rules:       {len(rule_by_id)}")

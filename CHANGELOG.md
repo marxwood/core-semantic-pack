@@ -18,3 +18,4 @@ The project is experimental. Until the first adopted release, version changes de
 - Separates five lifecycle/status families.
 - Introduces 18 conformance rules, 5 valid fixtures, and 24 intentionally invalid semantic regression fixtures.
 - Adds composition, generic agentic mapping, release, and structural validation records.
+- Introduces the H1 Semantic OS Adoption Handshake, a non-authoritative Handshake Prompt example, a reconstructable Handshake Record example, and dedicated structural validation.
