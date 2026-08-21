@@ -7,7 +7,10 @@ The v0.1 validator performs **structural conformance**:
 
 - YAML can be parsed;
 - IDs are unique;
-- referenced concepts, relations, boundaries, questions, patterns, and rules exist;
+- stable IDs and canonical references are unique and resolve exactly;
+- canonical concepts, relations, boundary expressions, questions, patterns, status families, and rule symbols exist;
+- semantic authoring fields do not use legacy registry-ID notation;
+- Questions live beneath one primary family and family navigation is bidirectionally consistent;
 - indexes and release manifests match the repository;
 - fixtures declare expected pass/failure outcomes.
 

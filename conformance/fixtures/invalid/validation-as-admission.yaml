@@ -5,20 +5,20 @@ description: Successful Validation is treated as completed Admission into mainta
 expected: invalid
 objects:
 - id: validation:schema-pass
-  type: core.validation
+  type: Validation
   attributes:
-    represented_as: core.admission
+    represented_as: Admission
 - id: claim:candidate
-  type: core.claim
+  type: Claim
   attributes:
     admission_status: admitted
 relations:
-- relation: core.rel.validates-object
+- relation: validatesObject
   source: validation:schema-pass
   target: claim:candidate
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.admission-explicit
+  - AdmissionExplicit
   boundaries_triggered:
-  - core.boundary.validation-not-admission
+  - Validation != Admission

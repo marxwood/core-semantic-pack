@@ -1,0 +1,37 @@
+id: core.question.detect-inference-institutionalization
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Did an intermediate Inference silently become institutional truth?
+family: reflective
+requires:
+  concepts:
+  - Inference
+  - Persistence
+  - Admission
+  - State
+  - Finding
+  - Provenance
+  relations:
+  - persistsObject
+  - admittedBy
+  - hasProvenance
+must_preserve:
+- Inference != Finding
+- Persistence != Admission
+- Repetition != Validation
+- Evidence != Truth
+answer_contract:
+  minimum_requirements:
+  - inference_identified
+  - persistence_traceable
+  - admission_transition_present_or_absent_explicit
+  - status_promotion_traceable
+failure_contract:
+  failure_states:
+  - inference_promoted_without_admission
+  - repetition_used_as_validation
+  - persistence_manufactured_authority
+  consequence_on_failure:
+    answer_status: semantic-status-collapse-risk
+    material_consequence: autonomy-reduce-and-review

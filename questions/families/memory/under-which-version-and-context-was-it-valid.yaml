@@ -1,0 +1,31 @@
+id: core.question.identify-validity-version-context
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Under which version and Context was it valid?
+family: memory
+requires:
+  concepts:
+  - SemanticVersion
+  - Validity
+  - Context
+  - Provenance
+  relations:
+  - versionedBy
+  - hasValidity
+  - existsIn
+  - hasProvenance
+must_preserve: []
+answer_contract:
+  minimum_requirements:
+  - semantic_version_identified
+  - validity_status_identified
+  - validity_context_explicit
+  - historical_provenance_traceable
+failure_contract:
+  failure_states:
+  - historical_meaning_unreconstructable
+  - version_or_context_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

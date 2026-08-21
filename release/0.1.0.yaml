@@ -22,7 +22,6 @@ includes:
   questions:
   - questions/index.yaml
   - questions/families/
-  - questions/contracts/
   - questions/migration-v0.1.yaml
   patterns:
   - patterns/semantic-trace.yaml
@@ -43,6 +42,8 @@ includes:
   - conformance/coverage.yaml
   - conformance/fixtures/valid/
   - conformance/fixtures/invalid/
+  references:
+  - references/non-core-symbols.yaml
 counts:
   concepts: 51
   relations: 89
@@ -54,6 +55,7 @@ counts:
   conformance_rules: 18
   valid_fixtures: 5
   invalid_fixtures: 24
+  reference_only_symbols: 8
 semantic_status:
   all_records: experimental unless explicitly illustrative
   candidate_core_primitives: 51
@@ -64,7 +66,8 @@ known_limitations:
 - BindingDecision is represented through Binding plus Commitment.
 - Reflection composes existing primitives rather than defining an independent primitive set.
 - The current validator checks structural integrity and declared fixture expectations, not semantic truth.
-- Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime fixtures.
+- Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime
+  fixtures.
 - Release commit and publication time must be assigned after merge or tagging.
 compatibility:
   previous_release: null

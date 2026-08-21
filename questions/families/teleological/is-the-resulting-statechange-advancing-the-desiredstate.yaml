@@ -1,0 +1,33 @@
+id: core.question.assess-state-change-progress
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Is the resulting StateChange advancing the DesiredState?
+family: teleological
+requires:
+  concepts:
+  - StateChange
+  - DesiredState
+  - Progress
+  - State
+  - Trajectory
+  relations:
+  - evaluates
+  - evaluatedAgainst
+  - comprisesStateChange
+must_preserve:
+- Action != StateChange
+- OperationalSuccess != Progress
+answer_contract:
+  minimum_requirements:
+  - state_change_identified
+  - desired_state_identified
+  - progress_evaluation_explicit
+  - operational_success_separated_from_progress
+failure_contract:
+  failure_states:
+  - state_change_missing
+  - progress_inferred_from_execution_success
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

@@ -1,0 +1,30 @@
+id: core.question.identify-goal-operationalizing-intent
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Which Intent operationalizes the Goal here?
+family: teleological
+requires:
+  concepts:
+  - Intent
+  - Goal
+  - Context
+  relations:
+  - advances
+  - existsIn
+must_preserve:
+- Intent != Goal
+- Intent != Authority
+answer_contract:
+  minimum_requirements:
+  - intent_identified
+  - goal_identified
+  - intent_goal_relation_traceable
+  - context_explicit
+failure_contract:
+  failure_states:
+  - intent_detached_from_goal
+  - context_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

@@ -1,0 +1,31 @@
+id: core.question.identify-memory-eligibility
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What should the system remember?
+family: memory
+requires:
+  concepts:
+  - Persistence
+  - Admission
+  - Context
+  - State
+  relations:
+  - persistsObject
+  - admittedBy
+  - existsIn
+must_preserve:
+- Persistence != Admission
+answer_contract:
+  minimum_requirements:
+  - candidate_for_persistence_identified
+  - persistence_policy_or_eligibility_explicit
+  - admission_status_preserved
+  - context_explicit
+failure_contract:
+  failure_states:
+  - persistence_used_as_admission
+  - eligibility_implicit
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

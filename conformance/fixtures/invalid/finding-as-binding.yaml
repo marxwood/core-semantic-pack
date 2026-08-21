@@ -5,20 +5,20 @@ description: A non-binding Finding is treated as an operative institutional deci
 expected: invalid
 objects:
 - id: finding:risk
-  type: core.finding
+  type: Finding
   attributes:
-    represented_as: semantic-category:binding-decision
+    represented_as: BindingDecision
 - id: commitment:act
-  type: core.commitment
+  type: Commitment
   attributes:
     binding_status: binding
 relations:
-- relation: core.rel.established-by
+- relation: establishedBy
   source: commitment:act
   target: finding:risk
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.binding-explicit
+  - BindingExplicit
   boundaries_triggered:
-  - core.boundary.finding-not-binding-decision
+  - Finding != BindingDecision

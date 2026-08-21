@@ -18,11 +18,12 @@ Every concept is `experimental` and `candidate-core-primitive` in v0.1. Inclusio
 
 Each record declares:
 
-- what question the concept helps answer;
+- stable `id` and canonical PascalCase `symbol`;
+- exact canonical Questions it `helps_answer`, when an audited match exists;
 - a definition;
-- what the concept is not;
-- required and conditional relations;
-- anti-collapse boundaries;
+- resolvable `not_equivalent_to` symbols and separate explanatory `exclusions`;
+- required and conditional canonical relation symbols;
+- canonical anti-collapse boundary expressions;
 - derivation rationale.
 
-The exact YAML serialization is non-authoritative. Stable IDs and semantic obligations are the referencable contract.
+The exact YAML serialization is non-authoritative. Stable IDs preserve registry identity, while symbols and semantic obligations are the authoring contract. Legacy free-form question-like strings without an exact canonical match are retained for review in [`docs/canonical-question-gaps.md`](../docs/canonical-question-gaps.md).

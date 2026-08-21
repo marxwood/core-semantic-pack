@@ -6,50 +6,50 @@ description: An Action is attributable, tied through Intent to an authorized Goa
 expected: valid
 objects:
 - id: goal:maintain-protection
-  type: core.goal
+  type: Goal
 - id: desired-state:coverage-retained
-  type: core.desired-state
+  type: DesiredState
 - id: intent:identify-filings
-  type: core.intent
+  type: Intent
 - id: process:portfolio-analysis
-  type: core.process
+  type: Process
 - id: action:generate-recommendations
-  type: core.action
+  type: Action
 - id: actor:analysis-agent
-  type: core.actor
+  type: Actor
 - id: authority:analysis-mandate
-  type: core.authority
+  type: Authority
 - id: context:portfolio-review
-  type: core.context
+  type: Context
 relations:
-- relation: core.rel.specifies
+- relation: specifies
   source: goal:maintain-protection
   target: desired-state:coverage-retained
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: goal:maintain-protection
   target: authority:analysis-mandate
-- relation: core.rel.advances
+- relation: advances
   source: intent:identify-filings
   target: goal:maintain-protection
-- relation: core.rel.realizes
+- relation: realizes
   source: action:generate-recommendations
   target: intent:identify-filings
-- relation: core.rel.participates-in
+- relation: participatesIn
   source: action:generate-recommendations
   target: process:portfolio-analysis
-- relation: core.rel.performed-by
+- relation: performedBy
   source: action:generate-recommendations
   target: actor:analysis-agent
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: action:generate-recommendations
   target: authority:analysis-mandate
-- relation: core.rel.exists-in
+- relation: existsIn
   source: action:generate-recommendations
   target: context:portfolio-review
 expectations:
   rules_pass:
-  - core.rule.action-purpose-chain
-  - core.rule.capability-authority-separation
-  - core.rule.answerability-gates-consequence
+  - ActionPurposeChain
+  - CapabilityAuthoritySeparation
+  - AnswerabilityGatesConsequence
   rules_fail: []
   boundaries_triggered: []

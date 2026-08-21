@@ -3,223 +3,275 @@ version: 0.1.0
 status: experimental
 rules:
 - id: core.rule.known-semantic-references
+  symbol: KnownSemanticReferences
   version: 0.1.0
   status: experimental
-  scope: pack-structure
   requirement: Every Core concept, relation, boundary, question, pattern, and rule reference resolves
     within the declared release.
   failure: unresolved-semantic-reference
+  scope:
+    category: pack-structure
 - id: core.rule.derived-object-provenance
+  symbol: DerivedObjectProvenance
   version: 0.1.0
   status: experimental
-  scope:
-  - core.derivative
-  - core.projection
-  - core.inference
-  - core.finding
-  - core.evidence
   requirement: Every material derived object retains explicit Provenance and a derivation path.
   required_relations:
-  - core.rel.has-provenance
+  - hasProvenance
   failure: detached-derivative
+  scope:
+    types:
+    - Derivative
+    - Projection
+    - Inference
+    - Finding
+    - Evidence
 - id: core.rule.evidence-admitted-and-provenanced
+  symbol: EvidenceAdmittedAndProvenanced
   version: 0.1.0
   status: experimental
-  scope: core.evidence
   requirement: Evidence has Provenance, exists in a declared Context, is admitted by an explicit Admission,
     and supports or contradicts at least one Claim.
   required_relations:
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.admitted-by
+  - hasProvenance
+  - existsIn
+  - admittedBy
   requires_one_of_relations:
-  - core.rel.supports
-  - core.rel.contradicts
-  boundaries:
-  - core.boundary.claim-not-evidence
-  - core.boundary.evidence-not-truth
-  - core.boundary.validation-not-admission
+  - supports
+  - contradicts
   failure: ungoverned-evidence-status
+  scope:
+    types:
+    - Evidence
+  boundaries:
+  - Claim != Evidence
+  - Evidence != Truth
+  - Validation != Admission
 - id: core.rule.finding-governed
+  symbol: FindingGoverned
   version: 0.1.0
   status: experimental
-  scope: core.finding
   requirement: A Finding retains derivation, Provenance, and contextual Validity and remains non-binding
     unless a separate Binding occurs.
   required_relations:
-  - core.rel.derived-from
-  - core.rel.has-provenance
-  - core.rel.has-validity
-  boundaries:
-  - core.boundary.inference-not-finding
-  - core.boundary.finding-not-binding-decision
+  - derivedFrom
+  - hasProvenance
+  - hasValidity
   failure: ungoverned-finding
+  scope:
+    types:
+    - Finding
+  boundaries:
+  - Inference != Finding
+  - Finding != BindingDecision
 - id: core.rule.projection-non-authoritative
+  symbol: ProjectionNonAuthoritative
   version: 0.1.0
   status: experimental
-  scope: core.projection
   requirement: A Projection identifies what it projects and retains Provenance without being represented
     as Source, maintained State, Admission, or Binding.
   required_relations:
-  - core.rel.projects
-  - core.rel.has-provenance
-  boundaries:
-  - core.boundary.source-not-projection
-  - core.boundary.projection-not-state
+  - projects
+  - hasProvenance
   failure: projection-collapse
+  scope:
+    types:
+    - Projection
+  boundaries:
+  - Source != Projection
+  - Projection != State
 - id: core.rule.action-purpose-chain
+  symbol: ActionPurposeChain
   version: 0.1.0
   status: experimental
-  scope: core.action
   requirement: A material Action is attributable to an Actor, realizes an Intent, participates in a Process,
     and its Intent advances an authorized Goal specifying a DesiredState.
   required_relations:
-  - core.rel.performed-by
-  - core.rel.realizes
-  - core.rel.participates-in
+  - performedBy
+  - realizes
+  - participatesIn
   required_chain:
-  - core.action --core.rel.realizes--> core.intent
-  - core.intent --core.rel.advances--> core.goal
-  - core.goal --core.rel.specifies--> core.desired-state
-  - core.goal --core.rel.authorized-by--> core.authority
-  boundaries:
-  - core.boundary.action-not-intent
-  - core.boundary.intent-not-goal
-  - core.boundary.goal-not-desired-state
+  - source: Action
+    relation: realizes
+    target: Intent
+  - source: Intent
+    relation: advances
+    target: Goal
+  - source: Goal
+    relation: specifies
+    target: DesiredState
+  - source: Goal
+    relation: authorizedBy
+    target: Authority
   failure: detached-action-purpose
+  scope:
+    types:
+    - Action
+  boundaries:
+  - Action != Intent
+  - Intent != Goal
+  - Goal != DesiredState
 - id: core.rule.external-effect-authorized
+  symbol: ExternalEffectAuthorized
   version: 0.1.0
   status: experimental
-  scope: core.external-effect
   requirement: An ExternalEffect is attributable, explicitly authorized, governed by an applicable Contract,
     and linked to resulting State.
   required_relations:
-  - core.rel.authorized-by
-  - core.rel.governed-by
-  - core.rel.resulting-state
-  - core.rel.has-provenance
+  - authorizedBy
+  - governedBy
+  - resultingState
+  - hasProvenance
   failure: unauthorized-external-effect
+  scope:
+    types:
+    - ExternalEffect
 - id: core.rule.state-change-reconstructable
+  symbol: StateChangeReconstructable
   version: 0.1.0
   status: experimental
-  scope: core.state-change
   requirement: A StateChange identifies previous and resulting State, exists in Context, and retains an
     attributable cause or Provenance.
   required_relations:
-  - core.rel.previous-state
-  - core.rel.resulting-state
-  - core.rel.exists-in
+  - previousState
+  - resultingState
+  - existsIn
   requires_one_of_relations:
-  - core.rel.caused-by
-  - core.rel.has-provenance
-  boundary: core.boundary.action-not-state-change
+  - causedBy
+  - hasProvenance
   failure: unreconstructable-state-change
+  scope:
+    types:
+    - StateChange
+  boundaries:
+  - Action != StateChange
 - id: core.rule.admission-explicit
+  symbol: AdmissionExplicit
   version: 0.1.0
   status: experimental
-  scope: maintained governed State
   requirement: An admitted object or resulting maintained State traces to an explicit, authorized Admission;
     Persistence and Validation cannot substitute.
   required_concepts:
-  - core.admission
-  - core.authority
+  - Admission
+  - Authority
   required_relations:
-  - core.rel.admitted-by
-  - core.rel.authorized-by
-  boundaries:
-  - core.boundary.validation-not-admission
-  - core.boundary.persistence-not-admission
+  - admittedBy
+  - authorizedBy
   failure: implicit-admission
+  scope_description: Maintained governed State.
+  boundaries:
+  - Validation != Admission
+  - Persistence != Admission
 - id: core.rule.binding-explicit
+  symbol: BindingExplicit
   version: 0.1.0
   status: experimental
-  scope: institutional commitment
   requirement: An operative Commitment traces to a separate authorized Binding act; Review, Finding, or
     visibility cannot substitute.
   required_concepts:
-  - core.binding
-  - core.authority
-  - core.commitment
+  - Binding
+  - Authority
+  - Commitment
   required_relations:
-  - core.rel.establishes-commitment
-  - core.rel.authorized-by
-  boundaries:
-  - core.boundary.review-not-binding
-  - core.boundary.finding-not-binding-decision
+  - establishesCommitment
+  - authorizedBy
   failure: implicit-binding
+  scope_description: Institutional commitment.
+  boundaries:
+  - Review != Binding
+  - Finding != BindingDecision
 - id: core.rule.capability-authority-separation
+  symbol: CapabilityAuthoritySeparation
   version: 0.1.0
   status: experimental
-  scope:
-  - core.action
-  - core.external-effect
-  - core.permission
   requirement: Capability may explain what can be performed but never satisfies a required Authority relation.
-  boundary: core.boundary.capability-not-authority
   failure: capability-used-as-authority
+  scope:
+    types:
+    - Action
+    - ExternalEffect
+    - Permission
+  boundaries:
+  - Capability != Authority
 - id: core.rule.inference-cannot-be-maintained-without-admission
+  symbol: InferenceCannotBecomeMaintainedWithoutAdmission
   version: 0.1.0
   status: experimental
-  scope: core.inference
   requirement: An Inference must not become maintained State through Persistence or downstream reuse without
     explicit epistemic evaluation and Admission.
-  boundaries:
-  - core.boundary.inference-not-finding
-  - core.boundary.persistence-not-admission
-  - core.boundary.repetition-not-validation
   failure: inference-promoted-to-maintained-state
+  scope:
+    types:
+    - Inference
+  boundaries:
+  - Inference != Finding
+  - Persistence != Admission
+  - Repetition != Validation
 - id: core.rule.review-cannot-substitute-binding
+  symbol: ReviewCannotSubstituteBinding
   version: 0.1.0
   status: experimental
-  scope: core.review
   requirement: Review may validate, contest, annotate, or recommend but cannot establish an operative
     Commitment without a separate Binding.
-  boundary: core.boundary.review-not-binding
   failure: review-used-as-binding
+  scope:
+    types:
+    - Review
+  boundaries:
+  - Review != Binding
 - id: core.rule.execution-contract-required
+  symbol: ExecutionContractRequired
   version: 0.1.0
   status: experimental
-  scope: legitimate Process realization
   requirement: Concrete execution legitimacy derives from an applicable Execution Contract pattern, not
     from an ExecutionPlan, workflow graph, or runtime configuration.
-  required_pattern: core.pattern.execution-contract
-  boundaries:
-  - core.boundary.process-not-execution-contract
-  - core.boundary.execution-contract-not-execution-plan
-  - core.boundary.execution-plan-not-runtime
+  required_pattern: ExecutionContract
   failure: execution-legitimacy-inferred-from-implementation
+  scope_description: Legitimate Process realization.
+  boundaries:
+  - Process != ExecutionContract
+  - ExecutionContract != ExecutionPlan
+  - ExecutionPlan != Runtime
 - id: core.rule.goal-progress-independent
+  symbol: GoalProgressIndependent
   version: 0.1.0
   status: experimental
-  scope:
-  - core.action
-  - core.state-change
-  - core.progress
-  requirement: GoalProgress is evaluated against DesiredState and must not be inferred from Action completion
+  requirement: Progress is evaluated against DesiredState and must not be inferred from Action completion
     or operational success.
   required_relations:
-  - core.rel.evaluated-against
-  boundary: core.boundary.operational-success-not-goal-progress
+  - evaluatedAgainst
   failure: operational-success-used-as-goal-progress
+  scope:
+    types:
+    - Action
+    - StateChange
+    - Progress
+  boundaries:
+  - OperationalSuccess != Progress
 - id: core.rule.semantic-version-retained
+  symbol: SemanticVersionRetained
   version: 0.1.0
   status: experimental
-  scope: historically material semantic objects
   requirement: The semantic version and resolved-pack identity governing historical interpretation remain
     reconstructable.
-  required_relation: core.rel.versioned-by
   failure: historical-meaning-unversioned
+  scope_description: Historically material semantic objects.
+  required_relations:
+  - versionedBy
 - id: core.rule.resolved-pack-immutable
+  symbol: ResolvedPackImmutable
   version: 0.1.0
   status: experimental
-  scope: resolved-semantic-pack
   requirement: A resolved pack records exact component versions and checksum and does not float to latest
     versions.
   failure: mutable-semantic-environment
+  scope:
+    category: resolved-semantic-pack
 - id: core.rule.answerability-gates-consequence
+  symbol: AnswerabilityGatesConsequence
   version: 0.1.0
   status: experimental
-  scope: material Action or ExternalEffect
   requirement: When required question contracts cannot be answered, the declared consequence policy is
     applied; unresolved Authority or Goal forbids ExternalEffect.
   failure: consequence-despite-unresolved-answerability
+  scope_description: Material Action or ExternalEffect.

@@ -1,49 +1,54 @@
-# Questions
+# Semantic Questions
 
-The Core Semantic Pack treats **answerability** as an architectural property.
-
-The atomic unit is a **Semantic Question Contract**:
+The Core uses one complete Semantic Question Contract for each canonical question.
 
 ```text
 one canonical question
-    ↓
-required semantic distinctions
-    ↓
-required concepts + relations + boundaries
-    ↓
-minimum answer requirements
-    ↓
-failure semantics
+        =
+one independently resolvable atomic contract
 ```
 
-Each file under [`contracts/`](contracts/) defines exactly one canonical question. A contract is independently resolvable and does not inherit semantic requirements from a family.
+Each contract declares its stable registry ID, canonical question, one primary family, required concepts and relations, preserved boundary expressions, minimum answer requirements, and failure consequences.
 
-## Families are taxonomy, not authority
+## Primary-family organization
 
-Files under [`families/`](families/) are classification and discovery views. They group related questions but do not define requirements.
+Questions live under their single primary semantic family:
 
-A question may belong to more than one family. For example, `core.question.detect-goal-change` is primarily teleological but is also relevant to reflection, governance, and memory. Its requirements still live in one atomic contract.
+```text
+questions/families/<family>/family.yaml
+questions/families/<family>/<question>.yaml
+```
 
-Family membership therefore answers:
+The path is serialization, not identity. For example:
 
-> Which semantic responsibility domains is this question relevant to?
+```text
+core.question.explain-action-purpose
+        ↔
+Why is this being done?
+        ↔
+questions/families/teleological/why-is-this-being-done.yaml
+```
 
-The atomic contract answers:
+The stable ID supports registry history. The canonical question is the authoring and exact-resolution reference.
 
-> What must remain semantically available for this exact question to be answered?
+## Families are taxonomy
+
+Every `family.yaml` record lists the canonical questions for which it is primary. It defines no semantic requirements, and questions inherit nothing from it.
+
+A family may use `related_questions` for cross-family navigation. In v0.1, `Has the Goal changed?` is primary to `teleological` and related from `reflective`; there is still exactly one contract.
+
+Semantic dependencies do not determine taxonomy. A teleological question may require `Action` or `Authority` without acquiring agency or governance ownership.
 
 ## Resolution
 
-A consumer should request question IDs, not whole families, when it knows the questions it needs:
+Consumers request canonical questions directly:
 
 ```yaml
 questions:
-  - core.question.explain-action-purpose
-  - core.question.identify-supporting-evidence
+  - Why is this being done?
+  - What supports the Claim?
 ```
 
-A resolver computes the union of the explicit requirements of those contracts and then composes the applicable Domain Pack, Regime Pack, and Execution Contract.
+Resolution is exact and deterministic through [`index.yaml`](index.yaml). IDs and filename slugs are not accepted as semantic question references. Expanding a family is an explicit navigation operation over `questions[]`; `related_questions` never expands automatically.
 
-Family-level resolution is allowed only as an explicit convenience expansion into member question IDs.
-
-See [`docs/question-contract-model.md`](../docs/question-contract-model.md).
+See [`docs/question-contract-model.md`](../docs/question-contract-model.md) and [`docs/semantic-notation.md`](../docs/semantic-notation.md).

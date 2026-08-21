@@ -15,8 +15,6 @@ layers:
   - declare concrete execution legitimacy for every Process
 - type: domain-semantic-pack
   authority: declared domain only
-  requires:
-  - compatible Core Semantic Pack
   may:
   - specialize Core concepts
   - restrict Core meaning
@@ -26,10 +24,10 @@ layers:
   - silently redefine a Core concept
   - weaken a Core boundary
   - claim authority outside the declared domain
+  requires_components:
+  - compatible Core Semantic Pack
 - type: regime-pack
   authority: declared Context and governance scope only
-  requires:
-  - compatible Core Semantic Pack
   may:
   - declare validity conditions
   - declare Evidence admission requirements
@@ -39,12 +37,10 @@ layers:
   - turn contextual validity into universal truth
   - replace Core concept definitions
   - grant Authority through Capability alone
+  requires_components:
+  - compatible Core Semantic Pack
 - type: execution-contract
   authority: declared Process and execution Context only
-  requires:
-  - core.pattern.execution-contract
-  - referenced Process
-  - applicable Authority and Constraints
   may:
   - bind a Process to execution conditions
   - declare permitted and forbidden transitions
@@ -54,13 +50,13 @@ layers:
   - be inferred from an ExecutionPlan
   - be replaced by a workflow implementation
   - manufacture Authority from a runtime capability
+  requires:
+  - ExecutionContract
+  - Process
+  - Authority
+  - Constraint
 - type: resolved-semantic-pack
   authority: immutable composition for a declared consumer and Context
-  requires:
-  - exact component versions
-  - compatibility result
-  - composition checksum
-  - resolution time
   may:
   - be supplied to runtime adapters
   - generate non-authoritative runtime artifacts
@@ -69,6 +65,11 @@ layers:
   - silently float to latest versions
   - change after resolution
   - erase rejected or overridden conflict information
+  requires_metadata:
+  - exact component versions
+  - compatibility result
+  - composition checksum
+  - resolution time
 resolution_order:
 - load exact Core release
 - verify Domain Pack compatibility

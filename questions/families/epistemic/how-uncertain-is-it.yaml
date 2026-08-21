@@ -1,0 +1,25 @@
+id: core.question.identify-uncertainty
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: How uncertain is it?
+family: epistemic
+requires:
+  concepts:
+  - Uncertainty
+  - Context
+  relations:
+  - hasUncertainty
+  - existsIn
+must_preserve: []
+answer_contract:
+  minimum_requirements:
+  - uncertainty_status_explicit
+  - uncertainty_context_explicit
+failure_contract:
+  failure_states:
+  - uncertainty_omitted
+  - uncertainty_context_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

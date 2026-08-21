@@ -1,0 +1,30 @@
+id: core.question.identify-remembered-object
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What exactly is being remembered?
+family: memory
+requires:
+  concepts:
+  - Persistence
+  - Provenance
+  - SemanticVersion
+  relations:
+  - persistsObject
+  - hasProvenance
+  - versionedBy
+must_preserve:
+- Persistence != Admission
+answer_contract:
+  minimum_requirements:
+  - persisted_object_identified
+  - semantic_type_preserved
+  - provenance_preserved
+  - version_preserved
+failure_contract:
+  failure_states:
+  - stored_content_without_semantic_identity
+  - provenance_detached
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

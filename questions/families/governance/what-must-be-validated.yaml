@@ -1,0 +1,29 @@
+id: core.question.identify-validation-requirement
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What must be validated?
+family: governance
+requires:
+  concepts:
+  - Validation
+  - Contract
+  - Constraint
+  relations:
+  - validatesObject
+  - governedBy
+  - constrainedBy
+must_preserve:
+- Validation != Admission
+answer_contract:
+  minimum_requirements:
+  - validation_subject_identified
+  - validation_obligation_traceable
+  - validation_distinguished_from_admission
+failure_contract:
+  failure_states:
+  - validation_subject_missing
+  - validation_used_as_admission
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

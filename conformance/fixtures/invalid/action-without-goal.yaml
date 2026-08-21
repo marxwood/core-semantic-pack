@@ -6,27 +6,27 @@ description: An Action has an immediate Intent and Actor but the Intent is detac
 expected: invalid
 objects:
 - id: action:optimize-metric
-  type: core.action
+  type: Action
 - id: intent:increase-throughput
-  type: core.intent
+  type: Intent
 - id: actor:agent
-  type: core.actor
+  type: Actor
 - id: process:optimization
-  type: core.process
+  type: Process
 relations:
-- relation: core.rel.realizes
+- relation: realizes
   source: action:optimize-metric
   target: intent:increase-throughput
-- relation: core.rel.performed-by
+- relation: performedBy
   source: action:optimize-metric
   target: actor:agent
-- relation: core.rel.participates-in
+- relation: participatesIn
   source: action:optimize-metric
   target: process:optimization
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.action-purpose-chain
-  - core.rule.answerability-gates-consequence
+  - ActionPurposeChain
+  - AnswerabilityGatesConsequence
   boundaries_triggered:
-  - core.boundary.intent-not-goal
+  - Intent != Goal

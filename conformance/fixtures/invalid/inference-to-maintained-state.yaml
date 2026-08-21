@@ -6,26 +6,26 @@ description: An intermediate Inference is persisted and reused as maintained Sta
 expected: invalid
 objects:
 - id: inference:tentative-cause
-  type: core.inference
+  type: Inference
   attributes:
     epistemic_status: candidate
 - id: persistence:memory-write
-  type: core.persistence
+  type: Persistence
 - id: state:institutional-assumption
-  type: core.state
+  type: State
 relations:
-- relation: core.rel.persists-object
+- relation: persistsObject
   source: persistence:memory-write
   target: inference:tentative-cause
-- relation: core.rel.supersedes
+- relation: supersedes
   source: inference:tentative-cause
   target: state:institutional-assumption
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.inference-cannot-be-maintained-without-admission
-  - core.rule.admission-explicit
+  - InferenceCannotBecomeMaintainedWithoutAdmission
+  - AdmissionExplicit
   boundaries_triggered:
-  - core.boundary.inference-not-finding
-  - core.boundary.persistence-not-admission
-  - core.boundary.repetition-not-validation
+  - Inference != Finding
+  - Persistence != Admission
+  - Repetition != Validation

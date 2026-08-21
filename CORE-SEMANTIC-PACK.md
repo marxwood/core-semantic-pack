@@ -45,6 +45,30 @@ It means:
 
 It does **not** claim that the Core is complete, final, or sufficient for every system.
 
+## 1.1 Canonical semantic notation
+
+Core contracts use canonical semantic references as their primary authoring and inspection language. Stable IDs remain registry identity for versioning, migration, compatibility, and historical reconstruction.
+
+```text
+Concept
+    core.desired-state
+    ↔ DesiredState
+
+Relation
+    core.rel.authorized-by
+    ↔ authorizedBy
+
+Boundary
+    core.boundary.action-not-intent
+    ↔ Action != Intent
+
+Question
+    core.question.explain-action-purpose
+    ↔ Why is this being done?
+```
+
+There is no separate human-label or question-slug semantic layer in v0.1. Paths and filenames are serialization details. Reference-only categories such as `Truth` and `ExecutionPlan` are explicitly registered without becoming Core primitives; `Any` is reserved wildcard meta-notation.
+
 ---
 
 # 2. Position in the architecture
@@ -195,11 +219,13 @@ A **Semantic Question Contract** declares:
 Example:
 
 ```yaml
-id: semantic.question.why-action
+id: core.question.explain-action-purpose
 version: 0.1.0
+status: experimental
+kind: semantic-question-contract
 
-question:
-  canonical_form: "Why is this action being taken?"
+canonical_question: Why is this being done?
+family: teleological
 
 requires:
   concepts:
@@ -209,35 +235,36 @@ requires:
     - DesiredState
     - Authority
     - Context
-
   relations:
-    - Action realizes Intent
-    - Intent advances Goal
-    - Goal specifies DesiredState
-    - Action authorizedBy Authority
+    - realizes
+    - advances
+    - specifies
+    - authorizedBy
+    - existsIn
 
 must_preserve:
   - Action != Intent
   - Intent != Goal
   - Intent != Authority
   - Capability != Authority
-  - DesiredState != CurrentState
 
-answer_requirements:
-  - action_identified
-  - intent_identified
-  - goal_identified
-  - desired_state_identified
-  - authorization_traceable
+answer_contract:
+  minimum_requirements:
+    - action_identified
+    - intent_identified
+    - goal_identified
+    - desired_state_identified
+    - authority_traceable
 
-failure_states:
-  - unresolved_goal
-  - unresolved_authority
-  - contradictory_intent
-  - missing_desired_state
-
-on_failure:
-  external_effect: forbidden
+failure_contract:
+  failure_states:
+    - unresolved_intent
+    - unresolved_goal
+    - missing_desired_state
+    - unresolved_authority
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: external-effect-forbidden-until-resolved
 ```
 
 The serialization is secondary.
@@ -972,7 +999,7 @@ rather than only:
 This distinction is fundamental.
 
 ```text
-OperationalSuccess != GoalProgress
+OperationalSuccess != Progress
 ```
 
 A technically successful Action may move the system away from DesiredState.
@@ -1298,7 +1325,7 @@ ExecutionContract != ExecutionPlan
 
 ExecutionPlan != Runtime
 
-OperationalSuccess != GoalProgress
+OperationalSuccess != Progress
 ```
 
 These boundaries are not documentation trivia.
@@ -1367,15 +1394,17 @@ core-semantic-pack/
 ├── pack.yaml
 │
 ├── questions/
-│   ├── foundations/
-│   ├── state/
-│   ├── epistemic/
-│   ├── interpretive/
-│   ├── teleological/
-│   ├── agency/
-│   ├── governance/
-│   ├── memory/
-│   └── reflection/
+│   ├── index.yaml
+│   └── families/
+│       ├── ontological/
+│       ├── state/
+│       ├── epistemic/
+│       ├── interpretive/
+│       ├── teleological/
+│       ├── agency/
+│       ├── governance/
+│       ├── memory/
+│       └── reflective/
 │
 ├── concepts/
 │   ├── foundations/
@@ -1388,8 +1417,7 @@ core-semantic-pack/
 │
 ├── boundaries/
 │
-├── contracts/
-│   └── question-contracts/
+├── references/
 │
 ├── lifecycle/
 │
@@ -1641,17 +1669,25 @@ Result:
 ```yaml
 resolved_pack:
   id: resolved:7fa31
-  core_release: 0.1.0
+  immutable: true
 
-  includes:
-    - core.foundation
-    - core.epistemic
-    - core.teleology
-    - core.persistence
-    - core.governance
-    - ip.patent-analysis
-    - regime.expert-review
-    - contract.patent-analysis
+  components:
+    - type: core-semantic-pack
+      id: semantic-pack.core
+      version: 0.1.0
+    - type: domain-semantic-pack
+      id: ip.patent-analysis
+      version: 0.1.0
+    - type: regime-pack
+      id: regime.expert-review
+      version: 0.1.0
+    - type: execution-contract
+      id: contract.patent-analysis
+      version: 0.1.0
+
+  provides_questions:
+    - Why is this being done?
+    - What supports the Claim?
 ```
 
 ---
@@ -1868,7 +1904,7 @@ StateChange
 StateChange
   → must remain reconstructable
 
-GoalProgress
+Progress
   → must be evaluable independently from ActionSuccess
 ```
 

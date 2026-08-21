@@ -15,7 +15,7 @@ Semantic Question Contract
     = requirements for answering one canonical question
 ```
 
-A family is not a requirement bundle and is not the owner of a question's meaning.
+A family is not a requirement bundle and is not the owner of a question's meaning. Each question has exactly one primary family, which determines only its physical location and primary taxonomy.
 
 ## Why atomicity matters
 
@@ -29,16 +29,16 @@ For example:
 
 Bundling all three into a teleological family contract would cause a consumer asking only the first question to receive unrelated trajectory and revision semantics. That weakens question-driven pack resolution.
 
-## Multi-family classification
+## Primary family and related navigation
 
-A question may participate in multiple families without being duplicated.
+Every question is defined once beneath its primary family. Requiring concepts from several semantic layers does not create multi-family ownership.
 
-`core.question.detect-goal-change` has one contract and one canonical question, while its classification can include teleological, reflective, governance, and memory responsibility domains.
+`Has the Goal changed?` is primary to `teleological`. The `reflective` family lists it under `related_questions` because reflective correction consumes the answer, but the question is not duplicated and does not acquire a second owner.
 
 Family records contain:
 
-- canonical members — questions whose primary family is that family;
-- related members — questions whose primary family is elsewhere but whose responsibility crosses the family boundary.
+- `questions` — canonical questions whose primary family is that family;
+- `related_questions` — exact canonical references to useful questions defined by another family.
 
 No requirements are inherited from either list.
 
@@ -47,22 +47,30 @@ No requirements are inherited from either list.
 Each atomic contract declares:
 
 - one `canonical_question`;
-- classification metadata;
+- one primary `family` symbol;
 - required Core concepts;
 - required Core relations;
 - anti-collapse boundaries that must remain intact;
 - minimum answer requirements;
 - failure states and consequence policy;
-- independent resolvability.
+- independent resolvability is a model-level invariant declared in
+  `questions/index.yaml > question_model`;
+- family requirements are not inherited; this is the global resolution rule in
+  `questions/index.yaml > question_model`.
+
+Atomic contracts therefore do not repeat either invariant in a per-contract
+`composition` block.
 
 The exact YAML shape is non-authoritative. The semantic obligation is the important artifact.
 
 ## Resolution rule
 
 ```text
-requested question IDs
+requested canonical questions
       ↓
-load each atomic contract
+exact lookup through questions/index.yaml
+      ↓
+load each atomic contract under its primary family
       ↓
 validate explicit references
       ↓
@@ -73,4 +81,6 @@ compose Domain + Regime + Execution semantics
 immutable Resolved Semantic Pack
 ```
 
-A family can be requested only as an explicit macro that expands to member question IDs. The resolver must never infer additional requirements merely from family membership.
+A family can be requested only as an explicit navigation expansion over its `questions` list. `related_questions` never expands automatically, and the resolver never infers additional requirements merely from family membership.
+
+Canonical questions—not stable IDs or filename slugs—are the semantic request language. Stable IDs remain the compatibility and registry identity layer.

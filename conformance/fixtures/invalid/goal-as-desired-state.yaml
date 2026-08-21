@@ -5,12 +5,12 @@ description: A Goal statement is used as the concrete DesiredState against which
 expected: invalid
 objects:
 - id: goal:improve-safety
-  type: core.goal
+  type: Goal
   attributes:
-    represented_as: core.desired-state
+    represented_as: DesiredState
 relations: []
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.goal-not-desired-state
+  - Goal != DesiredState

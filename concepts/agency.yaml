@@ -4,28 +4,25 @@ status: experimental
 layer: agency
 concepts:
 - id: core.actor
-  name: Actor
+  symbol: Actor
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An Entity to which a Role, Intent, Action, Review, decision, or responsibility may be attributed.
-  answers:
-  - Who or what acted?
-  - Who holds the Intent or responsibility?
-  what_it_is_not:
-  - Authority by default
-  - a human only
-  - an agent only
-  - a Capability
+  exclusions:
+  - Actor is not Authority by default.
+  - Actor is not a human only.
+  - Actor is not an agent only.
+  - Actor is not a Capability.
   required_relations:
-  - core.rel.has-identity
+  - hasIdentity
   conditional_relations:
-  - core.rel.occupies-role
-  - core.rel.has-capability
-  - core.rel.accountable-for
-  - core.rel.exists-in
+  - occupiesRole
+  - hasCapability
+  - accountableFor
+  - existsIn
   boundaries:
-  - core.boundary.capability-not-authority
+  - Capability != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -33,29 +30,27 @@ concepts:
       granting implicit legitimacy.
   layer: agency
 - id: core.role
-  name: Role
+  symbol: Role
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A contextual position of responsibility that constrains expected, permitted, or accountable
     participation in a Process or governance act.
-  answers:
-  - In which capacity is the Actor participating?
-  - Which responsibilities and constraints apply?
-  what_it_is_not:
+  not_equivalent_to:
   - Actor
   - Capability
-  - Authority by default
-  - job title by necessity
+  exclusions:
+  - Role is not Authority by default.
+  - Role is not job title by necessity.
   required_relations: []
   conditional_relations:
-  - core.rel.occupied-by
-  - core.rel.has-capability
-  - core.rel.constrained-by
-  - core.rel.governed-by
-  - core.rel.exists-in
+  - occupiedBy
+  - hasCapability
+  - constrainedBy
+  - governedBy
+  - existsIn
   boundaries:
-  - core.boundary.capability-not-authority
+  - Capability != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -63,28 +58,26 @@ concepts:
       contexts.
   layer: agency
 - id: core.capability
-  name: Capability
+  symbol: Capability
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A declared ability to perform an operation, transformation, interpretation, or other class
     of work.
-  answers:
-  - What can this Actor or Role do?
-  - Which operation can be performed?
-  what_it_is_not:
+  not_equivalent_to:
   - Authority
   - Permission
   - Intent
-  - successful execution
+  exclusions:
+  - Capability is not successful execution.
   required_relations: []
   conditional_relations:
-  - core.rel.held-by
-  - core.rel.constrained-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - heldBy
+  - constrainedBy
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.capability-not-authority
+  - Capability != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -92,37 +85,34 @@ concepts:
       authority.
   layer: agency
 - id: core.action
-  name: Action
+  symbol: Action
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An attributable attempt or performance by an Actor to realize an Intent, participate in
     a Process, transform an object, or produce an effect.
-  answers:
-  - What was attempted or performed?
-  - Who performed it?
-  - Which Intent and Process does it realize?
-  what_it_is_not:
+  not_equivalent_to:
   - Intent
   - StateChange
   - Authority
-  - proof of GoalProgress
+  exclusions:
+  - Action is not proof of Progress.
   required_relations:
-  - core.rel.performed-by
-  - core.rel.realizes
-  - core.rel.participates-in
+  - performedBy
+  - realizes
+  - participatesIn
   conditional_relations:
-  - core.rel.authorized-by
-  - core.rel.permitted-by
-  - core.rel.constrained-by
-  - core.rel.transforms
-  - core.rel.produces
-  - core.rel.causes
-  - core.rel.exists-in
+  - authorizedBy
+  - permittedBy
+  - constrainedBy
+  - transforms
+  - produces
+  - causes
+  - existsIn
   boundaries:
-  - core.boundary.action-not-intent
-  - core.boundary.action-not-state-change
-  - core.boundary.operational-success-not-goal-progress
+  - Action != Intent
+  - Action != StateChange
+  - OperationalSuccess != Progress
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -130,28 +120,26 @@ concepts:
       equated with its consequence.
   layer: agency
 - id: core.process
-  name: Process
+  symbol: Process
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An abstract semantic structure of possible transformations, causal relations, State transition
     logic, and invariants.
-  answers:
-  - How can change occur in this semantic domain?
-  - Which transformations and invariants define the change structure?
-  what_it_is_not:
+  not_equivalent_to:
   - ExecutionContract
   - ExecutionPlan
-  - Workflow implementation
   - Runtime
+  exclusions:
+  - Process is not Workflow implementation.
   required_relations: []
   conditional_relations:
-  - core.rel.comprises-transformation
-  - core.rel.governed-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - comprisesTransformation
+  - governedBy
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.process-not-execution-contract
+  - Process != ExecutionContract
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -159,30 +147,27 @@ concepts:
       of execution.
   layer: agency
 - id: core.transformation
-  name: Transformation
+  symbol: Transformation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A declared conversion of semantic inputs, objects, or States into outputs, Derivatives,
     or resulting States.
-  answers:
-  - Which conversion occurred or is defined?
-  - What inputs and outputs does it relate?
-  what_it_is_not:
-  - Process as a whole
-  - StateChange by definition
-  - Action by definition
-  - Runtime step by necessity
+  exclusions:
+  - Transformation is not Process as a whole.
+  - Transformation is not StateChange by definition.
+  - Transformation is not Action by definition.
+  - Transformation is not Runtime step by necessity.
   required_relations: []
   conditional_relations:
-  - core.rel.input-of
-  - core.rel.output-of
-  - core.rel.part-of-process
-  - core.rel.produced-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - inputOf
+  - outputOf
+  - partOfProcess
+  - producedBy
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.action-not-state-change
+  - Action != StateChange
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -190,89 +175,79 @@ concepts:
       or other runtime mechanism.
   layer: agency
 - id: core.transfer
-  name: Transfer
+  symbol: Transfer
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The movement of a semantic object or responsibility between Actors, Contexts, or Boundaries
     under declared interpretation and provenance obligations.
-  answers:
-  - What moved?
-  - From where and to where?
-  - Which meaning and obligations must survive?
-  what_it_is_not:
-  - a copy by definition
-  - a runtime handoff by definition
-  - Admission into the receiving context
+  exclusions:
+  - Transfer is not a copy by definition.
+  - Transfer is not a runtime handoff by definition.
+  - Transfer is not Admission into the receiving context.
   required_relations:
-  - core.rel.transfers-object
-  - core.rel.from-context
-  - core.rel.to-context
+  - transfersObject
+  - fromContext
+  - toContext
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.governed-by
-  - core.rel.authorized-by
+  - hasProvenance
+  - governedBy
+  - authorizedBy
   boundaries:
-  - core.boundary.persistence-not-admission
+  - Persistence != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
     rationale: Semantic status and provenance must survive movement across system and organizational boundaries.
   layer: agency
 - id: core.persistence
-  name: Persistence
+  symbol: Persistence
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The retention of a semantic object or State across time or a processing boundary.
-  answers:
-  - What is retained?
-  - Under which lifecycle and semantic status?
-  - What may later read or reuse it?
-  what_it_is_not:
+  not_equivalent_to:
   - Admission
-  - validity
-  - authority
-  - institutional truth
+  exclusions:
+  - Persistence is not validity.
+  - Persistence is not authority.
+  - Persistence is not institutional truth.
   required_relations:
-  - core.rel.persists-object
+  - persistsObject
   conditional_relations:
-  - core.rel.governed-by
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - governedBy
+  - hasProvenance
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.persistence-not-admission
+  - Persistence != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
     rationale: Storage must not manufacture governed status or erase the type and lineage of what is stored.
   layer: agency
 - id: core.composition
-  name: Composition
+  symbol: Composition
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The governed creation of a Derivative from multiple semantic objects under declared selection,
     ordering, and interpretation rules.
-  answers:
-  - Which objects were combined?
-  - Which rules produced the composed Derivative?
-  what_it_is_not:
-  - aggregation without meaning
-  - a Projection by necessity
-  - authority inherited from components
+  exclusions:
+  - Composition is not aggregation without meaning.
+  - Composition is not a Projection by necessity.
+  - Composition is not authority inherited from components.
   required_relations:
-  - core.rel.composes-object
-  - core.rel.produces
+  - composesObject
+  - produces
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.governed-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - hasProvenance
+  - governedBy
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.source-not-projection
-  - core.boundary.projection-not-state
+  - Source != Projection
+  - Projection != State
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -280,31 +255,28 @@ concepts:
       from their inputs.
   layer: agency
 - id: core.external-effect
-  name: ExternalEffect
+  symbol: ExternalEffect
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An authorized consequence that changes State outside the declared boundary of the governed
     Process or semantic environment.
-  answers:
-  - What changed outside the governed boundary?
-  - Which Action and Authority permitted the effect?
-  what_it_is_not:
-  - a Projection
-  - Recommendation
-  - tool output
-  - an internal StateChange only
+  exclusions:
+  - ExternalEffect is not a Projection.
+  - ExternalEffect is not Recommendation.
+  - ExternalEffect is not tool output.
+  - ExternalEffect is not an internal StateChange only.
   required_relations:
-  - core.rel.caused-by
-  - core.rel.authorized-by
-  - core.rel.crosses-boundary
+  - causedBy
+  - authorizedBy
+  - crossesBoundary
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.resulting-state
-  - core.rel.exists-in
+  - hasProvenance
+  - resultingState
+  - existsIn
   boundaries:
-  - core.boundary.review-not-binding
-  - core.boundary.capability-not-authority
+  - Review != Binding
+  - Capability != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference

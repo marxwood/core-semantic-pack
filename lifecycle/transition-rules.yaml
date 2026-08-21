@@ -11,7 +11,7 @@ requirements_for_material_transition:
 - required Authority is traceable when the transition changes admission or binding
 - revocation and supersession preserve historical reconstructability
 families:
-- family: concept-authority
+- family: ConceptAuthorityStatus
   allowed:
   - proposed -> experimental
   - proposed -> rejected
@@ -27,7 +27,7 @@ families:
   - deprecated -> superseded
   - superseded -> retired
   requires_authority: true
-- family: epistemic
+- family: EpistemicStatus
   allowed:
   - candidate -> supported
   - candidate -> contradicted
@@ -47,7 +47,7 @@ families:
   - '* -> retired'
   requires_authority: false
   requires_evidence_or_contestation: true
-- family: validity
+- family: ValidityStatus
   allowed:
   - unassessed -> valid-under-context
   - unassessed -> conditionally-valid
@@ -61,7 +61,7 @@ families:
   - '* -> contested'
   - '* -> revoked'
   requires_validation: true
-- family: admission
+- family: AdmissionStatus
   allowed:
   - not-evaluated -> pending
   - pending -> admitted
@@ -70,7 +70,7 @@ families:
   - admitted -> superseded
   requires_admission: true
   requires_authority: true
-- family: binding
+- family: BindingStatus
   allowed:
   - non-binding -> proposed
   - proposed -> binding
@@ -83,24 +83,28 @@ families:
   requires_binding_or_revocation: true
   requires_authority: true
 forbidden_implicit_transitions:
-- trigger: persistence
-  must_not_imply: admission
-  boundary: core.boundary.persistence-not-admission
-- trigger: validation
-  must_not_imply: admission
-  boundary: core.boundary.validation-not-admission
-- trigger: review
-  must_not_imply: binding
-  boundary: core.boundary.review-not-binding
-- trigger: repetition or downstream reuse
-  must_not_imply: validation or epistemic support
-  boundary: core.boundary.repetition-not-validation
-- trigger: capability availability
-  must_not_imply: authority
-  boundary: core.boundary.capability-not-authority
-- trigger: projection visibility
-  must_not_imply: maintained State
-  boundary: core.boundary.projection-not-state
-- trigger: operational success
-  must_not_imply: GoalProgress
-  boundary: core.boundary.operational-success-not-goal-progress
+- trigger: Persistence
+  must_not_imply: Admission
+  boundary: Persistence != Admission
+- trigger: Validation
+  must_not_imply: Admission
+  boundary: Validation != Admission
+- trigger: Review
+  must_not_imply: Binding
+  boundary: Review != Binding
+- trigger: Repetition
+  must_not_imply: Validation
+  boundary: Repetition != Validation
+  trigger_context: Downstream reuse is included in this trigger.
+  additional_prohibition: Downstream reuse must not imply epistemic Support.
+- trigger: Capability
+  must_not_imply: Authority
+  boundary: Capability != Authority
+  trigger_context: Capability availability is the triggering condition.
+- trigger: Projection
+  must_not_imply: State
+  boundary: Projection != State
+  trigger_context: Projection visibility is the triggering condition.
+- trigger: OperationalSuccess
+  must_not_imply: Progress
+  boundary: OperationalSuccess != Progress

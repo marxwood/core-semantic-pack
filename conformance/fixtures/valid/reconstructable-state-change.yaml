@@ -6,46 +6,46 @@ description: A StateChange retains before/after State, Context, attributable Act
 expected: valid
 objects:
 - id: state:before
-  type: core.state
+  type: State
 - id: state:after
-  type: core.state
+  type: State
 - id: state-change:coverage-update
-  type: core.state-change
+  type: StateChange
 - id: action:update-portfolio
-  type: core.action
+  type: Action
 - id: desired-state:coverage-retained
-  type: core.desired-state
+  type: DesiredState
 - id: progress:coverage-assessment
-  type: core.progress
+  type: Progress
 - id: context:portfolio-management
-  type: core.context
+  type: Context
 - id: provenance:state-change
-  type: core.provenance
+  type: Provenance
 relations:
-- relation: core.rel.previous-state
+- relation: previousState
   source: state-change:coverage-update
   target: state:before
-- relation: core.rel.resulting-state
+- relation: resultingState
   source: state-change:coverage-update
   target: state:after
-- relation: core.rel.caused-by
+- relation: causedBy
   source: state-change:coverage-update
   target: action:update-portfolio
-- relation: core.rel.exists-in
+- relation: existsIn
   source: state-change:coverage-update
   target: context:portfolio-management
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: state-change:coverage-update
   target: provenance:state-change
-- relation: core.rel.evaluates
+- relation: evaluates
   source: progress:coverage-assessment
   target: state-change:coverage-update
-- relation: core.rel.evaluated-against
+- relation: evaluatedAgainst
   source: progress:coverage-assessment
   target: desired-state:coverage-retained
 expectations:
   rules_pass:
-  - core.rule.state-change-reconstructable
-  - core.rule.goal-progress-independent
+  - StateChangeReconstructable
+  - GoalProgressIndependent
   rules_fail: []
   boundaries_triggered: []

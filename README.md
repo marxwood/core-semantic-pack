@@ -6,6 +6,19 @@ The Core Semantic Pack defines the minimal, stable, domain-neutral semantic dist
 
 It is not a universal ontology, runtime framework, workflow engine, agent configuration, database schema, or tool registry. It is a composable semantic kernel intended to remain stable while domain models, execution architectures, and runtimes evolve around it.
 
+## Canonical semantic notation
+
+Registry records retain stable IDs for identity, versioning, migration, and release reconstruction. Human-agent authoring surfaces use canonical semantics:
+
+```text
+core.desired-state                   ↔ DesiredState
+core.rel.authorized-by               ↔ authorizedBy
+core.boundary.action-not-intent      ↔ Action != Intent
+core.question.explain-action-purpose ↔ Why is this being done?
+```
+
+There is no separate human-label or question-slug semantic layer in v0.1. Repository paths are serialization details. See [`docs/semantic-notation.md`](docs/semantic-notation.md).
+
 ## Core responsibilities
 
 The pack is designed to preserve distinctions such as:
@@ -18,7 +31,7 @@ The pack is designed to preserve distinctions such as:
 - `Goal != DesiredState`
 - `Action != StateChange`
 - `Process != ExecutionContract`
-- `OperationalSuccess != GoalProgress`
+- `OperationalSuccess != Progress`
 
 It also treats answerability as a core architectural property: material system behavior should remain traceable enough to answer what is known, why an action is being taken, which goal it advances, what authorized it, what changed, and whether the system is still moving toward the intended state.
 
@@ -30,7 +43,28 @@ The unit of answerability is one canonical question:
 one question = one independently resolvable Semantic Question Contract
 ```
 
-Question families are taxonomy and discovery views only. They do not define or donate semantic requirements to their members. A question may be classified into multiple families without duplicating its contract.
+Question families are taxonomy and discovery views only. Each question has exactly one primary family and one complete contract stored under that family. Another family may list the canonical question as related without duplicating it or donating requirements.
+
+Question contracts use readable canonical references:
+
+```yaml
+canonical_question: Why is this being done?
+family: teleological
+
+requires:
+  concepts:
+    - Action
+    - Intent
+    - Goal
+    - DesiredState
+  relations:
+    - realizes
+    - advances
+
+must_preserve:
+  - Action != Intent
+  - Intent != Goal
+```
 
 See [`questions/`](questions/) and [`docs/question-contract-model.md`](docs/question-contract-model.md).
 
@@ -42,7 +76,8 @@ See [`questions/`](questions/) and [`docs/question-contract-model.md`](docs/ques
 | [`concepts/`](concepts/) | Candidate Core primitives grouped by semantic layer |
 | [`relations/`](relations/) | Typed relations that form the semantic graph |
 | [`boundaries/`](boundaries/) | Anti-collapse rules and semantic safety properties |
-| [`questions/`](questions/) | Atomic question contracts plus taxonomy-only family views |
+| [`questions/`](questions/) | Atomic questions organized under taxonomy-only primary families |
+| [`references/`](references/) | Explicit non-Core comparison categories used by structured notation |
 | [`patterns/`](patterns/) | Composite structures built from Core primitives |
 | [`lifecycle/`](lifecycle/) | Separate lifecycle and status families |
 | [`composition/`](composition/) | Rules for Domain, Regime, and Execution composition |
@@ -65,7 +100,7 @@ python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
 ```
 
-The validator checks structural integrity, IDs, references, question atomicity, family/contract membership, indexes, and release manifests. It does not determine semantic truth and is not the source of semantic authority.
+The validator checks registry identity, canonical-symbol uniqueness and resolution, boundary expressions, question atomicity and family topology, all checked authoring surfaces, indexes, fixtures, and release manifests. It does not determine semantic truth and is not the source of semantic authority.
 
 ## Status
 

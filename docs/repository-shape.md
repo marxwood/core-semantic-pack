@@ -8,7 +8,7 @@
 - typed relations are grouped in one relation catalog;
 - anti-collapse boundaries are grouped in one boundary catalog;
 - **each canonical semantic question is stored as one atomic contract**;
-- question families are taxonomy-only records under `questions/families/`;
+- each question is stored beneath its one primary taxonomy-only family;
 - reusable composites are stored as patterns;
 - concrete Domain Packs, Regime Packs, and Execution Contracts are not included.
 
@@ -19,15 +19,15 @@ Stable record IDs—not file paths—carry semantic identity. A later release ma
 ```text
 questions/
 ├── index.yaml
-├── families/
-│   └── <family>.yaml
-└── contracts/
-    └── <atomic-question>.yaml
+└── families/
+    └── <family>/
+        ├── family.yaml
+        └── <atomic-question>.yaml
 ```
 
-The family is a discovery view. The contract is the semantic unit of resolution.
+The family is a discovery view. Each question file is its complete atomic Semantic Question Contract and is the semantic unit of resolution.
 
-A question may be classified into several families while retaining one atomic contract.
+A question has exactly one primary family. Another family may reference its canonical question through `related_questions` without duplicating the contract or inheriting requirements.
 
 ## Review consequence
 

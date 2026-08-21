@@ -5,12 +5,12 @@ description: A DesiredState is treated as the sequence of actions required to re
 expected: invalid
 objects:
 - id: desired-state:safe-outcome
-  type: core.desired-state
+  type: DesiredState
   attributes:
-    represented_as: semantic-category:plan
+    represented_as: Plan
 relations: []
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.desired-state-not-plan
+  - DesiredState != Plan

@@ -1,0 +1,32 @@
+id: core.question.identify-maintained-state
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What State is maintained?
+family: state
+requires:
+  concepts:
+  - Entity
+  - State
+  - Admission
+  - Context
+  relations:
+  - stateOf
+  - admittedBy
+  - existsIn
+must_preserve:
+- Projection != State
+- Persistence != Admission
+answer_contract:
+  minimum_requirements:
+  - maintained_state_identified
+  - admission_traceable
+  - state_context_known
+failure_contract:
+  failure_states:
+  - persistence_used_as_admission
+  - projection_used_as_state
+  - admission_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

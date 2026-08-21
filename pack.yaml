@@ -21,12 +21,14 @@ entrypoints:
   lifecycle: lifecycle/status-families.yaml
   composition: composition/composition-model.yaml
   conformance: conformance/rules.yaml
+  references: references/non-core-symbols.yaml
 question_model:
   atomic_contracts: true
   one_canonical_question_per_contract: true
+  one_primary_family_per_question: true
   families_taxonomy_only: true
-  multi_family_membership: true
   family_requirements_inherited: false
+  canonical_question_resolution: exact
 semantic_layers:
 - foundations
 - epistemic
@@ -35,21 +37,21 @@ semantic_layers:
 - governance
 - reflection-through-composition
 question_families:
-- core.question-family.ontological
-- core.question-family.state
-- core.question-family.epistemic
-- core.question-family.interpretive
-- core.question-family.teleological
-- core.question-family.agency
-- core.question-family.governance
-- core.question-family.memory
-- core.question-family.reflective
+- ontological
+- state
+- epistemic
+- interpretive
+- teleological
+- agency
+- governance
+- memory
+- reflective
 patterns:
-- core.pattern.semantic-trace
-- core.pattern.teleological-loop
-- core.pattern.institutional-memory
-- core.pattern.execution-contract
-- core.pattern.semantic-status-collapse
+- SemanticTrace
+- TeleologicalLoop
+- InstitutionalMemory
+- ExecutionContract
+- SemanticStatusCollapse
 guarantees:
 - provenance-preservation
 - projection-state-separation
@@ -85,6 +87,7 @@ counts:
   conformance_rules: 18
   valid_fixtures: 5
   invalid_fixtures: 24
+  reference_only_symbols: 8
 validation:
   command: python scripts/validate_pack.py
   structural_only: true

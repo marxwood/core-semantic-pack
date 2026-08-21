@@ -5,18 +5,18 @@ description: The fact that an Actor intends an Action is used as authorization f
 expected: invalid
 objects:
 - id: intent:delete-record
-  type: core.intent
+  type: Intent
   attributes:
-    represented_as: core.authority
+    represented_as: Authority
 - id: action:delete-record
-  type: core.action
+  type: Action
 relations:
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: action:delete-record
   target: intent:delete-record
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.capability-authority-separation
+  - CapabilityAuthoritySeparation
   boundaries_triggered:
-  - core.boundary.intent-not-authority
+  - Intent != Authority

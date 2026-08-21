@@ -5,195 +5,195 @@ purpose: Demonstrate the two semantic chains—reality toward knowledge and Goal
   collapsing recommendation into Binding.
 objects:
 - id: source:patent-records
-  type: core.source
+  type: Source
   label: Patent status records
 - id: observation:seventeen-expiries
-  type: core.observation
+  type: Observation
   label: 17 patents expire within 24 months
 - id: claim:coverage-decrease
-  type: core.claim
+  type: Claim
   label: Current portfolio coverage will materially decrease
 - id: evidence:expiry-records
-  type: core.evidence
+  type: Evidence
   label: Admitted patent expiry records
 - id: inference:competitor-exposure
-  type: core.inference
+  type: Inference
   label: Competitor exposure is likely to increase
 - id: finding:protection-gap
-  type: core.finding
+  type: Finding
   label: Portfolio protection gap emerging
 - id: goal:maintain-protection
-  type: core.goal
+  type: Goal
   label: Maintain strategic protection of product family X
 - id: desired-state:coverage-retained
-  type: core.desired-state
+  type: DesiredState
   label: Critical technologies remain covered after current patents expire
 - id: intent:identify-filings
-  type: core.intent
+  type: Intent
   label: Identify replacement filing opportunities
 - id: process:portfolio-analysis
-  type: core.process
+  type: Process
   label: Portfolio protection analysis
 - id: action:generate-recommendations
-  type: core.action
+  type: Action
   label: Generate filing recommendations
 - id: actor:analysis-system
-  type: core.actor
+  type: Actor
   label: Analysis system
 - id: authority:analysis-only
-  type: core.authority
+  type: Authority
   label: Analysis authority only
 - id: projection:recommendation-report
-  type: core.projection
+  type: Projection
   label: Patent filing recommendation report
   binding_status: non-binding
 - id: review:expert
-  type: core.review
+  type: Review
   label: Expert review
 - id: binding:filing-approval
-  type: core.binding
+  type: Binding
   label: Authorized filing approval
 - id: commitment:file-applications
-  type: core.commitment
+  type: Commitment
   label: Commitment to file selected applications
 - id: external-effect:file-applications
-  type: core.external-effect
+  type: ExternalEffect
   label: Applications submitted
 - id: context:portfolio-review
-  type: core.context
+  type: Context
 - id: admission:evidence
-  type: core.admission
+  type: Admission
 - id: validity:finding
-  type: core.validity
+  type: Validity
 - id: provenance:evidence
-  type: core.provenance
+  type: Provenance
 - id: provenance:finding
-  type: core.provenance
+  type: Provenance
 - id: provenance:report
-  type: core.provenance
+  type: Provenance
 - id: provenance:filing
-  type: core.provenance
+  type: Provenance
 - id: authority:filing-approval
-  type: core.authority
+  type: Authority
   label: Filing approval authority
 - id: actor:filing-operator
-  type: core.actor
+  type: Actor
   label: Authorized filing operator
 - id: intent:file-approved-applications
-  type: core.intent
+  type: Intent
   label: File the applications approved through Binding
 - id: action:file-applications
-  type: core.action
+  type: Action
   label: Submit approved patent applications
 - id: contract:filing-execution
-  type: core.contract
+  type: Contract
   label: Filing execution contract
 relations:
-- relation: core.rel.observed-from
+- relation: observedFrom
   source: observation:seventeen-expiries
   target: source:patent-records
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: evidence:expiry-records
   target: provenance:evidence
-- relation: core.rel.exists-in
+- relation: existsIn
   source: evidence:expiry-records
   target: context:portfolio-review
-- relation: core.rel.admitted-by
+- relation: admittedBy
   source: evidence:expiry-records
   target: admission:evidence
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: admission:evidence
   target: authority:analysis-only
-- relation: core.rel.supports
+- relation: supports
   source: evidence:expiry-records
   target: claim:coverage-decrease
-- relation: core.rel.inferred-from
+- relation: inferredFrom
   source: inference:competitor-exposure
   target: evidence:expiry-records
-- relation: core.rel.derived-from
+- relation: derivedFrom
   source: finding:protection-gap
   target: inference:competitor-exposure
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: finding:protection-gap
   target: provenance:finding
-- relation: core.rel.has-validity
+- relation: hasValidity
   source: finding:protection-gap
   target: validity:finding
-- relation: core.rel.specifies
+- relation: specifies
   source: goal:maintain-protection
   target: desired-state:coverage-retained
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: goal:maintain-protection
   target: authority:analysis-only
-- relation: core.rel.advances
+- relation: advances
   source: intent:identify-filings
   target: goal:maintain-protection
-- relation: core.rel.realizes
+- relation: realizes
   source: action:generate-recommendations
   target: intent:identify-filings
-- relation: core.rel.participates-in
+- relation: participatesIn
   source: action:generate-recommendations
   target: process:portfolio-analysis
-- relation: core.rel.performed-by
+- relation: performedBy
   source: action:generate-recommendations
   target: actor:analysis-system
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: action:generate-recommendations
   target: authority:analysis-only
-- relation: core.rel.produces
+- relation: produces
   source: action:generate-recommendations
   target: projection:recommendation-report
-- relation: core.rel.projects
+- relation: projects
   source: projection:recommendation-report
   target: finding:protection-gap
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: projection:recommendation-report
   target: provenance:report
-- relation: core.rel.reviews-object
+- relation: reviewsObject
   source: review:expert
   target: projection:recommendation-report
-- relation: core.rel.establishes-commitment
+- relation: establishesCommitment
   source: binding:filing-approval
   target: commitment:file-applications
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: external-effect:file-applications
   target: provenance:filing
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: binding:filing-approval
   target: authority:filing-approval
-- relation: core.rel.advances
+- relation: advances
   source: intent:file-approved-applications
   target: goal:maintain-protection
-- relation: core.rel.realizes
+- relation: realizes
   source: action:file-applications
   target: intent:file-approved-applications
-- relation: core.rel.participates-in
+- relation: participatesIn
   source: action:file-applications
   target: process:portfolio-analysis
-- relation: core.rel.performed-by
+- relation: performedBy
   source: action:file-applications
   target: actor:filing-operator
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: action:file-applications
   target: authority:filing-approval
-- relation: core.rel.governed-by
+- relation: governedBy
   source: action:file-applications
   target: contract:filing-execution
-- relation: core.rel.caused-by
+- relation: causedBy
   source: external-effect:file-applications
   target: action:file-applications
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: external-effect:file-applications
   target: authority:filing-approval
-- relation: core.rel.governed-by
+- relation: governedBy
   source: external-effect:file-applications
   target: contract:filing-execution
 critical_boundaries:
-- core.boundary.claim-not-evidence
-- core.boundary.inference-not-finding
-- core.boundary.finding-not-binding-decision
-- core.boundary.review-not-binding
-- core.boundary.capability-not-authority
-- core.boundary.goal-not-desired-state
+- Claim != Evidence
+- Inference != Finding
+- Finding != BindingDecision
+- Review != Binding
+- Capability != Authority
+- Goal != DesiredState
 interpretive_note: Analysis authority permits recommendation only. A separate filing Authority, Binding
   act, Intent, Action, Actor, and governing Contract are required before the ExternalEffect.

@@ -4,7 +4,7 @@ The following issues are intentionally unresolved rather than hidden by prematur
 
 ## Type and classification
 
-The question “What kind of thing is this?” is required, but `Type` is not yet admitted as a Core primitive. v0.1 uses concept IDs and declared semantic categories. Further review should determine whether type is a primitive, a classification relation, or part of Identity and Context.
+The question “What kind of thing is this?” is required, but `Type` is not yet admitted as a Core primitive. v0.1 uses canonical concept symbols and explicitly declared reference-only categories. Further review should determine whether type is a primitive, a classification relation, or part of Identity and Context.
 
 ## Statement and Claim
 

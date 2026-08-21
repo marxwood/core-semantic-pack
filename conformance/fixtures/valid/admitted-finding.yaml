@@ -6,77 +6,77 @@ description: A retrieved Source is observed, explicitly admitted as Evidence, us
 expected: valid
 objects:
 - id: source:patent-status
-  type: core.source
+  type: Source
 - id: observation:seventeen-expiries
-  type: core.observation
+  type: Observation
 - id: claim:coverage-will-decrease
-  type: core.claim
+  type: Claim
 - id: evidence:expiry-records
-  type: core.evidence
+  type: Evidence
   attributes:
     admission_status: admitted
 - id: inference:exposure-increase
-  type: core.inference
+  type: Inference
 - id: finding:protection-gap
-  type: core.finding
+  type: Finding
   attributes:
     binding_status: non-binding
 - id: admission:evidence
-  type: core.admission
+  type: Admission
 - id: authority:evidence-regime
-  type: core.authority
+  type: Authority
 - id: validity:finding
-  type: core.validity
+  type: Validity
   attributes:
     validity_status: valid-under-context
 - id: context:portfolio-review
-  type: core.context
+  type: Context
 - id: provenance:evidence
-  type: core.provenance
+  type: Provenance
 - id: provenance:finding
-  type: core.provenance
+  type: Provenance
 relations:
-- relation: core.rel.observed-from
+- relation: observedFrom
   source: observation:seventeen-expiries
   target: source:patent-status
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: evidence:expiry-records
   target: provenance:evidence
-- relation: core.rel.exists-in
+- relation: existsIn
   source: evidence:expiry-records
   target: context:portfolio-review
-- relation: core.rel.admitted-by
+- relation: admittedBy
   source: evidence:expiry-records
   target: admission:evidence
-- relation: core.rel.admits-object
+- relation: admitsObject
   source: admission:evidence
   target: evidence:expiry-records
-- relation: core.rel.authorized-by
+- relation: authorizedBy
   source: admission:evidence
   target: authority:evidence-regime
-- relation: core.rel.supports
+- relation: supports
   source: evidence:expiry-records
   target: claim:coverage-will-decrease
-- relation: core.rel.inferred-from
+- relation: inferredFrom
   source: inference:exposure-increase
   target: evidence:expiry-records
-- relation: core.rel.derived-from
+- relation: derivedFrom
   source: finding:protection-gap
   target: inference:exposure-increase
-- relation: core.rel.supported-by
+- relation: supportedBy
   source: finding:protection-gap
   target: evidence:expiry-records
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: finding:protection-gap
   target: provenance:finding
-- relation: core.rel.has-validity
+- relation: hasValidity
   source: finding:protection-gap
   target: validity:finding
 expectations:
   rules_pass:
-  - core.rule.derived-object-provenance
-  - core.rule.evidence-admitted-and-provenanced
-  - core.rule.finding-governed
-  - core.rule.binding-explicit
+  - DerivedObjectProvenance
+  - EvidenceAdmittedAndProvenanced
+  - FindingGoverned
+  - BindingExplicit
   rules_fail: []
   boundaries_triggered: []

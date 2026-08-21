@@ -5,13 +5,13 @@ description: The abstract Process is treated as sufficient authorization and gov
 expected: invalid
 objects:
 - id: process:change-model
-  type: core.process
+  type: Process
   attributes:
-    represented_as: core.pattern.execution-contract
+    represented_as: ExecutionContract
 relations: []
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.execution-contract-required
+  - ExecutionContractRequired
   boundaries_triggered:
-  - core.boundary.process-not-execution-contract
+  - Process != ExecutionContract

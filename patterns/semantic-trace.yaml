@@ -1,36 +1,38 @@
 id: core.pattern.semantic-trace
+symbol: SemanticTrace
 version: 0.1.0
 status: experimental
 kind: composite-pattern
 definition: A reconstructable path connecting reality-facing Sources and Observations to Claims, Evidence,
   Inference, Findings, Goals, Actions, Authority, and resulting StateChange.
-composes_concepts:
-- core.source
-- core.observation
-- core.claim
-- core.evidence
-- core.inference
-- core.finding
-- core.goal
-- core.desired-state
-- core.intent
-- core.action
-- core.authority
-- core.state-change
-- core.provenance
-- core.context
-required_relations:
-- core.rel.observed-from
-- core.rel.asserted-by
-- core.rel.supports
-- core.rel.inferred-from
-- core.rel.derived-from
-- core.rel.specifies
-- core.rel.advances
-- core.rel.realizes
-- core.rel.authorized-by
-- core.rel.caused-by
-- core.rel.has-provenance
+composes:
+  concepts:
+  - Source
+  - Observation
+  - Claim
+  - Evidence
+  - Inference
+  - Finding
+  - Goal
+  - DesiredState
+  - Intent
+  - Action
+  - Authority
+  - StateChange
+  - Provenance
+  - Context
+  relations:
+  - observedFrom
+  - assertedBy
+  - supports
+  - inferredFrom
+  - derivedFrom
+  - specifies
+  - advances
+  - realizes
+  - authorizedBy
+  - causedBy
+  - hasProvenance
 invariants:
 - No material consequence becomes detached from the semantic path that made it possible.
 - Every derivative path retains provenance and context.

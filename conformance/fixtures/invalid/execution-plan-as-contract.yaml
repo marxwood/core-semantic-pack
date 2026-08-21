@@ -5,20 +5,20 @@ description: A runtime ExecutionPlan is treated as the Contract that legitimizes
 expected: invalid
 objects:
 - id: process:analysis
-  type: core.process
+  type: Process
 - id: plan:runtime-dag
-  type: architecture.execution-plan
+  type: ExecutionPlan
 relations:
-- relation: core.rel.governed-by
+- relation: governedBy
   source: process:analysis
   target: plan:runtime-dag
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.execution-contract-required
+  - ExecutionContractRequired
   boundaries_triggered:
-  - core.boundary.process-not-execution-contract
-  - core.boundary.execution-contract-not-execution-plan
+  - Process != ExecutionContract
+  - ExecutionContract != ExecutionPlan
 notes:
-- architecture.execution-plan is intentionally not a Core concept
+- ExecutionPlan is intentionally a reference-only architecture category, not a Core concept.
 - the fixture demonstrates an invalid architecture mapping, not an unresolved Core reference

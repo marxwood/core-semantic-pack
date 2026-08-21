@@ -11,7 +11,9 @@ The project is experimental. Until the first adopted release, version changes de
 - Introduces 89 typed Core relations and 23 anti-collapse boundaries.
 - Introduces 9 question families as taxonomy-only views.
 - Introduces 66 atomic, independently resolvable Semantic Question Contracts covering the canonical question set in the specification.
-- Allows explicit multi-family question classification without duplicating contracts.
+- Organizes every atomic Question under exactly one primary family and uses explicit related-question navigation without duplicating contracts.
+- Adopts canonical human-agent notation for concepts, relations, boundaries, Questions, patterns, status families, conformance rules, fixtures, examples, mappings, and composition.
+- Declares 8 reference-only semantic symbols without promoting them to Core primitives.
 - Introduces 5 composite patterns for semantic traceability, teleology, institutional memory, execution legitimacy, and semantic status collapse.
 - Separates five lifecycle/status families.
 - Introduces 18 conformance rules, 5 valid fixtures, and 24 intentionally invalid semantic regression fixtures.

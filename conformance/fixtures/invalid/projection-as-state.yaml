@@ -5,27 +5,27 @@ description: A visible report Projection is marked as maintained State without A
 expected: invalid
 objects:
 - id: projection:report
-  type: core.projection
+  type: Projection
   attributes:
     admission_status: admitted
 - id: state:institutional
-  type: core.state
+  type: State
 - id: provenance:report
-  type: core.provenance
+  type: Provenance
 relations:
-- relation: core.rel.projects
+- relation: projects
   source: projection:report
   target: state:institutional
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: projection:report
   target: provenance:report
-- relation: core.rel.supersedes
+- relation: supersedes
   source: projection:report
   target: state:institutional
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.projection-non-authoritative
-  - core.rule.admission-explicit
+  - ProjectionNonAuthoritative
+  - AdmissionExplicit
   boundaries_triggered:
-  - core.boundary.projection-not-state
+  - Projection != State

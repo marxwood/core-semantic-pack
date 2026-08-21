@@ -1,0 +1,21 @@
+id: core.question-family.epistemic
+symbol: epistemic
+version: 0.1.0
+status: experimental
+kind: question-family
+purpose: Questions about observation, assertion, evidence, inference, findings, uncertainty, and validity.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+questions:
+- What was observed?
+- What is being stated?
+- What is being claimed?
+- What supports the Claim?
+- What contradicts the Claim?
+- What was inferred?
+- What Finding was derived?
+- How uncertain is it?
+- Under which Context is this valid?
+related_questions: []

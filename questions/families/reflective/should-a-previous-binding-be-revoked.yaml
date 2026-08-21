@@ -1,0 +1,38 @@
+id: core.question.assess-binding-revocation
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Should a previous Binding be revoked?
+family: reflective
+requires:
+  concepts:
+  - Binding
+  - Commitment
+  - Revocation
+  - Authority
+  - Context
+  - Provenance
+  relations:
+  - establishesCommitment
+  - revokesObject
+  - authorizedBy
+  - existsIn
+  - hasProvenance
+must_preserve:
+- Review != Binding
+- Finding != BindingDecision
+answer_contract:
+  minimum_requirements:
+  - binding_identified
+  - commitment_identified
+  - revocation_basis_traceable
+  - revocation_authority_traceable
+  - context_explicit
+failure_contract:
+  failure_states:
+  - binding_history_missing
+  - revocation_authority_missing
+  - review_used_as_revocation
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

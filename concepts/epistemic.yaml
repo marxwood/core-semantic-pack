@@ -4,54 +4,51 @@ status: experimental
 layer: epistemic
 concepts:
 - id: core.observation
-  name: Observation
+  symbol: Observation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A recorded result of perceiving, measuring, retrieving, or otherwise encountering a Source
     under a declared Context.
-  answers:
+  helps_answer:
   - What was observed?
-  - From which Source and under which Context?
-  what_it_is_not:
-  - a Claim
-  - Evidence by default
-  - an Interpretation beyond what was recorded
+  exclusions:
+  - Observation is not a Claim.
+  - Observation is not Evidence by default.
+  - Observation is not an Interpretation beyond what was recorded.
   required_relations:
-  - core.rel.observed-from
-  - core.rel.exists-in
-  - core.rel.has-provenance
+  - observedFrom
+  - existsIn
+  - hasProvenance
   conditional_relations:
-  - core.rel.observed-by
-  - core.rel.has-uncertainty
-  - core.rel.versioned-by
+  - observedBy
+  - hasUncertainty
+  - versionedBy
   boundaries:
-  - core.boundary.observation-not-claim
+  - Observation != Claim
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
     rationale: Perception must remain distinct from what the system later asserts about what was perceived.
   layer: epistemic
 - id: core.statement
-  name: Statement
+  symbol: Statement
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A semantically typed expression that can be attributed, interpreted, questioned, or asserted
     without implying that it has already been accepted as true.
-  answers:
-  - What was expressed?
-  - Who or what expressed it and in which Context?
-  what_it_is_not:
-  - truth
+  not_equivalent_to:
   - Evidence
-  - a Claim unless asserted as such
+  exclusions:
+  - Statement is not truth.
+  - Statement is not a Claim unless asserted as such.
   required_relations: []
   conditional_relations:
-  - core.rel.expressed-by
-  - core.rel.exists-in
-  - core.rel.has-provenance
-  - core.rel.versioned-by
+  - expressedBy
+  - existsIn
+  - hasProvenance
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -59,34 +56,31 @@ concepts:
     rationale: The system needs a neutral expression layer before assertion status is attached.
   layer: epistemic
 - id: core.claim
-  name: Claim
+  symbol: Claim
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A Statement asserted as being possibly true or false about an Entity, State, Relation, or
     condition under a declared Context.
-  answers:
-  - What is being asserted?
-  - Who asserted it?
-  - What supports or contradicts it?
-  what_it_is_not:
-  - truth
+  not_equivalent_to:
   - Evidence
-  - a Finding
-  - maintained State by default
+  exclusions:
+  - Claim is not truth.
+  - Claim is not a Finding.
+  - Claim is not maintained State by default.
   required_relations:
-  - core.rel.asserted-by
-  - core.rel.exists-in
+  - assertedBy
+  - existsIn
   conditional_relations:
-  - core.rel.supported-by
-  - core.rel.contradicted-by
-  - core.rel.has-provenance
-  - core.rel.has-uncertainty
-  - core.rel.has-validity
-  - core.rel.contested-by
+  - supportedBy
+  - contradictedBy
+  - hasProvenance
+  - hasUncertainty
+  - hasValidity
+  - contestedBy
   boundaries:
-  - core.boundary.claim-not-evidence
-  - core.boundary.evidence-not-truth
+  - Claim != Evidence
+  - Evidence != Truth
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -94,34 +88,31 @@ concepts:
       repetition, or persistence.
   layer: epistemic
 - id: core.evidence
-  name: Evidence
+  symbol: Evidence
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A referable object admitted under a declared Regime as support for, or contradiction of,
     a Claim.
-  answers:
-  - What supports or contradicts this Claim?
-  - Under which Regime was the object admitted as Evidence?
-  what_it_is_not:
-  - a raw Source
-  - a raw tool result
-  - a Claim
-  - proof of universal truth
+  exclusions:
+  - Evidence is not a raw Source.
+  - Evidence is not a raw tool result.
+  - Evidence is not a Claim.
+  - Evidence is not proof of universal truth.
   required_relations:
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.admitted-by
+  - hasProvenance
+  - existsIn
+  - admittedBy
   conditional_relations:
-  - core.rel.supports
-  - core.rel.contradicts
-  - core.rel.has-validity
-  - core.rel.has-uncertainty
-  - core.rel.contested-by
+  - supports
+  - contradicts
+  - hasValidity
+  - hasUncertainty
+  - contestedBy
   boundaries:
-  - core.boundary.claim-not-evidence
-  - core.boundary.evidence-not-truth
-  - core.boundary.validation-not-admission
+  - Claim != Evidence
+  - Evidence != Truth
+  - Validation != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -129,32 +120,31 @@ concepts:
       generated object.
   layer: epistemic
 - id: core.inference
-  name: Inference
+  symbol: Inference
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A Derivative conclusion produced by reasoning from one or more Observations, Claims, Evidence
     objects, Findings, or prior Inferences.
-  answers:
+  helps_answer:
   - What was inferred?
-  - From which premises or Evidence?
-  - Which reasoning transformation produced it?
-  what_it_is_not:
-  - a Finding by default
-  - maintained State
+  not_equivalent_to:
   - Evidence
   - Binding
+  exclusions:
+  - Inference is not a Finding by default.
+  - Inference is not maintained State.
   required_relations:
-  - core.rel.inferred-from
-  - core.rel.has-provenance
+  - inferredFrom
+  - hasProvenance
   conditional_relations:
-  - core.rel.produced-by
-  - core.rel.has-uncertainty
-  - core.rel.has-validity
-  - core.rel.contested-by
+  - producedBy
+  - hasUncertainty
+  - hasValidity
+  - contestedBy
   boundaries:
-  - core.boundary.inference-not-finding
-  - core.boundary.persistence-not-admission
+  - Inference != Finding
+  - Persistence != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -162,34 +152,31 @@ concepts:
       merely by being stored or reused.
   layer: epistemic
 - id: core.finding
-  name: Finding
+  symbol: Finding
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A contextual epistemic result produced by evaluating Evidence and Inference under declared
     validity and review conditions.
-  answers:
-  - What conclusion has the governed evaluation produced?
-  - Which Evidence and Inferences contributed?
-  - What is its validity status?
-  what_it_is_not:
-  - universal truth
+  not_equivalent_to:
   - BindingDecision
-  - maintained State by default
-  - a polished Projection
+  exclusions:
+  - Finding is not universal truth.
+  - Finding is not maintained State by default.
+  - Finding is not a polished Projection.
   required_relations:
-  - core.rel.derived-from
-  - core.rel.has-provenance
-  - core.rel.has-validity
+  - derivedFrom
+  - hasProvenance
+  - hasValidity
   conditional_relations:
-  - core.rel.supported-by
-  - core.rel.contradicted-by
-  - core.rel.has-uncertainty
-  - core.rel.contested-by
-  - core.rel.admitted-by
+  - supportedBy
+  - contradictedBy
+  - hasUncertainty
+  - contestedBy
+  - admittedBy
   boundaries:
-  - core.boundary.inference-not-finding
-  - core.boundary.finding-not-binding-decision
+  - Inference != Finding
+  - Finding != BindingDecision
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -197,26 +184,22 @@ concepts:
       decisions.
   layer: epistemic
 - id: core.provenance
-  name: Provenance
+  symbol: Provenance
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The reconstructable lineage of origin, attribution, transformation, context, and version
     for a semantic object or relation.
-  answers:
-  - Where did this come from?
-  - Who or what produced it?
-  - Which transformations and versions affected it?
-  what_it_is_not:
-  - a citation alone
-  - a source identifier alone
-  - proof of validity
+  exclusions:
+  - Provenance is not a citation alone.
+  - Provenance is not a source identifier alone.
+  - Provenance is not proof of validity.
   required_relations: []
   conditional_relations:
-  - core.rel.derived-from
-  - core.rel.produced-by
-  - core.rel.versioned-by
-  - core.rel.exists-in
+  - derivedFrom
+  - producedBy
+  - versionedBy
+  - existsIn
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -225,30 +208,27 @@ concepts:
       projection.
   layer: epistemic
 - id: core.support
-  name: Support
+  symbol: Support
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A referable contextual assertion that an allowed semantic object increases warranted acceptance
     of a Claim under declared conditions.
-  answers:
-  - How and under which Context does this object support the Claim?
-  - Who or what established the support relation?
-  what_it_is_not:
-  - proof
-  - truth
-  - the Evidence object itself
-  - an unqualified graph edge
+  exclusions:
+  - Support is not proof.
+  - Support is not truth.
+  - Support is not the Evidence object itself.
+  - Support is not an unqualified graph edge.
   required_relations:
-  - core.rel.support-subject
-  - core.rel.support-object
-  - core.rel.exists-in
+  - supportSubject
+  - supportObject
+  - existsIn
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.has-validity
-  - core.rel.has-uncertainty
+  - hasProvenance
+  - hasValidity
+  - hasUncertainty
   boundaries:
-  - core.boundary.evidence-not-truth
+  - Evidence != Truth
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -256,27 +236,24 @@ concepts:
       the objects it connects.
   layer: epistemic
 - id: core.contradiction
-  name: Contradiction
+  symbol: Contradiction
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A referable contextual assertion that two semantic objects or positions conflict under declared
     comparison conditions.
-  answers:
-  - What conflicts with what?
-  - Under which Context and comparison rule does the conflict exist?
-  what_it_is_not:
-  - automatic invalidation
-  - proof that one side is false
-  - mere difference
+  exclusions:
+  - Contradiction is not automatic invalidation.
+  - Contradiction is not proof that one side is false.
+  - Contradiction is not mere difference.
   required_relations:
-  - core.rel.contradiction-subject
-  - core.rel.contradiction-object
-  - core.rel.exists-in
+  - contradictionSubject
+  - contradictionObject
+  - existsIn
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.has-validity
-  - core.rel.contested-by
+  - hasProvenance
+  - hasValidity
+  - contestedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -285,24 +262,21 @@ concepts:
       discarded.
   layer: epistemic
 - id: core.uncertainty
-  name: Uncertainty
+  symbol: Uncertainty
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An explicit representation of limits, confidence, ambiguity, unknowns, or incompleteness
     associated with a semantic object or relation.
-  answers:
-  - What remains unknown or uncertain?
-  - Which limit applies to this interpretation or conclusion?
-  what_it_is_not:
-  - an error
-  - invalidity by itself
-  - a single probability by definition
+  exclusions:
+  - Uncertainty is not an error.
+  - Uncertainty is not invalidity by itself.
+  - Uncertainty is not a single probability by definition.
   required_relations: []
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.has-provenance
-  - core.rel.versioned-by
+  - existsIn
+  - hasProvenance
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -311,29 +285,27 @@ concepts:
       and downstream use.
   layer: epistemic
 - id: core.validity
-  name: Validity
+  symbol: Validity
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The declared status of conformance, applicability, or acceptability of an object or relation
     under a specific Context, Regime, time, and SemanticVersion.
-  answers:
-  - Under which conditions is this considered valid?
-  - Which validation or regime established the status?
-  what_it_is_not:
-  - universal truth
+  not_equivalent_to:
   - Admission
   - Binding
-  - runtime success
+  exclusions:
+  - Validity is not universal truth.
+  - Validity is not runtime success.
   required_relations:
-  - core.rel.exists-in
+  - existsIn
   conditional_relations:
-  - core.rel.established-by
-  - core.rel.versioned-by
-  - core.rel.supersedes
+  - establishedBy
+  - versionedBy
+  - supersedes
   boundaries:
-  - core.boundary.validation-not-admission
-  - core.boundary.evidence-not-truth
+  - Validation != Admission
+  - Evidence != Truth
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -341,28 +313,24 @@ concepts:
       authority.
   layer: epistemic
 - id: core.contestation
-  name: Contestation
+  symbol: Contestation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An explicit governed challenge to the meaning, support, validity, admission, authority,
     or maintained status of a semantic object or relation.
-  answers:
-  - What is being challenged?
-  - On what basis?
-  - Who is responsible for resolving or maintaining the contestation?
-  what_it_is_not:
-  - automatic invalidation
-  - deletion
-  - mere disagreement without a referable object
+  exclusions:
+  - Contestation is not automatic invalidation.
+  - Contestation is not deletion.
+  - Contestation is not mere disagreement without a referable object.
   required_relations:
-  - core.rel.contests
-  - core.rel.raised-by
+  - contests
+  - raisedBy
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.has-provenance
-  - core.rel.reviewed-by
-  - core.rel.resolved-by
+  - existsIn
+  - hasProvenance
+  - reviewedBy
+  - resolvedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md

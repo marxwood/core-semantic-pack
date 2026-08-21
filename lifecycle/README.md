@@ -5,11 +5,11 @@ Lifecycle records prevent several different kinds of status from collapsing into
 
 The Core distinguishes:
 
-- **concept authority** — whether a semantic definition is proposed, adopted, or retired;
-- **epistemic status** — how an assertion or result currently stands relative to support and contradiction;
-- **validity status** — whether an object satisfies declared conditions in a Context;
-- **admission status** — whether a candidate may enter maintained governed State;
-- **binding status** — whether an authority-bearing commitment is operative.
+- `ConceptAuthorityStatus` — whether a semantic definition is proposed, adopted, or retired;
+- `EpistemicStatus` — how an assertion or result currently stands relative to support and contradiction;
+- `ValidityStatus` — whether an object satisfies declared conditions in a Context;
+- `AdmissionStatus` — whether a candidate may enter maintained governed State;
+- `BindingStatus` — whether an authority-bearing commitment is operative.
 
 Runtime states such as `running`, `paused`, `failed`, or `retried` are deliberately excluded. They belong to execution mappings.
 

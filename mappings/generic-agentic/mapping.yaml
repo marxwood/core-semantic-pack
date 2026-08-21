@@ -8,28 +8,28 @@ source:
 mappings:
 - architecture_term: agent
   may_realize:
-  - core.actor
-  - core.role
-  - core.capability
+  - Actor
+  - Role
+  - Capability
   must_preserve:
   - the executing system is not automatically the accountable Actor
   - configured Capability does not imply Authority
   - Role is contextual rather than intrinsic to the model
 - architecture_term: human participant
   may_realize:
-  - core.actor
-  - core.role
-  - core.authority
-  - core.accountability
+  - Actor
+  - Role
+  - Authority
+  - Accountability
   must_preserve:
   - human presence does not automatically establish the required Authority
   - Review remains distinct from Binding
 - architecture_term: tool or MCP operation
   may_realize:
-  - core.capability
-  - core.action
-  - core.transformation
-  - core.external-effect
+  - Capability
+  - Action
+  - Transformation
+  - ExternalEffect
   must_preserve:
   - tool availability does not authorize invocation
   - tool output is not Evidence by default
@@ -37,103 +37,103 @@ mappings:
   - external effects require explicit authority and attribution
 - architecture_term: workflow or orchestration graph
   may_realize:
-  - core.process
-  - core.action
-  - core.transformation
-  - core.transfer
-  - core.composition
+  - Process
+  - Action
+  - Transformation
+  - Transfer
+  - Composition
   may_project_pattern:
-  - core.pattern.execution-contract
+  - ExecutionContract
   must_preserve:
   - workflow implementation does not define Process meaning
   - execution ordering does not substitute for an Execution Contract
-  - runtime success does not prove GoalProgress
+  - runtime success does not prove Progress
 - architecture_term: prompt or instruction
   may_realize:
-  - core.intent
-  - core.constraint
-  - core.contract
+  - Intent
+  - Constraint
+  - Contract
   must_preserve:
   - prompt text is not semantic authority by itself
   - hidden prompt objectives must not substitute for an explicit Goal
   - instruction compliance does not establish validity or admission
 - architecture_term: conversation or message
   may_realize:
-  - core.statement
-  - core.claim
-  - core.projection
-  - core.transfer
+  - Statement
+  - Claim
+  - Projection
+  - Transfer
   must_preserve:
   - message transport does not establish epistemic status
   - a final answer is still a Projection unless separately admitted
   - conversation position does not create authority
 - architecture_term: model output
   may_realize:
-  - core.statement
-  - core.claim
-  - core.inference
-  - core.projection
+  - Statement
+  - Claim
+  - Inference
+  - Projection
   must_preserve:
   - model output is not a Finding by default
   - fluency or confidence does not establish validity
   - derived content requires provenance
 - architecture_term: retrieval result
   may_realize:
-  - core.source
-  - core.observation
-  - core.derivative
+  - Source
+  - Observation
+  - Derivative
   must_preserve:
   - retrieval result is not Evidence by default
   - source identity, retrieval Context, and provenance must survive
 - architecture_term: memory, vector store, graph, database, or conversation state
   may_realize:
-  - core.persistence
-  - core.state
+  - Persistence
+  - State
   may_project_pattern:
-  - core.pattern.institutional-memory
+  - InstitutionalMemory
   must_preserve:
   - storage does not imply Admission
   - stored text does not become institutional truth
   - semantic type, status, Context, provenance, and version must survive reuse
 - architecture_term: validator or evaluator
   may_realize:
-  - core.validation
-  - core.validity
+  - Validation
+  - Validity
   must_preserve:
   - Validation does not imply Admission
   - evaluation scores do not become universal truth
 - architecture_term: human-in-the-loop review
   may_realize:
-  - core.review
-  - core.contestation
-  - core.validation
+  - Review
+  - Contestation
+  - Validation
   must_preserve:
   - Review does not imply Binding
   - reviewer identity does not by itself establish the required Authority
 - architecture_term: approval mechanism
   may_realize:
-  - core.binding
-  - core.commitment
-  - core.admission
-  - core.revocation
+  - Binding
+  - Commitment
+  - Admission
+  - Revocation
   must_preserve:
   - the exact authority act and scope are recorded
   - admission and binding remain separate transitions
   - revocation preserves historical reconstruction
 - architecture_term: trace, event log, or audit record
   may_realize:
-  - core.provenance
-  - core.state-change
-  - core.accountability
+  - Provenance
+  - StateChange
+  - Accountability
   must_preserve:
   - a log entry is not automatically a StateChange
   - technical trace completeness does not prove semantic completeness
   - semantic release and resolved-pack identity remain traceable
 - architecture_term: response schema or generated type
   may_realize:
-  - core.projection
-  - core.contract
-  - core.boundary
+  - Projection
+  - Contract
+  - Boundary
   must_preserve:
   - schema conformance does not define meaning
   - generated artifacts remain derivatives of the governed semantic source

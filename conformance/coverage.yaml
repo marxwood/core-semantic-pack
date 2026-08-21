@@ -8,130 +8,130 @@ summary:
   boundaries: 23
   question_families: 9
 boundary_coverage:
-- boundary: core.boundary.source-not-projection
+- boundary: Source != Projection
   covered_by:
   - core.fixture.invalid.source-as-projection
   - core.fixture.valid.non-authoritative-projection
-- boundary: core.boundary.observation-not-claim
+- boundary: Observation != Claim
   covered_by:
   - core.fixture.invalid.observation-as-claim
   - core.fixture.valid.traceable-claim
-- boundary: core.boundary.claim-not-evidence
+- boundary: Claim != Evidence
   covered_by:
   - core.fixture.invalid.claim-as-evidence
   - core.fixture.valid.admitted-finding
-- boundary: core.boundary.evidence-not-truth
+- boundary: Evidence != Truth
   covered_by:
   - core.fixture.invalid.evidence-as-truth
   - core.fixture.valid.admitted-finding
-- boundary: core.boundary.inference-not-finding
+- boundary: Inference != Finding
   covered_by:
   - core.fixture.invalid.inference-as-finding
   - core.fixture.valid.admitted-finding
-- boundary: core.boundary.finding-not-binding-decision
+- boundary: Finding != BindingDecision
   covered_by:
   - core.fixture.invalid.finding-as-binding
   - core.fixture.valid.admitted-finding
-- boundary: core.boundary.projection-not-state
+- boundary: Projection != State
   covered_by:
   - core.fixture.invalid.projection-as-state
   - core.fixture.valid.non-authoritative-projection
-- boundary: core.boundary.validation-not-admission
+- boundary: Validation != Admission
   covered_by:
   - core.fixture.invalid.validation-as-admission
   - core.fixture.valid.admitted-finding
-- boundary: core.boundary.review-not-binding
+- boundary: Review != Binding
   covered_by:
   - core.fixture.invalid.review-as-binding
-- boundary: core.boundary.capability-not-authority
+- boundary: Capability != Authority
   covered_by:
   - core.fixture.invalid.capability-as-authority
   - core.fixture.valid.authorized-action
-- boundary: core.boundary.persistence-not-admission
+- boundary: Persistence != Admission
   covered_by:
   - core.fixture.invalid.persistence-as-admission
   - core.fixture.invalid.inference-to-maintained-state
-- boundary: core.boundary.repetition-not-validation
+- boundary: Repetition != Validation
   covered_by:
   - core.fixture.invalid.inference-to-maintained-state
-- boundary: core.boundary.goal-not-desired-state
+- boundary: Goal != DesiredState
   covered_by:
   - core.fixture.invalid.goal-as-desired-state
   - core.fixture.valid.authorized-action
-- boundary: core.boundary.desired-state-not-prediction
+- boundary: DesiredState != Prediction
   covered_by:
   - core.fixture.invalid.desired-state-as-prediction
-- boundary: core.boundary.desired-state-not-plan
+- boundary: DesiredState != Plan
   covered_by:
   - core.fixture.invalid.desired-state-as-plan
-- boundary: core.boundary.intent-not-goal
+- boundary: Intent != Goal
   covered_by:
   - core.fixture.invalid.intent-as-goal
   - core.fixture.invalid.action-without-goal
   - core.fixture.valid.authorized-action
-- boundary: core.boundary.intent-not-authority
+- boundary: Intent != Authority
   covered_by:
   - core.fixture.invalid.intent-as-authority
   - core.fixture.valid.authorized-action
-- boundary: core.boundary.action-not-intent
+- boundary: Action != Intent
   covered_by:
   - core.fixture.invalid.action-as-intent
   - core.fixture.valid.authorized-action
-- boundary: core.boundary.action-not-state-change
+- boundary: Action != StateChange
   covered_by:
   - core.fixture.invalid.action-as-state-change
   - core.fixture.valid.reconstructable-state-change
-- boundary: core.boundary.process-not-execution-contract
+- boundary: Process != ExecutionContract
   covered_by:
   - core.fixture.invalid.process-as-execution-contract
-- boundary: core.boundary.execution-contract-not-execution-plan
+- boundary: ExecutionContract != ExecutionPlan
   covered_by:
   - core.fixture.invalid.execution-plan-as-contract
-- boundary: core.boundary.execution-plan-not-runtime
+- boundary: ExecutionPlan != Runtime
   covered_by:
   - core.fixture.invalid.execution-plan-as-runtime
-- boundary: core.boundary.operational-success-not-goal-progress
+- boundary: OperationalSuccess != Progress
   covered_by:
   - core.fixture.invalid.operational-success-as-progress
   - core.fixture.valid.reconstructable-state-change
 question_coverage:
-- question_family: core.question-family.ontological
+- question_family: ontological
   covered_by:
   - core.fixture.valid.traceable-claim
   coverage: partial
-- question_family: core.question-family.state
+- question_family: state
   covered_by:
   - core.fixture.valid.reconstructable-state-change
   coverage: representative
-- question_family: core.question-family.epistemic
+- question_family: epistemic
   covered_by:
   - core.fixture.valid.traceable-claim
   - core.fixture.valid.admitted-finding
   coverage: representative
-- question_family: core.question-family.interpretive
+- question_family: interpretive
   covered_by:
   - core.fixture.valid.non-authoritative-projection
   coverage: partial
-- question_family: core.question-family.teleological
+- question_family: teleological
   covered_by:
   - core.fixture.valid.authorized-action
   - core.fixture.valid.reconstructable-state-change
   coverage: representative
-- question_family: core.question-family.agency
+- question_family: agency
   covered_by:
   - core.fixture.valid.authorized-action
   coverage: representative
-- question_family: core.question-family.governance
+- question_family: governance
   covered_by:
   - core.fixture.valid.admitted-finding
   - core.fixture.invalid.review-as-binding
   coverage: representative
-- question_family: core.question-family.memory
+- question_family: memory
   covered_by:
   - core.fixture.invalid.persistence-as-admission
   - core.fixture.invalid.inference-to-maintained-state
   coverage: representative-negative
-- question_family: core.question-family.reflective
+- question_family: reflective
   covered_by:
   - core.fixture.valid.reconstructable-state-change
   - core.fixture.invalid.operational-success-as-progress

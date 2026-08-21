@@ -5,13 +5,13 @@ description: A successful Action invocation is recorded as StateChange without b
 expected: invalid
 objects:
 - id: action:update-called
-  type: core.action
+  type: Action
   attributes:
-    represented_as: core.state-change
+    represented_as: StateChange
 relations: []
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.state-change-reconstructable
+  - StateChangeReconstructable
   boundaries_triggered:
-  - core.boundary.action-not-state-change
+  - Action != StateChange

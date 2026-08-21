@@ -5,66 +5,117 @@ groups:
 - layer: foundations
   file: concepts/foundations.yaml
   concepts:
-  - core.entity
-  - core.identity
-  - core.relation
-  - core.context
-  - core.boundary
-  - core.state
-  - core.state-change
-  - core.source
-  - core.derivative
-  - core.projection
-  - core.interpretation
-  - core.semantic-version
+  - symbol: Entity
+    id: core.entity
+  - symbol: Identity
+    id: core.identity
+  - symbol: Relation
+    id: core.relation
+  - symbol: Context
+    id: core.context
+  - symbol: Boundary
+    id: core.boundary
+  - symbol: State
+    id: core.state
+  - symbol: StateChange
+    id: core.state-change
+  - symbol: Source
+    id: core.source
+  - symbol: Derivative
+    id: core.derivative
+  - symbol: Projection
+    id: core.projection
+  - symbol: Interpretation
+    id: core.interpretation
+  - symbol: SemanticVersion
+    id: core.semantic-version
 - layer: epistemic
   file: concepts/epistemic.yaml
   concepts:
-  - core.observation
-  - core.statement
-  - core.claim
-  - core.evidence
-  - core.inference
-  - core.finding
-  - core.provenance
-  - core.support
-  - core.contradiction
-  - core.uncertainty
-  - core.validity
-  - core.contestation
+  - symbol: Observation
+    id: core.observation
+  - symbol: Statement
+    id: core.statement
+  - symbol: Claim
+    id: core.claim
+  - symbol: Evidence
+    id: core.evidence
+  - symbol: Inference
+    id: core.inference
+  - symbol: Finding
+    id: core.finding
+  - symbol: Provenance
+    id: core.provenance
+  - symbol: Support
+    id: core.support
+  - symbol: Contradiction
+    id: core.contradiction
+  - symbol: Uncertainty
+    id: core.uncertainty
+  - symbol: Validity
+    id: core.validity
+  - symbol: Contestation
+    id: core.contestation
 - layer: teleological
   file: concepts/teleological.yaml
   concepts:
-  - core.goal
-  - core.desired-state
-  - core.intent
-  - core.direction
-  - core.trajectory
-  - core.progress
+  - symbol: Goal
+    id: core.goal
+  - symbol: DesiredState
+    id: core.desired-state
+  - symbol: Intent
+    id: core.intent
+  - symbol: Direction
+    id: core.direction
+  - symbol: Trajectory
+    id: core.trajectory
+  - symbol: Progress
+    id: core.progress
 - layer: agency
   file: concepts/agency.yaml
   concepts:
-  - core.actor
-  - core.role
-  - core.capability
-  - core.action
-  - core.process
-  - core.transformation
-  - core.transfer
-  - core.persistence
-  - core.composition
-  - core.external-effect
+  - symbol: Actor
+    id: core.actor
+  - symbol: Role
+    id: core.role
+  - symbol: Capability
+    id: core.capability
+  - symbol: Action
+    id: core.action
+  - symbol: Process
+    id: core.process
+  - symbol: Transformation
+    id: core.transformation
+  - symbol: Transfer
+    id: core.transfer
+  - symbol: Persistence
+    id: core.persistence
+  - symbol: Composition
+    id: core.composition
+  - symbol: ExternalEffect
+    id: core.external-effect
 - layer: governance
   file: concepts/governance.yaml
   concepts:
-  - core.authority
-  - core.constraint
-  - core.permission
-  - core.contract
-  - core.validation
-  - core.admission
-  - core.review
-  - core.binding
-  - core.commitment
-  - core.revocation
-  - core.accountability
+  - symbol: Authority
+    id: core.authority
+  - symbol: Constraint
+    id: core.constraint
+  - symbol: Permission
+    id: core.permission
+  - symbol: Contract
+    id: core.contract
+  - symbol: Validation
+    id: core.validation
+  - symbol: Admission
+    id: core.admission
+  - symbol: Review
+    id: core.review
+  - symbol: Binding
+    id: core.binding
+  - symbol: Commitment
+    id: core.commitment
+  - symbol: Revocation
+    id: core.revocation
+  - symbol: Accountability
+    id: core.accountability

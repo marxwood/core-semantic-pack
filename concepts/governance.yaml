@@ -4,31 +4,29 @@ status: experimental
 layer: governance
 concepts:
 - id: core.authority
-  name: Authority
+  symbol: Authority
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: Declared and attributable legitimacy to authorize Action, admit State, establish Binding,
     or otherwise create normative consequence within a defined scope.
-  answers:
-  - Who or what legitimizes this consequence?
-  - Within which scope and Context does that legitimacy apply?
-  what_it_is_not:
+  not_equivalent_to:
   - Capability
-  - ownership by itself
-  - Role by itself
-  - technical access
+  exclusions:
+  - Authority is not ownership by itself.
+  - Authority is not Role by itself.
+  - Authority is not technical access.
   required_relations:
-  - core.rel.held-by
-  - core.rel.exists-in
+  - heldBy
+  - existsIn
   conditional_relations:
-  - core.rel.bounded-by
-  - core.rel.constrained-by
-  - core.rel.versioned-by
-  - core.rel.revoked-by
+  - boundedBy
+  - constrainedBy
+  - versionedBy
+  - revokedBy
   boundaries:
-  - core.boundary.capability-not-authority
-  - core.boundary.intent-not-authority
+  - Capability != Authority
+  - Intent != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -36,26 +34,22 @@ concepts:
       or repeated downstream use.
   layer: governance
 - id: core.constraint
-  name: Constraint
+  symbol: Constraint
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An explicit condition that limits interpretation, permission, transformation, admission,
     review, binding, or other semantic use.
-  answers:
-  - What is limited?
-  - Under which condition does the limit apply?
-  - What happens when it is violated?
-  what_it_is_not:
-  - a suggestion
-  - an implicit convention
-  - a runtime check by necessity
+  exclusions:
+  - Constraint is not a suggestion.
+  - Constraint is not an implicit convention.
+  - Constraint is not a runtime check by necessity.
   required_relations: []
   conditional_relations:
-  - core.rel.applies-to
-  - core.rel.authorized-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - appliesTo
+  - authorizedBy
+  - existsIn
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -63,61 +57,56 @@ concepts:
     rationale: Normative limits need stable meaning independent of the mechanism used to enforce them.
   layer: governance
 - id: core.permission
-  name: Permission
+  symbol: Permission
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A scoped allowance granted by Authority for an Actor, Role, Action, or Process participation
     under declared Constraints and Context.
-  answers:
-  - What is allowed?
-  - Who or what is allowed to do it?
-  - Which Authority granted the allowance?
-  what_it_is_not:
+  not_equivalent_to:
   - Capability
-  - Authority itself
-  - successful authentication
-  - unbounded access
+  exclusions:
+  - Permission is not Authority itself.
+  - Permission is not successful authentication.
+  - Permission is not unbounded access.
   required_relations:
-  - core.rel.authorized-by
-  - core.rel.permits
+  - authorizedBy
+  - permits
   conditional_relations:
-  - core.rel.constrained-by
-  - core.rel.exists-in
-  - core.rel.revoked-by
-  - core.rel.versioned-by
+  - constrainedBy
+  - existsIn
+  - revokedBy
+  - versionedBy
   boundaries:
-  - core.boundary.capability-not-authority
+  - Capability != Authority
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
     rationale: The ability to act and the allowance to act must remain distinct and scope-bound.
   layer: governance
 - id: core.contract
-  name: Contract
+  symbol: Contract
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A versioned set of semantic obligations, constraints, validity conditions, and permitted
     transitions applying across declared roles, components, or boundaries.
-  answers:
-  - Which obligations govern this interaction or execution?
-  - Which conditions make the transition legitimate?
-  what_it_is_not:
-  - a legal contract by necessity
-  - Workflow
+  not_equivalent_to:
   - ExecutionPlan
-  - runtime configuration
+  exclusions:
+  - Contract is not a legal contract by necessity.
+  - Contract is not Workflow.
+  - Contract is not runtime configuration.
   required_relations:
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - existsIn
+  - versionedBy
   conditional_relations:
-  - core.rel.constrained-by
-  - core.rel.authorized-by
-  - core.rel.applies-to
+  - constrainedBy
+  - authorizedBy
+  - appliesTo
   boundaries:
-  - core.boundary.process-not-execution-contract
-  - core.boundary.execution-contract-not-execution-plan
+  - Process != ExecutionContract
+  - ExecutionContract != ExecutionPlan
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -125,29 +114,27 @@ concepts:
       mechanisms evolve.
   layer: governance
 - id: core.validation
-  name: Validation
+  symbol: Validation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An assessment of whether a candidate semantic object, relation, or transition conforms to
     declared requirements.
-  answers:
-  - Does the candidate conform?
-  - Which rules were evaluated and with what result?
-  what_it_is_not:
+  not_equivalent_to:
   - Admission
-  - truth determination
   - Binding
-  - authority
+  exclusions:
+  - Validation is not truth determination.
+  - Validation is not authority.
   required_relations:
-  - core.rel.validates-object
+  - validatesObject
   conditional_relations:
-  - core.rel.performed-by
-  - core.rel.governed-by
-  - core.rel.has-provenance
-  - core.rel.exists-in
+  - performedBy
+  - governedBy
+  - hasProvenance
+  - existsIn
   boundaries:
-  - core.boundary.validation-not-admission
+  - Validation != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -155,32 +142,30 @@ concepts:
       governed State.
   layer: governance
 - id: core.admission
-  name: Admission
+  symbol: Admission
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An explicit governed transition by which a candidate object is allowed to become maintained
     State or acquire another declared admitted status.
-  answers:
-  - May this candidate become maintained governed State?
-  - Who or what admitted it and under which Regime?
-  what_it_is_not:
+  not_equivalent_to:
   - Validation
   - Persistence
   - Review
-  - truth
+  exclusions:
+  - Admission is not truth.
   required_relations:
-  - core.rel.admits-object
-  - core.rel.authorized-by
+  - admitsObject
+  - authorizedBy
   conditional_relations:
-  - core.rel.governed-by
-  - core.rel.produces-state
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.revoked-by
+  - governedBy
+  - producesState
+  - hasProvenance
+  - existsIn
+  - revokedBy
   boundaries:
-  - core.boundary.validation-not-admission
-  - core.boundary.persistence-not-admission
+  - Validation != Admission
+  - Persistence != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -188,30 +173,27 @@ concepts:
       than implicit promotion through storage or reuse.
   layer: governance
 - id: core.review
-  name: Review
+  symbol: Review
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An attributable evaluative act that may validate, contest, annotate, reject, or recommend
     change to a semantic object or transition.
-  answers:
-  - What was reviewed?
-  - By whom?
-  - What evaluative outcome was produced?
-  what_it_is_not:
+  not_equivalent_to:
   - Binding
-  - Authority by itself
-  - Admission by itself
-  - automatic approval
+  exclusions:
+  - Review is not Authority by itself.
+  - Review is not Admission by itself.
+  - Review is not automatic approval.
   required_relations:
-  - core.rel.reviews-object
-  - core.rel.performed-by
+  - reviewsObject
+  - performedBy
   conditional_relations:
-  - core.rel.governed-by
-  - core.rel.has-provenance
-  - core.rel.exists-in
+  - governedBy
+  - hasProvenance
+  - existsIn
   boundaries:
-  - core.boundary.review-not-binding
+  - Review != Binding
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -219,31 +201,29 @@ concepts:
       commitment.
   layer: governance
 - id: core.binding
-  name: Binding
+  symbol: Binding
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An authority-bearing act that makes a decision, obligation, or Commitment operative within
     a declared scope.
-  answers:
-  - What became institutionally operative?
-  - Which Authority established the consequence?
-  what_it_is_not:
+  not_equivalent_to:
   - Review
   - Validation
   - Finding
-  - visibility
+  exclusions:
+  - Binding is not visibility.
   required_relations:
-  - core.rel.establishes-commitment
-  - core.rel.authorized-by
+  - establishesCommitment
+  - authorizedBy
   conditional_relations:
-  - core.rel.governed-by
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.revoked-by
+  - governedBy
+  - hasProvenance
+  - existsIn
+  - revokedBy
   boundaries:
-  - core.boundary.review-not-binding
-  - core.boundary.finding-not-binding-decision
+  - Review != Binding
+  - Finding != BindingDecision
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -251,31 +231,29 @@ concepts:
       from evaluation or polished output.
   layer: governance
 - id: core.commitment
-  name: Commitment
+  symbol: Commitment
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A maintained obligation, decision, or declared course accepted as operative through Binding
     within a defined scope.
-  answers:
-  - What obligation or decision is currently operative?
-  - Who is accountable for maintaining, revising, or revoking it?
-  what_it_is_not:
+  not_equivalent_to:
   - Goal
   - Intent
-  - Recommendation
   - Finding
+  exclusions:
+  - Commitment is not Recommendation.
   required_relations:
-  - core.rel.established-by
+  - establishedBy
   conditional_relations:
-  - core.rel.accountable-to
-  - core.rel.constrained-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
-  - core.rel.revoked-by
+  - accountableTo
+  - constrainedBy
+  - existsIn
+  - versionedBy
+  - revokedBy
   boundaries:
-  - core.boundary.finding-not-binding-decision
-  - core.boundary.review-not-binding
+  - Finding != BindingDecision
+  - Review != Binding
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -283,28 +261,24 @@ concepts:
       or revoked.
   layer: governance
 - id: core.revocation
-  name: Revocation
+  symbol: Revocation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An authorized act that withdraws previously granted Authority, Permission, Admission, Binding,
     or Commitment while preserving historical lineage.
-  answers:
-  - What governed status was withdrawn?
-  - Who authorized the withdrawal?
-  - What remains historically reconstructable?
-  what_it_is_not:
-  - deletion
-  - forgetting
-  - automatic expiry
-  - contestation alone
+  exclusions:
+  - Revocation is not deletion.
+  - Revocation is not forgetting.
+  - Revocation is not automatic expiry.
+  - Revocation is not contestation alone.
   required_relations:
-  - core.rel.revokes-object
-  - core.rel.authorized-by
+  - revokesObject
+  - authorizedBy
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - hasProvenance
+  - existsIn
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -313,27 +287,24 @@ concepts:
       erasing history.
   layer: governance
 - id: core.accountability
-  name: Accountability
+  symbol: Accountability
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An assignable responsibility for a semantic object, decision, Commitment, Action, or StateChange
     together with an obligation to explain, correct, or escalate it.
-  answers:
-  - Who is responsible for this object or consequence?
-  - Who must explain or correct it?
-  what_it_is_not:
-  - Provenance alone
-  - Authority alone
-  - ownership alone
-  - blame attribution
+  exclusions:
+  - Accountability is not Provenance alone.
+  - Accountability is not Authority alone.
+  - Accountability is not ownership alone.
+  - Accountability is not blame attribution.
   required_relations:
-  - core.rel.accountable-actor
-  - core.rel.accountable-object
+  - accountableActor
+  - accountableObject
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.authorized-by
-  - core.rel.versioned-by
+  - existsIn
+  - authorizedBy
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md

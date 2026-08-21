@@ -1,0 +1,32 @@
+id: core.question.detect-material-current-state-change
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Has CurrentState changed materially?
+family: reflective
+requires:
+  concepts:
+  - State
+  - StateChange
+  - Context
+  - Provenance
+  relations:
+  - previousState
+  - resultingState
+  - hasProvenance
+  - existsIn
+must_preserve:
+- Action != StateChange
+- Projection != State
+answer_contract:
+  minimum_requirements:
+  - before_and_after_states_comparable
+  - material_change_identified_or_ruled_out
+  - provenance_traceable
+failure_contract:
+  failure_states:
+  - execution_assumed_to_be_change
+  - projection_used_as_current_state
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

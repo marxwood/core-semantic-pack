@@ -6,13 +6,13 @@ description: An intermediate Inference is labeled a Finding without evaluation, 
 expected: invalid
 objects:
 - id: inference:tentative
-  type: core.inference
+  type: Inference
   attributes:
-    represented_as: core.finding
+    represented_as: Finding
 relations: []
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.finding-governed
+  - FindingGoverned
   boundaries_triggered:
-  - core.boundary.inference-not-finding
+  - Inference != Finding

@@ -6,8 +6,8 @@ The Core Semantic Pack is a working reference model. Contributions should improv
 
 1. **Preserve layer boundaries.** Core concepts must remain domain-neutral and runtime-neutral.
 2. **Derive before adding.** A new primitive requires an explicit question, stable boundary, cross-domain need, and explanation of why composition is insufficient.
-3. **Keep questions atomic.** One canonical question belongs to one independently resolvable Semantic Question Contract.
-4. **Treat families as taxonomy only.** Family membership must never add hidden requirements to a question.
+3. **Keep questions atomic.** One canonical question belongs to one independently resolvable Semantic Question Contract under exactly one primary family.
+4. **Treat families as taxonomy only.** Primary-family placement and related-question navigation must never add hidden requirements to a question.
 5. **Do not collapse status families.** Concept authority, epistemic validity, admission, lifecycle, and binding status are different concerns.
 6. **Do not promote mappings into authority.** Agent, tool, workflow, memory store, prompt, schema, and database terms remain mappings unless separately admitted into the Core.
 7. **Add conformance evidence.** Material semantic changes should include appropriate valid or invalid evidence.
@@ -20,10 +20,12 @@ A question change should identify:
 - the exact canonical question;
 - whether the change alters requirements or only taxonomy;
 - affected concepts, relations, and boundaries;
-- family classification changes;
+- primary-family or related-question navigation changes;
 - compatibility consequences for resolved packs.
 
-Moving a question between families is normally taxonomic. Changing its atomic contract is semantic.
+Moving a question between primary families is normally taxonomic but changes its serialization path and index entry. Changing its canonical wording or atomic contract is compatibility-relevant and semantic.
+
+Author semantic references with canonical symbols, expressions, and questions. Keep stable IDs for registry identity and migration metadata. Do not add a redundant human label or filename-slug semantic layer.
 
 ## Pull request expectations
 

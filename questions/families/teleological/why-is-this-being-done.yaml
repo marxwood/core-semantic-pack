@@ -1,0 +1,41 @@
+id: core.question.explain-action-purpose
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Why is this being done?
+family: teleological
+requires:
+  concepts:
+  - Action
+  - Intent
+  - Goal
+  - DesiredState
+  - Authority
+  - Context
+  relations:
+  - realizes
+  - advances
+  - specifies
+  - authorizedBy
+  - existsIn
+must_preserve:
+- Action != Intent
+- Intent != Goal
+- Intent != Authority
+- Capability != Authority
+answer_contract:
+  minimum_requirements:
+  - action_identified
+  - intent_identified
+  - goal_identified
+  - desired_state_identified
+  - authority_traceable
+failure_contract:
+  failure_states:
+  - unresolved_intent
+  - unresolved_goal
+  - missing_desired_state
+  - unresolved_authority
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: external-effect-forbidden-until-resolved

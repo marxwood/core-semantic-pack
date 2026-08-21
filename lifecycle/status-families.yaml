@@ -3,12 +3,7 @@ version: 0.1.0
 status: experimental
 families:
 - id: core.status-family.concept-authority
-  applies_to:
-  - concept-records
-  - relation-records
-  - boundary-records
-  - question-contracts
-  - patterns
+  symbol: ConceptAuthorityStatus
   purpose: Declares the governance maturity and authority of a semantic definition.
   values:
   - id: proposed
@@ -27,12 +22,14 @@ families:
     meaning: No longer active and unavailable for new semantic compositions.
   - id: rejected
     meaning: Reviewed and explicitly not admitted.
+  applies_to_records:
+  - concept-records
+  - relation-records
+  - boundary-records
+  - question-contracts
+  - patterns
 - id: core.status-family.epistemic
-  applies_to:
-  - core.statement
-  - core.claim
-  - core.inference
-  - core.finding
+  symbol: EpistemicStatus
   purpose: Declares how an epistemic object currently stands relative to support, contradiction, and contestation.
   values:
   - id: candidate
@@ -51,12 +48,13 @@ families:
     meaning: Replaced by a later epistemic object without erasing historical status.
   - id: retired
     meaning: Retained for history but excluded from current epistemic use.
-- id: core.status-family.validity
   applies_to:
-  - core.validity
-  - core.evidence
-  - core.finding
-  - core.projection
+  - Statement
+  - Claim
+  - Inference
+  - Finding
+- id: core.status-family.validity
+  symbol: ValidityStatus
   purpose: Declares conformance to explicit validity conditions within a Context.
   values:
   - id: unassessed
@@ -73,10 +71,13 @@ families:
     meaning: A validity time or Context boundary has ended.
   - id: revoked
     meaning: A prior validity declaration was explicitly withdrawn.
-- id: core.status-family.admission
   applies_to:
-  - candidate semantic objects
-  - maintained governed State
+  - Validity
+  - Evidence
+  - Finding
+  - Projection
+- id: core.status-family.admission
+  symbol: AdmissionStatus
   purpose: Declares whether a candidate has passed the explicit transition into maintained governed State
     or another admitted status.
   values:
@@ -92,10 +93,11 @@ families:
     meaning: A prior Admission was explicitly withdrawn while history remains reconstructable.
   - id: superseded
     meaning: A later admitted object replaces this object for current use.
+  scope_description:
+  - Candidate semantic objects.
+  - Maintained governed State.
 - id: core.status-family.binding
-  applies_to:
-  - core.binding
-  - core.commitment
+  symbol: BindingStatus
   purpose: Declares whether an authority-bearing commitment is institutionally operative.
   values:
   - id: non-binding
@@ -112,9 +114,17 @@ families:
     meaning: Replaced by a later operative Commitment.
   - id: expired
     meaning: No longer operative because a declared time or Context boundary ended.
-non_equivalences:
-- concept authority status != epistemic status
-- epistemic status != validity status
-- validity status != admission status
-- admission status != binding status
-- runtime execution status != any Core status family
+  applies_to:
+  - Binding
+  - Commitment
+status_distinctions:
+- left: ConceptAuthorityStatus
+  right: EpistemicStatus
+- left: EpistemicStatus
+  right: ValidityStatus
+- left: ValidityStatus
+  right: AdmissionStatus
+- left: AdmissionStatus
+  right: BindingStatus
+exclusions:
+- Runtime execution status is not equivalent to any Core status family.

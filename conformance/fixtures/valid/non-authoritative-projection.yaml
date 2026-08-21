@@ -6,29 +6,29 @@ description: A report Projection remains tied to its underlying Finding and Prov
 expected: valid
 objects:
 - id: finding:protection-gap
-  type: core.finding
+  type: Finding
 - id: projection:recommendation-report
-  type: core.projection
+  type: Projection
   attributes:
     binding_status: non-binding
     admission_status: not-evaluated
 - id: provenance:report
-  type: core.provenance
+  type: Provenance
 - id: context:customer-facing
-  type: core.context
+  type: Context
 relations:
-- relation: core.rel.projects
+- relation: projects
   source: projection:recommendation-report
   target: finding:protection-gap
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: projection:recommendation-report
   target: provenance:report
-- relation: core.rel.exists-in
+- relation: existsIn
   source: projection:recommendation-report
   target: context:customer-facing
 expectations:
   rules_pass:
-  - core.rule.derived-object-provenance
-  - core.rule.projection-non-authoritative
+  - DerivedObjectProvenance
+  - ProjectionNonAuthoritative
   rules_fail: []
   boundaries_triggered: []

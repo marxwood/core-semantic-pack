@@ -6,12 +6,12 @@ description: An Observation is persisted as an asserted Claim without an explici
 expected: invalid
 objects:
 - id: observation:signal
-  type: core.observation
+  type: Observation
   attributes:
-    represented_as: core.claim
+    represented_as: Claim
 relations: []
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.observation-not-claim
+  - Observation != Claim

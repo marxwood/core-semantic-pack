@@ -5,17 +5,17 @@ description: Context-bound Evidence is declared universally true.
 expected: invalid
 objects:
 - id: evidence:measurement
-  type: core.evidence
+  type: Evidence
   attributes:
-    represented_as: semantic-category:truth
+    represented_as: Truth
 - id: context:test-regime
-  type: core.context
+  type: Context
 relations:
-- relation: core.rel.exists-in
+- relation: existsIn
   source: evidence:measurement
   target: context:test-regime
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.evidence-not-truth
+  - Evidence != Truth

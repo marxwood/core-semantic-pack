@@ -6,38 +6,38 @@ description: A Claim remains attributable to an Actor, grounded in an Observatio
 expected: valid
 objects:
 - id: source:records
-  type: core.source
+  type: Source
 - id: observation:expiry-count
-  type: core.observation
+  type: Observation
 - id: claim:coverage-decrease
-  type: core.claim
+  type: Claim
   attributes:
     epistemic_status: candidate
 - id: actor:analyst
-  type: core.actor
+  type: Actor
 - id: context:portfolio-review
-  type: core.context
+  type: Context
 - id: provenance:claim-trace
-  type: core.provenance
+  type: Provenance
 relations:
-- relation: core.rel.observed-from
+- relation: observedFrom
   source: observation:expiry-count
   target: source:records
-- relation: core.rel.asserted-by
+- relation: assertedBy
   source: claim:coverage-decrease
   target: actor:analyst
-- relation: core.rel.derived-from
+- relation: derivedFrom
   source: claim:coverage-decrease
   target: observation:expiry-count
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: claim:coverage-decrease
   target: provenance:claim-trace
-- relation: core.rel.exists-in
+- relation: existsIn
   source: claim:coverage-decrease
   target: context:portfolio-review
 expectations:
   rules_pass:
-  - core.rule.known-semantic-references
-  - core.rule.semantic-version-retained
+  - KnownSemanticReferences
+  - SemanticVersionRetained
   rules_fail: []
   boundaries_triggered: []

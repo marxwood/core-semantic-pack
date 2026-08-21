@@ -1,0 +1,18 @@
+id: core.question-family.agency
+symbol: agency
+version: 0.1.0
+status: experimental
+kind: question-family
+purpose: Questions about actors, roles, capabilities, actions, processes, and transformations.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+questions:
+- Who or what is acting?
+- Which Role is being occupied?
+- What can the Actor do?
+- Which Action is being attempted?
+- Which Process does it participate in?
+- Which Transformation is being performed?
+related_questions: []

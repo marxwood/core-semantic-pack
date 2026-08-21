@@ -5,12 +5,12 @@ description: A local Intent silently replaces the authorized Goal it should adva
 expected: invalid
 objects:
 - id: intent:optimize-local-metric
-  type: core.intent
+  type: Intent
   attributes:
-    represented_as: core.goal
+    represented_as: Goal
 relations: []
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.intent-not-goal
+  - Intent != Goal

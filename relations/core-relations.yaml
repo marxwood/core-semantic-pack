@@ -3,1250 +3,1250 @@ version: 0.1.0
 status: experimental
 relations:
 - id: core.rel.has-identity
-  name: hasIdentity
+  symbol: hasIdentity
   version: 0.1.0
   status: experimental
   source:
-  - core.entity
-  - core.source
-  - core.actor
+  - Entity
+  - Source
+  - Actor
   target:
-  - core.identity
+  - Identity
   definition: Associates a referable semantic object with the Identity criteria under which it is treated
     as the same referent.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.identity-of
+  inverse: identityOf
 - id: core.rel.identity-of
-  name: identityOf
+  symbol: identityOf
   version: 0.1.0
   status: experimental
   source:
-  - core.identity
+  - Identity
   target:
-  - core.entity
-  - core.source
-  - core.actor
+  - Entity
+  - Source
+  - Actor
   definition: Identifies the referable semantic object whose continuity is declared by an Identity.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.has-identity
+  inverse: hasIdentity
 - id: core.rel.exists-in
-  name: existsIn
+  symbol: existsIn
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.context
+  - Context
   definition: Declares the Context within which an object or relation is interpreted or governed.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.bounded-by
-  name: boundedBy
+  symbol: boundedBy
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.boundary
+  - Boundary
   definition: Declares an explicit Boundary that limits meaning, scope, responsibility, or transition.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.has-state
-  name: hasState
+  symbol: hasState
   version: 0.1.0
   status: experimental
   source:
-  - core.entity
+  - Entity
   target:
-  - core.state
+  - State
   definition: Associates an Entity with a maintained State.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.state-of
+  inverse: stateOf
 - id: core.rel.state-of
-  name: stateOf
+  symbol: stateOf
   version: 0.1.0
   status: experimental
   source:
-  - core.state
+  - State
   target:
-  - core.entity
+  - Entity
   definition: Identifies the Entity for which a State is maintained.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.has-state
+  inverse: hasState
 - id: core.rel.previous-state
-  name: previousState
+  symbol: previousState
   version: 0.1.0
   status: experimental
   source:
-  - core.state-change
+  - StateChange
   target:
-  - core.state
+  - State
   definition: Identifies the State that existed before a StateChange.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.resulting-state
-  name: resultingState
+  symbol: resultingState
   version: 0.1.0
   status: experimental
   source:
-  - core.state-change
-  - core.external-effect
+  - StateChange
+  - ExternalEffect
   target:
-  - core.state
+  - State
   definition: Identifies the State that results from a StateChange or ExternalEffect.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.caused-by
-  name: causedBy
+  symbol: causedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.state-change
-  - core.external-effect
+  - StateChange
+  - ExternalEffect
   target:
-  - core.action
-  - core.transformation
-  - core:any
+  - Action
+  - Transformation
+  - Any
   definition: Identifies an attributable cause of a change or effect.
   direction: directed
   provenance: required
   authority_effect: none
-  inverse: core.rel.causes
+  inverse: causes
 - id: core.rel.causes
-  name: causes
+  symbol: causes
   version: 0.1.0
   status: experimental
   source:
-  - core.action
-  - core.transformation
-  - core:any
+  - Action
+  - Transformation
+  - Any
   target:
-  - core.state-change
-  - core.external-effect
+  - StateChange
+  - ExternalEffect
   definition: Associates an attributable cause with the change or effect it produced.
   direction: directed
   provenance: required
   authority_effect: none
-  inverse: core.rel.caused-by
+  inverse: causedBy
 - id: core.rel.derived-from
-  name: derivedFrom
+  symbol: derivedFrom
   version: 0.1.0
   status: experimental
   source:
-  - core.derivative
-  - core.inference
-  - core.finding
-  - core.projection
-  - core:any
+  - Derivative
+  - Inference
+  - Finding
+  - Projection
+  - Any
   target:
-  - core.source
-  - core.observation
-  - core.claim
-  - core.evidence
-  - core.inference
-  - core.finding
-  - core.state
-  - core:any
+  - Source
+  - Observation
+  - Claim
+  - Evidence
+  - Inference
+  - Finding
+  - State
+  - Any
   definition: Declares semantic lineage from an origin or prior object.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.projects
-  name: projects
+  symbol: projects
   version: 0.1.0
   status: experimental
   source:
-  - core.projection
+  - Projection
   target:
-  - core.source
-  - core.state
-  - core.claim
-  - core.finding
-  - core:any
+  - Source
+  - State
+  - Claim
+  - Finding
+  - Any
   definition: Declares the object or State represented by a Projection.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.interprets
-  name: interprets
+  symbol: interprets
   version: 0.1.0
   status: experimental
   source:
-  - core.interpretation
+  - Interpretation
   target:
-  - core.source
-  - core.observation
-  - core.state
-  - core.relation
-  - core.derivative
-  - core:any
+  - Source
+  - Observation
+  - State
+  - Relation
+  - Derivative
+  - Any
   definition: Identifies the object to which an Interpretation assigns contextual meaning.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.observed-from
-  name: observedFrom
+  symbol: observedFrom
   version: 0.1.0
   status: experimental
   source:
-  - core.observation
+  - Observation
   target:
-  - core.source
+  - Source
   definition: Identifies the Source from which an Observation was obtained.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.observed-by
-  name: observedBy
+  symbol: observedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.observation
+  - Observation
   target:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   definition: Identifies the Actor or Role responsible for producing an Observation.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.observes
+  inverse: observes
 - id: core.rel.observes
-  name: observes
+  symbol: observes
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   target:
-  - core.observation
+  - Observation
   definition: Associates an Actor or Role with an Observation it produced.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.observed-by
+  inverse: observedBy
 - id: core.rel.expressed-by
-  name: expressedBy
+  symbol: expressedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.statement
+  - Statement
   target:
-  - core.actor
-  - core.source
+  - Actor
+  - Source
   definition: Attributes a Statement to an Actor or Source.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.expresses
+  inverse: expresses
 - id: core.rel.expresses
-  name: expresses
+  symbol: expresses
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.source
+  - Actor
+  - Source
   target:
-  - core.statement
+  - Statement
   definition: Associates an Actor or Source with a Statement it expressed.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.expressed-by
+  inverse: expressedBy
 - id: core.rel.asserted-by
-  name: assertedBy
+  symbol: assertedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.claim
+  - Claim
   target:
-  - core.actor
-  - core.source
+  - Actor
+  - Source
   definition: Attributes a Claim to the Actor or Source that asserted it.
   direction: directed
   provenance: required
   authority_effect: none
-  inverse: core.rel.asserts
+  inverse: asserts
 - id: core.rel.asserts
-  name: asserts
+  symbol: asserts
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.source
+  - Actor
+  - Source
   target:
-  - core.claim
+  - Claim
   definition: Associates an Actor or Source with a Claim it asserted.
   direction: directed
   provenance: required
   authority_effect: none
-  inverse: core.rel.asserted-by
+  inverse: assertedBy
 - id: core.rel.supports
-  name: supports
+  symbol: supports
   version: 0.1.0
   status: experimental
   source:
-  - core.evidence
+  - Evidence
   target:
-  - core.claim
+  - Claim
   definition: Declares that Evidence supports a Claim under a Context or Regime.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.supported-by
-  name: supportedBy
+  symbol: supportedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.claim
-  - core.finding
+  - Claim
+  - Finding
   target:
-  - core.evidence
-  - core.support
+  - Evidence
+  - Support
   definition: Associates a Claim or Finding with Evidence or a reified Support assertion.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.contradicts
-  name: contradicts
+  symbol: contradicts
   version: 0.1.0
   status: experimental
   source:
-  - core.evidence
-  - core.claim
-  - core.finding
-  - core.contradiction
+  - Evidence
+  - Claim
+  - Finding
+  - Contradiction
   target:
-  - core.claim
-  - core.finding
-  - core.state
-  - core:any
+  - Claim
+  - Finding
+  - State
+  - Any
   definition: Declares a contextual conflict with another semantic object.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.contradicted-by
-  name: contradictedBy
+  symbol: contradictedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.claim
-  - core.finding
-  - core.state
-  - core:any
+  - Claim
+  - Finding
+  - State
+  - Any
   target:
-  - core.evidence
-  - core.claim
-  - core.finding
-  - core.contradiction
+  - Evidence
+  - Claim
+  - Finding
+  - Contradiction
   definition: Associates an object with Evidence or another object that contradicts it.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.inferred-from
-  name: inferredFrom
+  symbol: inferredFrom
   version: 0.1.0
   status: experimental
   source:
-  - core.inference
+  - Inference
   target:
-  - core.observation
-  - core.claim
-  - core.evidence
-  - core.inference
-  - core.finding
+  - Observation
+  - Claim
+  - Evidence
+  - Inference
+  - Finding
   definition: Declares the premises or semantic objects from which an Inference was produced.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.has-provenance
-  name: hasProvenance
+  symbol: hasProvenance
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.provenance
+  - Provenance
   definition: Associates a semantic object or relation with reconstructable lineage.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.has-uncertainty
-  name: hasUncertainty
+  symbol: hasUncertainty
   version: 0.1.0
   status: experimental
   source:
-  - core.observation
-  - core.claim
-  - core.inference
-  - core.finding
-  - core.progress
-  - core.relation
-  - core:any
+  - Observation
+  - Claim
+  - Inference
+  - Finding
+  - Progress
+  - Relation
+  - Any
   target:
-  - core.uncertainty
+  - Uncertainty
   definition: Associates explicit uncertainty with an object or relation.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.has-validity
-  name: hasValidity
+  symbol: hasValidity
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.validity
+  - Validity
   definition: Associates an object or relation with contextual validity status.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.contested-by
-  name: contestedBy
+  symbol: contestedBy
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.contestation
+  - Contestation
   definition: Associates an object or relation with a governed challenge.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.contests
+  inverse: contests
 - id: core.rel.contests
-  name: contests
+  symbol: contests
   version: 0.1.0
   status: experimental
   source:
-  - core.contestation
+  - Contestation
   target:
-  - core:any
+  - Any
   definition: Identifies the object or relation challenged by a Contestation.
   direction: directed
   provenance: required
   authority_effect: none
-  inverse: core.rel.contested-by
+  inverse: contestedBy
 - id: core.rel.raised-by
-  name: raisedBy
+  symbol: raisedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.contestation
+  - Contestation
   target:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   definition: Attributes a Contestation to the Actor or Role that raised it.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.reviewed-by
-  name: reviewedBy
+  symbol: reviewedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.contestation
-  - core:any
+  - Contestation
+  - Any
   target:
-  - core.review
+  - Review
   definition: Associates an object or Contestation with a Review.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.resolved-by
-  name: resolvedBy
+  symbol: resolvedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.contestation
+  - Contestation
   target:
-  - core.review
-  - core.binding
-  - core.revocation
+  - Review
+  - Binding
+  - Revocation
   definition: Identifies the governed act that resolved or dispositioned a Contestation.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.support-subject
-  name: supportSubject
+  symbol: supportSubject
   version: 0.1.0
   status: experimental
   source:
-  - core.support
+  - Support
   target:
-  - core.evidence
-  - core.observation
-  - core.finding
-  - core:any
+  - Evidence
+  - Observation
+  - Finding
+  - Any
   definition: Identifies the object providing contextual support.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.support-object
-  name: supportObject
+  symbol: supportObject
   version: 0.1.0
   status: experimental
   source:
-  - core.support
+  - Support
   target:
-  - core.claim
-  - core.finding
+  - Claim
+  - Finding
   definition: Identifies the Claim or Finding receiving contextual support.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.contradiction-subject
-  name: contradictionSubject
+  symbol: contradictionSubject
   version: 0.1.0
   status: experimental
   source:
-  - core.contradiction
+  - Contradiction
   target:
-  - core:any
+  - Any
   definition: Identifies one side of a reified Contradiction.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.contradiction-object
-  name: contradictionObject
+  symbol: contradictionObject
   version: 0.1.0
   status: experimental
   source:
-  - core.contradiction
+  - Contradiction
   target:
-  - core:any
+  - Any
   definition: Identifies the other side of a reified Contradiction.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.specifies
-  name: specifies
+  symbol: specifies
   version: 0.1.0
   status: experimental
   source:
-  - core.goal
+  - Goal
   target:
-  - core.desired-state
+  - DesiredState
   definition: Associates a Goal with the DesiredState that makes its direction inspectable.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.desired-by
+  inverse: desiredBy
 - id: core.rel.desired-by
-  name: desiredBy
+  symbol: desiredBy
   version: 0.1.0
   status: experimental
   source:
-  - core.desired-state
+  - DesiredState
   target:
-  - core.goal
+  - Goal
   definition: Identifies the Goal for which a future State is desired.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.specifies
+  inverse: specifies
 - id: core.rel.advances
-  name: advances
+  symbol: advances
   version: 0.1.0
   status: experimental
   source:
-  - core.intent
+  - Intent
   target:
-  - core.goal
+  - Goal
   definition: Associates an Intent with the Goal it is intended to advance.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.implies-direction
-  name: impliesDirection
+  symbol: impliesDirection
   version: 0.1.0
   status: experimental
   source:
-  - core.goal
+  - Goal
   target:
-  - core.direction
+  - Direction
   definition: Associates a Goal with the qualitative Direction it implies.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.implied-by
+  inverse: impliedBy
 - id: core.rel.implied-by
-  name: impliedBy
+  symbol: impliedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.direction
+  - Direction
   target:
-  - core.goal
+  - Goal
   definition: Identifies the Goal that implies a Direction.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.implies-direction
+  inverse: impliesDirection
 - id: core.rel.from-state
-  name: fromState
+  symbol: fromState
   version: 0.1.0
   status: experimental
   source:
-  - core.direction
+  - Direction
   target:
-  - core.state
+  - State
   definition: Identifies the CurrentState from which a Direction is evaluated.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.toward-state
-  name: towardState
+  symbol: towardState
   version: 0.1.0
   status: experimental
   source:
-  - core.direction
+  - Direction
   target:
-  - core.desired-state
+  - DesiredState
   definition: Identifies the DesiredState toward which a Direction points.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.comprises-state-change
-  name: comprisesStateChange
+  symbol: comprisesStateChange
   version: 0.1.0
   status: experimental
   source:
-  - core.trajectory
+  - Trajectory
   target:
-  - core.state-change
+  - StateChange
   definition: Associates a Trajectory with an ordered or otherwise related StateChange.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.evaluates
-  name: evaluates
+  symbol: evaluates
   version: 0.1.0
   status: experimental
   source:
-  - core.progress
+  - Progress
   target:
-  - core.state
-  - core.state-change
-  - core.trajectory
+  - State
+  - StateChange
+  - Trajectory
   definition: Identifies the State or Trajectory assessed by a Progress object.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.evaluated-against
-  name: evaluatedAgainst
+  symbol: evaluatedAgainst
   version: 0.1.0
   status: experimental
   source:
-  - core.progress
-  - core.state-change
-  - core.trajectory
+  - Progress
+  - StateChange
+  - Trajectory
   target:
-  - core.desired-state
-  - core.direction
+  - DesiredState
+  - Direction
   definition: Identifies the DesiredState or Direction used as the comparison target.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.held-by
-  name: heldBy
+  symbol: heldBy
   version: 0.1.0
   status: experimental
   source:
-  - core.intent
-  - core.capability
-  - core.authority
+  - Intent
+  - Capability
+  - Authority
   target:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   definition: Associates an Intent, Capability, or Authority with its holder.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.holds
+  inverse: holds
 - id: core.rel.holds
-  name: holds
+  symbol: holds
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   target:
-  - core.intent
-  - core.capability
-  - core.authority
+  - Intent
+  - Capability
+  - Authority
   definition: Associates an Actor or Role with an Intent, Capability, or Authority it holds.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.held-by
+  inverse: heldBy
 - id: core.rel.occupies-role
-  name: occupiesRole
+  symbol: occupiesRole
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
+  - Actor
   target:
-  - core.role
+  - Role
   definition: Associates an Actor with a contextual Role.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.occupied-by
+  inverse: occupiedBy
 - id: core.rel.occupied-by
-  name: occupiedBy
+  symbol: occupiedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.role
+  - Role
   target:
-  - core.actor
+  - Actor
   definition: Associates a Role with an Actor occupying it.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.occupies-role
+  inverse: occupiesRole
 - id: core.rel.has-capability
-  name: hasCapability
+  symbol: hasCapability
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   target:
-  - core.capability
+  - Capability
   definition: Associates an Actor or Role with a Capability without implying Permission or Authority.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.performed-by
-  name: performedBy
+  symbol: performedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.action
-  - core.interpretation
-  - core.validation
-  - core.review
+  - Action
+  - Interpretation
+  - Validation
+  - Review
   target:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   definition: Attributes an Action or evaluative act to an Actor or Role.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.realizes
-  name: realizes
+  symbol: realizes
   version: 0.1.0
   status: experimental
   source:
-  - core.action
+  - Action
   target:
-  - core.intent
+  - Intent
   definition: Associates an Action with the Intent it realizes.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.participates-in
-  name: participatesIn
+  symbol: participatesIn
   version: 0.1.0
   status: experimental
   source:
-  - core.action
+  - Action
   target:
-  - core.process
+  - Process
   definition: Associates an Action with the Process whose change semantics it participates in.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.comprises-transformation
-  name: comprisesTransformation
+  symbol: comprisesTransformation
   version: 0.1.0
   status: experimental
   source:
-  - core.process
+  - Process
   target:
-  - core.transformation
+  - Transformation
   definition: Associates a Process with a Transformation that forms part of its abstract change structure.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.part-of-process
+  inverse: partOfProcess
 - id: core.rel.part-of-process
-  name: partOfProcess
+  symbol: partOfProcess
   version: 0.1.0
   status: experimental
   source:
-  - core.transformation
+  - Transformation
   target:
-  - core.process
+  - Process
   definition: Identifies the Process containing a Transformation.
   direction: directed
   provenance: optional
   authority_effect: none
-  inverse: core.rel.comprises-transformation
+  inverse: comprisesTransformation
 - id: core.rel.transforms
-  name: transforms
+  symbol: transforms
   version: 0.1.0
   status: experimental
   source:
-  - core.action
-  - core.transformation
+  - Action
+  - Transformation
   target:
-  - core.state
-  - core.entity
-  - core:any
+  - State
+  - Entity
+  - Any
   definition: Identifies the State or semantic object affected by an Action or Transformation.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.input-of
-  name: inputOf
+  symbol: inputOf
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.transformation
+  - Transformation
   definition: Associates a semantic object with a Transformation that consumes or evaluates it.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.output-of
-  name: outputOf
+  symbol: outputOf
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.transformation
+  - Transformation
   definition: Associates a semantic object with the Transformation that produced it.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.produces
-  name: produces
+  symbol: produces
   version: 0.1.0
   status: experimental
   source:
-  - core.action
-  - core.transformation
-  - core.composition
-  - core.validation
-  - core.review
+  - Action
+  - Transformation
+  - Composition
+  - Validation
+  - Review
   target:
-  - core.derivative
-  - core.projection
-  - core.inference
-  - core.finding
-  - core.validity
-  - core:any
+  - Derivative
+  - Projection
+  - Inference
+  - Finding
+  - Validity
+  - Any
   definition: Associates an operation or evaluative act with a semantic output.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.produced-by
-  name: producedBy
+  symbol: producedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.derivative
-  - core.projection
-  - core.inference
-  - core.finding
-  - core:any
+  - Derivative
+  - Projection
+  - Inference
+  - Finding
+  - Any
   target:
-  - core.action
-  - core.transformation
-  - core.composition
-  - core.validation
-  - core.review
+  - Action
+  - Transformation
+  - Composition
+  - Validation
+  - Review
   definition: Associates a semantic output with the operation or act that produced it.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.transfers-object
-  name: transfersObject
+  symbol: transfersObject
   version: 0.1.0
   status: experimental
   source:
-  - core.transfer
+  - Transfer
   target:
-  - core:any
+  - Any
   definition: Identifies the semantic object or responsibility moved by a Transfer.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.from-context
-  name: fromContext
+  symbol: fromContext
   version: 0.1.0
   status: experimental
   source:
-  - core.transfer
+  - Transfer
   target:
-  - core.context
+  - Context
   definition: Identifies the origin Context of a Transfer.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.to-context
-  name: toContext
+  symbol: toContext
   version: 0.1.0
   status: experimental
   source:
-  - core.transfer
+  - Transfer
   target:
-  - core.context
+  - Context
   definition: Identifies the destination Context of a Transfer.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.persists-object
-  name: persistsObject
+  symbol: persistsObject
   version: 0.1.0
   status: experimental
   source:
-  - core.persistence
+  - Persistence
   target:
-  - core:any
+  - Any
   definition: Identifies the semantic object retained by Persistence.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.composes-object
-  name: composesObject
+  symbol: composesObject
   version: 0.1.0
   status: experimental
   source:
-  - core.composition
+  - Composition
   target:
-  - core:any
+  - Any
   definition: Identifies an input object used by a Composition.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.crosses-boundary
-  name: crossesBoundary
+  symbol: crossesBoundary
   version: 0.1.0
   status: experimental
   source:
-  - core.external-effect
-  - core.transfer
+  - ExternalEffect
+  - Transfer
   target:
-  - core.boundary
+  - Boundary
   definition: Identifies the Boundary crossed by an ExternalEffect or Transfer.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.authorized-by
-  name: authorizedBy
+  symbol: authorizedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.goal
-  - core.action
-  - core.permission
-  - core.admission
-  - core.binding
-  - core.revocation
-  - core.external-effect
-  - core.constraint
-  - core.accountability
-  - core:any
+  - Goal
+  - Action
+  - Permission
+  - Admission
+  - Binding
+  - Revocation
+  - ExternalEffect
+  - Constraint
+  - Accountability
+  - Any
   target:
-  - core.authority
+  - Authority
   definition: Identifies the Authority legitimizing a normative consequence.
   direction: directed
   provenance: required
   authority_effect: required-for-normative-consequence
 - id: core.rel.constrained-by
-  name: constrainedBy
+  symbol: constrainedBy
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.constraint
+  - Constraint
   definition: Associates an object, role, process, or transition with an explicit Constraint.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.applies-to
-  name: appliesTo
+  symbol: appliesTo
   version: 0.1.0
   status: experimental
   source:
-  - core.constraint
-  - core.contract
+  - Constraint
+  - Contract
   target:
-  - core:any
+  - Any
   definition: Identifies the object, relation, role, process, or transition governed by a Constraint or
     Contract.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.permits
-  name: permits
+  symbol: permits
   version: 0.1.0
   status: experimental
   source:
-  - core.permission
+  - Permission
   target:
-  - core.actor
-  - core.role
-  - core.action
-  - core.process
-  - core:any
+  - Actor
+  - Role
+  - Action
+  - Process
+  - Any
   definition: Identifies what a Permission allows.
   direction: directed
   provenance: optional
   authority_effect: scoped-allowance
 - id: core.rel.permitted-by
-  name: permittedBy
+  symbol: permittedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.action
-  - core.process
-  - core.transfer
-  - core:any
+  - Action
+  - Process
+  - Transfer
+  - Any
   target:
-  - core.permission
+  - Permission
   definition: Associates an activity with the Permission that allows it.
   direction: directed
   provenance: optional
   authority_effect: scoped-allowance
 - id: core.rel.governed-by
-  name: governedBy
+  symbol: governedBy
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.contract
+  - Contract
   definition: Associates an object, relation, process, or transition with the Contract governing its semantic
     obligations.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.validates-object
-  name: validatesObject
+  symbol: validatesObject
   version: 0.1.0
   status: experimental
   source:
-  - core.validation
+  - Validation
   target:
-  - core:any
+  - Any
   definition: Identifies the candidate object, relation, or transition evaluated by Validation.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.admits-object
-  name: admitsObject
+  symbol: admitsObject
   version: 0.1.0
   status: experimental
   source:
-  - core.admission
+  - Admission
   target:
-  - core:any
+  - Any
   definition: Identifies the candidate object whose governed status is changed by Admission.
   direction: directed
   provenance: required
   authority_effect: admission-transition
 - id: core.rel.admitted-by
-  name: admittedBy
+  symbol: admittedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.evidence
-  - core.finding
-  - core.state
-  - core:any
+  - Evidence
+  - Finding
+  - State
+  - Any
   target:
-  - core.admission
+  - Admission
   definition: Associates an object with the Admission act that established its admitted status.
   direction: directed
   provenance: required
   authority_effect: admission-transition
 - id: core.rel.produces-state
-  name: producesState
+  symbol: producesState
   version: 0.1.0
   status: experimental
   source:
-  - core.admission
+  - Admission
   target:
-  - core.state
+  - State
   definition: Associates an Admission with the maintained State it establishes or updates.
   direction: directed
   provenance: required
   authority_effect: admission-transition
 - id: core.rel.reviews-object
-  name: reviewsObject
+  symbol: reviewsObject
   version: 0.1.0
   status: experimental
   source:
-  - core.review
+  - Review
   target:
-  - core:any
+  - Any
   definition: Identifies the object or transition evaluated by a Review.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.establishes-commitment
-  name: establishesCommitment
+  symbol: establishesCommitment
   version: 0.1.0
   status: experimental
   source:
-  - core.binding
+  - Binding
   target:
-  - core.commitment
+  - Commitment
   definition: Associates a Binding act with the Commitment it makes operative.
   direction: directed
   provenance: required
   authority_effect: binding-consequence
 - id: core.rel.established-by
-  name: establishedBy
+  symbol: establishedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.commitment
-  - core.validity
+  - Commitment
+  - Validity
   target:
-  - core.binding
-  - core.validation
-  - core:any
+  - Binding
+  - Validation
+  - Any
   definition: Associates a maintained status or Commitment with the act that established it.
   direction: directed
   provenance: required
   authority_effect: none
 - id: core.rel.revokes-object
-  name: revokesObject
+  symbol: revokesObject
   version: 0.1.0
   status: experimental
   source:
-  - core.revocation
+  - Revocation
   target:
-  - core.authority
-  - core.permission
-  - core.admission
-  - core.binding
-  - core.commitment
-  - core.validity
-  - core:any
+  - Authority
+  - Permission
+  - Admission
+  - Binding
+  - Commitment
+  - Validity
+  - Any
   definition: Identifies the governed status or object withdrawn by Revocation.
   direction: directed
   provenance: required
   authority_effect: withdraws-normative-status
 - id: core.rel.revoked-by
-  name: revokedBy
+  symbol: revokedBy
   version: 0.1.0
   status: experimental
   source:
-  - core.authority
-  - core.permission
-  - core.admission
-  - core.binding
-  - core.commitment
-  - core.validity
-  - core:any
+  - Authority
+  - Permission
+  - Admission
+  - Binding
+  - Commitment
+  - Validity
+  - Any
   target:
-  - core.revocation
+  - Revocation
   definition: Associates an object or status with the Revocation that withdrew it.
   direction: directed
   provenance: required
   authority_effect: withdraws-normative-status
 - id: core.rel.accountable-for
-  name: accountableFor
+  symbol: accountableFor
   version: 0.1.0
   status: experimental
   source:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   target:
-  - core.action
-  - core.state-change
-  - core.commitment
-  - core:any
+  - Action
+  - StateChange
+  - Commitment
+  - Any
   definition: Associates an Actor or Role with an object or consequence for which it is accountable.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.accountable-to
-  name: accountableTo
+  symbol: accountableTo
   version: 0.1.0
   status: experimental
   source:
-  - core.commitment
-  - core:any
+  - Commitment
+  - Any
   target:
-  - core.actor
-  - core.role
-  - core.accountability
+  - Actor
+  - Role
+  - Accountability
   definition: Associates an operative object with the Actor, Role, or Accountability record responsible
     for it.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.accountable-actor
-  name: accountableActor
+  symbol: accountableActor
   version: 0.1.0
   status: experimental
   source:
-  - core.accountability
+  - Accountability
   target:
-  - core.actor
-  - core.role
+  - Actor
+  - Role
   definition: Identifies the Actor or Role carrying an Accountability obligation.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.accountable-object
-  name: accountableObject
+  symbol: accountableObject
   version: 0.1.0
   status: experimental
   source:
-  - core.accountability
+  - Accountability
   target:
-  - core.action
-  - core.state-change
-  - core.commitment
-  - core:any
+  - Action
+  - StateChange
+  - Commitment
+  - Any
   definition: Identifies the object or consequence covered by an Accountability obligation.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.versioned-by
-  name: versionedBy
+  symbol: versionedBy
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core.semantic-version
+  - SemanticVersion
   definition: Associates a semantic object, relation, contract, or composition with the SemanticVersion
     governing its meaning.
   direction: directed
   provenance: optional
   authority_effect: none
 - id: core.rel.supersedes
-  name: supersedes
+  symbol: supersedes
   version: 0.1.0
   status: experimental
   source:
-  - core:any
+  - Any
   target:
-  - core:any
+  - Any
   definition: Declares that one versioned semantic object replaces another without erasing historical
     lineage.
   direction: directed

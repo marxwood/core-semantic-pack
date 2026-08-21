@@ -5,13 +5,13 @@ description: An executed operation is used as its own explanation of purpose.
 expected: invalid
 objects:
 - id: action:rerank-results
-  type: core.action
+  type: Action
   attributes:
-    represented_as: core.intent
+    represented_as: Intent
 relations: []
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.action-purpose-chain
+  - ActionPurposeChain
   boundaries_triggered:
-  - core.boundary.action-not-intent
+  - Action != Intent

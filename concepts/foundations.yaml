@@ -4,25 +4,24 @@ status: experimental
 layer: foundations
 concepts:
 - id: core.entity
-  name: Entity
+  symbol: Entity
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A referable subject or object of semantic discourse that may retain identity across contexts,
     representations, and StateChanges.
-  answers:
+  helps_answer:
   - What is this?
-  - What persists as the same thing across change?
-  what_it_is_not:
-  - a runtime object by definition
-  - an Actor by definition
-  - an authoritative object by definition
+  exclusions:
+  - Entity is not a runtime object by definition.
+  - Entity is not an Actor by definition.
+  - Entity is not an authoritative object by definition.
   required_relations:
-  - core.rel.has-identity
+  - hasIdentity
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.bounded-by
-  - core.rel.has-state
+  - existsIn
+  - boundedBy
+  - hasState
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -31,24 +30,21 @@ concepts:
       be attached.
   layer: foundations
 - id: core.identity
-  name: Identity
+  symbol: Identity
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: The declared criteria or reference by which an Entity is treated as the same Entity across
     representations, contexts, and change.
-  answers:
-  - Which identity does this Entity have?
-  - Why are two representations treated as the same Entity?
-  what_it_is_not:
-  - a display label
-  - a semantic type
-  - authority
-  - a database primary key by necessity
+  exclusions:
+  - Identity is not a display label.
+  - Identity is not a semantic type.
+  - Identity is not authority.
+  - Identity is not a database primary key by necessity.
   required_relations: []
   conditional_relations:
-  - core.rel.versioned-by
-  - core.rel.supersedes
+  - versionedBy
+  - supersedes
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -56,24 +52,21 @@ concepts:
     rationale: Semantic continuity requires identity to survive changes in representation and implementation.
   layer: foundations
 - id: core.relation
-  name: Relation
+  symbol: Relation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A typed, directed semantic association whose source, target, meaning, and constraints are
     explicitly declared.
-  answers:
-  - How are these semantic objects connected?
-  - What does the connection mean?
-  what_it_is_not:
-  - mere co-occurrence
-  - an untyped graph edge
-  - proof of causality
+  exclusions:
+  - Relation is not mere co-occurrence.
+  - Relation is not an untyped graph edge.
+  - Relation is not proof of causality.
   required_relations: []
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.has-provenance
-  - core.rel.versioned-by
+  - existsIn
+  - hasProvenance
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -82,23 +75,22 @@ concepts:
       adjacency alone.
   layer: foundations
 - id: core.context
-  name: Context
+  symbol: Context
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A declared interpretive frame within which meaning, validity, comparison, permission, or
     authority applies.
-  answers:
+  helps_answer:
   - In which Context does this meaning apply?
-  - Under which conditions is this object valid or comparable?
-  what_it_is_not:
-  - hidden prompt context
-  - unbounded environmental data
-  - universal truth
+  exclusions:
+  - Context is not hidden prompt context.
+  - Context is not unbounded environmental data.
+  - Context is not universal truth.
   required_relations: []
   conditional_relations:
-  - core.rel.bounded-by
-  - core.rel.versioned-by
+  - boundedBy
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -106,24 +98,21 @@ concepts:
     rationale: Interpretation, validity, and authority are contextual and must not silently become universal.
   layer: foundations
 - id: core.boundary
-  name: Boundary
+  symbol: Boundary
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An explicit rule delimiting identity, meaning, applicability, responsibility, or permissible
     transition.
-  answers:
-  - Where does this meaning stop applying?
-  - Which transition or equivalence is forbidden?
-  what_it_is_not:
-  - only a network or deployment boundary
-  - an implicit convention
-  - a runtime guard by necessity
+  exclusions:
+  - Boundary is not only a network or deployment boundary.
+  - Boundary is not an implicit convention.
+  - Boundary is not a runtime guard by necessity.
   required_relations: []
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.authorized-by
-  - core.rel.versioned-by
+  - existsIn
+  - authorizedBy
+  - versionedBy
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md
@@ -131,31 +120,28 @@ concepts:
     rationale: Correction-capable systems require explicit non-equivalences and responsibility limits.
   layer: foundations
 - id: core.state
-  name: State
+  symbol: State
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A maintained representation of what is treated as currently the case for a declared Entity,
     Boundary, and Context.
-  answers:
-  - What is currently maintained as the case?
-  - Which State is active for this Entity and Context?
-  what_it_is_not:
-  - reality itself
-  - a Projection
-  - a Claim by default
-  - any persisted record
+  exclusions:
+  - State is not reality itself.
+  - State is not a Projection.
+  - State is not a Claim by default.
+  - State is not any persisted record.
   required_relations:
-  - core.rel.state-of
-  - core.rel.exists-in
+  - stateOf
+  - existsIn
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.has-validity
-  - core.rel.versioned-by
-  - core.rel.contested-by
+  - hasProvenance
+  - hasValidity
+  - versionedBy
+  - contestedBy
   boundaries:
-  - core.boundary.projection-not-state
-  - core.boundary.persistence-not-admission
+  - Projection != State
+  - Persistence != Admission
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -163,32 +149,30 @@ concepts:
       and change can be assessed.
   layer: foundations
 - id: core.state-change
-  name: StateChange
+  symbol: StateChange
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: An attributable transition from a previous State to a resulting State under a declared Context.
-  answers:
+  helps_answer:
   - What changed?
-  - What existed before and after?
-  - What caused or authorized the transition?
-  what_it_is_not:
-  - an Action
-  - a log entry
-  - an event without before-and-after State
-  - operational success
+  exclusions:
+  - StateChange is not an Action.
+  - StateChange is not a log entry.
+  - StateChange is not an event without before-and-after State.
+  - StateChange is not operational success.
   required_relations:
-  - core.rel.previous-state
-  - core.rel.resulting-state
-  - core.rel.exists-in
+  - previousState
+  - resultingState
+  - existsIn
   conditional_relations:
-  - core.rel.caused-by
-  - core.rel.authorized-by
-  - core.rel.has-provenance
-  - core.rel.evaluated-against
+  - causedBy
+  - authorizedBy
+  - hasProvenance
+  - evaluatedAgainst
   boundaries:
-  - core.boundary.action-not-state-change
-  - core.boundary.operational-success-not-goal-progress
+  - Action != StateChange
+  - OperationalSuccess != Progress
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -196,55 +180,49 @@ concepts:
       current values alone.
   layer: foundations
 - id: core.source
-  name: Source
+  symbol: Source
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A referable origin from which an Observation, Derivative, Interpretation, or other semantic
     object is obtained.
-  answers:
-  - Where did this object come from?
-  - What origin can be inspected independently?
-  what_it_is_not:
-  - Evidence by default
-  - truth
-  - a citation alone
-  - a Projection
+  exclusions:
+  - Source is not Evidence by default.
+  - Source is not truth.
+  - Source is not a citation alone.
+  - Source is not a Projection.
   required_relations: []
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.has-identity
-  - core.rel.versioned-by
+  - existsIn
+  - hasIdentity
+  - versionedBy
   boundaries:
-  - core.boundary.source-not-projection
+  - Source != Projection
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
     rationale: Lineage requires a distinguishable origin that derived representations cannot redefine.
   layer: foundations
 - id: core.derivative
-  name: Derivative
+  symbol: Derivative
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A semantic object produced through a declared transformation from one or more Sources or
     prior semantic objects.
-  answers:
-  - From what was this object derived?
-  - Which transformation produced it?
-  what_it_is_not:
-  - its Source
-  - automatically authoritative
-  - automatically valid
+  exclusions:
+  - Derivative is not its Source.
+  - Derivative is not automatically authoritative.
+  - Derivative is not automatically valid.
   required_relations:
-  - core.rel.derived-from
-  - core.rel.has-provenance
+  - derivedFrom
+  - hasProvenance
   conditional_relations:
-  - core.rel.produced-by
-  - core.rel.exists-in
-  - core.rel.versioned-by
+  - producedBy
+  - existsIn
+  - versionedBy
   boundaries:
-  - core.boundary.source-not-projection
+  - Source != Projection
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -252,30 +230,28 @@ concepts:
       implicitly.
   layer: foundations
 - id: core.projection
-  name: Projection
+  symbol: Projection
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A purpose-oriented Derivative that represents, selects, summarizes, or composes semantic
     objects for a declared audience or use.
-  answers:
-  - How is underlying State or knowledge being represented?
-  - For which purpose was this representation produced?
-  what_it_is_not:
+  not_equivalent_to:
   - Source
-  - maintained State
   - Binding
-  - authority merely because it is final or visible
+  exclusions:
+  - Projection is not maintained State.
+  - Projection is not authority merely because it is final or visible.
   required_relations:
-  - core.rel.projects
-  - core.rel.has-provenance
+  - projects
+  - hasProvenance
   conditional_relations:
-  - core.rel.exists-in
-  - core.rel.governed-by
-  - core.rel.versioned-by
+  - existsIn
+  - governedBy
+  - versionedBy
   boundaries:
-  - core.boundary.source-not-projection
-  - core.boundary.projection-not-state
+  - Source != Projection
+  - Projection != State
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -283,29 +259,27 @@ concepts:
       from their sources or maintained State.
   layer: foundations
 - id: core.interpretation
-  name: Interpretation
+  symbol: Interpretation
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A contextual assignment of meaning to a Source, Observation, State, Relation, or Derivative.
-  answers:
-  - Which interpretation produced this meaning?
-  - Under which Context was the interpretation made?
-  what_it_is_not:
+  not_equivalent_to:
   - Observation
   - Evidence
-  - truth
-  - authority
+  exclusions:
+  - Interpretation is not truth.
+  - Interpretation is not authority.
   required_relations:
-  - core.rel.interprets
-  - core.rel.exists-in
+  - interprets
+  - existsIn
   conditional_relations:
-  - core.rel.has-provenance
-  - core.rel.performed-by
-  - core.rel.versioned-by
+  - hasProvenance
+  - performedBy
+  - versionedBy
   boundaries:
-  - core.boundary.observation-not-claim
-  - core.boundary.projection-not-state
+  - Observation != Claim
+  - Projection != State
   derivation:
     source: CORE-SEMANTIC-PACK.md
     status: working-reference
@@ -313,22 +287,19 @@ concepts:
       as direct reality.
   layer: foundations
 - id: core.semantic-version
-  name: SemanticVersion
+  symbol: SemanticVersion
   version: 0.1.0
   status: experimental
   kind: candidate-core-primitive
   definition: A stable identifier for a governed state of meaning, boundaries, or composition used to
     support compatibility and historical reconstruction.
-  answers:
-  - Which meaning governed this object or execution?
-  - Can the historical interpretation be reconstructed?
-  what_it_is_not:
-  - necessarily a software release
-  - a timestamp alone
-  - authority by itself
+  exclusions:
+  - SemanticVersion is not necessarily a software release.
+  - SemanticVersion is not a timestamp alone.
+  - SemanticVersion is not authority by itself.
   required_relations: []
   conditional_relations:
-  - core.rel.supersedes
+  - supersedes
   boundaries: []
   derivation:
     source: CORE-SEMANTIC-PACK.md

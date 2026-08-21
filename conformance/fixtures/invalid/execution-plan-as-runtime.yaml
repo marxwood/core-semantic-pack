@@ -5,12 +5,12 @@ description: A planned execution graph is represented as proof of what actually 
 expected: invalid
 objects:
 - id: plan:runtime-dag
-  type: architecture.execution-plan
+  type: ExecutionPlan
   attributes:
-    represented_as: semantic-category:runtime
+    represented_as: Runtime
 relations: []
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.execution-plan-not-runtime
+  - ExecutionPlan != Runtime

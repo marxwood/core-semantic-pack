@@ -5,19 +5,19 @@ description: A Review directly establishes an operative Commitment without a sep
 expected: invalid
 objects:
 - id: review:approved
-  type: core.review
+  type: Review
 - id: commitment:file-patent
-  type: core.commitment
+  type: Commitment
   attributes:
     binding_status: binding
 relations:
-- relation: core.rel.establishes-commitment
+- relation: establishesCommitment
   source: review:approved
   target: commitment:file-patent
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.review-cannot-substitute-binding
-  - core.rule.binding-explicit
+  - ReviewCannotSubstituteBinding
+  - BindingExplicit
   boundaries_triggered:
-  - core.boundary.review-not-binding
+  - Review != Binding

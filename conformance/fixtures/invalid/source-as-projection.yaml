@@ -5,22 +5,22 @@ description: A derived summary is declared to be the Source it represents.
 expected: invalid
 objects:
 - id: source:original
-  type: core.source
+  type: Source
 - id: projection:summary
-  type: core.projection
+  type: Projection
   attributes:
-    represented_as: core.source
+    represented_as: Source
 - id: provenance:summary
-  type: core.provenance
+  type: Provenance
 relations:
-- relation: core.rel.projects
+- relation: projects
   source: projection:summary
   target: source:original
-- relation: core.rel.has-provenance
+- relation: hasProvenance
   source: projection:summary
   target: provenance:summary
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - core.boundary.source-not-projection
+  - Source != Projection

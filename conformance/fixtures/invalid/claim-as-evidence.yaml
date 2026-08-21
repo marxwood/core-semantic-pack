@@ -5,14 +5,14 @@ description: A Claim is used as support for itself without a separate admitted E
 expected: invalid
 objects:
 - id: claim:self-supporting
-  type: core.claim
+  type: Claim
 relations:
-- relation: core.rel.supports
+- relation: supports
   source: claim:self-supporting
   target: claim:self-supporting
 expectations:
   rules_pass: []
   rules_fail:
-  - core.rule.evidence-admitted-and-provenanced
+  - EvidenceAdmittedAndProvenanced
   boundaries_triggered:
-  - core.boundary.claim-not-evidence
+  - Claim != Evidence

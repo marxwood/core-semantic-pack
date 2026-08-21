@@ -3,11 +3,12 @@ version: 0.1.0
 status: experimental
 boundaries:
 - id: core.boundary.source-not-projection
+  expression: Source != Projection
   version: 0.1.0
   status: experimental
-  left: core.source
-  relation: not-equivalent-to
-  right: core.projection
+  left: Source
+  operator: '!='
+  right: Projection
   rule: A Projection must remain distinguishable from the Source or State it represents.
   rationale: Derived representations do not redefine their source.
   failure_code: SEM-BOUNDARY-001
@@ -19,11 +20,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.observation-not-claim
+  expression: Observation != Claim
   version: 0.1.0
   status: experimental
-  left: core.observation
-  relation: not-equivalent-to
-  right: core.claim
+  left: Observation
+  operator: '!='
+  right: Claim
   rule: An Observation must not be represented as a Claim without an explicit assertion or interpretation
     transition.
   rationale: Perception and assertion are different epistemic acts.
@@ -36,11 +38,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.claim-not-evidence
+  expression: Claim != Evidence
   version: 0.1.0
   status: experimental
-  left: core.claim
-  relation: not-equivalent-to
-  right: core.evidence
+  left: Claim
+  operator: '!='
+  right: Evidence
   rule: A Claim must not be used as Evidence for itself or acquire Evidence status without a declared
     Admission.
   rationale: Assertions do not provide their own support.
@@ -53,11 +56,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.evidence-not-truth
+  expression: Evidence != Truth
   version: 0.1.0
   status: experimental
-  left: core.evidence
-  relation: not-equivalent-to
-  right: semantic-category:truth
+  left: Evidence
+  operator: '!='
+  right: Truth
   rule: Evidence must not be represented as universal truth; it supports or contradicts Claims under declared
     conditions.
   rationale: Evidence remains contextual, contestable, and regime-bound.
@@ -70,11 +74,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.inference-not-finding
+  expression: Inference != Finding
   version: 0.1.0
   status: experimental
-  left: core.inference
-  relation: not-equivalent-to
-  right: core.finding
+  left: Inference
+  operator: '!='
+  right: Finding
   rule: An Inference must not be represented as a Finding without the declared evaluation, validity, and
     governance conditions required for a Finding.
   rationale: Intermediate reasoning does not silently become a governed result.
@@ -87,11 +92,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.finding-not-binding-decision
+  expression: Finding != BindingDecision
   version: 0.1.0
   status: experimental
-  left: core.finding
-  relation: not-equivalent-to
-  right: semantic-category:binding-decision
+  left: Finding
+  operator: '!='
+  right: BindingDecision
   rule: A Finding must not create institutional commitment or external consequence without a separate
     Binding act.
   rationale: Epistemic result and normative decision are different responsibilities.
@@ -104,11 +110,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.projection-not-state
+  expression: Projection != State
   version: 0.1.0
   status: experimental
-  left: core.projection
-  relation: not-equivalent-to
-  right: core.state
+  left: Projection
+  operator: '!='
+  right: State
   rule: A Projection must not be represented or persisted as maintained State without an explicit Admission
     and StateChange.
   rationale: Visibility, polish, or downstream use does not create authority.
@@ -121,11 +128,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.validation-not-admission
+  expression: Validation != Admission
   version: 0.1.0
   status: experimental
-  left: core.validation
-  relation: not-equivalent-to
-  right: core.admission
+  left: Validation
+  operator: '!='
+  right: Admission
   rule: Successful Validation must not automatically admit a candidate into maintained State.
   rationale: Conformance and governed acceptance are distinct transitions.
   failure_code: SEM-BOUNDARY-008
@@ -137,11 +145,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.review-not-binding
+  expression: Review != Binding
   version: 0.1.0
   status: experimental
-  left: core.review
-  relation: not-equivalent-to
-  right: core.binding
+  left: Review
+  operator: '!='
+  right: Binding
   rule: Review must not be treated as Binding unless a separately authorized Binding act is declared.
   rationale: Evaluation and institutional commitment are different responsibilities.
   failure_code: SEM-BOUNDARY-009
@@ -153,11 +162,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.capability-not-authority
+  expression: Capability != Authority
   version: 0.1.0
   status: experimental
-  left: core.capability
-  relation: not-equivalent-to
-  right: core.authority
+  left: Capability
+  operator: '!='
+  right: Authority
   rule: Capability must not create or imply Authority, Permission, or legitimacy.
   rationale: Ability to act is not authorization to act.
   failure_code: SEM-BOUNDARY-010
@@ -169,11 +179,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.persistence-not-admission
+  expression: Persistence != Admission
   version: 0.1.0
   status: experimental
-  left: core.persistence
-  relation: not-equivalent-to
-  right: core.admission
+  left: Persistence
+  operator: '!='
+  right: Admission
   rule: Persisting an object must not admit it into maintained governed State or change its epistemic
     status.
   rationale: Storage does not manufacture institutional truth.
@@ -186,11 +197,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.repetition-not-validation
+  expression: Repetition != Validation
   version: 0.1.0
   status: experimental
-  left: semantic-category:repetition
-  relation: not-equivalent-to
-  right: core.validation
+  left: Repetition
+  operator: '!='
+  right: Validation
   rule: Repeated appearance or downstream reuse of an object must not be treated as Validation.
   rationale: Propagation does not add evidence or evaluate conformance.
   failure_code: SEM-BOUNDARY-012
@@ -202,11 +214,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.goal-not-desired-state
+  expression: Goal != DesiredState
   version: 0.1.0
   status: experimental
-  left: core.goal
-  relation: not-equivalent-to
-  right: core.desired-state
+  left: Goal
+  operator: '!='
+  right: DesiredState
   rule: A Goal must remain distinct from the DesiredState used to represent its future condition.
   rationale: Normative objective and future-state representation serve different functions.
   failure_code: SEM-BOUNDARY-013
@@ -218,11 +231,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.desired-state-not-prediction
+  expression: DesiredState != Prediction
   version: 0.1.0
   status: experimental
-  left: core.desired-state
-  relation: not-equivalent-to
-  right: semantic-category:prediction
+  left: DesiredState
+  operator: '!='
+  right: Prediction
   rule: DesiredState must not be represented as a Prediction of what will occur.
   rationale: Normative future and expected future are different semantics.
   failure_code: SEM-BOUNDARY-014
@@ -234,11 +248,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.desired-state-not-plan
+  expression: DesiredState != Plan
   version: 0.1.0
   status: experimental
-  left: core.desired-state
-  relation: not-equivalent-to
-  right: semantic-category:plan
+  left: DesiredState
+  operator: '!='
+  right: Plan
   rule: DesiredState must not be represented as the plan or sequence by which it may be reached.
   rationale: Target condition and execution path are different semantics.
   failure_code: SEM-BOUNDARY-015
@@ -250,11 +265,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.intent-not-goal
+  expression: Intent != Goal
   version: 0.1.0
   status: experimental
-  left: core.intent
-  relation: not-equivalent-to
-  right: core.goal
+  left: Intent
+  operator: '!='
+  right: Goal
   rule: Intent must remain traceable to a Goal without being represented as the Goal itself.
   rationale: Immediate purpose and enduring normative objective are different levels.
   failure_code: SEM-BOUNDARY-016
@@ -266,11 +282,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.intent-not-authority
+  expression: Intent != Authority
   version: 0.1.0
   status: experimental
-  left: core.intent
-  relation: not-equivalent-to
-  right: core.authority
+  left: Intent
+  operator: '!='
+  right: Authority
   rule: Intent must not create Authority or Permission to act.
   rationale: Purpose does not legitimize consequence.
   failure_code: SEM-BOUNDARY-017
@@ -282,11 +299,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.action-not-intent
+  expression: Action != Intent
   version: 0.1.0
   status: experimental
-  left: core.action
-  relation: not-equivalent-to
-  right: core.intent
+  left: Action
+  operator: '!='
+  right: Intent
   rule: Action must remain distinguishable from the Intent it realizes.
   rationale: What was done and why it was done must remain separately inspectable.
   failure_code: SEM-BOUNDARY-018
@@ -298,11 +316,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.action-not-state-change
+  expression: Action != StateChange
   version: 0.1.0
   status: experimental
-  left: core.action
-  relation: not-equivalent-to
-  right: core.state-change
+  left: Action
+  operator: '!='
+  right: StateChange
   rule: Action must not be represented as StateChange without evidence of an actual attributable transition.
   rationale: Attempted or completed execution is not identical to changed reality.
   failure_code: SEM-BOUNDARY-019
@@ -314,11 +333,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.process-not-execution-contract
+  expression: Process != ExecutionContract
   version: 0.1.0
   status: experimental
-  left: core.process
-  relation: not-equivalent-to
-  right: core.pattern.execution-contract
+  left: Process
+  operator: '!='
+  right: ExecutionContract
   rule: Process must remain distinct from the ExecutionContract that governs when and under which conditions
     it may be realized.
   rationale: Ontology of change and legitimacy of execution are separate layers.
@@ -331,11 +351,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.execution-contract-not-execution-plan
+  expression: ExecutionContract != ExecutionPlan
   version: 0.1.0
   status: experimental
-  left: core.pattern.execution-contract
-  relation: not-equivalent-to
-  right: semantic-category:execution-plan
+  left: ExecutionContract
+  operator: '!='
+  right: ExecutionPlan
   rule: ExecutionContract must not be reduced to the concrete ordering, bindings, or orchestration of
     an ExecutionPlan.
   rationale: Semantic legitimacy must survive changes in runtime realization.
@@ -348,11 +369,12 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.execution-plan-not-runtime
+  expression: ExecutionPlan != Runtime
   version: 0.1.0
   status: experimental
-  left: semantic-category:execution-plan
-  relation: not-equivalent-to
-  right: semantic-category:runtime
+  left: ExecutionPlan
+  operator: '!='
+  right: Runtime
   rule: ExecutionPlan must remain distinguishable from the execution that actually occurred.
   rationale: Planned realization and historical execution are different states.
   failure_code: SEM-BOUNDARY-022
@@ -364,12 +386,13 @@ boundaries:
   - mappings
   - conformance
 - id: core.boundary.operational-success-not-goal-progress
+  expression: OperationalSuccess != Progress
   version: 0.1.0
   status: experimental
-  left: semantic-category:operational-success
-  relation: not-equivalent-to
-  right: core.progress
-  rule: Successful execution must not be represented as GoalProgress without evaluation against DesiredState
+  left: OperationalSuccess
+  operator: '!='
+  right: Progress
+  rule: Successful execution must not be represented as Progress without evaluation against DesiredState
     or Direction.
   rationale: A correct Action can move the system in the wrong direction.
   failure_code: SEM-BOUNDARY-023

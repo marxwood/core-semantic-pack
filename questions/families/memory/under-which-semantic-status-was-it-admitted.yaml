@@ -1,0 +1,31 @@
+id: core.question.identify-admission-status
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Under which semantic status was it admitted?
+family: memory
+requires:
+  concepts:
+  - Admission
+  - Validity
+  - State
+  - Authority
+  relations:
+  - admittedBy
+  - hasValidity
+  - authorizedBy
+must_preserve:
+- Validation != Admission
+- Persistence != Admission
+answer_contract:
+  minimum_requirements:
+  - admission_act_or_nonadmission_explicit
+  - validity_status_preserved
+  - admission_authority_traceable_if_admitted
+failure_contract:
+  failure_states:
+  - admission_status_lost
+  - validation_or_persistence_used_as_admission
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

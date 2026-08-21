@@ -17,10 +17,10 @@ resolved_pack:
     id: example.patent-analysis
     version: 0.1.0
   provides_questions:
-  - core.question.identify-supporting-evidence
-  - core.question.explain-action-purpose
-  - core.question.identify-admission-status
-  - core.question.assess-current-validity
+  - What supports the Claim?
+  - Why is this being done?
+  - Under which semantic status was it admitted?
+  - Is it still valid?
   compatibility:
     status: compatible
     core_boundaries_preserved: true
