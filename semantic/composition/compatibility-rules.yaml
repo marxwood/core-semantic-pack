@@ -1,56 +1,57 @@
 id: core.composition.compatibility-rules
 version: 0.1.0
 status: experimental
-
 compatibility_classes:
-  - id: compatible
-    meaning: The composition preserves definitions, boundaries, relation contracts, and question obligations.
-
-  - id: compatible-with-restrictions
-    meaning: The composition narrows applicability without changing Core meaning and records all restrictions.
-
-  - id: requires-migration
-    meaning: Meaning remains interpretable, but consumers must transform records or mappings before use.
-
-  - id: incompatible
-    meaning: The composition would redefine meaning, weaken a boundary, or make historical interpretation
-      unsafe.
-
-  - id: unresolved
-    meaning: Insufficient information exists to make a compatibility declaration.
-
+- id: compatible
+  meaning: The composition preserves definitions, boundaries, relation contracts, question obligations,
+    and Core Regime semantics.
+- id: compatible-with-restrictions
+  meaning: The composition narrows applicability without changing Core meaning or Regime semantics and
+    records all restrictions.
+- id: requires-migration
+  meaning: Meaning remains interpretable, but consumers must transform records or mappings before use.
+- id: incompatible
+  meaning: The composition would redefine meaning, weaken a boundary, alter a Core Regime, or make historical
+    interpretation unsafe.
+- id: unresolved
+  meaning: Insufficient information exists to make a compatibility declaration.
 change_classification:
-  - change: editorial
-    semantic_version_effect: patch
-    condition: No definition, boundary, relation, obligation, or lifecycle meaning changes.
-
-  - change: compatible-extension
-    semantic_version_effect: minor
-    condition: Adds records without changing existing meaning or required behavior.
-
-  - change: boundary-clarification
-    semantic_version_effect: minor-or-major-after-impact-review
-    condition: Makes an existing distinction stricter or more explicit.
-
-  - change: breaking-semantic-change
-    semantic_version_effect: major
-    condition: Can reinterpret existing records or invalidate a previously valid composition.
-
+- change: editorial
+  semantic_version_effect: patch
+  condition: No definition, boundary, relation, obligation, lifecycle, or Regime meaning changes.
+- change: compatible-extension
+  semantic_version_effect: minor
+  condition: Adds records without changing existing meaning or required behavior.
+- change: boundary-clarification
+  semantic_version_effect: minor-or-major-after-impact-review
+  condition: Makes an existing distinction stricter or more explicit.
+- change: regime-matrix-change
+  semantic_version_effect: minor-or-major-after-canon-impact-review
+  condition: Changes an exploratory Regime enumeration without changing a Canon-derived Regime identity
+    or summary.
+- change: breaking-semantic-change
+  semantic_version_effect: major
+  condition: Can reinterpret existing records, alter Core Regime meaning, or invalidate a previously valid
+    composition.
 required_checks:
-  - all referenced Core IDs exist in the required release
-  - no Core definition is overridden
-  - no Core boundary is weakened or bypassed
-  - specializations remain within declared domain boundaries
-  - Regime applicability is explicit
-  - Execution Contract references an existing Process and sufficient Authority
-  - question obligations remain satisfiable
-  - historical objects retain their original semantic version
-
+- all referenced Core IDs exist in the required release
+- no Core definition is overridden
+- no Core boundary is weakened or bypassed
+- specializations remain within declared domain boundaries
+- every Regime reference resolves to the Core Regime set
+- Domain Packs do not define or redefine Regimes
+- Execution Contracts select rather than author Regimes
+- Regime applicability and version are explicit
+- Regime switching is explicit and preserves prior outcomes
+- cross-Regime validity remains independently addressable
+- Execution Contract references an existing Process and sufficient Authority
+- question obligations remain satisfiable
+- historical objects retain their original semantic and Regime versions
 upgrade_rule:
   forbidden: silent latest-version replacement
   required_path:
-    - semantic diff
-    - impact classification
-    - compatibility evaluation
-    - consumer or authority decision
-    - new immutable resolved pack
+  - semantic diff
+  - Regime impact classification
+  - compatibility evaluation
+  - consumer or authority decision
+  - new immutable resolved pack

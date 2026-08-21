@@ -2,21 +2,29 @@ semantic_request:
   id: request:patent-analysis-example
   requested_at: '2026-08-20T00:00:00Z'
   questions:
-    - What supports the Claim?
-    - Why is this being done?
-    - Under which semantic status was it admitted?
-    - Is it still valid?
+  - What supports the Claim?
+  - Why is this being done?
+  - Under which semantic status was it admitted?
+  - Is it still valid?
   context:
     domain: intellectual-property
     process: patent-portfolio-analysis
-    regime: expert-review
+  regime_selection:
+    primary:
+      id: core.regime.disciplined
+      version: 0.1.0
+    comparative:
+    - id: core.regime.adversarial
+      version: 0.1.0
+      purpose: stress-test material contradiction
+    switching: explicit-only
   planned_operations:
-    - retrieval
-    - observation
-    - inference
-    - finding-generation
-    - persistence
-    - recommendation-projection
+  - retrieval
+  - observation
+  - inference
+  - finding-generation
+  - persistence
+  - recommendation-projection
   required_consequences:
     external_effect: false
     binding_decision: false

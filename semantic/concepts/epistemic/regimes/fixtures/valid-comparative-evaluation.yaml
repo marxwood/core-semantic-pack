@@ -1,0 +1,19 @@
+id: core.regime-fixture.valid.comparative-evaluation
+expected: valid
+claim_id: claim:market-risk
+evaluations:
+- id: evaluation:disciplined
+  regime: core.regime.disciplined
+  outcome: maintained
+  trace:
+  - evidence:a
+- id: evaluation:adversarial
+  regime: core.regime.adversarial
+  outcome: contested
+  trace:
+  - evidence:a
+  - counter-evidence:b
+projection:
+  displays_regime_per_outcome: true
+  collapses_to_single_truth_score: false
+expected_failures: []

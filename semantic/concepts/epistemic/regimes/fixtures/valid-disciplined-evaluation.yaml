@@ -1,0 +1,26 @@
+id: core.regime-fixture.valid.disciplined-evaluation
+expected: valid
+claim:
+  id: claim:coverage-decrease
+  semantic_context: core@0.1.0
+  regime:
+    id: core.regime.disciplined
+    version: 0.1.0
+  provenance:
+  - provenance:claim
+  support_set:
+  - evidence:expiry-records
+  contradiction_set: []
+  asserted_at: '2026-08-21T00:00:00Z'
+evaluation:
+  id: evaluation:disciplined-1
+  outcome: maintained
+  evaluated_at: '2026-08-21T00:05:00Z'
+  criteria:
+  - provenance-present
+  - minimum-evidence-satisfied
+  - contradictions-declared
+  trace:
+  - evidence:expiry-records
+  - provenance:claim
+expected_failures: []

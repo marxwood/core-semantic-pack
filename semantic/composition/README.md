@@ -7,21 +7,41 @@ A concrete consumer normally resolves:
 ```text
 Core Semantic Pack
         +
-Domain Semantic Pack
-        +
-Regime Pack
+Domain Semantic Pack(s)
         +
 Execution Contract
+        +
+Core Regime selection
         =
 Resolved Semantic Pack
 ```
 
-Composition is not unrestricted merging. Each layer has a distinct authority:
+A Regime is **not** an independently authored extension pack.
 
-- the **Core** defines stable cross-domain distinctions;
-- a **Domain Pack** specializes or restricts Core meaning within a declared domain;
-- a **Regime Pack** supplies contextual validity, admission, review, and authority conditions;
-- an **Execution Contract** binds a Process to legitimate execution conditions;
-- a **Resolved Semantic Pack** records the exact immutable composition used by a consumer.
+The Core defines:
 
-Extensions may add detail or narrow applicability. They must not silently redefine Core concepts, relations, or boundaries. Conflicting meanings make resolution fail until an explicit compatibility or adoption decision exists.
+- the `Regime` concept;
+- `Open`;
+- `Disciplined`;
+- `Adversarial`;
+- `High-Assurance`;
+- `Locked`;
+- Regime evaluation, switching, and provenance discipline.
+
+A Domain Pack may specialize Core meaning and map domain Evidence classes. It may declare compatibility
+with the Core Regime set, but it may not define or redefine a Regime.
+
+An Execution Contract selects the primary and optional comparative Core Regimes for a concrete Process.
+It may add stricter process constraints without changing Regime meaning.
+
+A Resolved Semantic Pack records:
+
+- the exact Core release;
+- Domain Pack versions;
+- the Execution Contract version;
+- the selected Core Regime IDs and versions;
+- Regime switch history;
+- compatibility and checksum.
+
+Composition is not unrestricted merging. Extensions may add detail or narrow applicability. They must not
+silently redefine Core concepts, relations, boundaries, or Regimes.

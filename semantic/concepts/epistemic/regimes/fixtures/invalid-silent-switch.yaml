@@ -1,0 +1,8 @@
+id: core.regime-fixture.invalid.silent-switch
+expected: invalid
+claim_id: claim:market-risk
+previous_regime: core.regime.disciplined
+current_regime: core.regime.adversarial
+switch_record: null
+expected_failures:
+- silent-regime-switch

@@ -1,7 +1,7 @@
 # Core Semantic Pack v0.1
 
-**Status:** Working reference specification / non-canonical
-**Scope:** Runtime-neutral
+**Status:** Working reference specification / non-canonical  
+**Scope:** Runtime-neutral  
 **Purpose:** Minimal, stable semantic kernel for human-agentic systems
 
 ---
@@ -10,15 +10,17 @@
 
 The **Core Semantic Pack** is the minimal, stable, non-domain-specific and non-runtime-specific semantic kernel from which more concrete semantic environments may be composed.
 
-It provides the concepts, relations, boundaries, questions, obligations, and conformance rules required for a system to:
+It provides the concepts, relations, boundaries, questions, obligations, Regimes, and conformance rules required for a system to:
 
 - distinguish reality from its representations;
-- preserve state and StateChange;
+- preserve State and StateChange;
 - reason without collapsing Claims into truth;
-- maintain provenance across transformations;
-- connect action to Intent, Goal, and DesiredState;
+- maintain Provenance across transformations;
+- connect Action to Intent, Goal, and DesiredState;
 - distinguish Capability from Authority;
-- preserve the difference between validation, admission, review, and binding;
+- preserve the difference between Validation, Admission, Review, and Binding;
+- evaluate Claims under explicit Regimes;
+- preserve Regime-specific Validity across switching and comparison;
 - maintain semantically typed institutional memory;
 - detect drift and semantic status collapse;
 - remain correction-capable as autonomy increases.
@@ -41,7 +43,7 @@ The Core Semantic Pack is **not**:
 
 It means:
 
-> the smallest reusable semantic kernel over which domain meaning, execution constraints, regimes, and runtime mappings may be composed.
+> the smallest reusable semantic and epistemic interoperability kernel over which domain meaning and execution constraints may be composed without semantic drift.
 
 It does **not** claim that the Core is complete, final, or sufficient for every system.
 
@@ -65,6 +67,10 @@ Boundary
 Question
     core.question.explain-action-purpose
     ↔ Why is this being done?
+
+Regime
+    core.regime.disciplined
+    ↔ Disciplined
 ```
 
 There is no separate human-label or question-slug semantic layer in v0.1. Paths and filenames are serialization details. Reference-only categories such as `Truth` and `ExecutionPlan` are explicitly registered without becoming Core primitives; `Any` is reserved wildcard meta-notation.
@@ -73,7 +79,13 @@ There is no separate human-label or question-slug semantic layer in v0.1. Paths 
 
 # 2. Position in the architecture
 
+The Semantic Reference Model and the Core Semantic Pack are not two successive ontology layers.
+
+The Semantic Reference Model is the design and reference surface from which stable consumer semantics are released. The Core Semantic Pack is the versioned distribution artifact of the stable shared kernel.
+
 ```text
+                    SEMANTIC FOUNDATION
+
 System Momentum Canon
         ↓
 structural invariants
@@ -82,22 +94,46 @@ Mindframe
         ↓
 operative semantic distinctions
         ↓
-Universal / Upstream Semantic Model
-        ↓
-Core Semantic Pack
-        ↓
-Domain Packs
-+ Regime Packs
-+ Execution Contracts
-        ↓
-Resolved Semantic Pack
-        ↓
-Runtime Adapters
-        ↓
-Agents / Tools / Models / Memory / APIs
+Semantic Reference Model
+        │
+        │ stable release / packaging
+        ▼
+┌───────────────────────────────┐
+│ Core Semantic Pack            │
+│                               │
+│ Core concepts                 │
+│ Core relations                │
+│ Core boundaries               │
+│ Core questions                │
+│ Core Regimes                  │
+│ Core conformance              │
+│ extension contracts           │
+└───────────────────────────────┘
+        ▲
+        │ Core compatibility
+        │
+┌───────┴──────────┐     ┌────────────────────┐
+│ Domain Pack A    │ ... │ Domain Pack N      │
+│ independently    │     │ independently      │
+│ authored         │     │ authored           │
+└───────┬──────────┘     └──────────┬─────────┘
+        └──────────────┬────────────┘
+                       │
+                Execution Contract
+                       │
+              selects Core Regime(s)
+                       │
+                       ▼
+              Resolved Semantic Pack
+                       │
+                       ▼
+                 Runtime Adapters
+                       │
+                       ▼
+        Agents / Tools / Models / Memory / APIs
 ```
 
-The layers have different responsibilities.
+The layers and dimensions have different responsibilities.
 
 ### Canon
 
@@ -107,25 +143,21 @@ Defines structural invariants.
 
 Makes those invariants operable in contact with perception, reasoning, interpretation, memory, authority, and action.
 
-### Semantic Model
+### Semantic Reference Model
 
-Provides runtime-neutral concepts and boundaries.
+Provides the runtime-neutral design and reference language: concepts, relations, boundaries, derivations, candidate structures, and architectural reasoning.
 
 ### Core Semantic Pack
 
-Packages the minimal stable semantic kernel.
+Packages the stable shared semantic kernel, including the Canon-derived Regime system, as a versioned consumer-facing artifact.
 
 ### Domain Packs
 
-Specialize the Core without redefining it.
-
-### Regime Packs
-
-Define contextual validity, admissibility, and authority conditions.
+Are independently authored Core-compatible extensions of subject-matter meaning. They may specialize and restrict Core meaning within a declared domain, but they do not sit under the authority or release process of the Core Pack.
 
 ### Execution Contracts
 
-Bind a Process to conditions under which its execution is semantically legitimate.
+Bind a Process to conditions under which its execution is semantically legitimate and select the applicable Core Regime or Regimes.
 
 ### Runtime
 
@@ -133,7 +165,7 @@ Realizes the resulting semantics through concrete implementation mechanisms.
 
 The implementation may change.
 
-The semantic distinctions must survive.
+The semantic distinctions and Regime context must survive.
 
 ---
 
@@ -162,6 +194,9 @@ Claim
 
 Evidence
 → What supports or contradicts the Claim?
+
+Regime
+→ Under which epistemic constraints is the Claim being evaluated?
 
 Goal
 → Why is a direction of change being pursued?
@@ -357,7 +392,13 @@ What Finding was derived?
 
 How uncertain is it?
 
-Under which Context is it considered valid?
+Under which Regime is this Claim being evaluated?
+
+Under which Regime and semantic Context is it considered valid?
+
+Has the Regime changed?
+
+Would the Validity outcome differ under another Regime?
 ```
 
 Primary concepts:
@@ -376,12 +417,15 @@ Contradiction
 Uncertainty
 Validity
 Contestation
+Regime
 ```
 
-Critical rule:
+Critical rules:
 
 ```text
 Claim is not truth.
+
+Validity is Regime-scoped.
 ```
 
 ---
@@ -397,7 +441,11 @@ Which Source or State does it derive from?
 
 Which Context shaped the interpretation?
 
+Which Regime governed the evaluated Claim?
+
 Has a Projection silently become accepted as State?
+
+Has a Regime been silently switched to produce a preferred result?
 ```
 
 Primary concepts:
@@ -409,12 +457,15 @@ Source
 Context
 Derivative
 Provenance
+Regime
 ```
 
-Critical invariant:
+Critical invariants:
 
 ```text
 Projection != State
+
+Regime switching must be explicit.
 ```
 
 Interpretation is unavoidable.
@@ -557,6 +608,8 @@ Decision, Goal, or StateChange?
 
 Under which semantic status was it admitted?
 
+Under which Regime was its Validity evaluated?
+
 Which Provenance does it retain?
 
 What later contradicted or superseded it?
@@ -582,6 +635,8 @@ relations
 +
 provenance
 +
+regime context
++
 admission status
 +
 lifecycle
@@ -603,6 +658,10 @@ Is the Goal still authorized?
 Has CurrentState changed materially?
 
 Has our Interpretation changed?
+
+Has the applicable Regime changed?
+
+Would the maintained Claim survive evaluation under a stricter Regime?
 
 Is the system still moving toward DesiredState?
 
@@ -644,7 +703,7 @@ The v0.1 Core can be organized into six major semantic responsibility layers.
 │ process / action / transformation│
 ├──────────────────────────────────┤
 │ 2. Epistemics                    │
-│ observation / claim / evidence   │
+│ claim / evidence / regimes       │
 ├──────────────────────────────────┤
 │ 1. Foundations                   │
 │ identity / context / state       │
@@ -656,6 +715,8 @@ They are not isolated stacks.
 They are responsibility domains within one semantic graph.
 
 Interpretation crosses Foundations and Epistemics.
+
+Regimes constrain epistemic evaluation without redefining semantic meaning.
 
 Memory crosses State, Epistemics, Governance, and Persistence.
 
@@ -709,7 +770,10 @@ Contradiction
 Uncertainty
 Validity
 Contestation
+Regime
 ```
+
+`Regime` is the Core concept under which the five Canon-derived Regime definitions are materialized.
 
 ---
 
@@ -775,8 +839,11 @@ For example:
 Goal + CurrentState + DesiredState
     → trajectory assessment
 
-Claim + Evidence + Contradiction
+Claim + Evidence + Contradiction + Regime
     → epistemic revision
+
+Claim + Regime A + Regime B
+    → comparative validity assessment
 
 MaintainedState + new Evidence
     → StateChange candidate
@@ -806,10 +873,20 @@ Source
 Observation
   ↓ interpretedAs
 Claim
+  ↓ evaluatedUnder
+Regime
+
+Claim
   ↓ supportedBy / contradictedBy
 Evidence
   ↓ contributesTo
 Finding
+
+Finding
+  ↓ hasValidity
+Validity
+  ↓ scopedBy
+Regime
 ```
 
 A minimal teleological path:
@@ -856,6 +933,9 @@ everything material
 
 everything derived
     → retains Provenance
+
+everything epistemically evaluated
+    → retains Regime context
 
 everything authoritative
     → traces to Authority
@@ -1093,6 +1173,7 @@ Execution Contract =
   + ordering constraints where semantically relevant
   + authority conditions
   + validity conditions
+  + Regime selection
   + context binding
   + admissibility
   + gates / checkpoints
@@ -1107,6 +1188,10 @@ but:
 > Under which conditions is this execution semantically allowed?
 
 Execution Contract therefore belongs to the **semantic-governance bridge** between Core Process semantics and runtime realization.
+
+It may select applicable Core Regimes.
+
+It does not define Regime semantics.
 
 ---
 
@@ -1181,6 +1266,8 @@ Where did it come from?
 
 Which Context produced its meaning?
 
+Which Regime governed its Validity?
+
 Was it admitted?
 
 Was it provisional or maintained?
@@ -1217,6 +1304,7 @@ Persistence
 Admission
 Provenance
 Context
+Regime
 SemanticVersion
 Validity
 Contestation
@@ -1248,6 +1336,8 @@ No new Evidence may have appeared.
 
 No Admission may have occurred.
 
+No Regime-governed Validity evaluation may have occurred.
+
 No Authority may have made the object binding.
 
 Yet downstream systems now behave as though the original Inference were established State.
@@ -1273,6 +1363,8 @@ without Admission
 Persistence must never manufacture authority.
 
 Repetition must never manufacture validity.
+
+Regime omission must never manufacture universal validity.
 
 ---
 
@@ -1326,6 +1418,26 @@ ExecutionContract != ExecutionPlan
 ExecutionPlan != Runtime
 
 OperationalSuccess != Progress
+
+Regime != Context
+
+Regime != Validity
+
+Regime != Authority
+
+Regime != ExecutionContract
+```
+
+Additional Regime invariants are not simple type non-equivalences but remain normative Core constraints:
+
+```text
+validUnder(RegimeA) != validUnder(RegimeB)
+
+Domain compatibility != Regime definition
+
+Regime switch != implicit reinterpretation
+
+Regime-specific validity != universal truth
 ```
 
 These boundaries are not documentation trivia.
@@ -1351,15 +1463,24 @@ identity:
 context:
   id: context:customer-retention-2026
 
+regime_context:
+  regime: core.regime.disciplined
+  version: 0.1.0
+
 provenance:
   produced_by: inference:182
   derived_from:
     - evidence:281
     - evidence:292
 
+validity:
+  outcome: maintained
+  evaluated_under: core.regime.disciplined
+  evaluated_at: 2026-08-20T00:00:00Z
+
 status:
-  epistemic: candidate
-  admission: not-admitted
+  epistemic: supported
+  admission: admitted
   authority: non-binding
 
 lifecycle:
@@ -1380,9 +1501,11 @@ is acceptable.
 
 ```text
 Implicit authority
+Implicit Regime
+Regime-less universal validity
 ```
 
-is not.
+are not.
 
 ---
 
@@ -1392,6 +1515,7 @@ is not.
 core-semantic-pack/
 │
 ├── pack.yaml
+├── CORE-SEMANTIC-PACK.md
 │
 ├── semantic/
 │   ├── questions/
@@ -1406,12 +1530,27 @@ core-semantic-pack/
 │   │   ├── governance/
 │   │   ├── memory/
 │   │   └── reflective/
+│   │
 │   ├── concepts/
 │   │   ├── foundations/
 │   │   ├── epistemic/
+│   │   │   ├── regime.yaml
+│   │   │   └── regimes/
+│   │   │       ├── index.yaml
+│   │   │       ├── R1-open.yaml
+│   │   │       ├── R2-disciplined.yaml
+│   │   │       ├── R3-adversarial.yaml
+│   │   │       ├── R4-high-assurance.yaml
+│   │   │       ├── R5-locked.yaml
+│   │   │       ├── contracts/
+│   │   │       │   ├── evaluation-contract.yaml
+│   │   │       │   ├── switching-contract.yaml
+│   │   │       │   └── conformance-contract.yaml
+│   │   │       └── fixtures/
 │   │   ├── teleological/
 │   │   ├── agency/
 │   │   └── governance/
+│   │
 │   ├── relations/
 │   ├── boundaries/
 │   ├── references/
@@ -1429,6 +1568,8 @@ core-semantic-pack/
 ```
 
 Domain concepts, runtime-specific artifacts, and concrete Execution Contracts do not belong inside the Core simply because they consume it.
+
+Core Regime definitions do belong inside the Core because they define the shared epistemic conditions under which arbitrary domain Claims can remain interoperable.
 
 ---
 
@@ -1452,7 +1593,6 @@ scope:
   execution_specific: false
 
 provides:
-
   question_families:
     - ontological
     - state
@@ -1472,6 +1612,13 @@ provides:
     - governance
     - reflection
 
+  regimes:
+    - Open
+    - Disciplined
+    - Adversarial
+    - High-Assurance
+    - Locked
+
 guarantees:
   - provenance_preservation
   - projection_state_separation
@@ -1483,12 +1630,16 @@ guarantees:
   - explicit_goal_relation
   - desired_state_traceability
   - process_execution_separation
+  - explicit_regime_switching
+  - regime_scoped_validity
+  - domain_regime_non_redefinition
   - revocability
   - question_answerability
 
 composition:
   extensible: true
   redefinable: false
+  external_regime_pack: false
 ```
 
 The exact serialization is not authoritative.
@@ -1497,7 +1648,321 @@ The declared semantic responsibility is.
 
 ---
 
-# 19. Composition model
+# 19. Canonical Regimes
+
+Regimes are part of the Core Semantic Pack.
+
+They are not an independently authored extension dimension parallel to Domain Packs.
+
+They exist precisely because Domain Packs are open-ended and unpredictable: the system requires a stable cross-domain epistemic discipline that does not depend on knowing every possible future domain.
+
+---
+
+## 19.1 Canonical basis
+
+The System Momentum Canon defines a **Regime** as a canonical constraint framework that determines how Claims may be accepted, evaluated, contested, and invalidated under different conditions.
+
+The Canon establishes three negative boundaries:
+
+```text
+Regime does not redefine meaning.
+Regime does not execute actions.
+Regime does not prescribe lived practice.
+```
+
+The authority separation is therefore:
+
+```text
+KSA
+  → meaning
+
+Regime
+  → admissibility and validity constraints
+
+Execution Contract
+  → legitimate execution conditions
+
+Runtime
+  → execution
+```
+
+The canonical source set for the v0.1 Regime materialization is:
+
+```text
+system-momentum-canon/core/authority/regimes.md
+system-momentum-canon/core/authority/validity.md
+system-momentum-canon/core/authority/interpretation.md
+system-momentum-canon/core/authority/ksa.md
+system-momentum-canon/core/02-MINDFRAME.md
+```
+
+Actor Regimes such as `Human-final`, `Hybrid`, and `Agent-final`, and descriptive organizational or civilizational epistemic regimes, belong to doctrine-level models. They are not members of this Core validity Regime set.
+
+---
+
+## 19.2 Core Regime set
+
+The Core carries the five Regimes named by the Canon, ordered from lower-constraint to higher-constraint validity handling.
+
+### R1 — Open
+
+Broad Claim types, low inclusion barriers, and high tolerance for uncertainty.
+
+Use when exploration matters more than stability.
+
+### R2 — Disciplined
+
+Explicit Provenance and minimum Evidence requirements.
+
+Default when a system must remain coherent.
+
+### R3 — Adversarial
+
+Active contradiction pressure, dispute handling, and contradiction tracking are first-class.
+
+Use when contested Claims are expected.
+
+### R4 — High-Assurance
+
+Strict admissibility, strong Evidence requirements, and explicit evaluation trails.
+
+Use for high-stakes downstream decisions.
+
+### R5 — Locked
+
+Tightly controlled Admission; semantic and Validity changes require explicit governance.
+
+Use for canonical baselines and long-lived public artifacts.
+
+The Regime set is domain-independent.
+
+A patent, protein, contract, financial record, political Claim, or future domain object may be evaluated under the same Regime contract after its domain semantics are mapped to the Core epistemic model.
+
+---
+
+## 19.3 Regime record contract
+
+The Canon requires every Regime to define:
+
+```text
+Claim classes
+Evidence classes
+Evaluation rules
+Invalidation rules
+Escalation rules
+```
+
+The machine-readable Regime definitions therefore use exactly those five matrix sections.
+
+Every Claim evaluated under a Regime must retain enough context to reconstruct:
+
+```text
+Statement
+Provenance
+Semantic context
+Regime context
+Support set
+Contradiction set
+Validity outcome
+Assertion time
+Evaluation time
+```
+
+Canonical validity outcomes are retained as:
+
+```text
+maintained
+contested
+invalidated
+retired
+```
+
+Invalidation is never deletion.
+
+Historical referability and the invalidation trail remain.
+
+---
+
+## 19.4 Authority of the enumerative matrices
+
+Two authority statuses must remain explicit.
+
+```text
+Regime identity + canonical summary
+  → Canon-derived
+
+Detailed per-Regime matrix
+  → exploratory derivation candidate
+```
+
+The five Regime identities, their canonical summaries, the required matrix components, switching rules, and Validity invariants derive from the current Canon.
+
+The detailed enumerations inside each matrix are reconstructed from the February 2026 Regime exploration.
+
+They are included because an implementable Core Pack needs concrete candidate rules that can be tested, contested, and compared.
+
+Their inclusion does **not** claim that those detailed enumerations already exist in the Canon.
+
+The intended upstream path is:
+
+```text
+February exploration
+  → Core Pack machine-readable candidate
+  → cross-domain and conformance testing
+  → Canon gap review
+  → explicit Canon amendment, revision, or rejection
+```
+
+The gap between the current Canon and the detailed matrices is tracked in `docs/regime-canon-gap-ledger.md`.
+
+---
+
+## 19.5 Domain Pack boundary
+
+A Domain Pack may:
+
+- define domain concepts;
+- specialize `Claim`, `Evidence`, `Observation`, `Finding`, and other Core concepts;
+- map domain Evidence classes to `Evidence`;
+- declare which Core Regimes it supports;
+- impose domain-specific Evidence requirements that are stricter than the selected Regime;
+- provide examples and domain conformance cases.
+
+A Domain Pack must not:
+
+- define a sixth Core Regime;
+- rename a local policy profile as a Core Regime;
+- weaken a Core Regime;
+- make `Inference` become `Evidence`;
+- make `Projection` become `State`;
+- treat domain authority as epistemic Validity;
+- erase Regime identity from persisted objects.
+
+```text
+Domain specialization is open-ended.
+Regime semantics are not.
+```
+
+---
+
+## 19.6 Execution Contract boundary
+
+An Execution Contract may:
+
+- select one primary Core Regime;
+- select additional Regimes for explicit comparative evaluation;
+- declare switching and escalation triggers;
+- bind stricter Process conditions;
+- require human or institutional Review;
+- require Authority before Admission, Binding, or ExternalEffect.
+
+An Execution Contract must not:
+
+- author Regime definitions;
+- reinterpret a selected Regime;
+- treat successful execution as a Validity outcome;
+- silently switch Regime because a preferred conclusion failed;
+- collapse Review into Binding.
+
+The distinction is:
+
+```text
+Regime
+  → How may this Claim be evaluated?
+
+Execution Contract
+  → Under which conditions may this Process execute here?
+```
+
+---
+
+## 19.7 Regime switching and comparative evaluation
+
+Regime switching is always explicit.
+
+A switch retains:
+
+```text
+from Regime
+to Regime
+reason
+affected Claims or Evaluations
+initiating Actor
+Authority reference where required
+SemanticVersion
+time
+prior Validity outcomes
+new evaluation scope
+```
+
+Comparative evaluation is not automatically switching.
+
+A Claim may be evaluated under both `Disciplined` and `Adversarial`, producing different outcomes:
+
+```text
+Disciplined → maintained
+Adversarial → contested
+```
+
+Both outcomes remain referable.
+
+Neither overwrites the other.
+
+A Projection may display both.
+
+It must not average or collapse them into Regime-less truth.
+
+---
+
+## 19.8 Regime conformance invariants
+
+The Regime subsystem requires:
+
+```text
+Regime != Context
+Regime != Validity
+Regime != Authority
+Regime != ExecutionContract
+
+Regime does not redefine meaning.
+Regime switching is explicit.
+Validity is Regime-scoped.
+Domain compatibility is not Regime definition.
+Projection preserves Regime context.
+Cross-Regime outcomes do not overwrite one another.
+```
+
+The machine-readable contracts live under:
+
+```text
+semantic/concepts/epistemic/regimes/contracts/
+```
+
+The dedicated Regime validator is:
+
+```bash
+python scripts/validate_regimes.py
+```
+
+The general pack validator remains:
+
+```bash
+python scripts/validate_pack.py
+```
+
+---
+
+## 19.9 Why Regimes belong in Core
+
+The Core Semantic Pack is not the parent repository of every possible Domain Pack.
+
+It is the common semantic and epistemic interoperability contract those independently authored packs extend.
+
+Regimes are part of that contract because they prevent unlimited domain extension from becoming unlimited epistemological fragmentation.
+
+---
+
+# 20. Composition model
 
 The Core is a kernel.
 
@@ -1506,11 +1971,11 @@ A concrete system should normally operate against a composition.
 ```text
 Core Semantic Pack
         +
-Domain Semantic Pack
-        +
-Regime Pack
+Domain Semantic Pack(s)
         +
 Execution Contract
+        +
+Core Regime selection
         =
 Resolved Semantic Pack
 ```
@@ -1522,28 +1987,30 @@ core@0.1
 +
 intellectual-property@0.4
 +
-expert-review-regime@0.3
-+
 patent-landscape-analysis-contract@1.2
++
+core.regime.disciplined@0.1
 
 →
 
 resolved-pack:8f3d...
 ```
 
-The Resolved Semantic Pack becomes the immutable semantic environment for a particular execution context.
+The Regime is not another independently authored Pack component.
+
+The Resolved Semantic Pack records an exact Regime binding from the Core release.
 
 ---
 
-# 20. Semantic authority of composition layers
+# 21. Semantic authority of composition dimensions
 
-The layers are not merely folders.
+The dimensions are not merely folders.
 
 They carry different kinds of semantic responsibility.
 
 ## Core Semantic Pack
 
-Defines stable cross-domain distinctions.
+Defines stable cross-domain distinctions and the shared Regime system.
 
 Examples:
 
@@ -1551,6 +2018,7 @@ Examples:
 State
 Claim
 Evidence
+Regime
 Goal
 Process
 Authority
@@ -1559,7 +2027,7 @@ Admission
 
 ## Domain Semantic Pack
 
-Specializes Core meaning for a domain.
+Specializes Core meaning for a domain and may be authored independently of the Core repository or release process.
 
 Examples:
 
@@ -1573,40 +2041,30 @@ CustomerAccount
 
 Domain specialization may narrow Core meaning.
 
-It must not silently redefine Core meaning.
-
-## Regime Pack
-
-Defines contextual rules of:
-
-```text
-validity
-admissibility
-authority
-review
-binding
-```
-
-Examples:
-
-```text
-expert-review regime
-legal-decision-support regime
-internal-experiment regime
-customer-facing regime
-```
+It must not silently redefine Core meaning or Regime semantics.
 
 ## Execution Contract
 
-Defines the semantic legitimacy conditions for executing a Process in a concrete context.
+Defines the semantic legitimacy conditions for executing a Process in a concrete Context and selects applicable Core Regimes.
 
 ## Resolved Semantic Pack
 
-The immutable composition actually supplied to a consumer.
+The immutable semantic environment actually supplied to a consumer.
+
+It records:
+
+- exact Core release;
+- exact Domain Pack releases;
+- exact Execution Contract release;
+- primary Core Regime;
+- comparative Core Regimes where applicable;
+- Regime switch history;
+- compatibility result;
+- composition checksum.
 
 ---
 
-# 21. Question-driven semantic resolution
+# 22. Question-driven semantic resolution
 
 A runtime should not have to know which semantic files to load.
 
@@ -1629,6 +2087,11 @@ semantic_request:
     domain: intellectual-property
     process: patent-analysis
 
+  regime_selection:
+    primary: core.regime.disciplined
+    comparative:
+      - core.regime.adversarial
+
   planned_operations:
     - retrieval
     - inference
@@ -1643,15 +2106,15 @@ questions
     ↓
 required semantic distinctions
     ↓
-Core concepts
+Core concepts + Core Regimes
     ↓
 required boundaries
     ↓
 domain specialization
     ↓
-applicable regime
-    ↓
 Execution Contract
+    ↓
+Regime selection
     ↓
 compatible semantic release
 ```
@@ -1670,12 +2133,18 @@ resolved_pack:
     - type: domain-semantic-pack
       id: ip.patent-analysis
       version: 0.1.0
-    - type: regime-pack
-      id: regime.expert-review
-      version: 0.1.0
     - type: execution-contract
       id: contract.patent-analysis
       version: 0.1.0
+
+  regime_binding:
+    primary:
+      id: core.regime.disciplined
+      version: 0.1.0
+    comparative:
+      - id: core.regime.adversarial
+        version: 0.1.0
+    switch_history: []
 
   provides_questions:
     - Why is this being done?
@@ -1684,11 +2153,11 @@ resolved_pack:
 
 ---
 
-# 22. Runtime Adapter Contract
+# 23. Runtime Adapter Contract
 
 The runtime adapter should remain thin.
 
-Its responsibility is not to redefine semantic meaning.
+Its responsibility is not to redefine semantic meaning or Regime semantics.
 
 Conceptually:
 
@@ -1714,17 +2183,18 @@ pack = semantic_provider.resolve(
         "may_this_be_persisted"
     ],
     domain="ip",
-    process="patent-analysis"
+    process="patent-analysis",
+    regime="core.regime.disciplined"
 )
 ```
 
-The provider may return only the material required for the current context.
+The provider may return only the material required for the current Context.
 
 This avoids turning the complete Semantic Core into one enormous prompt or runtime schema.
 
 ---
 
-# 23. Semantic Pack Provider
+# 24. Semantic Pack Provider
 
 A system such as **Hermes** may operate as the pack provider.
 
@@ -1764,6 +2234,10 @@ versioned Semantic Packs
 runtime consumers
 ```
 
+Hermes may distribute Core Regime definitions and resolved Regime bindings.
+
+It may not invent or silently alter Core Regime semantics.
+
 Hermes is:
 
 > compiler, packager, resolver, and distributor of governed semantic meaning.
@@ -1774,7 +2248,7 @@ It is not:
 
 ---
 
-# 24. Semantic versioning and historical reconstructability
+# 25. Semantic versioning and historical reconstructability
 
 A new Core release must not silently redefine an active execution.
 
@@ -1786,14 +2260,17 @@ uses
 resolved-pack@7fa31
 ```
 
-Historical reasoning must remain reconstructable under the semantic version that governed it.
+Historical reasoning must remain reconstructable under both:
+
+- the SemanticVersion that governed meaning;
+- the Regime version that governed Validity.
 
 Upgrade should occur through:
 
 ```text
 current semantic release
         ↓
-semantic diff
+semantic + Regime diff
         ↓
 impact classification
         ↓
@@ -1810,11 +2287,11 @@ not:
 latest → production
 ```
 
-A later meaning must not silently rewrite the semantics of a historical StateChange.
+A later meaning or Regime matrix must not silently rewrite the semantics of a historical Claim, Validity outcome, or StateChange.
 
 ---
 
-# 25. Question answerability as conformance
+# 26. Question answerability as conformance
 
 Traditional runtime conformance may ask:
 
@@ -1836,6 +2313,10 @@ What produced this Finding?
 Which Evidence supported it?
 
 What contradicted it?
+
+Which Regime governed its Validity?
+
+Was the Regime switched?
 
 Which Interpretation was applied?
 
@@ -1864,7 +2345,7 @@ If material questions can no longer be answered, semantic continuity has been lo
 
 ---
 
-# 26. Core conformance principle for material Action
+# 27. Core conformance principle for material Action
 
 For any material Action:
 
@@ -1887,6 +2368,9 @@ Action
 execution
   → must satisfy applicable Execution Contract
 
+material epistemic dependencies
+  → must retain applicable Regime context
+
 Action
   → must have sufficient Authority for its effect
 
@@ -1908,7 +2392,7 @@ agent followed instructions
 
 ---
 
-# 27. Concrete semantic trace
+# 28. Concrete semantic trace
 
 Consider a system analyzing a patent portfolio.
 
@@ -1926,10 +2410,20 @@ Observation
 Claim
   Current portfolio coverage will materially decrease
 
+↓ evaluatedUnder
+
+Regime
+  Disciplined
+
 ↓
 
 Evidence
   Patent status + expiry records
+
+↓
+
+Validity
+  maintained under Disciplined
 
 ↓
 
@@ -1941,6 +2435,18 @@ Inference
 Finding
   Portfolio protection gap emerging
 ```
+
+A comparative Adversarial evaluation may produce:
+
+```text
+same Claim
+  ↓ evaluatedUnder
+Adversarial
+  ↓
+contested
+```
+
+The Disciplined outcome is not overwritten.
 
 Teleological context:
 
@@ -1982,6 +2488,8 @@ Authority
 
 Execution Contract
   May analyze and recommend
+  Uses Disciplined as primary Regime
+  May use Adversarial for comparison
   May not authorize filing
   Provenance required
   Findings must remain contestable
@@ -2017,7 +2525,7 @@ The complete chain remains reconstructable.
 
 ---
 
-# 28. The deeper architecture
+# 29. The deeper architecture
 
 The architecture can now be understood as a graph of questions and semantic responsibilities.
 
@@ -2029,7 +2537,7 @@ for this question to have a truthful answer?
    ↓
 SEMANTIC DISTINCTIONS
    ↓
-Which relations must survive?
+Which relations and Regime context must survive?
    ↓
 SEMANTIC CONTRACT
    ↓
@@ -2051,6 +2559,7 @@ Architectural contracts concerning:
 - permissible transformation;
 - validity;
 - admissibility;
+- Regime selection;
 - authority;
 - responsibility;
 - binding;
@@ -2064,7 +2573,7 @@ At this level:
 
 ---
 
-# 29. Two semantic chains
+# 30. Two semantic chains
 
 The Core exposes two fundamental semantic directions.
 
@@ -2080,8 +2589,12 @@ Observation
 Interpretation
   ↓
 Claim
+  ↓ evaluatedUnder
+Regime
   ↓
 Evidence / Contradiction
+  ↓
+Validity
   ↓
 Inference
   ↓
@@ -2102,6 +2615,8 @@ Intent
 Process
   ↓
 Execution Contract
+  ↓ selects
+Regime context where epistemic evaluation is required
   ↓
 Action
   ↓
@@ -2125,6 +2640,7 @@ Around both chains, the system must preserve:
 ```text
 Context
 Provenance
+Regime
 Authority
 SemanticVersion
 Uncertainty
@@ -2135,11 +2651,11 @@ Revocation
 
 ---
 
-# 30. Core invariant
+# 31. Core invariant
 
 The Core Semantic Pack should ultimately guarantee one structural property:
 
-> **No material consequence should become detached from the semantic path that made it possible.**
+> **No material consequence should become detached from the semantic and epistemic path that made it possible.**
 
 A system must be able to reconstruct backwards from consequence:
 
@@ -2166,9 +2682,11 @@ and from judgment:
 ```text
 Decision / Finding
         ↑
-Inference
+Validity
         ↑
-Claim
+Regime
+        ↑
+Inference / Claim
         ↑
 Evidence
         ↑
@@ -2182,6 +2700,7 @@ while preserving:
 ```text
 Context
 Provenance
+Regime
 Authority
 Version
 Validity
@@ -2192,4 +2711,4 @@ Revision
 Revocation
 ```
 
-This is the minimal semantic skeleton required for a system to increase autonomy without surrendering semantic continuity, accountability, and its capacity to correct itself.
+This is the minimal semantic skeleton required for a system to increase autonomy without surrendering semantic continuity, epistemic discipline, accountability, and its capacity to correct itself.

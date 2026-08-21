@@ -6,7 +6,9 @@ published_at: null
 git_commit: null
 canonical: false
 
-summary: First materialized working release of the runtime-neutral Core Semantic Pack.
+summary: >-
+  Materialized working release of the runtime-neutral Core Semantic Pack,
+  including the Canon-derived Regime system.
 
 includes:
   specification:
@@ -42,8 +44,8 @@ includes:
     - semantic/references/non-core-symbols.yaml
 
 counts:
-  concepts: 51
-  relations: 89
+  concepts: 52
+  relations: 91
   boundaries: 23
   question_families: 9
   question_contracts: 66
@@ -54,23 +56,39 @@ counts:
   invalid_fixtures: 24
   reference_only_symbols: 8
 
+regime_materialization:
+  entrypoint: semantic/concepts/epistemic/regimes/index.yaml
+  definitions:
+    - semantic/concepts/epistemic/regimes/R1-open.yaml
+    - semantic/concepts/epistemic/regimes/R2-disciplined.yaml
+    - semantic/concepts/epistemic/regimes/R3-adversarial.yaml
+    - semantic/concepts/epistemic/regimes/R4-high-assurance.yaml
+    - semantic/concepts/epistemic/regimes/R5-locked.yaml
+  contracts:
+    - semantic/concepts/epistemic/regimes/contracts/evaluation-contract.yaml
+    - semantic/concepts/epistemic/regimes/contracts/switching-contract.yaml
+    - semantic/concepts/epistemic/regimes/contracts/conformance-contract.yaml
+  fixtures: 6
+  validator: scripts/validate_regimes.py
+  identity_status: Canon-derived
+  enumerative_matrix_status: exploratory-derivation-candidate
+
 semantic_status:
   all_records: experimental unless explicitly illustrative
-  candidate_core_primitives: 51
+  candidate_core_primitives: 52
   adopted_core_primitives: 0
 
 known_limitations:
   - Type is required for answerability but is not admitted as a Core primitive.
-  - Regime is represented as a pack/composition responsibility, not a Core primitive.
+  - Detailed per-Regime enumerative matrices are exploratory candidates awaiting explicit Canon review.
   - BindingDecision is represented through Binding plus Commitment.
   - Reflection composes existing primitives rather than defining an independent primitive set.
-  - The current validator checks structural integrity and declared fixture expectations, not semantic
-    truth.
-  - Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime
-    fixtures.
+  - The general validator checks structural integrity and declared fixture expectations, not semantic truth.
+  - The Regime validator checks Regime structure, identity, composition boundaries, and dedicated fixtures; it does not establish Validity of real-world Claims.
+  - Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime fixtures.
   - Release commit and publication time must be assigned after merge or tagging.
 
 compatibility:
   previous_release: null
-  classification: initial-experimental-release
+  classification: initial-experimental-release-completed-before-publication
   breaking_change_policy: See semantic/composition/compatibility-rules.yaml and CONTRIBUTING.md.

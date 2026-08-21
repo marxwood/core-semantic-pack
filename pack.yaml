@@ -23,6 +23,7 @@ entrypoints:
   questions: semantic/questions/index.yaml
   patterns: semantic/patterns/
   lifecycle: semantic/lifecycle/status-families.yaml
+  regimes: semantic/concepts/epistemic/regimes/index.yaml
   composition: semantic/composition/composition-model.yaml
   conformance: semantic/conformance/rules.yaml
   references: semantic/references/non-core-symbols.yaml
@@ -34,6 +35,20 @@ question_model:
   families_taxonomy_only: true
   family_requirements_inherited: false
   canonical_question_resolution: exact
+
+regime_model:
+  definitions_in_core: true
+  externally_extensible: false
+  domain_redefinable: false
+  execution_contract_selects: true
+  canonical_set:
+    - core.regime.open
+    - core.regime.disciplined
+    - core.regime.adversarial
+    - core.regime.high-assurance
+    - core.regime.locked
+  enumerative_matrix_status: exploratory-derivation-candidate
+  canonical_source: system-momentum-canon/core/authority/regimes.md
 
 semantic_layers:
   - foundations
@@ -73,6 +88,11 @@ guarantees:
   - explicit-goal-relation
   - desired-state-traceability
   - process-execution-separation
+  - regime-meaning-separation
+  - explicit-regime-switching
+  - regime-scoped-validity
+  - regime-context-propagation
+  - domain-regime-non-redefinition
   - revocability
   - question-answerability
   - historical-semantic-reconstructability
@@ -83,13 +103,16 @@ composition:
   resolved_pack_immutable: true
   allowed_extensions:
     - domain-semantic-pack
-    - regime-pack
     - execution-contract
     - architecture-mapping
+  regime_binding:
+    source: Core Semantic Pack
+    selected_by: Execution Contract or declared evaluation Context
+    external_regime_pack_allowed: false
 
 counts:
-  concepts: 51
-  relations: 89
+  concepts: 52
+  relations: 91
   boundaries: 23
   question_families: 9
   question_contracts: 66
@@ -100,7 +123,15 @@ counts:
   invalid_fixtures: 24
   reference_only_symbols: 8
 
+regime_counts:
+  definitions: 5
+  contracts: 3
+  regime_specific_fixtures: 6
+  regime_specific_rules: 8
+
 validation:
   command: python scripts/validate_pack.py
+  additional_commands:
+    - python scripts/validate_regimes.py
   structural_only: true
   does_not_determine_truth: true

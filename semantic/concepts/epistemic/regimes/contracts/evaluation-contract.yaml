@@ -1,0 +1,93 @@
+id: core.regime.evaluation-contract
+version: 0.1.0
+status: exploratory
+kind: regime-contract
+
+symbol: RegimeEvaluationContract
+
+canonical_basis:
+  source: system-momentum-canon/core/authority/regimes.md
+  required_components:
+    - claim_classes
+    - evidence_classes
+    - evaluation_rules
+    - invalidation_rules
+    - escalation_rules
+  validity_outcomes:
+    - maintained
+    - contested
+    - invalidated
+    - retired
+
+required_fields:
+  - id
+  - version
+  - status
+  - kind
+  - symbol
+  - canonical_name
+  - canonical_summary
+  - authority
+  - matrix
+  - invariants
+  - derivation
+
+matrix_fields:
+  claim_classes:
+    required:
+      - admissible
+      - restrictions
+    rule: >-
+      All entries resolve to Core epistemic classes or declared domain specializations.
+
+  evidence_classes:
+    required:
+      - core_class
+      - domain_specializations
+      - minimum
+      - provenance
+    rule: >-
+      Domain Evidence classes must map explicitly to Evidence and cannot bypass Admission.
+
+  evaluation_rules:
+    required:
+      - admission
+      - support
+      - contradiction
+      - uncertainty
+      - trace
+
+  invalidation_rules:
+    required:
+      - triggers
+      - preserve_referability
+      - preserve_trace
+
+  escalation_rules:
+    required:
+      - triggers
+      - candidate_targets
+      - explicit_switch_required
+
+claim_envelope_requirements:
+  - Statement or asserted content
+  - Provenance
+  - Semantic context
+  - Regime context
+  - Support set
+  - Contradiction set
+  - Regime-scoped validity outcome
+  - Assertion and evaluation time
+
+forbidden:
+  - regime-less validity
+  - silent Regime switching
+  - domain-local Core Regime definitions
+  - semantic redefinition by Regime
+  - cross-Regime validity overwrite
+  - Projection of Regime-specific validity as universal truth
+
+authority_note: >-
+  This contract operationalizes Canon-specified Regime components. Concrete
+  matrix enumerations remain exploratory candidates, not amendments to the
+  System Momentum Canon.

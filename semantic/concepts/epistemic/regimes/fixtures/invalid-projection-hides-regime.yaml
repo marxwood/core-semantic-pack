@@ -1,0 +1,11 @@
+id: core.regime-fixture.invalid.projection-hides-regime
+expected: invalid
+evaluation:
+  regime: core.regime.high-assurance
+  outcome: maintained
+projection:
+  statement: The Claim is true.
+  regime_context_visible: false
+  universalizes_validity: true
+expected_failures:
+- projection-hides-regime-context
