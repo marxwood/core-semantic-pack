@@ -1,50 +1,33 @@
 # Record format
 
-The repository uses YAML as a working, human-reviewable serialization. YAML is not semantic authority; stable IDs, definitions, boundaries, and obligations are.
+The repository uses YAML as a working, human-reviewable serialization. YAML is not semantic authority; stable IDs, definitions, boundaries, obligations, and versioned decisions are.
 
 ## Concept record
 
-A concept record includes:
-
-- `id`, `name`, `version`, `status`, `layer`, and `kind`;
-- a domain-neutral definition;
-- questions it helps answer;
-- explicit non-equivalences in `what_it_is_not`;
-- required and conditional relation IDs;
-- boundary IDs;
-- derivation source and rationale.
+A concept record includes identity, version, layer, definition, questions it helps answer, explicit non-equivalences, relations, boundaries, and derivation.
 
 ## Relation record
 
-A relation record includes:
-
-- stable ID and name;
-- source and target concept classes;
-- direction and optional inverse;
-- definition;
-- provenance requirement;
-- normative authority effect, if any.
+A relation record includes stable ID, source and target concept classes, direction, definition, provenance requirement, and any normative authority effect.
 
 ## Boundary record
 
-A boundary record includes:
+A boundary record includes left and right semantic categories, a non-equivalence rule, rationale, stable failure code, severity, and areas of application.
 
-- left and right semantic categories;
-- `not-equivalent-to` rule;
-- rationale;
-- stable failure code;
-- declared severity and areas of application.
-
-## Question contract
+## Atomic Semantic Question Contract
 
 A question contract includes:
 
-- canonical questions;
+- exactly one `canonical_question`;
+- primary and additional family classifications;
 - required concepts and relations;
 - boundaries that must remain intact;
-- answer requirements;
-- failure states;
-- permitted consequences when answerability fails.
+- minimum answer requirements;
+- failure states and consequence policy;
+- `independently_resolvable: true`;
+- `requirements_inherited_from_family: false`.
+
+Question families do not carry these requirements. They are taxonomy-only views.
 
 ## Pattern record
 

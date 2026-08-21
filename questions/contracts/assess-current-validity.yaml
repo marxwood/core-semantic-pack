@@ -1,0 +1,42 @@
+id: core.question.assess-current-validity
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Is it still valid?
+classification:
+  primary_family: core.question-family.memory
+  families:
+  - core.question-family.memory
+  - core.question-family.reflective
+  - core.question-family.governance
+requires:
+  concepts:
+  - core.validity
+  - core.context
+  - core.contestation
+  - core.revocation
+  - core.semantic-version
+  relations:
+  - core.rel.has-validity
+  - core.rel.exists-in
+  - core.rel.contested-by
+  - core.rel.revoked-by
+  - core.rel.versioned-by
+must_preserve:
+  boundaries: []
+answer_contract:
+  minimum_requirements:
+  - current_validity_status_identified
+  - applicable_context_explicit
+  - contestation_and_revocation_visible
+  - version_identified
+failure_contract:
+  failure_states:
+  - stale_validity_assumed
+  - context_or_version_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

@@ -1,0 +1,43 @@
+id: core.question.detect-implicit-authority-from-reuse
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Has repeated downstream use created implicit Authority?
+classification:
+  primary_family: core.question-family.reflective
+  families:
+  - core.question-family.reflective
+  - core.question-family.governance
+  - core.question-family.memory
+requires:
+  concepts:
+  - core.authority
+  - core.transfer
+  - core.persistence
+  - core.validation
+  - core.context
+  relations:
+  - core.rel.transfers-object
+  - core.rel.persists-object
+  - core.rel.authorized-by
+  - core.rel.exists-in
+must_preserve:
+  boundaries:
+  - core.boundary.repetition-not-validation
+  - core.boundary.capability-not-authority
+  - core.boundary.persistence-not-admission
+answer_contract:
+  minimum_requirements:
+  - downstream_reuse_traceable
+  - authority_source_explicit
+  - repetition_distinguished_from_validation_and_authority
+failure_contract:
+  failure_states:
+  - reuse_treated_as_authority
+  - repetition_used_as_validation
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

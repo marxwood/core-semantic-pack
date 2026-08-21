@@ -16,11 +16,11 @@ resolved_pack:
   - type: execution-contract
     id: example.patent-analysis
     version: 0.1.0
-  provides_question_families:
-  - core.question-family.epistemic
-  - core.question-family.teleological
-  - core.question-family.governance
-  - core.question-family.memory
+  provides_questions:
+  - core.question.identify-supporting-evidence
+  - core.question.explain-action-purpose
+  - core.question.identify-admission-status
+  - core.question.assess-current-validity
   compatibility:
     status: compatible
     core_boundaries_preserved: true

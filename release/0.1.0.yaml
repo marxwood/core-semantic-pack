@@ -19,16 +19,11 @@ includes:
   - relations/core-relations.yaml
   boundary_catalogs:
   - boundaries/core-boundaries.yaml
-  question_contracts:
-  - questions/ontological.yaml
-  - questions/state.yaml
-  - questions/epistemic.yaml
-  - questions/interpretive.yaml
-  - questions/teleological.yaml
-  - questions/agency.yaml
-  - questions/governance.yaml
-  - questions/memory.yaml
-  - questions/reflective.yaml
+  questions:
+  - questions/index.yaml
+  - questions/families/
+  - questions/contracts/
+  - questions/migration-v0.1.yaml
   patterns:
   - patterns/semantic-trace.yaml
   - patterns/teleological-loop.yaml
@@ -53,6 +48,7 @@ counts:
   relations: 89
   boundaries: 23
   question_families: 9
+  question_contracts: 66
   patterns: 5
   status_families: 5
   conformance_rules: 18
@@ -68,7 +64,7 @@ known_limitations:
 - BindingDecision is represented through Binding plus Commitment.
 - Reflection composes existing primitives rather than defining an independent primitive set.
 - The current validator checks structural integrity and declared fixture expectations, not semantic truth.
-- Question fixtures are representative; not every canonical question wording has an independent fixture.
+- Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime fixtures.
 - Release commit and publication time must be assigned after merge or tagging.
 compatibility:
   previous_release: null

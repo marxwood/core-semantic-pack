@@ -1,0 +1,39 @@
+id: core.question.detect-interpretation-change
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Has our Interpretation changed?
+classification:
+  primary_family: core.question-family.reflective
+  families:
+  - core.question-family.reflective
+  - core.question-family.interpretive
+  - core.question-family.memory
+requires:
+  concepts:
+  - core.interpretation
+  - core.semantic-version
+  - core.context
+  - core.provenance
+  relations:
+  - core.rel.supersedes
+  - core.rel.versioned-by
+  - core.rel.exists-in
+  - core.rel.has-provenance
+must_preserve:
+  boundaries: []
+answer_contract:
+  minimum_requirements:
+  - current_and_prior_interpretation_comparable
+  - version_lineage_traceable
+  - interpretive_context_explicit
+failure_contract:
+  failure_states:
+  - interpretation_drift_untracked
+  - historical_interpretation_erased
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

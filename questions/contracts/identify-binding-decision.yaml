@@ -1,0 +1,39 @@
+id: core.question.identify-binding-decision
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Which decision is Binding?
+classification:
+  primary_family: core.question-family.governance
+  families:
+  - core.question-family.governance
+requires:
+  concepts:
+  - core.binding
+  - core.commitment
+  - core.authority
+  - core.context
+  relations:
+  - core.rel.establishes-commitment
+  - core.rel.authorized-by
+  - core.rel.exists-in
+must_preserve:
+  boundaries:
+  - core.boundary.review-not-binding
+  - core.boundary.finding-not-binding-decision
+answer_contract:
+  minimum_requirements:
+  - binding_act_identified
+  - commitment_identified
+  - binding_authority_traceable
+  - binding_context_explicit
+failure_contract:
+  failure_states:
+  - review_or_finding_used_as_binding
+  - binding_authority_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

@@ -1,0 +1,37 @@
+id: core.question.identify-inference
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What was inferred?
+classification:
+  primary_family: core.question-family.epistemic
+  families:
+  - core.question-family.epistemic
+requires:
+  concepts:
+  - core.inference
+  - core.observation
+  - core.claim
+  - core.evidence
+  - core.provenance
+  relations:
+  - core.rel.inferred-from
+  - core.rel.has-provenance
+must_preserve:
+  boundaries:
+  - core.boundary.inference-not-finding
+answer_contract:
+  minimum_requirements:
+  - inference_identified
+  - premises_traceable
+  - inference_provenance_preserved
+failure_contract:
+  failure_states:
+  - premises_missing
+  - inference_promoted_to_finding
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

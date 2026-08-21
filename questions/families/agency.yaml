@@ -1,0 +1,21 @@
+id: core.question-family.agency
+version: 0.1.0
+status: experimental
+kind: question-family
+family: agency
+purpose: Questions about actors, roles, capabilities, actions, processes, and transformations.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+canonical_members:
+- core.question.identify-acting-actor
+- core.question.identify-occupied-role
+- core.question.identify-actor-capability
+- core.question.identify-attempted-action
+- core.question.identify-action-process
+- core.question.identify-performed-transformation
+related_members:
+- core.question.explain-action-purpose
+- core.question.identify-goal-operationalizing-intent
+member_count: 8

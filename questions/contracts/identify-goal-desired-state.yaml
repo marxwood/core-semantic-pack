@@ -1,0 +1,35 @@
+id: core.question.identify-goal-desired-state
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Which DesiredState does that Goal imply?
+classification:
+  primary_family: core.question-family.teleological
+  families:
+  - core.question-family.teleological
+requires:
+  concepts:
+  - core.goal
+  - core.desired-state
+  relations:
+  - core.rel.specifies
+must_preserve:
+  boundaries:
+  - core.boundary.goal-not-desired-state
+  - core.boundary.desired-state-not-prediction
+  - core.boundary.desired-state-not-plan
+answer_contract:
+  minimum_requirements:
+  - goal_identified
+  - desired_state_identified
+  - goal_to_desired_state_relation_traceable
+failure_contract:
+  failure_states:
+  - missing_desired_state
+  - desired_state_used_as_prediction_or_plan
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

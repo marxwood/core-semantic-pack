@@ -1,20 +1,49 @@
 # Questions
 
-The Core Semantic Pack is organized around questions that must remain answerable, not around nouns alone.
+The Core Semantic Pack treats **answerability** as an architectural property.
 
-Each file defines a question-contract family with:
+The atomic unit is a **Semantic Question Contract**:
 
-- canonical questions;
-- required Core concepts and relations;
-- anti-collapse boundaries that must remain intact;
-- minimum answer requirements;
-- semantic failure states;
-- consequences when answerability cannot be established.
+```text
+one canonical question
+    ↓
+required semantic distinctions
+    ↓
+required concepts + relations + boundaries
+    ↓
+minimum answer requirements
+    ↓
+failure semantics
+```
 
-A runtime may ask only a subset of these questions. A resolved semantic environment should include enough Core, Domain, Regime, and Execution material to answer the questions required by its intended consequences.
+Each file under [`contracts/`](contracts/) defines exactly one canonical question. A contract is independently resolvable and does not inherit semantic requirements from a family.
 
-Question contracts do not require one specific prompt, model, database, or orchestration engine. They define semantic obligations that any realization must preserve.
+## Families are taxonomy, not authority
 
-## Cross-family questions
+Files under [`families/`](families/) are classification and discovery views. They group related questions but do not define requirements.
 
-A canonical question may appear in more than one family when it carries more than one semantic responsibility. For example, `Has the Goal changed?` is both teleological and reflective: one family identifies the active direction, while the other evaluates drift and revision. Resolution must combine the obligations rather than treat the repeated wording as duplicate authority.
+A question may belong to more than one family. For example, `core.question.detect-goal-change` is primarily teleological but is also relevant to reflection, governance, and memory. Its requirements still live in one atomic contract.
+
+Family membership therefore answers:
+
+> Which semantic responsibility domains is this question relevant to?
+
+The atomic contract answers:
+
+> What must remain semantically available for this exact question to be answered?
+
+## Resolution
+
+A consumer should request question IDs, not whole families, when it knows the questions it needs:
+
+```yaml
+questions:
+  - core.question.explain-action-purpose
+  - core.question.identify-supporting-evidence
+```
+
+A resolver computes the union of the explicit requirements of those contracts and then composes the applicable Domain Pack, Regime Pack, and Execution Contract.
+
+Family-level resolution is allowed only as an explicit convenience expansion into member question IDs.
+
+See [`docs/question-contract-model.md`](../docs/question-contract-model.md).

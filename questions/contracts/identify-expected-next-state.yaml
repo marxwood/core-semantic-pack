@@ -1,0 +1,37 @@
+id: core.question.identify-expected-next-state
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What State is expected next?
+classification:
+  primary_family: core.question-family.state
+  families:
+  - core.question-family.state
+requires:
+  concepts:
+  - core.state
+  - core.context
+  - core.uncertainty
+  - core.provenance
+  relations:
+  - core.rel.exists-in
+  - core.rel.has-uncertainty
+  - core.rel.has-provenance
+must_preserve:
+  boundaries: []
+answer_contract:
+  minimum_requirements:
+  - expected_state_identified
+  - expectation_status_explicit
+  - uncertainty_explicit
+  - context_explicit
+failure_contract:
+  failure_states:
+  - expectation_represented_as_maintained_state
+  - uncertainty_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

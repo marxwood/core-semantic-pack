@@ -1,0 +1,39 @@
+id: core.question-family.governance
+version: 0.1.0
+status: experimental
+kind: question-family
+family: governance
+purpose: Questions about authority, constraints, permission, validation, admission, review, binding, and revocation.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+canonical_members:
+- core.question.identify-authority
+- core.question.identify-applicable-constraint
+- core.question.identify-permission
+- core.question.identify-recommendation-only-scope
+- core.question.identify-validation-requirement
+- core.question.identify-admissible-maintained-state
+- core.question.identify-review-required-transition
+- core.question.identify-binding-decision
+- core.question.assess-commitment-revocability
+related_members:
+- core.question.identify-maintained-state
+- core.question.identify-supporting-evidence
+- core.question.identify-validity-context
+- core.question.detect-projection-admitted-as-state
+- core.question.explain-action-purpose
+- core.question.identify-pursued-goal
+- core.question.detect-goal-change
+- core.question.identify-actor-capability
+- core.question.identify-memory-eligibility
+- core.question.identify-admission-status
+- core.question.assess-current-validity
+- core.question.assess-goal-authorization
+- core.question.detect-inference-institutionalization
+- core.question.detect-projection-state-collapse
+- core.question.detect-implicit-authority-from-reuse
+- core.question.assess-maintained-state-revision
+- core.question.assess-binding-revocation
+member_count: 26

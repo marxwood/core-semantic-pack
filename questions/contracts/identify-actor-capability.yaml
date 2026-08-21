@@ -1,0 +1,36 @@
+id: core.question.identify-actor-capability
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What can the Actor do?
+classification:
+  primary_family: core.question-family.agency
+  families:
+  - core.question-family.agency
+  - core.question-family.governance
+requires:
+  concepts:
+  - core.actor
+  - core.capability
+  - core.context
+  relations:
+  - core.rel.has-capability
+  - core.rel.exists-in
+must_preserve:
+  boundaries:
+  - core.boundary.capability-not-authority
+answer_contract:
+  minimum_requirements:
+  - actor_identified
+  - capability_identified
+  - capability_scope_explicit
+failure_contract:
+  failure_states:
+  - capability_scope_missing
+  - capability_treated_as_authority
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

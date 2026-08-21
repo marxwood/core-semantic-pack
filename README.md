@@ -22,15 +22,27 @@ The pack is designed to preserve distinctions such as:
 
 It also treats answerability as a core architectural property: material system behavior should remain traceable enough to answer what is known, why an action is being taken, which goal it advances, what authorized it, what changed, and whether the system is still moving toward the intended state.
 
+## Atomic question contracts
+
+The unit of answerability is one canonical question:
+
+```text
+one question = one independently resolvable Semantic Question Contract
+```
+
+Question families are taxonomy and discovery views only. They do not define or donate semantic requirements to their members. A question may be classified into multiple families without duplicating its contract.
+
+See [`questions/`](questions/) and [`docs/question-contract-model.md`](docs/question-contract-model.md).
+
 ## Repository map
 
 | Area | Responsibility |
 |---|---|
-| [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, and composition rules |
+| [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, question model, and composition rules |
 | [`concepts/`](concepts/) | Candidate Core primitives grouped by semantic layer |
 | [`relations/`](relations/) | Typed relations that form the semantic graph |
 | [`boundaries/`](boundaries/) | Anti-collapse rules and semantic safety properties |
-| [`questions/`](questions/) | Question contracts defining what must remain answerable |
+| [`questions/`](questions/) | Atomic question contracts plus taxonomy-only family views |
 | [`patterns/`](patterns/) | Composite structures built from Core primitives |
 | [`lifecycle/`](lifecycle/) | Separate lifecycle and status families |
 | [`composition/`](composition/) | Rules for Domain, Regime, and Execution composition |
@@ -44,7 +56,7 @@ It also treats answerability as a core architectural property: material system b
 
 See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architectural specification.
 
-The Markdown specification explains the architecture. The repository records materialize that architecture into referencable concepts, relations, boundaries, question contracts, patterns, and conformance evidence.
+The Markdown specification explains the architecture. The repository records materialize that architecture into referencable concepts, relations, boundaries, atomic question contracts, patterns, and conformance evidence.
 
 ## Validate the pack
 
@@ -53,7 +65,7 @@ python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
 ```
 
-The validator checks structural integrity, IDs, references, indexes, and fixture expectations. It does not determine semantic truth and is not the source of semantic authority.
+The validator checks structural integrity, IDs, references, question atomicity, family/contract membership, indexes, and release manifests. It does not determine semantic truth and is not the source of semantic authority.
 
 ## Status
 

@@ -1,0 +1,37 @@
+id: core.question.identify-review-required-transition
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Which transition requires Review?
+classification:
+  primary_family: core.question-family.governance
+  families:
+  - core.question-family.governance
+requires:
+  concepts:
+  - core.review
+  - core.state-change
+  - core.contract
+  - core.constraint
+  relations:
+  - core.rel.reviews-object
+  - core.rel.governed-by
+  - core.rel.constrained-by
+must_preserve:
+  boundaries:
+  - core.boundary.review-not-binding
+answer_contract:
+  minimum_requirements:
+  - transition_identified
+  - review_requirement_traceable
+  - review_outcome_separated_from_binding
+failure_contract:
+  failure_states:
+  - review_requirement_missing
+  - review_used_as_binding
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

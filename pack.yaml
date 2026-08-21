@@ -21,6 +21,12 @@ entrypoints:
   lifecycle: lifecycle/status-families.yaml
   composition: composition/composition-model.yaml
   conformance: conformance/rules.yaml
+question_model:
+  atomic_contracts: true
+  one_canonical_question_per_contract: true
+  families_taxonomy_only: true
+  multi_family_membership: true
+  family_requirements_inherited: false
 semantic_layers:
 - foundations
 - epistemic
@@ -73,6 +79,7 @@ counts:
   relations: 89
   boundaries: 23
   question_families: 9
+  question_contracts: 66
   patterns: 5
   status_families: 5
   conformance_rules: 18

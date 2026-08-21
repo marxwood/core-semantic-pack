@@ -2,10 +2,10 @@ semantic_request:
   id: request:patent-analysis-example
   requested_at: '2026-08-20T00:00:00Z'
   questions:
-  - core.question-family.epistemic
-  - core.question-family.teleological
-  - core.question-family.governance
-  - core.question-family.memory
+  - core.question.identify-supporting-evidence
+  - core.question.explain-action-purpose
+  - core.question.identify-admission-status
+  - core.question.assess-current-validity
   context:
     domain: intellectual-property
     process: patent-portfolio-analysis

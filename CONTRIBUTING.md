@@ -6,28 +6,28 @@ The Core Semantic Pack is a working reference model. Contributions should improv
 
 1. **Preserve layer boundaries.** Core concepts must remain domain-neutral and runtime-neutral.
 2. **Derive before adding.** A new primitive requires an explicit question, stable boundary, cross-domain need, and explanation of why composition is insufficient.
-3. **Do not collapse status families.** Concept authority, epistemic validity, admission, lifecycle, and runtime status are different concerns.
-4. **Do not promote mappings into authority.** Agent, tool, workflow, memory store, prompt, schema, and database terms remain architecture or implementation mappings unless separately admitted into the Core.
-5. **Add conformance evidence.** Material semantic changes should include a valid or invalid fixture demonstrating the distinction.
-6. **Preserve reconstructability.** Breaking semantic changes require compatibility notes and a new release record.
+3. **Keep questions atomic.** One canonical question belongs to one independently resolvable Semantic Question Contract.
+4. **Treat families as taxonomy only.** Family membership must never add hidden requirements to a question.
+5. **Do not collapse status families.** Concept authority, epistemic validity, admission, lifecycle, and binding status are different concerns.
+6. **Do not promote mappings into authority.** Agent, tool, workflow, memory store, prompt, schema, and database terms remain mappings unless separately admitted into the Core.
+7. **Add conformance evidence.** Material semantic changes should include appropriate valid or invalid evidence.
+8. **Preserve reconstructability.** Breaking semantic changes require compatibility notes and a new release record.
 
-## Change classes
+## Question-contract changes
 
-- **Editorial:** wording changes that do not alter meaning or boundaries.
-- **Compatible extension:** adds a concept, relation, question, pattern, or fixture without changing existing meaning.
-- **Boundary clarification:** narrows or makes explicit an existing distinction.
-- **Breaking semantic change:** changes a definition, relation domain/range, boundary, lifecycle rule, or question obligation in a way that can reinterpret existing objects.
+A question change should identify:
+
+- the exact canonical question;
+- whether the change alters requirements or only taxonomy;
+- affected concepts, relations, and boundaries;
+- family classification changes;
+- compatibility consequences for resolved packs.
+
+Moving a question between families is normally taxonomic. Changing its atomic contract is semantic.
 
 ## Pull request expectations
 
-A semantic change should identify:
-
-- the question that requires it;
-- the existing concept or boundary it affects;
-- its derivation and non-equivalences;
-- affected relations, patterns, and fixtures;
-- compatibility and migration consequences;
-- unresolved questions that remain.
+A semantic change should identify the question that requires it, the existing concept or boundary it affects, derivation and non-equivalences, affected relations/patterns/fixtures, compatibility consequences, and unresolved questions.
 
 Run the structural validator before review:
 

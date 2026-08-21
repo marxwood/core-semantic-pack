@@ -1,0 +1,42 @@
+id: core.question.identify-admissible-maintained-state
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What may enter maintained State?
+classification:
+  primary_family: core.question-family.governance
+  families:
+  - core.question-family.governance
+requires:
+  concepts:
+  - core.admission
+  - core.state
+  - core.authority
+  - core.validation
+  - core.persistence
+  relations:
+  - core.rel.admits-object
+  - core.rel.produces-state
+  - core.rel.authorized-by
+must_preserve:
+  boundaries:
+  - core.boundary.validation-not-admission
+  - core.boundary.persistence-not-admission
+  - core.boundary.projection-not-state
+answer_contract:
+  minimum_requirements:
+  - candidate_identified
+  - admission_requirement_explicit
+  - admission_authority_traceable
+  - resulting_state_traceable
+failure_contract:
+  failure_states:
+  - candidate_persisted_without_admission
+  - validation_used_as_admission
+  - projection_promoted_to_state
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

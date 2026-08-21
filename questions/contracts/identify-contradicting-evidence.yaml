@@ -1,0 +1,37 @@
+id: core.question.identify-contradicting-evidence
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: What contradicts the Claim?
+classification:
+  primary_family: core.question-family.epistemic
+  families:
+  - core.question-family.epistemic
+  - core.question-family.reflective
+requires:
+  concepts:
+  - core.claim
+  - core.evidence
+  - core.contradiction
+  - core.provenance
+  relations:
+  - core.rel.contradicts
+  - core.rel.has-provenance
+must_preserve:
+  boundaries:
+  - core.boundary.evidence-not-truth
+answer_contract:
+  minimum_requirements:
+  - claim_identified
+  - contradiction_identified
+  - contradiction_provenance_traceable
+failure_contract:
+  failure_states:
+  - contradiction_suppressed
+  - contradiction_provenance_missing
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

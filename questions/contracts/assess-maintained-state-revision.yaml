@@ -1,0 +1,51 @@
+id: core.question.assess-maintained-state-revision
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Should maintained State be revised?
+classification:
+  primary_family: core.question-family.reflective
+  families:
+  - core.question-family.reflective
+  - core.question-family.state
+  - core.question-family.governance
+  - core.question-family.epistemic
+requires:
+  concepts:
+  - core.state
+  - core.state-change
+  - core.evidence
+  - core.finding
+  - core.admission
+  - core.authority
+  - core.provenance
+  relations:
+  - core.rel.contradicts
+  - core.rel.previous-state
+  - core.rel.resulting-state
+  - core.rel.admits-object
+  - core.rel.produces-state
+  - core.rel.authorized-by
+  - core.rel.has-provenance
+must_preserve:
+  boundaries:
+  - core.boundary.validation-not-admission
+  - core.boundary.projection-not-state
+  - core.boundary.action-not-state-change
+answer_contract:
+  minimum_requirements:
+  - maintained_state_identified
+  - revision_basis_traceable
+  - proposed_state_change_explicit
+  - admission_and_authority_requirements_traceable
+failure_contract:
+  failure_states:
+  - revision_basis_missing
+  - state_revised_without_admission
+  - projection_used_as_revised_state
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

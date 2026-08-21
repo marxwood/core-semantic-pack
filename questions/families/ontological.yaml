@@ -1,0 +1,19 @@
+id: core.question-family.ontological
+version: 0.1.0
+status: experimental
+kind: question-family
+family: ontological
+purpose: Questions about referents, identity, classification, boundaries, relations, and contextual meaning.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+canonical_members:
+- core.question.identify-referent
+- core.question.classify-semantic-kind
+- core.question.identify-identity
+- core.question.identify-boundaries
+- core.question.identify-relations
+- core.question.identify-meaning-context
+related_members: []
+member_count: 6

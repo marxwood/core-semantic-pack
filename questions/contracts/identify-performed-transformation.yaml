@@ -1,0 +1,38 @@
+id: core.question.identify-performed-transformation
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+canonical_question: Which Transformation is being performed?
+classification:
+  primary_family: core.question-family.agency
+  families:
+  - core.question-family.agency
+requires:
+  concepts:
+  - core.process
+  - core.transformation
+  - core.action
+  - core.state
+  relations:
+  - core.rel.comprises-transformation
+  - core.rel.transforms
+  - core.rel.part-of-process
+must_preserve:
+  boundaries:
+  - core.boundary.action-not-state-change
+  - core.boundary.process-not-execution-contract
+answer_contract:
+  minimum_requirements:
+  - transformation_identified
+  - process_membership_traceable
+  - transformed_object_or_state_identified
+failure_contract:
+  failure_states:
+  - transformation_missing
+  - process_execution_collapsed
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer
+composition:
+  independently_resolvable: true
+  requirements_inherited_from_family: false

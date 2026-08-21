@@ -1,0 +1,26 @@
+id: core.question-family.epistemic
+version: 0.1.0
+status: experimental
+kind: question-family
+family: epistemic
+purpose: Questions about observation, assertion, evidence, inference, findings, uncertainty, and validity.
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+canonical_members:
+- core.question.identify-observation
+- core.question.identify-statement
+- core.question.identify-claim
+- core.question.identify-supporting-evidence
+- core.question.identify-contradicting-evidence
+- core.question.identify-inference
+- core.question.identify-derived-finding
+- core.question.identify-uncertainty
+- core.question.identify-validity-context
+related_members:
+- core.question.identify-later-contradiction-or-supersession
+- core.question.detect-evidence-contradicting-maintained-finding
+- core.question.detect-inference-institutionalization
+- core.question.assess-maintained-state-revision
+member_count: 13
