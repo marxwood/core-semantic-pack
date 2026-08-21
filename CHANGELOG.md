@@ -34,3 +34,9 @@ working reference model rather than a production compatibility guarantee.
   cross-Regime non-collapse rules.
 - Adds a dedicated Regime validator and six Regime-specific fixtures.
 - Adds composition, generic agentic mapping, release, and structural validation records.
+- Defines the Semantic Pack Provider as an architectural role and the Semantic Pack Service as its
+  independent API realization.
+- Separates the deterministic Semantic Resolver capability from Hermes compilation and publication.
+- Removes any requirement for an agent or MCP server to mediate runtime Pack consumption.
+- Defines control-plane and runtime-plane boundaries, a versioned API surface, metadata-first request and
+  response examples, explicit unresolved-semantics behavior, and the provider comparison matrix.

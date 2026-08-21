@@ -94,6 +94,26 @@ There is no independently authored `Regime Pack`.
 
 Domain Packs are open-ended, independently authored Core-compatible meaning extensions. Execution Contracts select and apply Core Regimes for concrete Processes. A resolved pack records the exact Regime IDs, versions, comparative evaluations, and switch history.
 
+## Semantic delivery
+
+The preferred delivery boundary is an independent **Semantic Pack Service**:
+
+```text
+Hermes compiler / publisher
+  → versioned Pack Registry
+
+consumer
+  → Semantic Pack API
+  → deterministic Semantic Resolver
+  → immutable Resolved Semantic Pack
+```
+
+`Semantic Pack Provider` names the architectural role. `Semantic Pack Service` names its independent API realization. `Semantic Resolver` names the deterministic resolution capability inside the Service. Hermes is a possible compiler and publisher in the control plane.
+
+Agents are consumers, not required intermediaries. MCP may be provided as an adapter over the same Service contract, but direct API consumption remains valid.
+
+The complete architecture, API surface, unresolved-semantics behavior, and comparison matrix are integrated into [`CORE-SEMANTIC-PACK.md`](CORE-SEMANTIC-PACK.md).
+
 ## Repository map
 
 | Area | Responsibility |

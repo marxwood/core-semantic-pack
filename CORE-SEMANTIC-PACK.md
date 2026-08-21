@@ -124,6 +124,11 @@ Semantic Reference Model
               selects Core Regime(s)
                        │
                        ▼
+             Semantic Pack Service
+                       │
+              deterministic resolution
+                       │
+                       ▼
               Resolved Semantic Pack
                        │
                        ▼
@@ -2155,28 +2160,39 @@ resolved_pack:
 
 # 23. Runtime Adapter Contract
 
-The runtime adapter should remain thin.
+The Runtime Adapter should remain thin.
 
-Its responsibility is not to redefine semantic meaning or Regime semantics.
+Its responsibility is to translate a runtime need into a typed semantic request and to map the returned Resolved Semantic Pack into concrete runtime artifacts or constraints.
+
+It must not:
+
+- redefine Core or Domain meaning;
+- redefine Regime semantics;
+- select Authority that the request does not possess;
+- fabricate missing semantic material;
+- silently replace the pinned semantic environment with a newer release;
+- become a second Semantic Resolver.
 
 Conceptually:
 
 ```text
-runtime need
-    ↓
-semantic question declaration
-    ↓
-Semantic Pack Provider
-    ↓
-resolved semantic environment
-    ↓
+consumer / runtime need
+        ↓
+thin Runtime Adapter
+        ↓
+typed semantic request
+        ↓
+Semantic Pack API
+        ↓
+immutable Resolved Semantic Pack
+        ↓
 runtime artifacts / constraints
 ```
 
-Possible interface:
+Possible client interface:
 
 ```python
-pack = semantic_provider.resolve(
+pack = semantic_pack_service.resolve(
     questions=[
         "what_supports_this_claim",
         "why_is_this_action_being_taken",
@@ -2188,17 +2204,98 @@ pack = semantic_provider.resolve(
 )
 ```
 
-The provider may return only the material required for the current Context.
+The adapter is optional where a consumer can issue and consume the typed API contract directly.
 
-This avoids turning the complete Semantic Core into one enormous prompt or runtime schema.
+An agent is a possible consumer.
+
+It is not a required intermediary.
+
+This avoids turning the complete Semantic Core into one enormous prompt or runtime schema and prevents model behavior from becoming an implicit semantic delivery layer.
 
 ---
 
-# 24. Semantic Pack Provider
+# 24. Semantic Pack Service
 
-A system such as **Hermes** may operate as the pack provider.
+The **Semantic Pack Provider** is an architectural role.
 
-Its responsibility could include:
+The preferred runtime realization of that role is an independent **Semantic Pack Service**.
+
+The Service exposes deterministic semantic resolution and immutable pack delivery through a runtime-neutral API that may be consumed by:
+
+- agents;
+- tools;
+- models;
+- memory systems;
+- APIs;
+- workflow and orchestration systems;
+- conventional software applications.
+
+The Service must remain independently available from any particular agent, model, prompt, or orchestration runtime.
+
+```text
+Semantic Pack Provider
+  → architectural role
+
+Semantic Pack Service
+  → independent API realization of that role
+
+Semantic Resolver
+  → deterministic resolution capability inside the Service
+
+Hermes
+  → possible compiler and publisher in the control plane
+```
+
+These terms must not collapse.
+
+---
+
+## 24.1 Control plane and runtime plane
+
+Semantic compilation and runtime consumption have different responsibilities.
+
+```text
+CONTROL PLANE
+
+governed semantic sources
+        ↓
+change detection
+        ↓
+Hermes compiler / publisher
+        ↓
+validation + compatibility analysis
+        ↓
+versioned Semantic Pack Registry
+
+
+RUNTIME PLANE
+
+consumer
+        ↓
+typed semantic request
+        ↓
+Semantic Pack API
+        ↓
+Semantic Resolver
+        ↓
+immutable Resolved Semantic Pack
+        ↓
+consumer runtime
+```
+
+The runtime request path does not require an agent to mediate access to semantic material.
+
+Hermes may use agentic capabilities during governed derivation or compilation.
+
+Runtime availability and resolution must not depend on an agent interpreting every request.
+
+---
+
+## 24.2 Hermes boundary
+
+A system such as **Hermes** may compile and publish the material served by the Semantic Pack Service.
+
+Its responsibility may include:
 
 ```text
 governed semantic source
@@ -2213,38 +2310,269 @@ compatibility analysis
         ↓
 version publication
         ↓
-resolution
+registry publication
         ↓
-consumer distribution
-```
-
-Hermes must not become the semantic source of truth merely because it compiles and serves packages.
-
-Conceptually:
-
-```text
-Semantic authority source
-        ↓
-      Hermes
-        ↓
-versioned Semantic Packs
-        ↓
-       MCP
-        ↓
-runtime consumers
+consumer notification
 ```
 
 Hermes may distribute Core Regime definitions and resolved Regime bindings.
 
-It may not invent or silently alter Core Regime semantics.
+It may not invent or silently alter Core meaning, Domain meaning, Regime semantics, Execution Contracts, or environment-local Authority.
 
 Hermes is:
 
-> compiler, packager, resolver, and distributor of governed semantic meaning.
+> compiler, packager, compatibility evaluator, and publisher of governed semantic material.
 
 It is not:
 
 > the authority that invents that meaning through implementation.
+
+Resolution may be implemented by the Service independently of the Hermes build process.
+
+---
+
+## 24.3 Deterministic resolution boundary
+
+The Semantic Resolver evaluates a typed request against already published, versioned semantic material.
+
+Its runtime responsibility is:
+
+```text
+typed semantic request
+        ↓
+question and operation requirements
+        ↓
+required Core distinctions
+        ↓
+compatible Domain specialization
+        ↓
+Execution Contract
+        ↓
+Core Regime selection
+        ↓
+version and compatibility constraints
+        ↓
+immutable Resolved Semantic Pack
+```
+
+The Resolver must not use open-ended model inference as an unrecorded substitute for missing semantic definitions.
+
+For the same:
+
+- request;
+- available Pack Registry state;
+- resolver contract version;
+- compatibility policy;
+
+the resolution result must be reproducible.
+
+Where a consumer intentionally requests a floating range, the exact selected versions and registry state must still be recorded in the result.
+
+---
+
+## 24.4 API surface
+
+A possible versioned HTTP surface is:
+
+```http
+POST /v1/resolve
+GET  /v1/packs/{pack-id}
+GET  /v1/packs/{pack-id}/versions/{version}
+POST /v1/compatibility/check
+GET  /v1/manifest
+GET  /v1/updates
+```
+
+Equivalent transports may be provided.
+
+MCP may be exposed as an adapter over the same Service contract.
+
+MCP is not required for consumers that can use the API directly.
+
+A semantic request should remain metadata-first and explicit:
+
+```yaml
+semantic_request:
+  id: request:patent-analysis:001
+  resolver_contract: semantic-resolution@0.1
+  requested_semantic_release: 0.1.x
+
+  questions:
+    - What supports this Claim?
+    - Why is this being done?
+    - May this object become maintained State?
+
+  context:
+    domain: intellectual-property
+    process: patent-analysis
+
+  regime_selection:
+    primary: core.regime.disciplined
+    comparative:
+      - core.regime.adversarial
+
+  planned_operations:
+    - retrieval
+    - inference
+    - persistence
+    - recommendation
+
+  consumer:
+    id: runtime:patent-analysis
+    type: agent
+    adapter_version: 0.3.0
+```
+
+A successful response should bind exact identity, versions, compatibility, and Provenance:
+
+```yaml
+resolved_pack:
+  id: resolved:7fa31
+  version: 1
+  immutable: true
+  content_hash: sha256:7fa31
+  resolver_contract: semantic-resolution@0.1
+  registry_state: registry:2026-08-21:001
+
+  components:
+    - type: core-semantic-pack
+      id: semantic-pack.core
+      version: 0.1.0
+    - type: domain-semantic-pack
+      id: ip.patent-analysis
+      version: 0.4.0
+    - type: execution-contract
+      id: contract.patent-analysis
+      version: 1.2.0
+
+  regime_binding:
+    primary:
+      id: core.regime.disciplined
+      version: 0.1.0
+    comparative:
+      - id: core.regime.adversarial
+        version: 0.1.0
+
+  compatibility:
+    status: compatible
+    policy: compatibility-policy@0.1
+
+  provides_questions:
+    - What supports this Claim?
+    - Why is this being done?
+    - May this object become maintained State?
+
+  provenance:
+    resolved_at: 2026-08-21T00:00:00Z
+    resolved_by: semantic-pack-service@0.1.0
+```
+
+The exact serialization and transport are not authoritative.
+
+The identity, version, Authority, compatibility, immutability, and Provenance obligations are.
+
+---
+
+## 24.5 Unresolved semantics
+
+Failure to resolve is a valid and required outcome.
+
+```yaml
+semantic_resolution:
+  id: resolution:patent-analysis:001
+  status: unresolved
+  request_id: request:patent-analysis:001
+  resolver_contract: semantic-resolution@0.1
+  registry_state: registry:2026-08-21:001
+
+  missing_semantics:
+    - required_question_contract: May this action create an ExternalEffect?
+    - required_domain_mapping: ip.filing-authorization
+
+  required_action: semantic-compilation
+
+  prohibited_fallbacks:
+    - silent_fabrication
+    - latest-version-substitution
+    - model-inferred-authority
+    - implicit-regime-switch
+```
+
+The Service must return an explicit unresolved result when required semantics are unavailable, incompatible, unauthorized, or ambiguous.
+
+It must not improvise a contract and present that contract as part of the Core, a Domain Pack, an Execution Contract, or an active semantic environment.
+
+A governed build or review process may later produce a new candidate release.
+
+That candidate remains unavailable to the runtime until it is validated, versioned, published, and admitted through the applicable Authority path.
+
+---
+
+## 24.6 Comparison matrix
+
+| Dimension | Agent-mediated Provider | Independent API Service | Hermes control plane + API Service |
+|---|---|---|---|
+| Runtime path | Consumer → agent → Pack | Consumer → API → Pack | Consumer → API → Pack |
+| Agent dependency | Required | None | None in runtime |
+| Resolution behavior | Model-dependent | Deterministic | Deterministic |
+| Reproducibility | Limited by model and prompt | Bound to request, registry state, and resolver version | Bound to published build and resolver version |
+| Latency | Model inference latency | Standard service latency | Standard service latency |
+| Per-request cost | Model inference | API operation | API operation |
+| Auditability | Requires reasoning and prompt capture | Request, response, version, hash, and Provenance | Full source-to-build-to-resolution Provenance |
+| Silent invention risk | Higher | Explicitly prohibited | Explicitly prohibited |
+| New semantic needs | Agent may interpret immediately | Returns unresolved | Hermes prepares a governed candidate release |
+| Compatibility evaluation | Interpreted per request | Formal policy | Calculated before publication and checked at resolution |
+| Caching | Model-sensitive | Stable by request and registry state | Stable by release and request |
+| Consumer coupling | Agent or model coupling | Runtime-neutral | Runtime-neutral |
+| Production suitability | Limited | Strong | Preferred |
+
+The preferred architecture is:
+
+```text
+Hermes
+  → governed compilation and publication
+
+Semantic Pack Service
+  → independent deterministic resolution and delivery
+
+Runtime Adapter
+  → thin consumer-side mapping
+
+Agent
+  → one possible consumer
+```
+
+---
+
+## 24.7 Authority and repository boundary
+
+The Semantic Pack Service is infrastructure.
+
+Operational control of the Service does not grant semantic Authority.
+
+```text
+service ownership != semantic Authority
+
+deployment access != admission Authority
+
+resolution capability != authority to invent meaning
+
+successful delivery != semantic conformance
+```
+
+This repository defines the Pack semantics and the architectural contract that a conforming Service must preserve.
+
+It does not contain the production implementation of the Service or Hermes.
+
+A production implementation may live in a dedicated repository such as:
+
+```text
+semantic-pack-service
+```
+
+Hermes compilation and publication may live in a separate Hermes implementation repository.
+
+Neither implementation repository becomes the source of semantic truth merely because it builds, resolves, or serves Pack artifacts.
 
 ---
 
