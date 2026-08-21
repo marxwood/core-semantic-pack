@@ -4,15 +4,17 @@ on:
   push:
     branches:
       - feat/materialize-core-semantic-pack-v0.1
-    paths:
-      - '.github/workflows/apply-question-refactor.yml'
-      - '.bootstrap/question-refactor.part-00'
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: github.head_ref == 'feat/materialize-core-semantic-pack-v0.1' || github.ref == 'refs/heads/feat/materialize-core-semantic-pack-v0.1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +34,6 @@ jobs:
           data = gzip.decompress(raw)
 
           applied = False
-
-          # Preferred payload shape: tar archive.
           try:
               bio = io.BytesIO(data)
               with tarfile.open(fileobj=bio, mode='r:*') as tf:
@@ -48,7 +48,6 @@ jobs:
           except tarfile.ReadError:
               pass
 
-          # Alternate payload shape: JSON mapping/path records.
           if not applied:
               try:
                   obj = json.loads(data.decode('utf-8'))
@@ -78,9 +77,8 @@ jobs:
                   target.write_text(rec['content'], encoding='utf-8')
               print(f'Applied JSON payload with {len(records)} records')
 
-          # Bootstrap and one-shot workflow must never remain in the PR.
+          import shutil
           if (root / '.bootstrap').exists():
-              import shutil
               shutil.rmtree(root / '.bootstrap')
           workflow = root / '.github/workflows/apply-question-refactor.yml'
           if workflow.exists():
