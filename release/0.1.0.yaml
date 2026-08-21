@@ -8,7 +8,7 @@ canonical: false
 
 summary: >-
   Materialized working release of the runtime-neutral Core Semantic Pack,
-  including the Canon-derived Regime system.
+  including the Canon-derived Regime system and Semantic OS adoption handshake.
 
 includes:
   specification:
@@ -21,6 +21,8 @@ includes:
     - semantic/boundaries/
   questions:
     - semantic/questions/
+  handshakes:
+    - semantic-contracts/handshakes/
   patterns:
     - semantic/patterns/semantic-trace.yaml
     - semantic/patterns/teleological-loop.yaml
@@ -49,6 +51,7 @@ counts:
   boundaries: 23
   question_families: 9
   question_contracts: 66
+  handshake_contracts: 1
   patterns: 5
   status_families: 5
   conformance_rules: 18

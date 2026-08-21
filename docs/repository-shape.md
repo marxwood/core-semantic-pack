@@ -4,10 +4,11 @@
 
 ## Governed semantic source
 
-Everything that defines or governs Core semantic meaning lives under `semantic/`:
+Core semantic definitions and governance rules live under `semantic/`. Portable contracts that determine whether a consumer may claim governance by those definitions live under `semantic-contracts/`:
 
 ```text
-semantic/   governed semantic definitions and semantic governance rules
+semantic/             governed semantic definitions and semantic governance rules
+semantic-contracts/   portable semantic adoption and interaction contracts
 mappings/   non-authoritative external and runtime mappings
 examples/   illustrative uses
 docs/       explanatory documentation
@@ -24,6 +25,7 @@ This boundary does not make every file under `semantic/` a Core primitive. Patte
 - each typed Relation is stored in one flat Relation file;
 - each anti-collapse Boundary is stored in one flat Boundary file;
 - each canonical semantic Question is stored as one atomic contract;
+- each Semantic Handshake is stored as one ordered, runtime-neutral contract;
 - each question is stored beneath its one primary taxonomy-only family;
 - reusable composites are stored as patterns;
 - concrete Domain Packs, Regime Packs, and Execution Contracts are not included.
@@ -38,6 +40,8 @@ File path                    = serialization location
 
 Physical paths never become semantic identity. A later release may reorganize files without changing meaning if IDs, definitions, boundaries, obligations, and compatibility declarations remain intact.
 
+`semantic-contracts/` does not contain vendor prompts, runtime code, or concrete environment policy. It contains portable contracts. Model- or vendor-specific invocation surfaces remain non-authoritative mappings or examples.
+
 ## Atomic object structure
 
 ```text
@@ -45,6 +49,7 @@ semantic/concepts/<layer>/<concept>.yaml
 semantic/relations/<relation>.yaml
 semantic/boundaries/<boundary>.yaml
 semantic/questions/<family>/<question>.yaml
+semantic-contracts/handshakes/H<number>-<handshake>-contract.yaml
 ```
 
 `semantic/concepts/index.yaml`, `semantic/relations/index.yaml`, `semantic/boundaries/index.yaml`, and `semantic/questions/index.yaml` are lookup bridges. They contain registry/navigation metadata rather than complete semantic definitions. Question `family.yaml` files are the explicit taxonomy-view exception.

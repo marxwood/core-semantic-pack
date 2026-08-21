@@ -33,4 +33,6 @@ working reference model rather than a production compatibility guarantee.
 - Adds explicit Regime switching, comparative evaluation, provenance, validity-scoping, and
   cross-Regime non-collapse rules.
 - Adds a dedicated Regime validator and six Regime-specific fixtures.
+- Introduces the H1 Semantic OS Adoption Handshake, a non-authoritative Handshake Prompt example, a
+  reconstructable Handshake Record example, and dedicated structural validation.
 - Adds composition, generic agentic mapping, release, and structural validation records.

@@ -21,6 +21,7 @@ entrypoints:
   relations: semantic/relations/index.yaml
   boundaries: semantic/boundaries/index.yaml
   questions: semantic/questions/index.yaml
+  handshakes: semantic-contracts/handshakes/index.yaml
   patterns: semantic/patterns/
   lifecycle: semantic/lifecycle/status-families.yaml
   regimes: semantic/concepts/epistemic/regimes/index.yaml
@@ -95,6 +96,9 @@ guarantees:
   - domain-regime-non-redefinition
   - revocability
   - question-answerability
+  - explicit-semantic-adoption
+  - local-semantic-sovereignty
+  - governed-semantic-update
   - historical-semantic-reconstructability
 
 composition:
@@ -116,6 +120,7 @@ counts:
   boundaries: 23
   question_families: 9
   question_contracts: 66
+  handshake_contracts: 1
   patterns: 5
   status_families: 5
   conformance_rules: 18
@@ -133,5 +138,6 @@ validation:
   command: python scripts/validate_pack.py
   additional_commands:
     - python scripts/validate_regimes.py
+    - python scripts/validate_handshakes.py
   structural_only: true
   does_not_determine_truth: true

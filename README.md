@@ -94,17 +94,35 @@ There is no independently authored `Regime Pack`.
 
 Domain Packs are open-ended, independently authored Core-compatible meaning extensions. Execution Contracts select and apply Core Regimes for concrete Processes. A resolved pack records the exact Regime IDs, versions, comparative evaluations, and switch history.
 
+## Semantic Handshakes
+
+A runtime is not governed by the Semantic OS merely because it can retrieve or read a Semantic Pack. Governance begins through an explicit, evidence-bearing, version-bound Semantic Handshake.
+
+The first contract, `SemanticOSAdoptionHandshake`, establishes:
+
+- exact Pack, runtime, provider, adapter, environment, and authority identities;
+- the difference between context consumption and behavioral enforcement;
+- the boundary between upstream semantic authority and environment-local semantic authority;
+- version pinning, semantic diff, compatibility validation, explicit update acceptance, and rollback;
+- an `accepted`, `conditional`, or `rejected` adoption decision;
+- a reconstructable Handshake Record.
+
+Handshake Prompts are portable invocation surfaces. They may vary by runtime or model, but they are non-authoritative and cannot weaken the underlying Contract.
+
+See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [illustrative adoption prompt](examples/handshake-prompts/semantic-os-adoption.md).
+
 ## Repository map
 
 | Area | Responsibility |
 |---|---|
-| [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, question model, Regime model, and composition rules |
+| [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, question model, Regime model, Handshake discovery, and composition rules |
 | [`semantic/`](semantic/) | Governed semantic source and semantic governance rules |
 | [`semantic/concepts/`](semantic/concepts/) | Atomic candidate Core primitives organized by semantic layer |
 | [`semantic/concepts/epistemic/regimes/`](semantic/concepts/epistemic/regimes/) | Ordered Core Regime definitions, contracts, matrices, and fixtures |
 | [`semantic/relations/`](semantic/relations/) | Typed relations that form the semantic graph |
 | [`semantic/boundaries/`](semantic/boundaries/) | Anti-collapse rules and semantic safety properties |
 | [`semantic/questions/`](semantic/questions/) | Atomic questions organized under taxonomy-only primary families |
+| [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) | Runtime-neutral pre-adoption contracts and their registry |
 | [`semantic/references/`](semantic/references/) | Explicit non-Core comparison categories used by structured notation |
 | [`semantic/patterns/`](semantic/patterns/) | Composite structures built from Core primitives |
 | [`semantic/lifecycle/`](semantic/lifecycle/) | Separate lifecycle and status families |
@@ -117,7 +135,7 @@ Domain Packs are open-ended, independently authored Core-compatible meaning exte
 
 ## Specification
 
-See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architectural specification, including the complete Regime architecture.
+See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architectural specification, including the complete Regime and Semantic Handshake architectures.
 
 ## Validate the pack
 
@@ -125,13 +143,16 @@ See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architec
 python -m pip install -r requirements-dev.txt
 python scripts/validate_pack.py
 python scripts/validate_regimes.py
+python scripts/validate_handshakes.py
 ```
 
 The general validator checks registry identity, canonical-symbol uniqueness and resolution, boundary expressions, question atomicity and family topology, authoring surfaces, indexes, fixtures, and release manifests.
 
 The Regime validator checks the ordered five-Regime set, required matrices, contract placement and naming, composition boundaries, switching discipline, and dedicated Regime fixtures.
 
-Neither validator determines semantic truth or acts as semantic authority.
+The Handshake validator checks ordered contract identity and naming, adoption phases and outcomes, authority boundaries, non-authoritative prompt status, registry consistency, and Handshake Record structure.
+
+None of the validators determines semantic truth or acts as semantic authority.
 
 ## Status
 

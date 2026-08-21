@@ -2712,3 +2712,153 @@ Revocation
 ```
 
 This is the minimal semantic skeleton required for a system to increase autonomy without surrendering semantic continuity, epistemic discipline, accountability, and its capacity to correct itself.
+
+---
+
+# 32. Semantic Handshake
+
+A runtime does not become governed by the Semantic OS merely because it can read, retrieve, or place a Semantic Pack in model context.
+
+```text
+Semantic Pack consumption != semantic governance
+```
+
+Governance begins only after an explicit **Semantic Handshake** establishes that the runtime can preserve and, where claimed, enforce the Pack's semantic obligations for an identified environment.
+
+The handshake is a pre-adoption protocol among four distinct responsibilities:
+
+```text
+Semantic authority source
+        +
+Semantic Pack Provider
+        +
+runtime consumer
+        +
+environment authority
+        ↓
+Semantic Handshake
+```
+
+The authority source governs Core meaning.
+
+The provider compiles, resolves, versions, and distributes governed meaning without becoming its authority.
+
+The runtime declares and demonstrates how the Pack affects interpretation, state, and Action.
+
+The environment authority governs environment-local Goals, Constraints, information boundaries, and update decisions.
+
+Capability does not collapse these responsibilities:
+
+```text
+provider capability != semantic Authority
+
+runtime capability != semantic Authority
+
+update availability != update Admission
+```
+
+## Adoption sequence
+
+A Semantic Handshake establishes, in order:
+
+```text
+identity binding
+      ↓
+capability proof
+      ↓
+authority boundary
+      ↓
+conformance evaluation
+      ↓
+synchronization commitment
+      ↓
+adoption decision
+```
+
+Capability proof must distinguish:
+
+```text
+Pack available as context
+
+Pack mapped into runtime structures
+
+Pack obligations behaviorally enforced
+```
+
+These are different claims and require different Evidence.
+
+A model assertion that it can follow the Pack is not implementation Evidence.
+
+## Local semantic sovereignty
+
+Synchronization may detect and prepare upstream change.
+
+It must not silently activate that change.
+
+```text
+upstream release
+      ↓
+semantic diff
+      ↓
+impact classification
+      ↓
+compatibility validation
+      ↓
+explicit environment decision
+      ↓
+new version-pinned binding
+```
+
+No upstream update may silently alter environment-local Goals, Constraints, ontology, information boundaries, or the meaning of existing State.
+
+Local sovereignty does not permit silent redefinition of Core meaning either. A conflict must remain explicit and may require rejection, adaptation, or a newly authorized composition.
+
+Historical objects and StateChange remain interpretable under the exact semantic environment that governed them.
+
+## Handshake outcome
+
+The result is exactly one of:
+
+```text
+accepted
+conditional
+rejected
+```
+
+`accepted` authorizes a version-pinned governed runtime binding for the identified participants and environment.
+
+`conditional` permits only the explicitly stated, normally non-material or review-gated scope while named evidence or capabilities remain unresolved.
+
+`rejected` forbids the runtime from claiming governance by the Semantic OS.
+
+A material change to the Pack, provider, adapter, runtime, environment, or authority boundary requires revalidation.
+
+## Handshake Prompt and Handshake Record
+
+A **Handshake Prompt** is a runtime-facing invocation surface for a Semantic Handshake Contract.
+
+Its wording may vary across Hermes, Claude Code, Codex, another model, a programming interface, or a non-prompt adapter. It is not semantic authority and cannot weaken the Contract.
+
+Every handshake produces a versioned **Handshake Record** containing:
+
+```text
+contract identity
+participant identities
+Pack identities and checksums
+environment and authority boundary
+capability claims and Evidence
+precedence and conflict policy
+synchronization and rollback policy
+outcome and unresolved conditions
+deciding Authority
+```
+
+Therefore:
+
+> **A runtime becomes governed only after completing a valid Semantic Handshake for the identified Pack, runtime, environment, and authority boundary.**
+
+The first portable contract is materialized as:
+
+```text
+semantic-contracts/handshakes/H1-semantic-os-adoption-contract.yaml
+```
