@@ -2,6 +2,21 @@
 
 `CORE-SEMANTIC-PACK.md` presents the architectural specification. The repository materializes that specification into stable, referencable records.
 
+## Governed semantic source
+
+Everything that defines or governs Core semantic meaning lives under `semantic/`:
+
+```text
+semantic/   governed semantic definitions and semantic governance rules
+mappings/   non-authoritative external and runtime mappings
+examples/   illustrative uses
+docs/       explanatory documentation
+scripts/    validation and tooling
+release/    packaging and version metadata
+```
+
+This boundary does not make every file under `semantic/` a Core primitive. Patterns, lifecycle rules, reference-only terms, Question families, composition rules, conformance rules, and fixtures retain their distinct roles.
+
 ## v0.1 serialization choices
 
 - **one referencable semantic object is stored in one file**;
@@ -26,20 +41,20 @@ Physical paths never become semantic identity. A later release may reorganize fi
 ## Atomic object structure
 
 ```text
-concepts/<layer>/<concept>.yaml
-relations/<relation>.yaml
-boundaries/<boundary>.yaml
-questions/<family>/<question>.yaml
+semantic/concepts/<layer>/<concept>.yaml
+semantic/relations/<relation>.yaml
+semantic/boundaries/<boundary>.yaml
+semantic/questions/<family>/<question>.yaml
 ```
 
-`concepts/index.yaml`, `relations/index.yaml`, `boundaries/index.yaml`, and `questions/index.yaml` are lookup bridges. They contain registry/navigation metadata rather than complete semantic definitions. Question `family.yaml` files are the explicit taxonomy-view exception.
+`semantic/concepts/index.yaml`, `semantic/relations/index.yaml`, `semantic/boundaries/index.yaml`, and `semantic/questions/index.yaml` are lookup bridges. They contain registry/navigation metadata rather than complete semantic definitions. Question `family.yaml` files are the explicit taxonomy-view exception.
 
-Question family directories live directly under `questions/`. The former `questions/families/` wrapper carried no semantic information and must not be reintroduced.
+Question family directories live directly under `semantic/questions/`. The former `semantic/questions/families/` wrapper carried no semantic information and must not be reintroduced.
 
 ## Question structure
 
 ```text
-questions/
+semantic/questions/
 ├── index.yaml
 ├── migration-v0.1.yaml
 └── <family>/

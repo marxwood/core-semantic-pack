@@ -12,34 +12,34 @@ includes:
   specification:
     - CORE-SEMANTIC-PACK.md
   concepts:
-    - concepts/
+    - semantic/concepts/
   relations:
-    - relations/
+    - semantic/relations/
   boundaries:
-    - boundaries/
+    - semantic/boundaries/
   questions:
-    - questions/
+    - semantic/questions/
   patterns:
-    - patterns/semantic-trace.yaml
-    - patterns/teleological-loop.yaml
-    - patterns/institutional-memory.yaml
-    - patterns/execution-contract.yaml
-    - patterns/semantic-status-collapse.yaml
+    - semantic/patterns/semantic-trace.yaml
+    - semantic/patterns/teleological-loop.yaml
+    - semantic/patterns/institutional-memory.yaml
+    - semantic/patterns/execution-contract.yaml
+    - semantic/patterns/semantic-status-collapse.yaml
   lifecycle:
-    - lifecycle/status-families.yaml
-    - lifecycle/transition-rules.yaml
+    - semantic/lifecycle/status-families.yaml
+    - semantic/lifecycle/transition-rules.yaml
   composition:
-    - composition/composition-model.yaml
-    - composition/compatibility-rules.yaml
+    - semantic/composition/composition-model.yaml
+    - semantic/composition/compatibility-rules.yaml
   mappings:
     - mappings/generic-agentic/mapping.yaml
   conformance:
-    - conformance/rules.yaml
-    - conformance/coverage.yaml
-    - conformance/fixtures/valid/
-    - conformance/fixtures/invalid/
+    - semantic/conformance/rules.yaml
+    - semantic/conformance/coverage.yaml
+    - semantic/conformance/fixtures/valid/
+    - semantic/conformance/fixtures/invalid/
   references:
-    - references/non-core-symbols.yaml
+    - semantic/references/non-core-symbols.yaml
 
 counts:
   concepts: 51
@@ -73,4 +73,4 @@ known_limitations:
 compatibility:
   previous_release: null
   classification: initial-experimental-release
-  breaking_change_policy: See composition/compatibility-rules.yaml and CONTRIBUTING.md.
+  breaking_change_policy: See semantic/composition/compatibility-rules.yaml and CONTRIBUTING.md.

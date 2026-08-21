@@ -1,0 +1,22 @@
+id: core.boundary.capability-not-authority
+version: 0.1.0
+status: experimental
+
+expression:
+  Capability != Authority
+
+rule: >-
+  Capability must not create or imply Authority, Permission, or legitimacy.
+
+rationale: >-
+  Ability to act is not authorization to act.
+
+failure_code: SEM-BOUNDARY-010
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

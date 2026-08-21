@@ -17,15 +17,15 @@ scope:
 specification: CORE-SEMANTIC-PACK.md
 
 entrypoints:
-  concepts: concepts/index.yaml
-  relations: relations/index.yaml
-  boundaries: boundaries/index.yaml
-  questions: questions/index.yaml
-  patterns: patterns/
-  lifecycle: lifecycle/status-families.yaml
-  composition: composition/composition-model.yaml
-  conformance: conformance/rules.yaml
-  references: references/non-core-symbols.yaml
+  concepts: semantic/concepts/index.yaml
+  relations: semantic/relations/index.yaml
+  boundaries: semantic/boundaries/index.yaml
+  questions: semantic/questions/index.yaml
+  patterns: semantic/patterns/
+  lifecycle: semantic/lifecycle/status-families.yaml
+  composition: semantic/composition/composition-model.yaml
+  conformance: semantic/conformance/rules.yaml
+  references: semantic/references/non-core-symbols.yaml
 
 question_model:
   atomic_contracts: true

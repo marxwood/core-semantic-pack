@@ -104,34 +104,110 @@ def index_unique(records: Iterable[dict[str, Any]], field: str, label: str) -> d
 yaml_paths = sorted(ROOT.rglob("*.yaml"))
 loaded = {relpath(path): load_yaml(path) for path in yaml_paths}
 
+SEMANTIC_DIRECTORY_NAMES = {
+    "concepts",
+    "relations",
+    "boundaries",
+    "questions",
+    "patterns",
+    "lifecycle",
+    "composition",
+    "references",
+    "conformance",
+}
+SEMANTIC_ROOT = ROOT / "semantic"
+
+# The pack manifest is the source of truth for semantic discovery. Exact values
+# are also enforced so stale root-level entrypoints cannot silently reappear.
+pack = loaded.get("pack.yaml")
+if not isinstance(pack, dict):
+    fail("pack.yaml must contain a mapping")
+    pack = {}
+entrypoints = pack.get("entrypoints", {})
+if not isinstance(entrypoints, dict):
+    fail("pack.yaml: entrypoints must be a mapping")
+    entrypoints = {}
+
+required_entrypoints = {
+    "concepts": "semantic/concepts/index.yaml",
+    "relations": "semantic/relations/index.yaml",
+    "boundaries": "semantic/boundaries/index.yaml",
+    "questions": "semantic/questions/index.yaml",
+    "patterns": "semantic/patterns/",
+    "lifecycle": "semantic/lifecycle/status-families.yaml",
+    "composition": "semantic/composition/composition-model.yaml",
+    "references": "semantic/references/non-core-symbols.yaml",
+    "conformance": "semantic/conformance/rules.yaml",
+}
+for name, expected in required_entrypoints.items():
+    if entrypoints.get(name) != expected:
+        fail(f"pack.yaml: {name} entrypoint must be {expected!r}")
+
+
+def entrypoint_path(name: str) -> str:
+    value = entrypoints.get(name)
+    return value if isinstance(value, str) else required_entrypoints[name]
+
+
+CONCEPT_INDEX_PATH = entrypoint_path("concepts")
+RELATION_INDEX_PATH = entrypoint_path("relations")
+BOUNDARY_INDEX_PATH = entrypoint_path("boundaries")
+QUESTION_INDEX_PATH = entrypoint_path("questions")
+PATTERN_ROOT = ROOT / entrypoint_path("patterns")
+LIFECYCLE_CATALOG_PATH = entrypoint_path("lifecycle")
+COMPOSITION_MODEL_PATH = entrypoint_path("composition")
+REFERENCE_CATALOG_PATH = entrypoint_path("references")
+CONFORMANCE_RULES_PATH = entrypoint_path("conformance")
+
+CONCEPT_ROOT = (ROOT / CONCEPT_INDEX_PATH).parent
+RELATION_ROOT = (ROOT / RELATION_INDEX_PATH).parent
+BOUNDARY_ROOT = (ROOT / BOUNDARY_INDEX_PATH).parent
+QUESTION_ROOT = (ROOT / QUESTION_INDEX_PATH).parent
+LIFECYCLE_ROOT = (ROOT / LIFECYCLE_CATALOG_PATH).parent
+COMPOSITION_ROOT = (ROOT / COMPOSITION_MODEL_PATH).parent
+CONFORMANCE_ROOT = (ROOT / CONFORMANCE_RULES_PATH).parent
+
+for name in sorted(SEMANTIC_DIRECTORY_NAMES):
+    if (ROOT / name).exists():
+        fail(f"{name}/: governed semantic directories must not exist at repository root")
+    if not (SEMANTIC_ROOT / name).is_dir():
+        fail(f"semantic/{name}/: required governed semantic directory is missing")
+if SEMANTIC_ROOT.is_dir():
+    actual_semantic_directories = {path.name for path in SEMANTIC_ROOT.iterdir() if path.is_dir()}
+    if actual_semantic_directories != SEMANTIC_DIRECTORY_NAMES:
+        fail(
+            "semantic/: directories must be exactly the governed semantic set; "
+            f"found {sorted(actual_semantic_directories)!r}"
+        )
+
 
 # Concepts: atomic records plus the concept index bridge.
-concept_index = loaded.get("concepts/index.yaml")
+concept_index = loaded.get(CONCEPT_INDEX_PATH)
 if not isinstance(concept_index, dict):
-    fail("concepts/index.yaml must contain a mapping")
+    fail("semantic/concepts/index.yaml must contain a mapping")
     concept_index = {}
 
 concept_records: list[dict[str, Any]] = []
 concept_path_by_id: dict[str, str] = {}
 concept_entries = concept_index.get("concepts", [])
 if not isinstance(concept_entries, list):
-    fail("concepts/index.yaml: concepts must be a list")
+    fail("semantic/concepts/index.yaml: concepts must be a list")
     concept_entries = []
 for entry in concept_entries:
     if not isinstance(entry, dict):
-        fail("concepts/index.yaml: each concept entry must be a mapping")
+        fail("semantic/concepts/index.yaml: each concept entry must be a mapping")
         continue
-    require_fields(entry, ["symbol", "id", "layer", "file"], "concepts/index.yaml concept")
+    require_fields(entry, ["symbol", "id", "layer", "file"], "semantic/concepts/index.yaml concept")
     if set(entry) != {"symbol", "id", "layer", "file"}:
-        fail("concepts/index.yaml: concept entries must contain lookup metadata only")
+        fail("semantic/concepts/index.yaml: concept entries must contain lookup metadata only")
     file_name = entry.get("file")
     record = loaded.get(file_name) if isinstance(file_name, str) else None
     if not isinstance(record, dict) or "concepts" in record:
         fail(f"{file_name}: missing or invalid atomic Concept record")
         continue
     if any(record.get(field) != entry.get(field) for field in ("symbol", "id", "layer")):
-        fail(f"{file_name}: Concept symbol/ID/layer differs from concepts/index.yaml")
-    expected_file = f"concepts/{entry.get('layer')}/{Path(file_name).name}" if isinstance(file_name, str) else None
+        fail(f"{file_name}: Concept symbol/ID/layer differs from semantic/concepts/index.yaml")
+    expected_file = f"semantic/concepts/{entry.get('layer')}/{Path(file_name).name}" if isinstance(file_name, str) else None
     if file_name != expected_file:
         fail(f"{file_name}: Concept file path must match its declared organizational layer")
     expected_name = f"{kebab_case(str(entry.get('symbol')))}.yaml"
@@ -164,27 +240,27 @@ concept_by_id = index_unique(concept_records, "id", "concept ID")
 concept_by_symbol = index_unique(concept_records, "symbol", "concept symbol")
 
 legacy_concept_catalogs = {
-    "concepts/foundations.yaml",
-    "concepts/epistemic.yaml",
-    "concepts/teleological.yaml",
-    "concepts/agency.yaml",
-    "concepts/governance.yaml",
+    "semantic/concepts/foundations.yaml",
+    "semantic/concepts/epistemic.yaml",
+    "semantic/concepts/teleological.yaml",
+    "semantic/concepts/agency.yaml",
+    "semantic/concepts/governance.yaml",
 }
 for file_name in sorted(legacy_concept_catalogs):
     if (ROOT / file_name).exists():
         fail(f"{file_name}: grouped Concept catalogs must not remain")
-actual_concept_paths = {relpath(path) for path in (ROOT / "concepts").glob("*/*.yaml")}
+actual_concept_paths = {relpath(path) for path in CONCEPT_ROOT.glob("*/*.yaml")}
 if actual_concept_paths != set(concept_path_by_id.values()):
-    fail("concepts/index.yaml: indexed Concept paths differ from physical atomic files")
-for path in sorted((ROOT / "concepts").glob("*.yaml")):
+    fail("semantic/concepts/index.yaml: indexed Concept paths differ from physical atomic files")
+for path in sorted(CONCEPT_ROOT.glob("*.yaml")):
     if path.name != "index.yaml":
-        fail(f"{relpath(path)}: Concept files must live at concepts/<layer>/<concept>.yaml")
+        fail(f"{relpath(path)}: Concept files must live at semantic/concepts/<layer>/<concept>.yaml")
 
 
 # Reference-only categories are explicit but are never Core primitives.
-reference_catalog = loaded.get("references/non-core-symbols.yaml")
+reference_catalog = loaded.get(REFERENCE_CATALOG_PATH)
 if not isinstance(reference_catalog, dict) or not isinstance(reference_catalog.get("references"), list):
-    fail("references/non-core-symbols.yaml: missing or invalid reference-only registry")
+    fail("semantic/references/non-core-symbols.yaml: missing or invalid reference-only registry")
     reference_records: list[dict[str, Any]] = []
 else:
     reference_records = [record for record in reference_catalog["references"] if isinstance(record, dict)]
@@ -209,7 +285,7 @@ reference_by_symbol = index_unique(reference_records, "symbol", "reference-only 
 
 # Patterns are non-primitive referencable semantic objects.
 pattern_records: list[dict[str, Any]] = []
-for path in sorted(ROOT.glob("patterns/*.yaml")):
+for path in sorted(PATTERN_ROOT.glob("*.yaml")):
     record = loaded.get(relpath(path))
     if isinstance(record, dict):
         pattern_records.append(record)
@@ -272,31 +348,31 @@ def resolve_type(value: Any, where: str, *, allow_any: bool = False) -> bool:
 
 
 # Relations: atomic records plus an index keyed by canonical lowerCamelCase symbol.
-relation_index = loaded.get("relations/index.yaml")
+relation_index = loaded.get(RELATION_INDEX_PATH)
 if not isinstance(relation_index, dict):
-    fail("relations/index.yaml must contain a mapping")
+    fail("semantic/relations/index.yaml must contain a mapping")
     relation_index = {}
 relation_entries = relation_index.get("relations", [])
 if not isinstance(relation_entries, list):
-    fail("relations/index.yaml: relations must be a list")
+    fail("semantic/relations/index.yaml: relations must be a list")
     relation_entries = []
 relation_records: list[dict[str, Any]] = []
 relation_path_by_id: dict[str, str] = {}
 for entry in relation_entries:
     if not isinstance(entry, dict):
-        fail("relations/index.yaml: each Relation entry must be a mapping")
+        fail("semantic/relations/index.yaml: each Relation entry must be a mapping")
         continue
-    require_fields(entry, ["symbol", "id", "file"], "relations/index.yaml Relation")
+    require_fields(entry, ["symbol", "id", "file"], "semantic/relations/index.yaml Relation")
     if set(entry) != {"symbol", "id", "file"}:
-        fail("relations/index.yaml: Relation entries must contain lookup metadata only")
+        fail("semantic/relations/index.yaml: Relation entries must contain lookup metadata only")
     file_name = entry.get("file")
     record = loaded.get(file_name) if isinstance(file_name, str) else None
     if not isinstance(record, dict) or "relations" in record:
         fail(f"{file_name}: missing or invalid atomic Relation record")
         continue
     if record.get("symbol") != entry.get("symbol") or record.get("id") != entry.get("id"):
-        fail(f"{file_name}: Relation symbol/ID differs from relations/index.yaml")
-    if not isinstance(file_name, str) or Path(file_name).parent.as_posix() != "relations":
+        fail(f"{file_name}: Relation symbol/ID differs from semantic/relations/index.yaml")
+    if not isinstance(file_name, str) or Path(file_name).parent != RELATION_ROOT.relative_to(ROOT):
         fail(f"{file_name}: Relation files must remain structurally flat")
     expected_name = f"{kebab_case(str(entry.get('symbol')))}.yaml"
     if isinstance(file_name, str) and Path(file_name).name != expected_name:
@@ -337,15 +413,15 @@ for record in relation_records:
         elif relation_by_symbol[inverse].get("inverse") != record.get("symbol"):
             fail(f"{record['id']}: inverse relation {inverse!r} is not reciprocal")
 
-if (ROOT / "relations/core-relations.yaml").exists():
-    fail("relations/core-relations.yaml: grouped Relation catalog must not remain")
+if (ROOT / "semantic/relations/core-relations.yaml").exists():
+    fail("semantic/relations/core-relations.yaml: grouped Relation catalog must not remain")
 actual_relation_paths = {
-    relpath(path) for path in (ROOT / "relations").glob("*.yaml") if path.name != "index.yaml"
+    relpath(path) for path in RELATION_ROOT.glob("*.yaml") if path.name != "index.yaml"
 }
 if actual_relation_paths != set(relation_path_by_id.values()):
-    fail("relations/index.yaml: indexed Relation paths differ from physical atomic files")
-if (ROOT / "relations/families").exists():
-    fail("relations/families: artificial Relation taxonomy must not be introduced")
+    fail("semantic/relations/index.yaml: indexed Relation paths differ from physical atomic files")
+if (ROOT / "semantic/relations/families").exists():
+    fail("semantic/relations/families: artificial Relation taxonomy must not be introduced")
 
 
 def resolve_relation(value: Any, where: str) -> bool:
@@ -360,34 +436,46 @@ def resolve_relation(value: Any, where: str) -> bool:
 
 
 # Boundaries: atomic records plus an index keyed by exact canonical expression.
-boundary_index = loaded.get("boundaries/index.yaml")
+def parse_boundary_expression(value: Any, where: str) -> tuple[str | None, str | None]:
+    if not isinstance(value, str) or not value:
+        fail(f"{where}: boundary expression must be a non-empty string")
+        return None, None
+    match = re.fullmatch(r"([A-Z][A-Za-z0-9]*) != ([A-Z][A-Za-z0-9]*)", value)
+    if not match:
+        fail(f"{where}: boundary expression must use '<Type> != <Type>' notation")
+        return None, None
+    return match.group(1), match.group(2)
+
+
+boundary_index = loaded.get(BOUNDARY_INDEX_PATH)
 if not isinstance(boundary_index, dict):
-    fail("boundaries/index.yaml must contain a mapping")
+    fail("semantic/boundaries/index.yaml must contain a mapping")
     boundary_index = {}
 boundary_entries = boundary_index.get("boundaries", [])
 if not isinstance(boundary_entries, list):
-    fail("boundaries/index.yaml: boundaries must be a list")
+    fail("semantic/boundaries/index.yaml: boundaries must be a list")
     boundary_entries = []
 boundary_records: list[dict[str, Any]] = []
 boundary_path_by_id: dict[str, str] = {}
 for entry in boundary_entries:
     if not isinstance(entry, dict):
-        fail("boundaries/index.yaml: each Boundary entry must be a mapping")
+        fail("semantic/boundaries/index.yaml: each Boundary entry must be a mapping")
         continue
-    require_fields(entry, ["expression", "id", "file"], "boundaries/index.yaml Boundary")
+    require_fields(entry, ["expression", "id", "file"], "semantic/boundaries/index.yaml Boundary")
     if set(entry) != {"expression", "id", "file"}:
-        fail("boundaries/index.yaml: Boundary entries must contain lookup metadata only")
+        fail("semantic/boundaries/index.yaml: Boundary entries must contain lookup metadata only")
     file_name = entry.get("file")
     record = loaded.get(file_name) if isinstance(file_name, str) else None
     if not isinstance(record, dict) or "boundaries" in record:
         fail(f"{file_name}: missing or invalid atomic Boundary record")
         continue
     if record.get("expression") != entry.get("expression") or record.get("id") != entry.get("id"):
-        fail(f"{file_name}: Boundary expression/ID differs from boundaries/index.yaml")
-    if not isinstance(file_name, str) or Path(file_name).parent.as_posix() != "boundaries":
+        fail(f"{file_name}: Boundary expression/ID differs from semantic/boundaries/index.yaml")
+    if not isinstance(file_name, str) or Path(file_name).parent != BOUNDARY_ROOT.relative_to(ROOT):
         fail(f"{file_name}: Boundary files must remain structurally flat")
-    if isinstance(record.get("left"), str) and isinstance(record.get("right"), str):
-        expected_name = f"{kebab_case(record['left'])}-not-{kebab_case(record['right'])}.yaml"
+    left, right = parse_boundary_expression(record.get("expression"), f"{file_name}.expression")
+    if left and right:
+        expected_name = f"{kebab_case(left)}-not-{kebab_case(right)}.yaml"
         if isinstance(file_name, str) and Path(file_name).name != expected_name:
             fail(f"{file_name}: Boundary filename must be canonical lowercase kebab-case {expected_name!r}")
     boundary_records.append(record)
@@ -396,38 +484,37 @@ for entry in boundary_entries:
 
 for record in boundary_records:
     where = str(record.get("id", "boundary record"))
-    require_fields(record, ["id", "expression", "version", "status", "left", "operator", "right", "rule", "rationale", "failure_code", "severity", "applies_to"], where)
+    require_fields(record, ["id", "expression", "version", "status", "rule", "rationale", "failure_code", "severity", "applies_to"], where)
     require_key_order(
         record,
         [
-            "id", "version", "status", "kind", "expression", "left", "operator",
-            "right", "rule", "rationale", "failure_code", "severity", "applies_to",
+            "id", "version", "status", "kind", "expression", "rule", "rationale",
+            "failure_code", "severity", "applies_to",
         ],
         where,
     )
-    if record.get("operator") != "!=":
-        fail(f"{where}: boundary operator must be '!='")
-    left, right = record.get("left"), record.get("right")
-    resolve_type(left, f"{where}.left")
-    resolve_type(right, f"{where}.right")
-    expected = f"{left} != {right}"
-    if record.get("expression") != expected:
-        fail(f"{where}: expression must exactly agree with operands ({expected!r})")
+    for redundant in ("left", "operator", "right"):
+        if redundant in record:
+            fail(f"{where}: redundant boundary field {redundant!r} must not remain; use expression")
+    left, right = parse_boundary_expression(record.get("expression"), f"{where}.expression")
+    if left and right:
+        resolve_type(left, f"{where}.expression.left")
+        resolve_type(right, f"{where}.expression.right")
     if "relation" in record or "name" in record:
         fail(f"{where}: legacy relation/name field must not remain")
 
 boundary_by_id = index_unique(boundary_records, "id", "boundary ID")
 boundary_by_expression = index_unique(boundary_records, "expression", "boundary expression")
 
-if (ROOT / "boundaries/core-boundaries.yaml").exists():
-    fail("boundaries/core-boundaries.yaml: grouped Boundary catalog must not remain")
+if (ROOT / "semantic/boundaries/core-boundaries.yaml").exists():
+    fail("semantic/boundaries/core-boundaries.yaml: grouped Boundary catalog must not remain")
 actual_boundary_paths = {
-    relpath(path) for path in (ROOT / "boundaries").glob("*.yaml") if path.name != "index.yaml"
+    relpath(path) for path in BOUNDARY_ROOT.glob("*.yaml") if path.name != "index.yaml"
 }
 if actual_boundary_paths != set(boundary_path_by_id.values()):
-    fail("boundaries/index.yaml: indexed Boundary paths differ from physical atomic files")
-if (ROOT / "boundaries/families").exists():
-    fail("boundaries/families: artificial Boundary taxonomy must not be introduced")
+    fail("semantic/boundaries/index.yaml: indexed Boundary paths differ from physical atomic files")
+if (ROOT / "semantic/boundaries/families").exists():
+    fail("semantic/boundaries/families: artificial Boundary taxonomy must not be introduced")
 
 
 def resolve_boundary(value: Any, where: str) -> bool:
@@ -476,9 +563,9 @@ for record in pattern_records:
 
 
 # Atomic Questions organized under exactly one primary family.
-question_index = loaded.get("questions/index.yaml")
+question_index = loaded.get(QUESTION_INDEX_PATH)
 if not isinstance(question_index, dict):
-    fail("questions/index.yaml must contain a mapping")
+    fail("semantic/questions/index.yaml must contain a mapping")
     question_index = {}
 
 required_question_model = {
@@ -494,28 +581,28 @@ required_question_model = {
 model = question_index.get("question_model", {})
 for key, expected in required_question_model.items():
     if model.get(key) != expected:
-        fail(f"questions/index.yaml: question_model.{key} must be {expected!r}")
+        fail(f"semantic/questions/index.yaml: question_model.{key} must be {expected!r}")
 if "multi_family_membership" in model:
-    fail("questions/index.yaml: superseded multi_family_membership field must not remain")
+    fail("semantic/questions/index.yaml: superseded multi_family_membership field must not remain")
 
 family_entries = question_index.get("families", [])
 question_entries = question_index.get("questions", [])
 if "contracts" in question_index:
-    fail("questions/index.yaml: use questions, not legacy contracts index")
+    fail("semantic/questions/index.yaml: use questions, not legacy contracts index")
 if not isinstance(family_entries, list):
-    fail("questions/index.yaml: families must be a list")
+    fail("semantic/questions/index.yaml: families must be a list")
     family_entries = []
 if not isinstance(question_entries, list):
-    fail("questions/index.yaml: questions must be a list")
+    fail("semantic/questions/index.yaml: questions must be a list")
     question_entries = []
 
 family_records: list[dict[str, Any]] = []
 family_path_set: set[str] = set()
 for entry in family_entries:
     if not isinstance(entry, dict):
-        fail("questions/index.yaml: family entries must be mappings")
+        fail("semantic/questions/index.yaml: family entries must be mappings")
         continue
-    require_fields(entry, ["symbol", "id", "file", "question_count", "related_question_count"], "questions/index.yaml family")
+    require_fields(entry, ["symbol", "id", "file", "question_count", "related_question_count"], "semantic/questions/index.yaml family")
     file_name = entry.get("file")
     record = loaded.get(file_name) if isinstance(file_name, str) else None
     if not isinstance(record, dict):
@@ -538,7 +625,7 @@ for entry in family_entries:
     symbol = record.get("symbol")
     if not isinstance(symbol, str) or not re.fullmatch(r"[a-z][a-z0-9-]*", symbol):
         fail(f"{file_name}: family symbol must be a lowercase slug")
-    expected_family_file = f"questions/{symbol}/family.yaml"
+    expected_family_file = f"semantic/questions/{symbol}/family.yaml"
     if file_name != expected_family_file:
         fail(f"{file_name}: family file must be indexed at {expected_family_file!r}")
     authority = record.get("authority", {})
@@ -563,9 +650,9 @@ question_records: list[dict[str, Any]] = []
 question_path_by_id: dict[str, str] = {}
 for entry in question_entries:
     if not isinstance(entry, dict):
-        fail("questions/index.yaml: question entries must be mappings")
+        fail("semantic/questions/index.yaml: question entries must be mappings")
         continue
-    require_fields(entry, ["canonical_question", "id", "family", "file"], "questions/index.yaml question")
+    require_fields(entry, ["canonical_question", "id", "family", "file"], "semantic/questions/index.yaml question")
     file_name = entry.get("file")
     record = loaded.get(file_name) if isinstance(file_name, str) else None
     if not isinstance(record, dict):
@@ -593,7 +680,7 @@ for entry in question_entries:
     family = record.get("family")
     if family not in family_by_symbol:
         fail(f"{file_name}: unknown primary family symbol {family!r}")
-    expected_parent = f"questions/{family}/"
+    expected_parent = f"semantic/questions/{family}/"
     if not isinstance(file_name, str) or not file_name.startswith(expected_parent) or file_name.endswith("/family.yaml"):
         fail(f"{file_name}: question must live under its declared primary family")
 
@@ -676,30 +763,29 @@ for family in family_records:
         fail(f"{family['id']}: related_questions must match the canonical v0.1 family architecture")
 
 # Physical topology and serialization/index agreement.
-if (ROOT / "questions/contracts").exists():
-    fail("questions/contracts: legacy contracts hierarchy must not remain")
-if (ROOT / "questions/families").exists():
-    fail("questions/families: redundant Question family wrapper must not remain")
-question_root = ROOT / "questions"
-family_directories = {path.name for path in question_root.iterdir() if path.is_dir()}
+if (ROOT / "semantic/questions/contracts").exists():
+    fail("semantic/questions/contracts: legacy contracts hierarchy must not remain")
+if (ROOT / "semantic/questions/families").exists():
+    fail("semantic/questions/families: redundant Question family wrapper must not remain")
+family_directories = {path.name for path in QUESTION_ROOT.iterdir() if path.is_dir()}
 expected_family_directories = set(family_by_symbol)
 if len(family_directories) != 9:
-    fail(f"questions/: exactly 9 Question family directories are required, found {len(family_directories)}")
+    fail(f"semantic/questions/: exactly 9 Question family directories are required, found {len(family_directories)}")
 if family_directories != expected_family_directories:
-    fail("questions/: physical family directories differ from canonical family symbols")
-actual_family_paths = {relpath(path) for path in question_root.glob("*/family.yaml")}
+    fail("semantic/questions/: physical family directories differ from canonical family symbols")
+actual_family_paths = {relpath(path) for path in QUESTION_ROOT.glob("*/family.yaml")}
 actual_question_paths = {
     relpath(path)
-    for path in question_root.glob("*/*.yaml")
+    for path in QUESTION_ROOT.glob("*/*.yaml")
     if path.name != "family.yaml"
 }
 if actual_family_paths != family_path_set:
-    fail("questions/index.yaml: indexed family paths differ from physical family files")
+    fail("semantic/questions/index.yaml: indexed family paths differ from physical family files")
 if actual_question_paths != set(question_path_by_id.values()):
-    fail("questions/index.yaml: indexed question paths differ from physical atomic question files")
-for path in sorted(question_root.glob("*.yaml")):
+    fail("semantic/questions/index.yaml: indexed question paths differ from physical atomic question files")
+for path in sorted(QUESTION_ROOT.glob("*.yaml")):
     if path.name not in {"index.yaml", "migration-v0.1.yaml"}:
-        fail(f"{relpath(path)}: atomic Questions must live at questions/<family>/<question>.yaml")
+        fail(f"{relpath(path)}: atomic Questions must live at semantic/questions/<family>/<question>.yaml")
 
 # Concept-to-question links resolve only by exact canonical value.
 for record in concept_records:
@@ -711,10 +797,10 @@ if not (ROOT / "docs/canonical-question-gaps.md").is_file():
 
 
 # Status families and lifecycle semantic references.
-status_catalog = loaded.get("lifecycle/status-families.yaml") or {}
+status_catalog = loaded.get(LIFECYCLE_CATALOG_PATH) or {}
 status_records = status_catalog.get("families", [])
 if not isinstance(status_records, list):
-    fail("lifecycle/status-families.yaml: families must be a list")
+    fail("semantic/lifecycle/status-families.yaml: families must be a list")
     status_records = []
 status_records = [record for record in status_records if isinstance(record, dict)]
 for record in status_records:
@@ -739,27 +825,27 @@ status_by_id = index_unique(status_records, "id", "status-family ID")
 status_by_symbol = index_unique(status_records, "symbol", "status-family symbol")
 for distinction in status_catalog.get("status_distinctions", []):
     if not isinstance(distinction, dict):
-        fail("lifecycle/status-families.yaml: status_distinctions entries must be mappings")
+        fail("semantic/lifecycle/status-families.yaml: status_distinctions entries must be mappings")
         continue
     for side in ("left", "right"):
         if distinction.get(side) not in status_by_symbol:
-            fail(f"lifecycle/status-families.yaml: unknown status-family symbol {distinction.get(side)!r}")
+            fail(f"semantic/lifecycle/status-families.yaml: unknown status-family symbol {distinction.get(side)!r}")
 
-transition_rules = loaded.get("lifecycle/transition-rules.yaml") or {}
+transition_rules = loaded.get(relpath(LIFECYCLE_ROOT / "transition-rules.yaml")) or {}
 for item in transition_rules.get("families", []):
     if item.get("family") not in status_by_symbol:
-        fail(f"lifecycle/transition-rules.yaml: unknown status-family symbol {item.get('family')!r}")
+        fail(f"semantic/lifecycle/transition-rules.yaml: unknown status-family symbol {item.get('family')!r}")
 for item in transition_rules.get("forbidden_implicit_transitions", []):
     for field in ("trigger", "must_not_imply"):
-        resolve_type(item.get(field), f"lifecycle/transition-rules.yaml.{field}")
-    resolve_boundary(item.get("boundary"), "lifecycle/transition-rules.yaml.boundary")
+        resolve_type(item.get(field), f"semantic/lifecycle/transition-rules.yaml.{field}")
+    resolve_boundary(item.get("boundary"), "semantic/lifecycle/transition-rules.yaml.boundary")
 
 
 # Conformance rules use canonical symbols internally.
-rule_catalog = loaded.get("conformance/rules.yaml") or {}
+rule_catalog = loaded.get(CONFORMANCE_RULES_PATH) or {}
 rule_records = rule_catalog.get("rules", [])
 if not isinstance(rule_records, list):
-    fail("conformance/rules.yaml: rules must be a list")
+    fail("semantic/conformance/rules.yaml: rules must be a list")
     rule_records = []
 rule_records = [record for record in rule_records if isinstance(record, dict)]
 for record in rule_records:
@@ -828,7 +914,7 @@ def resolve_rule(value: Any, where: str) -> bool:
 # Fixtures validate readable object types, relations, boundaries, and rule symbols.
 fixture_records: list[dict[str, Any]] = []
 fixture_by_id: dict[str, dict[str, Any]] = {}
-for path in sorted(ROOT.glob("conformance/fixtures/*/*.yaml")):
+for path in sorted((CONFORMANCE_ROOT / "fixtures").glob("*/*.yaml")):
     file_name = relpath(path)
     record = loaded.get(file_name)
     if not isinstance(record, dict):
@@ -889,52 +975,35 @@ for item in mapping.get("mappings", []):
         if value not in pattern_by_symbol:
             fail(f"mappings/generic-agentic/mapping.yaml: unknown pattern symbol {value!r}")
 
-coverage = loaded.get("conformance/coverage.yaml") or {}
+coverage = loaded.get(relpath(CONFORMANCE_ROOT / "coverage.yaml")) or {}
 for item in coverage.get("boundary_coverage", []):
-    resolve_boundary(item.get("boundary"), "conformance/coverage.yaml.boundary")
-    for fixture_id in strings(item.get("covered_by", []), "conformance/coverage.yaml.covered_by"):
+    resolve_boundary(item.get("boundary"), "semantic/conformance/coverage.yaml.boundary")
+    for fixture_id in strings(item.get("covered_by", []), "semantic/conformance/coverage.yaml.covered_by"):
         if fixture_id not in fixture_by_id:
-            fail(f"conformance/coverage.yaml: unknown fixture ID {fixture_id!r}")
+            fail(f"semantic/conformance/coverage.yaml: unknown fixture ID {fixture_id!r}")
 for item in coverage.get("question_coverage", []):
     if item.get("question_family") not in family_by_symbol:
-        fail(f"conformance/coverage.yaml: unknown question-family symbol {item.get('question_family')!r}")
+        fail(f"semantic/conformance/coverage.yaml: unknown question-family symbol {item.get('question_family')!r}")
 
-semantic_request = loaded.get("composition/semantic-request.example.yaml") or {}
-for canonical in strings(semantic_request.get("semantic_request", {}).get("questions", []), "composition/semantic-request.example.yaml.questions"):
-    reject_registry_ids([canonical], "composition/semantic-request.example.yaml.questions")
+semantic_request = loaded.get(relpath(COMPOSITION_ROOT / "semantic-request.example.yaml")) or {}
+for canonical in strings(semantic_request.get("semantic_request", {}).get("questions", []), "semantic/composition/semantic-request.example.yaml.questions"):
+    reject_registry_ids([canonical], "semantic/composition/semantic-request.example.yaml.questions")
     if canonical not in question_by_canonical:
-        fail(f"composition/semantic-request.example.yaml: unknown canonical question {canonical!r}")
+        fail(f"semantic/composition/semantic-request.example.yaml: unknown canonical question {canonical!r}")
 
-resolved_pack = loaded.get("composition/resolved-pack.example.yaml") or {}
-for canonical in strings(resolved_pack.get("resolved_pack", {}).get("provides_questions", []), "composition/resolved-pack.example.yaml.provides_questions"):
-    reject_registry_ids([canonical], "composition/resolved-pack.example.yaml.provides_questions")
+resolved_pack = loaded.get(relpath(COMPOSITION_ROOT / "resolved-pack.example.yaml")) or {}
+for canonical in strings(resolved_pack.get("resolved_pack", {}).get("provides_questions", []), "semantic/composition/resolved-pack.example.yaml.provides_questions"):
+    reject_registry_ids([canonical], "semantic/composition/resolved-pack.example.yaml.provides_questions")
     if canonical not in question_by_canonical:
-        fail(f"composition/resolved-pack.example.yaml: unknown canonical question {canonical!r}")
+        fail(f"semantic/composition/resolved-pack.example.yaml: unknown canonical question {canonical!r}")
 
-composition_model = loaded.get("composition/composition-model.yaml") or {}
+composition_model = loaded.get(COMPOSITION_MODEL_PATH) or {}
 for layer in composition_model.get("layers", []):
-    for value in strings(layer.get("requires", []), "composition/composition-model.yaml.requires"):
-        resolve_type(value, "composition/composition-model.yaml.requires")
+    for value in strings(layer.get("requires", []), "semantic/composition/composition-model.yaml.requires"):
+        resolve_type(value, "semantic/composition/composition-model.yaml.requires")
 
 
 # Manifests: registry identity stays ID-based; semantic lists are canonical.
-pack = loaded.get("pack.yaml")
-if not isinstance(pack, dict):
-    fail("pack.yaml must contain a mapping")
-    pack = {}
-
-required_entrypoints = {
-    "concepts": "concepts/index.yaml",
-    "relations": "relations/index.yaml",
-    "boundaries": "boundaries/index.yaml",
-    "questions": "questions/index.yaml",
-    "references": "references/non-core-symbols.yaml",
-}
-for name, expected in required_entrypoints.items():
-    if pack.get("entrypoints", {}).get(name) != expected:
-        fail(f"pack.yaml: {name} entrypoint must be {expected!r}")
-if pack.get("entrypoints", {}).get("references") != "references/non-core-symbols.yaml":
-    fail("pack.yaml: references entrypoint must identify the reference-only registry")
 for family in strings(pack.get("question_families", []), "pack.yaml.question_families"):
     if family not in family_by_symbol:
         fail(f"pack.yaml: unknown question-family symbol {family!r}")
@@ -976,13 +1045,38 @@ if release.get("pack") != pack.get("id") or release.get("version") != pack.get("
     fail("release/0.1.0.yaml does not identify pack.yaml ID/version")
 if release.get("counts") != actual_counts:
     fail("release/0.1.0.yaml counts differ from repository")
-question_includes = release.get("includes", {}).get("questions", [])
-if question_includes != ["questions/"]:
-    fail("release/0.1.0.yaml: questions must use the deterministic questions/ directory collection")
-for section in ("concepts", "relations", "boundaries"):
-    expected = [f"{section}/"]
-    if release.get("includes", {}).get(section) != expected:
-        fail(f"release/0.1.0.yaml: {section} must include the deterministic directory collection")
+expected_release_includes = {
+    "specification": ["CORE-SEMANTIC-PACK.md"],
+    "concepts": ["semantic/concepts/"],
+    "relations": ["semantic/relations/"],
+    "boundaries": ["semantic/boundaries/"],
+    "questions": ["semantic/questions/"],
+    "patterns": [
+        "semantic/patterns/semantic-trace.yaml",
+        "semantic/patterns/teleological-loop.yaml",
+        "semantic/patterns/institutional-memory.yaml",
+        "semantic/patterns/execution-contract.yaml",
+        "semantic/patterns/semantic-status-collapse.yaml",
+    ],
+    "lifecycle": [
+        "semantic/lifecycle/status-families.yaml",
+        "semantic/lifecycle/transition-rules.yaml",
+    ],
+    "composition": [
+        "semantic/composition/composition-model.yaml",
+        "semantic/composition/compatibility-rules.yaml",
+    ],
+    "mappings": ["mappings/generic-agentic/mapping.yaml"],
+    "conformance": [
+        "semantic/conformance/rules.yaml",
+        "semantic/conformance/coverage.yaml",
+        "semantic/conformance/fixtures/valid/",
+        "semantic/conformance/fixtures/invalid/",
+    ],
+    "references": ["semantic/references/non-core-symbols.yaml"],
+}
+if release.get("includes") != expected_release_includes:
+    fail("release/0.1.0.yaml: includes must match the canonical semantic/ topology")
 for obsolete_section in ("concept_catalogs", "relation_catalogs", "boundary_catalogs"):
     if obsolete_section in release.get("includes", {}):
         fail(f"release/0.1.0.yaml: obsolete {obsolete_section} section must not remain")

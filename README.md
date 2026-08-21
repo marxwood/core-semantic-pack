@@ -76,23 +76,24 @@ must_preserve:
   - Intent != Goal
 ```
 
-See [`questions/`](questions/) and [`docs/question-contract-model.md`](docs/question-contract-model.md).
+See [`semantic/questions/`](semantic/questions/) and [`docs/question-contract-model.md`](docs/question-contract-model.md).
 
 ## Repository map
 
 | Area | Responsibility |
 |---|---|
 | [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, question model, and composition rules |
-| [`concepts/`](concepts/) | Atomic candidate Core primitives organized by semantic layer |
-| [`relations/`](relations/) | Typed relations that form the semantic graph |
-| [`boundaries/`](boundaries/) | Anti-collapse rules and semantic safety properties |
-| [`questions/`](questions/) | Atomic questions organized under taxonomy-only primary families |
-| [`references/`](references/) | Explicit non-Core comparison categories used by structured notation |
-| [`patterns/`](patterns/) | Composite structures built from Core primitives |
-| [`lifecycle/`](lifecycle/) | Separate lifecycle and status families |
-| [`composition/`](composition/) | Rules for Domain, Regime, and Execution composition |
+| [`semantic/`](semantic/) | Governed semantic source and semantic governance rules |
+| [`semantic/concepts/`](semantic/concepts/) | Atomic candidate Core primitives organized by semantic layer |
+| [`semantic/relations/`](semantic/relations/) | Typed relations that form the semantic graph |
+| [`semantic/boundaries/`](semantic/boundaries/) | Anti-collapse rules and semantic safety properties |
+| [`semantic/questions/`](semantic/questions/) | Atomic questions organized under taxonomy-only primary families |
+| [`semantic/references/`](semantic/references/) | Explicit non-Core comparison categories used by structured notation |
+| [`semantic/patterns/`](semantic/patterns/) | Composite structures built from Core primitives |
+| [`semantic/lifecycle/`](semantic/lifecycle/) | Separate lifecycle and status families |
+| [`semantic/composition/`](semantic/composition/) | Rules for Domain, Regime, and Execution composition |
 | [`mappings/`](mappings/) | Non-authoritative architecture mappings |
-| [`conformance/`](conformance/) | Rules, coverage, and valid/invalid semantic fixtures |
+| [`semantic/conformance/`](semantic/conformance/) | Rules, coverage, and valid/invalid semantic fixtures |
 | [`examples/`](examples/) | Illustrative, non-authoritative semantic traces |
 | [`release/`](release/) | Versioned release manifest and known limitations |
 | [`docs/`](docs/) | Derivation, terminology, record format, repository-shape decisions, and open questions |

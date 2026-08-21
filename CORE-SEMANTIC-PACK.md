@@ -1393,46 +1393,38 @@ core-semantic-pack/
 │
 ├── pack.yaml
 │
-├── questions/
-│   ├── index.yaml
-│   ├── migration-v0.1.yaml
-│   ├── ontological/
-│   ├── state/
-│   ├── epistemic/
-│   ├── interpretive/
-│   ├── teleological/
-│   ├── agency/
-│   ├── governance/
-│   ├── memory/
-│   └── reflective/
-│
-├── concepts/
-│   ├── foundations/
-│   ├── epistemic/
-│   ├── teleological/
-│   ├── agency/
-│   └── governance/
-│
-├── relations/
-│
-├── boundaries/
-│
-├── references/
-│
-├── lifecycle/
-│
-├── composition/
+├── semantic/
+│   ├── questions/
+│   │   ├── index.yaml
+│   │   ├── migration-v0.1.yaml
+│   │   ├── ontological/
+│   │   ├── state/
+│   │   ├── epistemic/
+│   │   ├── interpretive/
+│   │   ├── teleological/
+│   │   ├── agency/
+│   │   ├── governance/
+│   │   ├── memory/
+│   │   └── reflective/
+│   ├── concepts/
+│   │   ├── foundations/
+│   │   ├── epistemic/
+│   │   ├── teleological/
+│   │   ├── agency/
+│   │   └── governance/
+│   ├── relations/
+│   ├── boundaries/
+│   ├── references/
+│   ├── lifecycle/
+│   ├── composition/
+│   └── conformance/
 │
 ├── mappings/
 │   └── generic-agentic/
 │
-├── conformance/
-│   ├── semantic-regression/
-│   ├── invalid-transitions/
-│   ├── boundary-tests/
-│   ├── question-answerability/
-│   └── fixtures/
-│
+├── examples/
+├── docs/
+├── scripts/
 └── release/
 ```
 

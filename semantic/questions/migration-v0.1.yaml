@@ -1,0 +1,26 @@
+id: core.migration.question-contracts.atomic-v0.1
+version: 0.1.0
+status: experimental
+
+classification: breaking-serialization-and-resolution-change
+
+from_model: family-level requirement bundles
+
+to_model: one canonical question per independently resolvable contract, stored under exactly one primary
+  family
+
+reason: Atomic question obligations remain independently resolvable while primary-family storage makes
+  the repository navigable without turning taxonomy into authority.
+
+changes:
+  - retain one complete atomic contract for each canonical question
+  - store each question under exactly one primary family
+  - make canonical question text the semantic authoring reference
+  - allow explicit related-question navigation without duplicate contracts
+  - remove the legacy semantic/questions/contracts hierarchy and flat family files
+
+compatibility:
+  stable_question_ids_retained: true
+  canonical_questions_retained: true
+  serialization_paths_changed: true
+  automatic_requirement_inheritance_from_family: false

@@ -1,0 +1,259 @@
+id: core.concept-index
+version: 0.1.0
+status: experimental
+
+concepts:
+  - symbol: Entity
+    id: core.entity
+    layer: foundations
+    file: semantic/concepts/foundations/entity.yaml
+
+  - symbol: Identity
+    id: core.identity
+    layer: foundations
+    file: semantic/concepts/foundations/identity.yaml
+
+  - symbol: Relation
+    id: core.relation
+    layer: foundations
+    file: semantic/concepts/foundations/relation.yaml
+
+  - symbol: Context
+    id: core.context
+    layer: foundations
+    file: semantic/concepts/foundations/context.yaml
+
+  - symbol: Boundary
+    id: core.boundary
+    layer: foundations
+    file: semantic/concepts/foundations/boundary.yaml
+
+  - symbol: State
+    id: core.state
+    layer: foundations
+    file: semantic/concepts/foundations/state.yaml
+
+  - symbol: StateChange
+    id: core.state-change
+    layer: foundations
+    file: semantic/concepts/foundations/state-change.yaml
+
+  - symbol: Source
+    id: core.source
+    layer: foundations
+    file: semantic/concepts/foundations/source.yaml
+
+  - symbol: Derivative
+    id: core.derivative
+    layer: foundations
+    file: semantic/concepts/foundations/derivative.yaml
+
+  - symbol: Projection
+    id: core.projection
+    layer: foundations
+    file: semantic/concepts/foundations/projection.yaml
+
+  - symbol: Interpretation
+    id: core.interpretation
+    layer: foundations
+    file: semantic/concepts/foundations/interpretation.yaml
+
+  - symbol: SemanticVersion
+    id: core.semantic-version
+    layer: foundations
+    file: semantic/concepts/foundations/semantic-version.yaml
+
+  - symbol: Observation
+    id: core.observation
+    layer: epistemic
+    file: semantic/concepts/epistemic/observation.yaml
+
+  - symbol: Statement
+    id: core.statement
+    layer: epistemic
+    file: semantic/concepts/epistemic/statement.yaml
+
+  - symbol: Claim
+    id: core.claim
+    layer: epistemic
+    file: semantic/concepts/epistemic/claim.yaml
+
+  - symbol: Evidence
+    id: core.evidence
+    layer: epistemic
+    file: semantic/concepts/epistemic/evidence.yaml
+
+  - symbol: Inference
+    id: core.inference
+    layer: epistemic
+    file: semantic/concepts/epistemic/inference.yaml
+
+  - symbol: Finding
+    id: core.finding
+    layer: epistemic
+    file: semantic/concepts/epistemic/finding.yaml
+
+  - symbol: Provenance
+    id: core.provenance
+    layer: epistemic
+    file: semantic/concepts/epistemic/provenance.yaml
+
+  - symbol: Support
+    id: core.support
+    layer: epistemic
+    file: semantic/concepts/epistemic/support.yaml
+
+  - symbol: Contradiction
+    id: core.contradiction
+    layer: epistemic
+    file: semantic/concepts/epistemic/contradiction.yaml
+
+  - symbol: Uncertainty
+    id: core.uncertainty
+    layer: epistemic
+    file: semantic/concepts/epistemic/uncertainty.yaml
+
+  - symbol: Validity
+    id: core.validity
+    layer: epistemic
+    file: semantic/concepts/epistemic/validity.yaml
+
+  - symbol: Contestation
+    id: core.contestation
+    layer: epistemic
+    file: semantic/concepts/epistemic/contestation.yaml
+
+  - symbol: Goal
+    id: core.goal
+    layer: teleological
+    file: semantic/concepts/teleological/goal.yaml
+
+  - symbol: DesiredState
+    id: core.desired-state
+    layer: teleological
+    file: semantic/concepts/teleological/desired-state.yaml
+
+  - symbol: Intent
+    id: core.intent
+    layer: teleological
+    file: semantic/concepts/teleological/intent.yaml
+
+  - symbol: Direction
+    id: core.direction
+    layer: teleological
+    file: semantic/concepts/teleological/direction.yaml
+
+  - symbol: Trajectory
+    id: core.trajectory
+    layer: teleological
+    file: semantic/concepts/teleological/trajectory.yaml
+
+  - symbol: Progress
+    id: core.progress
+    layer: teleological
+    file: semantic/concepts/teleological/progress.yaml
+
+  - symbol: Actor
+    id: core.actor
+    layer: agency
+    file: semantic/concepts/agency/actor.yaml
+
+  - symbol: Role
+    id: core.role
+    layer: agency
+    file: semantic/concepts/agency/role.yaml
+
+  - symbol: Capability
+    id: core.capability
+    layer: agency
+    file: semantic/concepts/agency/capability.yaml
+
+  - symbol: Action
+    id: core.action
+    layer: agency
+    file: semantic/concepts/agency/action.yaml
+
+  - symbol: Process
+    id: core.process
+    layer: agency
+    file: semantic/concepts/agency/process.yaml
+
+  - symbol: Transformation
+    id: core.transformation
+    layer: agency
+    file: semantic/concepts/agency/transformation.yaml
+
+  - symbol: Transfer
+    id: core.transfer
+    layer: agency
+    file: semantic/concepts/agency/transfer.yaml
+
+  - symbol: Persistence
+    id: core.persistence
+    layer: agency
+    file: semantic/concepts/agency/persistence.yaml
+
+  - symbol: Composition
+    id: core.composition
+    layer: agency
+    file: semantic/concepts/agency/composition.yaml
+
+  - symbol: ExternalEffect
+    id: core.external-effect
+    layer: agency
+    file: semantic/concepts/agency/external-effect.yaml
+
+  - symbol: Authority
+    id: core.authority
+    layer: governance
+    file: semantic/concepts/governance/authority.yaml
+
+  - symbol: Constraint
+    id: core.constraint
+    layer: governance
+    file: semantic/concepts/governance/constraint.yaml
+
+  - symbol: Permission
+    id: core.permission
+    layer: governance
+    file: semantic/concepts/governance/permission.yaml
+
+  - symbol: Contract
+    id: core.contract
+    layer: governance
+    file: semantic/concepts/governance/contract.yaml
+
+  - symbol: Validation
+    id: core.validation
+    layer: governance
+    file: semantic/concepts/governance/validation.yaml
+
+  - symbol: Admission
+    id: core.admission
+    layer: governance
+    file: semantic/concepts/governance/admission.yaml
+
+  - symbol: Review
+    id: core.review
+    layer: governance
+    file: semantic/concepts/governance/review.yaml
+
+  - symbol: Binding
+    id: core.binding
+    layer: governance
+    file: semantic/concepts/governance/binding.yaml
+
+  - symbol: Commitment
+    id: core.commitment
+    layer: governance
+    file: semantic/concepts/governance/commitment.yaml
+
+  - symbol: Revocation
+    id: core.revocation
+    layer: governance
+    file: semantic/concepts/governance/revocation.yaml
+
+  - symbol: Accountability
+    id: core.accountability
+    layer: governance
+    file: semantic/concepts/governance/accountability.yaml

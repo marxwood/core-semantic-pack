@@ -44,7 +44,7 @@ A relation record includes stable ID, canonical lowerCamelCase symbol, canonical
 
 ## Boundary record
 
-A boundary record includes stable ID, canonical expression, resolvable left and right semantic categories, the `!=` operator, rule, rationale, stable failure code, severity, and areas of application.
+A boundary record includes stable ID, canonical expression, rule, rationale, stable failure code, severity, and areas of application. The expression is authoritative and contains the resolvable semantic categories and `!=` distinction; boundary records do not repeat separate `left`, `operator`, or `right` fields.
 
 ## Atomic Semantic Question Contract
 
@@ -57,9 +57,9 @@ A question contract includes:
 - minimum answer requirements;
 - failure states and consequence policy;
 - independent resolvability, declared once as the question-model invariant
-  `questions/index.yaml > question_model.independently_resolvable: true`;
+  `semantic/questions/index.yaml > question_model.independently_resolvable: true`;
 - family requirements are not inherited, declared globally as
-  `questions/index.yaml > question_model.family_requirements_inherited: false`.
+  `semantic/questions/index.yaml > question_model.family_requirements_inherited: false`.
 
 Question families do not carry these requirements. They are taxonomy-only views containing `questions` and optional cross-family `related_questions` canonical references.
 

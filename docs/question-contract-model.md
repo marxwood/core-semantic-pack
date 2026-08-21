@@ -54,9 +54,9 @@ Each atomic contract declares:
 - minimum answer requirements;
 - failure states and consequence policy;
 - independent resolvability is a model-level invariant declared in
-  `questions/index.yaml > question_model`;
+  `semantic/questions/index.yaml > question_model`;
 - family requirements are not inherited; this is the global resolution rule in
-  `questions/index.yaml > question_model`.
+  `semantic/questions/index.yaml > question_model`.
 
 Atomic contracts therefore do not repeat either invariant in a per-contract
 `composition` block.
@@ -68,7 +68,7 @@ The exact YAML shape is non-authoritative. The semantic obligation is the import
 ```text
 requested canonical questions
       ↓
-exact lookup through questions/index.yaml
+exact lookup through semantic/questions/index.yaml
       ↓
 load each atomic contract under its primary family
       ↓

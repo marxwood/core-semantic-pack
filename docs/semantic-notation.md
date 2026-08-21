@@ -30,7 +30,7 @@ Indexes intentionally bridge both layers:
 - canonical_question: Why is this being done?
   id: core.question.explain-action-purpose
   family: teleological
-  file: questions/teleological/why-is-this-being-done.yaml
+  file: semantic/questions/teleological/why-is-this-being-done.yaml
 ```
 
 ## Resolution
@@ -39,13 +39,13 @@ Within the Core namespace, concept symbols, relation symbols, boundary expressio
 
 Question resolution uses exact canonical value; it does not use fuzzy matching or infer equivalence from a filename. Changing a canonical question is compatibility-relevant and requires migration review even though its stable ID can survive the wording change.
 
-Boundary expressions are not unchecked strings. The resolver validates the expression, its left and right operands, and the boundary record behind it.
+Boundary expressions are not unchecked strings. The resolver validates the expression and its embedded operands against the semantic registries, then resolves the boundary record behind it.
 
 `Any` is reserved meta-notation for a wildcard relation endpoint. It is not a Core primitive or registry object.
 
 ## Reference-only terms
 
-Terms such as `Truth`, `Prediction`, `Plan`, `BindingDecision`, `Repetition`, `ExecutionPlan`, `Runtime`, and `OperationalSuccess` are declared in [`references/non-core-symbols.yaml`](../references/non-core-symbols.yaml). They make structured comparisons resolvable without promoting those categories to Core primitives.
+Terms such as `Truth`, `Prediction`, `Plan`, `BindingDecision`, `Repetition`, `ExecutionPlan`, `Runtime`, and `OperationalSuccess` are declared in [`semantic/references/non-core-symbols.yaml`](../semantic/references/non-core-symbols.yaml). They make structured comparisons resolvable without promoting those categories to Core primitives.
 
 The Core primitive remains `Progress`; the canonical boundary is `OperationalSuccess != Progress`.
 
