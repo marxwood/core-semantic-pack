@@ -1,0 +1,16 @@
+id: core.rel.constrained-by
+symbol: constrainedBy
+version: 0.1.0
+status: experimental
+
+definition: Associates an object, role, process, or transition with an explicit Constraint.
+
+source:
+  - Any
+
+target:
+  - Constraint
+
+direction: directed
+provenance: optional
+authority_effect: none

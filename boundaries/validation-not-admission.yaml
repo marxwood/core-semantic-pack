@@ -1,0 +1,22 @@
+id: core.boundary.validation-not-admission
+expression: Validation != Admission
+version: 0.1.0
+status: experimental
+
+left: Validation
+operator: '!='
+right: Admission
+
+rule: Successful Validation must not automatically admit a candidate into maintained State.
+
+rationale: Conformance and governed acceptance are distinct transitions.
+
+failure_code: SEM-BOUNDARY-008
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

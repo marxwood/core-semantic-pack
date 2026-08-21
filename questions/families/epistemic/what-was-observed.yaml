@@ -4,28 +4,34 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What was observed?
 family: epistemic
+
 requires:
   concepts:
-  - Source
-  - Observation
-  - Provenance
-  - Actor
+    - Source
+    - Observation
+    - Provenance
+    - Actor
+
   relations:
-  - observedFrom
-  - observedBy
-  - hasProvenance
+    - observedFrom
+    - observedBy
+    - hasProvenance
+
 must_preserve:
-- Observation != Claim
+  - Observation != Claim
+
 answer_contract:
   minimum_requirements:
-  - observation_identified
-  - source_traceable
-  - observer_or_observer_status_known
-  - provenance_preserved
+    - observation_identified
+    - source_traceable
+    - observer_or_observer_status_known
+    - provenance_preserved
+
 failure_contract:
   failure_states:
-  - observation_promoted_to_claim
-  - source_missing
+    - observation_promoted_to_claim
+    - source_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -1,0 +1,36 @@
+id: core.intent
+symbol: Intent
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: teleological
+
+definition: A contextual aim that translates a Goal into the immediate purpose of an Action or Process
+  participation.
+
+not_equivalent_to:
+  - Goal
+  - Authority
+  - Action
+  - Permission
+
+required_relations:
+  - advances
+
+conditional_relations:
+  - heldBy
+  - existsIn
+  - constrainedBy
+  - versionedBy
+
+boundaries:
+  - Intent != Goal
+  - Intent != Authority
+  - Action != Intent
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: The immediate purpose of action must remain traceable to the larger Goal without becoming
+    the Goal or its own authority.

@@ -1,6 +1,7 @@
 id: core.question-index
 version: 0.1.0
 status: experimental
+
 question_model:
   atomic_contract: true
   one_canonical_question_per_contract: true
@@ -10,315 +11,390 @@ question_model:
   family_requirements_inherited: false
   canonical_question_resolution: exact
   related_questions_expand_automatically: false
+
 families:
-- symbol: ontological
-  id: core.question-family.ontological
-  file: questions/families/ontological/family.yaml
-  question_count: 6
-  related_question_count: 0
-- symbol: state
-  id: core.question-family.state
-  file: questions/families/state/family.yaml
-  question_count: 6
-  related_question_count: 0
-- symbol: epistemic
-  id: core.question-family.epistemic
-  file: questions/families/epistemic/family.yaml
-  question_count: 9
-  related_question_count: 0
-- symbol: interpretive
-  id: core.question-family.interpretive
-  file: questions/families/interpretive/family.yaml
-  question_count: 5
-  related_question_count: 0
-- symbol: teleological
-  id: core.question-family.teleological
-  file: questions/families/teleological/family.yaml
-  question_count: 7
-  related_question_count: 0
-- symbol: agency
-  id: core.question-family.agency
-  file: questions/families/agency/family.yaml
-  question_count: 6
-  related_question_count: 0
-- symbol: governance
-  id: core.question-family.governance
-  file: questions/families/governance/family.yaml
-  question_count: 9
-  related_question_count: 0
-- symbol: memory
-  id: core.question-family.memory
-  file: questions/families/memory/family.yaml
-  question_count: 8
-  related_question_count: 0
-- symbol: reflective
-  id: core.question-family.reflective
-  file: questions/families/reflective/family.yaml
-  question_count: 10
-  related_question_count: 1
+  - symbol: ontological
+    id: core.question-family.ontological
+    file: questions/families/ontological/family.yaml
+    question_count: 6
+    related_question_count: 0
+
+  - symbol: state
+    id: core.question-family.state
+    file: questions/families/state/family.yaml
+    question_count: 6
+    related_question_count: 0
+
+  - symbol: epistemic
+    id: core.question-family.epistemic
+    file: questions/families/epistemic/family.yaml
+    question_count: 9
+    related_question_count: 0
+
+  - symbol: interpretive
+    id: core.question-family.interpretive
+    file: questions/families/interpretive/family.yaml
+    question_count: 5
+    related_question_count: 0
+
+  - symbol: teleological
+    id: core.question-family.teleological
+    file: questions/families/teleological/family.yaml
+    question_count: 7
+    related_question_count: 0
+
+  - symbol: agency
+    id: core.question-family.agency
+    file: questions/families/agency/family.yaml
+    question_count: 6
+    related_question_count: 0
+
+  - symbol: governance
+    id: core.question-family.governance
+    file: questions/families/governance/family.yaml
+    question_count: 9
+    related_question_count: 0
+
+  - symbol: memory
+    id: core.question-family.memory
+    file: questions/families/memory/family.yaml
+    question_count: 8
+    related_question_count: 0
+
+  - symbol: reflective
+    id: core.question-family.reflective
+    file: questions/families/reflective/family.yaml
+    question_count: 10
+    related_question_count: 1
+
 questions:
-- canonical_question: What is this?
-  id: core.question.identify-referent
-  family: ontological
-  file: questions/families/ontological/what-is-this.yaml
-- canonical_question: What kind of thing is it?
-  id: core.question.classify-semantic-kind
-  family: ontological
-  file: questions/families/ontological/what-kind-of-thing-is-it.yaml
-- canonical_question: Which identity does it have?
-  id: core.question.identify-identity
-  family: ontological
-  file: questions/families/ontological/which-identity-does-it-have.yaml
-- canonical_question: Where are its boundaries?
-  id: core.question.identify-boundaries
-  family: ontological
-  file: questions/families/ontological/where-are-its-boundaries.yaml
-- canonical_question: To what is it related?
-  id: core.question.identify-relations
-  family: ontological
-  file: questions/families/ontological/to-what-is-it-related.yaml
-- canonical_question: In which Context does this meaning apply?
-  id: core.question.identify-meaning-context
-  family: ontological
-  file: questions/families/ontological/in-which-context-does-this-meaning-apply.yaml
-- canonical_question: What is currently the case?
-  id: core.question.identify-current-state
-  family: state
-  file: questions/families/state/what-is-currently-the-case.yaml
-- canonical_question: What State is maintained?
-  id: core.question.identify-maintained-state
-  family: state
-  file: questions/families/state/what-state-is-maintained.yaml
-- canonical_question: What existed before?
-  id: core.question.identify-previous-state
-  family: state
-  file: questions/families/state/what-existed-before.yaml
-- canonical_question: What exists now?
-  id: core.question.identify-resulting-state
-  family: state
-  file: questions/families/state/what-exists-now.yaml
-- canonical_question: What changed?
-  id: core.question.identify-state-change
-  family: state
-  file: questions/families/state/what-changed.yaml
-- canonical_question: What State is expected next?
-  id: core.question.identify-expected-next-state
-  family: state
-  file: questions/families/state/what-state-is-expected-next.yaml
-- canonical_question: What was observed?
-  id: core.question.identify-observation
-  family: epistemic
-  file: questions/families/epistemic/what-was-observed.yaml
-- canonical_question: What is being stated?
-  id: core.question.identify-statement
-  family: epistemic
-  file: questions/families/epistemic/what-is-being-stated.yaml
-- canonical_question: What is being claimed?
-  id: core.question.identify-claim
-  family: epistemic
-  file: questions/families/epistemic/what-is-being-claimed.yaml
-- canonical_question: What supports the Claim?
-  id: core.question.identify-supporting-evidence
-  family: epistemic
-  file: questions/families/epistemic/what-supports-the-claim.yaml
-- canonical_question: What contradicts the Claim?
-  id: core.question.identify-contradicting-evidence
-  family: epistemic
-  file: questions/families/epistemic/what-contradicts-the-claim.yaml
-- canonical_question: What was inferred?
-  id: core.question.identify-inference
-  family: epistemic
-  file: questions/families/epistemic/what-was-inferred.yaml
-- canonical_question: What Finding was derived?
-  id: core.question.identify-derived-finding
-  family: epistemic
-  file: questions/families/epistemic/what-finding-was-derived.yaml
-- canonical_question: How uncertain is it?
-  id: core.question.identify-uncertainty
-  family: epistemic
-  file: questions/families/epistemic/how-uncertain-is-it.yaml
-- canonical_question: Under which Context is this valid?
-  id: core.question.identify-validity-context
-  family: epistemic
-  file: questions/families/epistemic/under-which-context-is-this-valid.yaml
-- canonical_question: Which interpretation of reality produced this conclusion?
-  id: core.question.identify-producing-interpretation
-  family: interpretive
-  file: questions/families/interpretive/which-interpretation-of-reality-produced-this-conclusion.yaml
-- canonical_question: Which representation are we looking at?
-  id: core.question.identify-representation
-  family: interpretive
-  file: questions/families/interpretive/which-representation-are-we-looking-at.yaml
-- canonical_question: What Source or State does it derive from?
-  id: core.question.identify-derivation-source
-  family: interpretive
-  file: questions/families/interpretive/what-source-or-state-does-it-derive-from.yaml
-- canonical_question: Which Context shaped the interpretation?
-  id: core.question.identify-interpretive-context
-  family: interpretive
-  file: questions/families/interpretive/which-context-shaped-the-interpretation.yaml
-- canonical_question: Has a Projection silently become accepted as State?
-  id: core.question.detect-projection-admitted-as-state
-  family: interpretive
-  file: questions/families/interpretive/has-a-projection-silently-become-accepted-as-state.yaml
-- canonical_question: Why is this being done?
-  id: core.question.explain-action-purpose
-  family: teleological
-  file: questions/families/teleological/why-is-this-being-done.yaml
-- canonical_question: Which Goal is being pursued?
-  id: core.question.identify-pursued-goal
-  family: teleological
-  file: questions/families/teleological/which-goal-is-being-pursued.yaml
-- canonical_question: Which DesiredState does that Goal imply?
-  id: core.question.identify-goal-desired-state
-  family: teleological
-  file: questions/families/teleological/which-desiredstate-does-that-goal-imply.yaml
-- canonical_question: Which direction of change follows from it?
-  id: core.question.identify-implied-direction
-  family: teleological
-  file: questions/families/teleological/which-direction-of-change-follows-from-it.yaml
-- canonical_question: Which Intent operationalizes the Goal here?
-  id: core.question.identify-goal-operationalizing-intent
-  family: teleological
-  file: questions/families/teleological/which-intent-operationalizes-the-goal-here.yaml
-- canonical_question: Is the resulting StateChange advancing the DesiredState?
-  id: core.question.assess-state-change-progress
-  family: teleological
-  file: questions/families/teleological/is-the-resulting-statechange-advancing-the-desiredstate.yaml
-- canonical_question: Has the Goal changed?
-  id: core.question.detect-goal-change
-  family: teleological
-  file: questions/families/teleological/has-the-goal-changed.yaml
-- canonical_question: Who or what is acting?
-  id: core.question.identify-acting-actor
-  family: agency
-  file: questions/families/agency/who-or-what-is-acting.yaml
-- canonical_question: Which Role is being occupied?
-  id: core.question.identify-occupied-role
-  family: agency
-  file: questions/families/agency/which-role-is-being-occupied.yaml
-- canonical_question: What can the Actor do?
-  id: core.question.identify-actor-capability
-  family: agency
-  file: questions/families/agency/what-can-the-actor-do.yaml
-- canonical_question: Which Action is being attempted?
-  id: core.question.identify-attempted-action
-  family: agency
-  file: questions/families/agency/which-action-is-being-attempted.yaml
-- canonical_question: Which Process does it participate in?
-  id: core.question.identify-action-process
-  family: agency
-  file: questions/families/agency/which-process-does-it-participate-in.yaml
-- canonical_question: Which Transformation is being performed?
-  id: core.question.identify-performed-transformation
-  family: agency
-  file: questions/families/agency/which-transformation-is-being-performed.yaml
-- canonical_question: Who authorized this?
-  id: core.question.identify-authority
-  family: governance
-  file: questions/families/governance/who-authorized-this.yaml
-- canonical_question: Under which Constraint?
-  id: core.question.identify-applicable-constraint
-  family: governance
-  file: questions/families/governance/under-which-constraint.yaml
-- canonical_question: What is permitted?
-  id: core.question.identify-permission
-  family: governance
-  file: questions/families/governance/what-is-permitted.yaml
-- canonical_question: What may only be recommended?
-  id: core.question.identify-recommendation-only-scope
-  family: governance
-  file: questions/families/governance/what-may-only-be-recommended.yaml
-- canonical_question: What must be validated?
-  id: core.question.identify-validation-requirement
-  family: governance
-  file: questions/families/governance/what-must-be-validated.yaml
-- canonical_question: What may enter maintained State?
-  id: core.question.identify-admissible-maintained-state
-  family: governance
-  file: questions/families/governance/what-may-enter-maintained-state.yaml
-- canonical_question: Which transition requires Review?
-  id: core.question.identify-review-required-transition
-  family: governance
-  file: questions/families/governance/which-transition-requires-review.yaml
-- canonical_question: Which decision is Binding?
-  id: core.question.identify-binding-decision
-  family: governance
-  file: questions/families/governance/which-decision-is-binding.yaml
-- canonical_question: Can the commitment be revoked?
-  id: core.question.assess-commitment-revocability
-  family: governance
-  file: questions/families/governance/can-the-commitment-be-revoked.yaml
-- canonical_question: What should the system remember?
-  id: core.question.identify-memory-eligibility
-  family: memory
-  file: questions/families/memory/what-should-the-system-remember.yaml
-- canonical_question: What exactly is being remembered?
-  id: core.question.identify-remembered-object
-  family: memory
-  file: questions/families/memory/what-exactly-is-being-remembered.yaml
-- canonical_question: Was it an Observation, Claim, Evidence item, Inference, Finding, Decision, Goal,
-    or StateChange?
-  id: core.question.identify-remembered-semantic-type
-  family: memory
-  file: questions/families/memory/was-it-an-observation-claim-evidence-item-inference-finding-decision-goal-or-statechange.yaml
-- canonical_question: Under which semantic status was it admitted?
-  id: core.question.identify-admission-status
-  family: memory
-  file: questions/families/memory/under-which-semantic-status-was-it-admitted.yaml
-- canonical_question: Which Provenance does it retain?
-  id: core.question.identify-retained-provenance
-  family: memory
-  file: questions/families/memory/which-provenance-does-it-retain.yaml
-- canonical_question: What later contradicted or superseded it?
-  id: core.question.identify-later-contradiction-or-supersession
-  family: memory
-  file: questions/families/memory/what-later-contradicted-or-superseded-it.yaml
-- canonical_question: Is it still valid?
-  id: core.question.assess-current-validity
-  family: memory
-  file: questions/families/memory/is-it-still-valid.yaml
-- canonical_question: Under which version and Context was it valid?
-  id: core.question.identify-validity-version-context
-  family: memory
-  file: questions/families/memory/under-which-version-and-context-was-it-valid.yaml
-- canonical_question: Is the Goal still authorized?
-  id: core.question.assess-goal-authorization
-  family: reflective
-  file: questions/families/reflective/is-the-goal-still-authorized.yaml
-- canonical_question: Has CurrentState changed materially?
-  id: core.question.detect-material-current-state-change
-  family: reflective
-  file: questions/families/reflective/has-currentstate-changed-materially.yaml
-- canonical_question: Has our Interpretation changed?
-  id: core.question.detect-interpretation-change
-  family: reflective
-  file: questions/families/reflective/has-our-interpretation-changed.yaml
-- canonical_question: Is the system still moving toward DesiredState?
-  id: core.question.assess-trajectory-progress
-  family: reflective
-  file: questions/families/reflective/is-the-system-still-moving-toward-desiredstate.yaml
-- canonical_question: Has new Evidence contradicted a maintained Finding?
-  id: core.question.detect-evidence-contradicting-maintained-finding
-  family: reflective
-  file: questions/families/reflective/has-new-evidence-contradicted-a-maintained-finding.yaml
-- canonical_question: Did an intermediate Inference silently become institutional truth?
-  id: core.question.detect-inference-institutionalization
-  family: reflective
-  file: questions/families/reflective/did-an-intermediate-inference-silently-become-institutional-truth.yaml
-- canonical_question: Has a Projection become indistinguishable from State?
-  id: core.question.detect-projection-state-collapse
-  family: reflective
-  file: questions/families/reflective/has-a-projection-become-indistinguishable-from-state.yaml
-- canonical_question: Has repeated downstream use created implicit Authority?
-  id: core.question.detect-implicit-authority-from-reuse
-  family: reflective
-  file: questions/families/reflective/has-repeated-downstream-use-created-implicit-authority.yaml
-- canonical_question: Should maintained State be revised?
-  id: core.question.assess-maintained-state-revision
-  family: reflective
-  file: questions/families/reflective/should-maintained-state-be-revised.yaml
-- canonical_question: Should a previous Binding be revoked?
-  id: core.question.assess-binding-revocation
-  family: reflective
-  file: questions/families/reflective/should-a-previous-binding-be-revoked.yaml
+  - canonical_question: What is this?
+    id: core.question.identify-referent
+    family: ontological
+    file: questions/families/ontological/what-is-this.yaml
+
+  - canonical_question: What kind of thing is it?
+    id: core.question.classify-semantic-kind
+    family: ontological
+    file: questions/families/ontological/what-kind-of-thing-is-it.yaml
+
+  - canonical_question: Which identity does it have?
+    id: core.question.identify-identity
+    family: ontological
+    file: questions/families/ontological/which-identity-does-it-have.yaml
+
+  - canonical_question: Where are its boundaries?
+    id: core.question.identify-boundaries
+    family: ontological
+    file: questions/families/ontological/where-are-its-boundaries.yaml
+
+  - canonical_question: To what is it related?
+    id: core.question.identify-relations
+    family: ontological
+    file: questions/families/ontological/to-what-is-it-related.yaml
+
+  - canonical_question: In which Context does this meaning apply?
+    id: core.question.identify-meaning-context
+    family: ontological
+    file: questions/families/ontological/in-which-context-does-this-meaning-apply.yaml
+
+  - canonical_question: What is currently the case?
+    id: core.question.identify-current-state
+    family: state
+    file: questions/families/state/what-is-currently-the-case.yaml
+
+  - canonical_question: What State is maintained?
+    id: core.question.identify-maintained-state
+    family: state
+    file: questions/families/state/what-state-is-maintained.yaml
+
+  - canonical_question: What existed before?
+    id: core.question.identify-previous-state
+    family: state
+    file: questions/families/state/what-existed-before.yaml
+
+  - canonical_question: What exists now?
+    id: core.question.identify-resulting-state
+    family: state
+    file: questions/families/state/what-exists-now.yaml
+
+  - canonical_question: What changed?
+    id: core.question.identify-state-change
+    family: state
+    file: questions/families/state/what-changed.yaml
+
+  - canonical_question: What State is expected next?
+    id: core.question.identify-expected-next-state
+    family: state
+    file: questions/families/state/what-state-is-expected-next.yaml
+
+  - canonical_question: What was observed?
+    id: core.question.identify-observation
+    family: epistemic
+    file: questions/families/epistemic/what-was-observed.yaml
+
+  - canonical_question: What is being stated?
+    id: core.question.identify-statement
+    family: epistemic
+    file: questions/families/epistemic/what-is-being-stated.yaml
+
+  - canonical_question: What is being claimed?
+    id: core.question.identify-claim
+    family: epistemic
+    file: questions/families/epistemic/what-is-being-claimed.yaml
+
+  - canonical_question: What supports the Claim?
+    id: core.question.identify-supporting-evidence
+    family: epistemic
+    file: questions/families/epistemic/what-supports-the-claim.yaml
+
+  - canonical_question: What contradicts the Claim?
+    id: core.question.identify-contradicting-evidence
+    family: epistemic
+    file: questions/families/epistemic/what-contradicts-the-claim.yaml
+
+  - canonical_question: What was inferred?
+    id: core.question.identify-inference
+    family: epistemic
+    file: questions/families/epistemic/what-was-inferred.yaml
+
+  - canonical_question: What Finding was derived?
+    id: core.question.identify-derived-finding
+    family: epistemic
+    file: questions/families/epistemic/what-finding-was-derived.yaml
+
+  - canonical_question: How uncertain is it?
+    id: core.question.identify-uncertainty
+    family: epistemic
+    file: questions/families/epistemic/how-uncertain-is-it.yaml
+
+  - canonical_question: Under which Context is this valid?
+    id: core.question.identify-validity-context
+    family: epistemic
+    file: questions/families/epistemic/under-which-context-is-this-valid.yaml
+
+  - canonical_question: Which interpretation of reality produced this conclusion?
+    id: core.question.identify-producing-interpretation
+    family: interpretive
+    file: questions/families/interpretive/which-interpretation-of-reality-produced-this-conclusion.yaml
+
+  - canonical_question: Which representation are we looking at?
+    id: core.question.identify-representation
+    family: interpretive
+    file: questions/families/interpretive/which-representation-are-we-looking-at.yaml
+
+  - canonical_question: What Source or State does it derive from?
+    id: core.question.identify-derivation-source
+    family: interpretive
+    file: questions/families/interpretive/what-source-or-state-does-it-derive-from.yaml
+
+  - canonical_question: Which Context shaped the interpretation?
+    id: core.question.identify-interpretive-context
+    family: interpretive
+    file: questions/families/interpretive/which-context-shaped-the-interpretation.yaml
+
+  - canonical_question: Has a Projection silently become accepted as State?
+    id: core.question.detect-projection-admitted-as-state
+    family: interpretive
+    file: questions/families/interpretive/has-a-projection-silently-become-accepted-as-state.yaml
+
+  - canonical_question: Why is this being done?
+    id: core.question.explain-action-purpose
+    family: teleological
+    file: questions/families/teleological/why-is-this-being-done.yaml
+
+  - canonical_question: Which Goal is being pursued?
+    id: core.question.identify-pursued-goal
+    family: teleological
+    file: questions/families/teleological/which-goal-is-being-pursued.yaml
+
+  - canonical_question: Which DesiredState does that Goal imply?
+    id: core.question.identify-goal-desired-state
+    family: teleological
+    file: questions/families/teleological/which-desiredstate-does-that-goal-imply.yaml
+
+  - canonical_question: Which direction of change follows from it?
+    id: core.question.identify-implied-direction
+    family: teleological
+    file: questions/families/teleological/which-direction-of-change-follows-from-it.yaml
+
+  - canonical_question: Which Intent operationalizes the Goal here?
+    id: core.question.identify-goal-operationalizing-intent
+    family: teleological
+    file: questions/families/teleological/which-intent-operationalizes-the-goal-here.yaml
+
+  - canonical_question: Is the resulting StateChange advancing the DesiredState?
+    id: core.question.assess-state-change-progress
+    family: teleological
+    file: questions/families/teleological/is-the-resulting-statechange-advancing-the-desiredstate.yaml
+
+  - canonical_question: Has the Goal changed?
+    id: core.question.detect-goal-change
+    family: teleological
+    file: questions/families/teleological/has-the-goal-changed.yaml
+
+  - canonical_question: Who or what is acting?
+    id: core.question.identify-acting-actor
+    family: agency
+    file: questions/families/agency/who-or-what-is-acting.yaml
+
+  - canonical_question: Which Role is being occupied?
+    id: core.question.identify-occupied-role
+    family: agency
+    file: questions/families/agency/which-role-is-being-occupied.yaml
+
+  - canonical_question: What can the Actor do?
+    id: core.question.identify-actor-capability
+    family: agency
+    file: questions/families/agency/what-can-the-actor-do.yaml
+
+  - canonical_question: Which Action is being attempted?
+    id: core.question.identify-attempted-action
+    family: agency
+    file: questions/families/agency/which-action-is-being-attempted.yaml
+
+  - canonical_question: Which Process does it participate in?
+    id: core.question.identify-action-process
+    family: agency
+    file: questions/families/agency/which-process-does-it-participate-in.yaml
+
+  - canonical_question: Which Transformation is being performed?
+    id: core.question.identify-performed-transformation
+    family: agency
+    file: questions/families/agency/which-transformation-is-being-performed.yaml
+
+  - canonical_question: Who authorized this?
+    id: core.question.identify-authority
+    family: governance
+    file: questions/families/governance/who-authorized-this.yaml
+
+  - canonical_question: Under which Constraint?
+    id: core.question.identify-applicable-constraint
+    family: governance
+    file: questions/families/governance/under-which-constraint.yaml
+
+  - canonical_question: What is permitted?
+    id: core.question.identify-permission
+    family: governance
+    file: questions/families/governance/what-is-permitted.yaml
+
+  - canonical_question: What may only be recommended?
+    id: core.question.identify-recommendation-only-scope
+    family: governance
+    file: questions/families/governance/what-may-only-be-recommended.yaml
+
+  - canonical_question: What must be validated?
+    id: core.question.identify-validation-requirement
+    family: governance
+    file: questions/families/governance/what-must-be-validated.yaml
+
+  - canonical_question: What may enter maintained State?
+    id: core.question.identify-admissible-maintained-state
+    family: governance
+    file: questions/families/governance/what-may-enter-maintained-state.yaml
+
+  - canonical_question: Which transition requires Review?
+    id: core.question.identify-review-required-transition
+    family: governance
+    file: questions/families/governance/which-transition-requires-review.yaml
+
+  - canonical_question: Which decision is Binding?
+    id: core.question.identify-binding-decision
+    family: governance
+    file: questions/families/governance/which-decision-is-binding.yaml
+
+  - canonical_question: Can the commitment be revoked?
+    id: core.question.assess-commitment-revocability
+    family: governance
+    file: questions/families/governance/can-the-commitment-be-revoked.yaml
+
+  - canonical_question: What should the system remember?
+    id: core.question.identify-memory-eligibility
+    family: memory
+    file: questions/families/memory/what-should-the-system-remember.yaml
+
+  - canonical_question: What exactly is being remembered?
+    id: core.question.identify-remembered-object
+    family: memory
+    file: questions/families/memory/what-exactly-is-being-remembered.yaml
+
+  - canonical_question: Was it an Observation, Claim, Evidence item, Inference, Finding, Decision, Goal,
+      or StateChange?
+    id: core.question.identify-remembered-semantic-type
+    family: memory
+    file: questions/families/memory/was-it-an-observation-claim-evidence-item-inference-finding-decision-goal-or-statechange.yaml
+
+  - canonical_question: Under which semantic status was it admitted?
+    id: core.question.identify-admission-status
+    family: memory
+    file: questions/families/memory/under-which-semantic-status-was-it-admitted.yaml
+
+  - canonical_question: Which Provenance does it retain?
+    id: core.question.identify-retained-provenance
+    family: memory
+    file: questions/families/memory/which-provenance-does-it-retain.yaml
+
+  - canonical_question: What later contradicted or superseded it?
+    id: core.question.identify-later-contradiction-or-supersession
+    family: memory
+    file: questions/families/memory/what-later-contradicted-or-superseded-it.yaml
+
+  - canonical_question: Is it still valid?
+    id: core.question.assess-current-validity
+    family: memory
+    file: questions/families/memory/is-it-still-valid.yaml
+
+  - canonical_question: Under which version and Context was it valid?
+    id: core.question.identify-validity-version-context
+    family: memory
+    file: questions/families/memory/under-which-version-and-context-was-it-valid.yaml
+
+  - canonical_question: Is the Goal still authorized?
+    id: core.question.assess-goal-authorization
+    family: reflective
+    file: questions/families/reflective/is-the-goal-still-authorized.yaml
+
+  - canonical_question: Has CurrentState changed materially?
+    id: core.question.detect-material-current-state-change
+    family: reflective
+    file: questions/families/reflective/has-currentstate-changed-materially.yaml
+
+  - canonical_question: Has our Interpretation changed?
+    id: core.question.detect-interpretation-change
+    family: reflective
+    file: questions/families/reflective/has-our-interpretation-changed.yaml
+
+  - canonical_question: Is the system still moving toward DesiredState?
+    id: core.question.assess-trajectory-progress
+    family: reflective
+    file: questions/families/reflective/is-the-system-still-moving-toward-desiredstate.yaml
+
+  - canonical_question: Has new Evidence contradicted a maintained Finding?
+    id: core.question.detect-evidence-contradicting-maintained-finding
+    family: reflective
+    file: questions/families/reflective/has-new-evidence-contradicted-a-maintained-finding.yaml
+
+  - canonical_question: Did an intermediate Inference silently become institutional truth?
+    id: core.question.detect-inference-institutionalization
+    family: reflective
+    file: questions/families/reflective/did-an-intermediate-inference-silently-become-institutional-truth.yaml
+
+  - canonical_question: Has a Projection become indistinguishable from State?
+    id: core.question.detect-projection-state-collapse
+    family: reflective
+    file: questions/families/reflective/has-a-projection-become-indistinguishable-from-state.yaml
+
+  - canonical_question: Has repeated downstream use created implicit Authority?
+    id: core.question.detect-implicit-authority-from-reuse
+    family: reflective
+    file: questions/families/reflective/has-repeated-downstream-use-created-implicit-authority.yaml
+
+  - canonical_question: Should maintained State be revised?
+    id: core.question.assess-maintained-state-revision
+    family: reflective
+    file: questions/families/reflective/should-maintained-state-be-revised.yaml
+
+  - canonical_question: Should a previous Binding be revoked?
+    id: core.question.assess-binding-revocation
+    family: reflective
+    file: questions/families/reflective/should-a-previous-binding-be-revoked.yaml

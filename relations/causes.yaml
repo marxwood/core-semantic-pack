@@ -1,0 +1,21 @@
+id: core.rel.causes
+symbol: causes
+version: 0.1.0
+status: experimental
+
+definition: Associates an attributable cause with the change or effect it produced.
+
+source:
+  - Action
+  - Transformation
+  - Any
+
+target:
+  - StateChange
+  - ExternalEffect
+
+direction: directed
+provenance: required
+authority_effect: none
+
+inverse: causedBy

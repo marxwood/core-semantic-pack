@@ -4,25 +4,31 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What existed before?
 family: state
+
 requires:
   concepts:
-  - StateChange
-  - State
-  - Provenance
+    - StateChange
+    - State
+    - Provenance
+
   relations:
-  - previousState
-  - hasProvenance
+    - previousState
+    - hasProvenance
+
 must_preserve:
-- Action != StateChange
+  - Action != StateChange
+
 answer_contract:
   minimum_requirements:
-  - state_change_identified
-  - previous_state_identified
-  - change_provenance_traceable
+    - state_change_identified
+    - previous_state_identified
+    - change_provenance_traceable
+
 failure_contract:
   failure_states:
-  - previous_state_missing
-  - state_change_unattributed
+    - previous_state_missing
+    - state_change_unattributed
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

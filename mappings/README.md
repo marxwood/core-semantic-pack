@@ -1,4 +1,3 @@
-
 # Architecture mappings
 
 Mappings translate Core semantic responsibilities into architecture or implementation vocabularies.

@@ -1,0 +1,20 @@
+id: core.rel.projects
+symbol: projects
+version: 0.1.0
+status: experimental
+
+definition: Declares the object or State represented by a Projection.
+
+source:
+  - Projection
+
+target:
+  - Source
+  - State
+  - Claim
+  - Finding
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

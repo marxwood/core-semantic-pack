@@ -4,25 +4,31 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What is currently the case?
 family: state
+
 requires:
   concepts:
-  - Entity
-  - State
-  - Context
+    - Entity
+    - State
+    - Context
+
   relations:
-  - hasState
-  - existsIn
+    - hasState
+    - existsIn
+
 must_preserve:
-- Projection != State
+  - Projection != State
+
 answer_contract:
   minimum_requirements:
-  - current_state_identified
-  - state_bound_to_entity
-  - state_context_known
+    - current_state_identified
+    - state_bound_to_entity
+    - state_context_known
+
 failure_contract:
   failure_states:
-  - projection_substituted_for_state
-  - state_context_missing
+    - projection_substituted_for_state
+    - state_context_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

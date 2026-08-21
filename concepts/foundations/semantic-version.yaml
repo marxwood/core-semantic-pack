@@ -1,0 +1,28 @@
+id: core.semantic-version
+symbol: SemanticVersion
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+definition: A stable identifier for a governed state of meaning, boundaries, or composition used to support
+  compatibility and historical reconstruction.
+
+exclusions:
+  - SemanticVersion is not necessarily a software release.
+  - SemanticVersion is not a timestamp alone.
+  - SemanticVersion is not authority by itself.
+
+required_relations: []
+
+conditional_relations:
+  - supersedes
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Historical objects must remain interpretable under the meaning active when they were created,
+    admitted, or bound.

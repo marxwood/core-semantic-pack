@@ -1,0 +1,360 @@
+id: core.relation-index
+version: 0.1.0
+status: experimental
+
+relations:
+  - symbol: hasIdentity
+    id: core.rel.has-identity
+    file: relations/has-identity.yaml
+
+  - symbol: identityOf
+    id: core.rel.identity-of
+    file: relations/identity-of.yaml
+
+  - symbol: existsIn
+    id: core.rel.exists-in
+    file: relations/exists-in.yaml
+
+  - symbol: boundedBy
+    id: core.rel.bounded-by
+    file: relations/bounded-by.yaml
+
+  - symbol: hasState
+    id: core.rel.has-state
+    file: relations/has-state.yaml
+
+  - symbol: stateOf
+    id: core.rel.state-of
+    file: relations/state-of.yaml
+
+  - symbol: previousState
+    id: core.rel.previous-state
+    file: relations/previous-state.yaml
+
+  - symbol: resultingState
+    id: core.rel.resulting-state
+    file: relations/resulting-state.yaml
+
+  - symbol: causedBy
+    id: core.rel.caused-by
+    file: relations/caused-by.yaml
+
+  - symbol: causes
+    id: core.rel.causes
+    file: relations/causes.yaml
+
+  - symbol: derivedFrom
+    id: core.rel.derived-from
+    file: relations/derived-from.yaml
+
+  - symbol: projects
+    id: core.rel.projects
+    file: relations/projects.yaml
+
+  - symbol: interprets
+    id: core.rel.interprets
+    file: relations/interprets.yaml
+
+  - symbol: observedFrom
+    id: core.rel.observed-from
+    file: relations/observed-from.yaml
+
+  - symbol: observedBy
+    id: core.rel.observed-by
+    file: relations/observed-by.yaml
+
+  - symbol: observes
+    id: core.rel.observes
+    file: relations/observes.yaml
+
+  - symbol: expressedBy
+    id: core.rel.expressed-by
+    file: relations/expressed-by.yaml
+
+  - symbol: expresses
+    id: core.rel.expresses
+    file: relations/expresses.yaml
+
+  - symbol: assertedBy
+    id: core.rel.asserted-by
+    file: relations/asserted-by.yaml
+
+  - symbol: asserts
+    id: core.rel.asserts
+    file: relations/asserts.yaml
+
+  - symbol: supports
+    id: core.rel.supports
+    file: relations/supports.yaml
+
+  - symbol: supportedBy
+    id: core.rel.supported-by
+    file: relations/supported-by.yaml
+
+  - symbol: contradicts
+    id: core.rel.contradicts
+    file: relations/contradicts.yaml
+
+  - symbol: contradictedBy
+    id: core.rel.contradicted-by
+    file: relations/contradicted-by.yaml
+
+  - symbol: inferredFrom
+    id: core.rel.inferred-from
+    file: relations/inferred-from.yaml
+
+  - symbol: hasProvenance
+    id: core.rel.has-provenance
+    file: relations/has-provenance.yaml
+
+  - symbol: hasUncertainty
+    id: core.rel.has-uncertainty
+    file: relations/has-uncertainty.yaml
+
+  - symbol: hasValidity
+    id: core.rel.has-validity
+    file: relations/has-validity.yaml
+
+  - symbol: contestedBy
+    id: core.rel.contested-by
+    file: relations/contested-by.yaml
+
+  - symbol: contests
+    id: core.rel.contests
+    file: relations/contests.yaml
+
+  - symbol: raisedBy
+    id: core.rel.raised-by
+    file: relations/raised-by.yaml
+
+  - symbol: reviewedBy
+    id: core.rel.reviewed-by
+    file: relations/reviewed-by.yaml
+
+  - symbol: resolvedBy
+    id: core.rel.resolved-by
+    file: relations/resolved-by.yaml
+
+  - symbol: supportSubject
+    id: core.rel.support-subject
+    file: relations/support-subject.yaml
+
+  - symbol: supportObject
+    id: core.rel.support-object
+    file: relations/support-object.yaml
+
+  - symbol: contradictionSubject
+    id: core.rel.contradiction-subject
+    file: relations/contradiction-subject.yaml
+
+  - symbol: contradictionObject
+    id: core.rel.contradiction-object
+    file: relations/contradiction-object.yaml
+
+  - symbol: specifies
+    id: core.rel.specifies
+    file: relations/specifies.yaml
+
+  - symbol: desiredBy
+    id: core.rel.desired-by
+    file: relations/desired-by.yaml
+
+  - symbol: advances
+    id: core.rel.advances
+    file: relations/advances.yaml
+
+  - symbol: impliesDirection
+    id: core.rel.implies-direction
+    file: relations/implies-direction.yaml
+
+  - symbol: impliedBy
+    id: core.rel.implied-by
+    file: relations/implied-by.yaml
+
+  - symbol: fromState
+    id: core.rel.from-state
+    file: relations/from-state.yaml
+
+  - symbol: towardState
+    id: core.rel.toward-state
+    file: relations/toward-state.yaml
+
+  - symbol: comprisesStateChange
+    id: core.rel.comprises-state-change
+    file: relations/comprises-state-change.yaml
+
+  - symbol: evaluates
+    id: core.rel.evaluates
+    file: relations/evaluates.yaml
+
+  - symbol: evaluatedAgainst
+    id: core.rel.evaluated-against
+    file: relations/evaluated-against.yaml
+
+  - symbol: heldBy
+    id: core.rel.held-by
+    file: relations/held-by.yaml
+
+  - symbol: holds
+    id: core.rel.holds
+    file: relations/holds.yaml
+
+  - symbol: occupiesRole
+    id: core.rel.occupies-role
+    file: relations/occupies-role.yaml
+
+  - symbol: occupiedBy
+    id: core.rel.occupied-by
+    file: relations/occupied-by.yaml
+
+  - symbol: hasCapability
+    id: core.rel.has-capability
+    file: relations/has-capability.yaml
+
+  - symbol: performedBy
+    id: core.rel.performed-by
+    file: relations/performed-by.yaml
+
+  - symbol: realizes
+    id: core.rel.realizes
+    file: relations/realizes.yaml
+
+  - symbol: participatesIn
+    id: core.rel.participates-in
+    file: relations/participates-in.yaml
+
+  - symbol: comprisesTransformation
+    id: core.rel.comprises-transformation
+    file: relations/comprises-transformation.yaml
+
+  - symbol: partOfProcess
+    id: core.rel.part-of-process
+    file: relations/part-of-process.yaml
+
+  - symbol: transforms
+    id: core.rel.transforms
+    file: relations/transforms.yaml
+
+  - symbol: inputOf
+    id: core.rel.input-of
+    file: relations/input-of.yaml
+
+  - symbol: outputOf
+    id: core.rel.output-of
+    file: relations/output-of.yaml
+
+  - symbol: produces
+    id: core.rel.produces
+    file: relations/produces.yaml
+
+  - symbol: producedBy
+    id: core.rel.produced-by
+    file: relations/produced-by.yaml
+
+  - symbol: transfersObject
+    id: core.rel.transfers-object
+    file: relations/transfers-object.yaml
+
+  - symbol: fromContext
+    id: core.rel.from-context
+    file: relations/from-context.yaml
+
+  - symbol: toContext
+    id: core.rel.to-context
+    file: relations/to-context.yaml
+
+  - symbol: persistsObject
+    id: core.rel.persists-object
+    file: relations/persists-object.yaml
+
+  - symbol: composesObject
+    id: core.rel.composes-object
+    file: relations/composes-object.yaml
+
+  - symbol: crossesBoundary
+    id: core.rel.crosses-boundary
+    file: relations/crosses-boundary.yaml
+
+  - symbol: authorizedBy
+    id: core.rel.authorized-by
+    file: relations/authorized-by.yaml
+
+  - symbol: constrainedBy
+    id: core.rel.constrained-by
+    file: relations/constrained-by.yaml
+
+  - symbol: appliesTo
+    id: core.rel.applies-to
+    file: relations/applies-to.yaml
+
+  - symbol: permits
+    id: core.rel.permits
+    file: relations/permits.yaml
+
+  - symbol: permittedBy
+    id: core.rel.permitted-by
+    file: relations/permitted-by.yaml
+
+  - symbol: governedBy
+    id: core.rel.governed-by
+    file: relations/governed-by.yaml
+
+  - symbol: validatesObject
+    id: core.rel.validates-object
+    file: relations/validates-object.yaml
+
+  - symbol: admitsObject
+    id: core.rel.admits-object
+    file: relations/admits-object.yaml
+
+  - symbol: admittedBy
+    id: core.rel.admitted-by
+    file: relations/admitted-by.yaml
+
+  - symbol: producesState
+    id: core.rel.produces-state
+    file: relations/produces-state.yaml
+
+  - symbol: reviewsObject
+    id: core.rel.reviews-object
+    file: relations/reviews-object.yaml
+
+  - symbol: establishesCommitment
+    id: core.rel.establishes-commitment
+    file: relations/establishes-commitment.yaml
+
+  - symbol: establishedBy
+    id: core.rel.established-by
+    file: relations/established-by.yaml
+
+  - symbol: revokesObject
+    id: core.rel.revokes-object
+    file: relations/revokes-object.yaml
+
+  - symbol: revokedBy
+    id: core.rel.revoked-by
+    file: relations/revoked-by.yaml
+
+  - symbol: accountableFor
+    id: core.rel.accountable-for
+    file: relations/accountable-for.yaml
+
+  - symbol: accountableTo
+    id: core.rel.accountable-to
+    file: relations/accountable-to.yaml
+
+  - symbol: accountableActor
+    id: core.rel.accountable-actor
+    file: relations/accountable-actor.yaml
+
+  - symbol: accountableObject
+    id: core.rel.accountable-object
+    file: relations/accountable-object.yaml
+
+  - symbol: versionedBy
+    id: core.rel.versioned-by
+    file: relations/versioned-by.yaml
+
+  - symbol: supersedes
+    id: core.rel.supersedes
+    file: relations/supersedes.yaml

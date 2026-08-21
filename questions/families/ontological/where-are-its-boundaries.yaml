@@ -4,23 +4,29 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Where are its boundaries?
 family: ontological
+
 requires:
   concepts:
-  - Entity
-  - Boundary
-  - Context
+    - Entity
+    - Boundary
+    - Context
+
   relations:
-  - boundedBy
-  - existsIn
+    - boundedBy
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - boundary_or_scope_identified
-  - boundary_context_explicit
+    - boundary_or_scope_identified
+    - boundary_context_explicit
+
 failure_contract:
   failure_states:
-  - boundary_implicit
-  - scope_ambiguous
+    - boundary_implicit
+    - scope_ambiguous
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -1,0 +1,23 @@
+id: core.boundary.finding-not-binding-decision
+expression: Finding != BindingDecision
+version: 0.1.0
+status: experimental
+
+left: Finding
+operator: '!='
+right: BindingDecision
+
+rule: A Finding must not create institutional commitment or external consequence without a separate Binding
+  act.
+
+rationale: Epistemic result and normative decision are different responsibilities.
+
+failure_code: SEM-BOUNDARY-006
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

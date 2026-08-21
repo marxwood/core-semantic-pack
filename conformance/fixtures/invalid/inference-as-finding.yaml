@@ -1,18 +1,23 @@
 id: core.fixture.invalid.inference-as-finding
 version: 0.1.0
 status: illustrative
+
 description: An intermediate Inference is labeled a Finding without evaluation, validity, or governed
   derivation.
+
 expected: invalid
+
 objects:
-- id: inference:tentative
-  type: Inference
-  attributes:
-    represented_as: Finding
+  - id: inference:tentative
+    type: Inference
+    attributes:
+      represented_as: Finding
+
 relations: []
+
 expectations:
   rules_pass: []
   rules_fail:
-  - FindingGoverned
+    - FindingGoverned
   boundaries_triggered:
-  - Inference != Finding
+    - Inference != Finding

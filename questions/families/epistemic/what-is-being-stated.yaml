@@ -4,25 +4,31 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What is being stated?
 family: epistemic
+
 requires:
   concepts:
-  - Statement
-  - Actor
-  - Source
-  - Context
+    - Statement
+    - Actor
+    - Source
+    - Context
+
   relations:
-  - expressedBy
-  - existsIn
+    - expressedBy
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - statement_identified
-  - expression_source_or_actor_identified
-  - context_explicit
+    - statement_identified
+    - expression_source_or_actor_identified
+    - context_explicit
+
 failure_contract:
   failure_states:
-  - statement_unattributed
-  - statement_context_missing
+    - statement_unattributed
+    - statement_context_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

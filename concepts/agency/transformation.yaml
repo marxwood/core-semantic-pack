@@ -1,0 +1,35 @@
+id: core.transformation
+symbol: Transformation
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+definition: A declared conversion of semantic inputs, objects, or States into outputs, Derivatives, or
+  resulting States.
+
+exclusions:
+  - Transformation is not Process as a whole.
+  - Transformation is not StateChange by definition.
+  - Transformation is not Action by definition.
+  - Transformation is not Runtime step by necessity.
+
+required_relations: []
+
+conditional_relations:
+  - inputOf
+  - outputOf
+  - partOfProcess
+  - producedBy
+  - existsIn
+  - versionedBy
+
+boundaries:
+  - Action != StateChange
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Transformation meaning should survive whether realized by a human, agent, tool, model, or
+    other runtime mechanism.

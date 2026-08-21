@@ -1,26 +1,34 @@
 id: core.fixture.invalid.source-as-projection
 version: 0.1.0
 status: illustrative
+
 description: A derived summary is declared to be the Source it represents.
+
 expected: invalid
+
 objects:
-- id: source:original
-  type: Source
-- id: projection:summary
-  type: Projection
-  attributes:
-    represented_as: Source
-- id: provenance:summary
-  type: Provenance
+  - id: source:original
+    type: Source
+
+  - id: projection:summary
+    type: Projection
+    attributes:
+      represented_as: Source
+
+  - id: provenance:summary
+    type: Provenance
+
 relations:
-- relation: projects
-  source: projection:summary
-  target: source:original
-- relation: hasProvenance
-  source: projection:summary
-  target: provenance:summary
+  - relation: projects
+    source: projection:summary
+    target: source:original
+
+  - relation: hasProvenance
+    source: projection:summary
+    target: provenance:summary
+
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - Source != Projection
+    - Source != Projection

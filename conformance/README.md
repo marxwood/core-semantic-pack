@@ -1,4 +1,3 @@
-
 # Conformance
 
 Conformance evidence tests whether a representation preserves declared Core distinctions and obligations.

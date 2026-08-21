@@ -3,24 +3,29 @@ symbol: SemanticStatusCollapse
 version: 0.1.0
 status: experimental
 kind: failure-pattern
+
 definition: A failure in which a semantic object acquires a stronger epistemic, admission, or authority
   status without the explicit governed transition required for that status.
+
 detects_boundaries:
-- Inference != Finding
-- Projection != State
-- Repetition != Validation
-- Review != Binding
-- Capability != Authority
-- Persistence != Admission
+  - Inference != Finding
+  - Projection != State
+  - Repetition != Validation
+  - Review != Binding
+  - Capability != Authority
+  - Persistence != Admission
+
 examples:
-- Inference persisted and later treated as Finding.
-- Projection reused as maintained State.
-- Repeated Claim treated as validated knowledge.
-- Review treated as Binding.
-- Capability treated as Authority.
+  - Inference persisted and later treated as Finding.
+  - Projection reused as maintained State.
+  - Repeated Claim treated as validated knowledge.
+  - Review treated as Binding.
+  - Capability treated as Authority.
+
 required_response:
-- preserve original object and status
-- record the invalid transition attempt
-- prevent stronger consequence
-- request Validation, Admission, Review, Binding, or Authority as applicable
+  - preserve original object and status
+  - record the invalid transition attempt
+  - prevent stronger consequence
+  - request Validation, Admission, Review, Binding, or Authority as applicable
+
 not_a_primitive: true

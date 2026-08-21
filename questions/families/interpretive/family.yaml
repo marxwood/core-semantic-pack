@@ -3,15 +3,19 @@ symbol: interpretive
 version: 0.1.0
 status: experimental
 kind: question-family
+
 purpose: Questions about interpretation, representation, derivation, context, and projection collapse.
+
 authority:
   class: taxonomy-only
   defines_question_requirements: false
   requirements_are_inherited: false
+
 questions:
-- Which interpretation of reality produced this conclusion?
-- Which representation are we looking at?
-- What Source or State does it derive from?
-- Which Context shaped the interpretation?
-- Has a Projection silently become accepted as State?
+  - Which interpretation of reality produced this conclusion?
+  - Which representation are we looking at?
+  - What Source or State does it derive from?
+  - Which Context shaped the interpretation?
+  - Has a Projection silently become accepted as State?
+
 related_questions: []

@@ -1,4 +1,3 @@
-
 # Semantic composition
 
 The Core Semantic Pack is a kernel, not a complete semantic environment.

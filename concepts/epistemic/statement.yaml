@@ -1,0 +1,32 @@
+id: core.statement
+symbol: Statement
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+definition: A semantically typed expression that can be attributed, interpreted, questioned, or asserted
+  without implying that it has already been accepted as true.
+
+not_equivalent_to:
+  - Evidence
+
+exclusions:
+  - Statement is not truth.
+  - Statement is not a Claim unless asserted as such.
+
+required_relations: []
+
+conditional_relations:
+  - expressedBy
+  - existsIn
+  - hasProvenance
+  - versionedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: The system needs a neutral expression layer before assertion status is attached.

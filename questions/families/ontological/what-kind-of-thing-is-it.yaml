@@ -4,21 +4,27 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What kind of thing is it?
 family: ontological
+
 requires:
   concepts:
-  - Entity
-  - Context
+    - Entity
+    - Context
+
   relations:
-  - existsIn
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - semantic_kind_declared
-  - classification_context_explicit
+    - semantic_kind_declared
+    - classification_context_explicit
+
 failure_contract:
   failure_states:
-  - unclassified_referent
-  - classification_context_missing
+    - unclassified_referent
+    - classification_context_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

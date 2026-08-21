@@ -1,24 +1,31 @@
 id: core.fixture.invalid.operational-success-as-progress
 version: 0.1.0
 status: illustrative
+
 description: Completed execution is represented as Progress without evaluation against DesiredState.
+
 expected: invalid
+
 objects:
-- id: action:completed-run
-  type: Action
-  attributes:
-    runtime_status: succeeded
-- id: progress:assumed
-  type: Progress
-- id: goal:improve-outcome
-  type: Goal
+  - id: action:completed-run
+    type: Action
+    attributes:
+      runtime_status: succeeded
+
+  - id: progress:assumed
+    type: Progress
+
+  - id: goal:improve-outcome
+    type: Goal
+
 relations:
-- relation: produces
-  source: action:completed-run
-  target: progress:assumed
+  - relation: produces
+    source: action:completed-run
+    target: progress:assumed
+
 expectations:
   rules_pass: []
   rules_fail:
-  - GoalProgressIndependent
+    - GoalProgressIndependent
   boundaries_triggered:
-  - OperationalSuccess != Progress
+    - OperationalSuccess != Progress

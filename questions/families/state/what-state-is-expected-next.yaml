@@ -4,27 +4,33 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What State is expected next?
 family: state
+
 requires:
   concepts:
-  - State
-  - Context
-  - Uncertainty
-  - Provenance
+    - State
+    - Context
+    - Uncertainty
+    - Provenance
+
   relations:
-  - existsIn
-  - hasUncertainty
-  - hasProvenance
+    - existsIn
+    - hasUncertainty
+    - hasProvenance
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - expected_state_identified
-  - expectation_status_explicit
-  - uncertainty_explicit
-  - context_explicit
+    - expected_state_identified
+    - expectation_status_explicit
+    - uncertainty_explicit
+    - context_explicit
+
 failure_contract:
   failure_states:
-  - expectation_represented_as_maintained_state
-  - uncertainty_missing
+    - expectation_represented_as_maintained_state
+    - uncertainty_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -1,4 +1,3 @@
-
 # Examples
 
 Examples show how Core records can participate in a concrete semantic trace.

@@ -1,0 +1,16 @@
+id: core.rel.observed-from
+symbol: observedFrom
+version: 0.1.0
+status: experimental
+
+definition: Identifies the Source from which an Observation was obtained.
+
+source:
+  - Observation
+
+target:
+  - Source
+
+direction: directed
+provenance: required
+authority_effect: none

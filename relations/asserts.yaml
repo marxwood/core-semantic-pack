@@ -1,0 +1,19 @@
+id: core.rel.asserts
+symbol: asserts
+version: 0.1.0
+status: experimental
+
+definition: Associates an Actor or Source with a Claim it asserted.
+
+source:
+  - Actor
+  - Source
+
+target:
+  - Claim
+
+direction: directed
+provenance: required
+authority_effect: none
+
+inverse: assertedBy

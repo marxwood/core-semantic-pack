@@ -1,7 +1,7 @@
 # Core Semantic Pack v0.1
 
-**Status:** Working reference specification / non-canonical  
-**Scope:** Runtime-neutral  
+**Status:** Working reference specification / non-canonical
+**Scope:** Runtime-neutral
 **Purpose:** Minimal, stable semantic kernel for human-agentic systems
 
 ---

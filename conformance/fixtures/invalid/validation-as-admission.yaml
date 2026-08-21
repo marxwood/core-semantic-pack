@@ -1,24 +1,30 @@
 id: core.fixture.invalid.validation-as-admission
 version: 0.1.0
 status: illustrative
+
 description: Successful Validation is treated as completed Admission into maintained State.
+
 expected: invalid
+
 objects:
-- id: validation:schema-pass
-  type: Validation
-  attributes:
-    represented_as: Admission
-- id: claim:candidate
-  type: Claim
-  attributes:
-    admission_status: admitted
+  - id: validation:schema-pass
+    type: Validation
+    attributes:
+      represented_as: Admission
+
+  - id: claim:candidate
+    type: Claim
+    attributes:
+      admission_status: admitted
+
 relations:
-- relation: validatesObject
-  source: validation:schema-pass
-  target: claim:candidate
+  - relation: validatesObject
+    source: validation:schema-pass
+    target: claim:candidate
+
 expectations:
   rules_pass: []
   rules_fail:
-  - AdmissionExplicit
+    - AdmissionExplicit
   boundaries_triggered:
-  - Validation != Admission
+    - Validation != Admission

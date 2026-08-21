@@ -1,0 +1,96 @@
+id: core.boundary-index
+version: 0.1.0
+status: experimental
+
+boundaries:
+  - expression: Source != Projection
+    id: core.boundary.source-not-projection
+    file: boundaries/source-not-projection.yaml
+
+  - expression: Observation != Claim
+    id: core.boundary.observation-not-claim
+    file: boundaries/observation-not-claim.yaml
+
+  - expression: Claim != Evidence
+    id: core.boundary.claim-not-evidence
+    file: boundaries/claim-not-evidence.yaml
+
+  - expression: Evidence != Truth
+    id: core.boundary.evidence-not-truth
+    file: boundaries/evidence-not-truth.yaml
+
+  - expression: Inference != Finding
+    id: core.boundary.inference-not-finding
+    file: boundaries/inference-not-finding.yaml
+
+  - expression: Finding != BindingDecision
+    id: core.boundary.finding-not-binding-decision
+    file: boundaries/finding-not-binding-decision.yaml
+
+  - expression: Projection != State
+    id: core.boundary.projection-not-state
+    file: boundaries/projection-not-state.yaml
+
+  - expression: Validation != Admission
+    id: core.boundary.validation-not-admission
+    file: boundaries/validation-not-admission.yaml
+
+  - expression: Review != Binding
+    id: core.boundary.review-not-binding
+    file: boundaries/review-not-binding.yaml
+
+  - expression: Capability != Authority
+    id: core.boundary.capability-not-authority
+    file: boundaries/capability-not-authority.yaml
+
+  - expression: Persistence != Admission
+    id: core.boundary.persistence-not-admission
+    file: boundaries/persistence-not-admission.yaml
+
+  - expression: Repetition != Validation
+    id: core.boundary.repetition-not-validation
+    file: boundaries/repetition-not-validation.yaml
+
+  - expression: Goal != DesiredState
+    id: core.boundary.goal-not-desired-state
+    file: boundaries/goal-not-desired-state.yaml
+
+  - expression: DesiredState != Prediction
+    id: core.boundary.desired-state-not-prediction
+    file: boundaries/desired-state-not-prediction.yaml
+
+  - expression: DesiredState != Plan
+    id: core.boundary.desired-state-not-plan
+    file: boundaries/desired-state-not-plan.yaml
+
+  - expression: Intent != Goal
+    id: core.boundary.intent-not-goal
+    file: boundaries/intent-not-goal.yaml
+
+  - expression: Intent != Authority
+    id: core.boundary.intent-not-authority
+    file: boundaries/intent-not-authority.yaml
+
+  - expression: Action != Intent
+    id: core.boundary.action-not-intent
+    file: boundaries/action-not-intent.yaml
+
+  - expression: Action != StateChange
+    id: core.boundary.action-not-state-change
+    file: boundaries/action-not-state-change.yaml
+
+  - expression: Process != ExecutionContract
+    id: core.boundary.process-not-execution-contract
+    file: boundaries/process-not-execution-contract.yaml
+
+  - expression: ExecutionContract != ExecutionPlan
+    id: core.boundary.execution-contract-not-execution-plan
+    file: boundaries/execution-contract-not-execution-plan.yaml
+
+  - expression: ExecutionPlan != Runtime
+    id: core.boundary.execution-plan-not-runtime
+    file: boundaries/execution-plan-not-runtime.yaml
+
+  - expression: OperationalSuccess != Progress
+    id: core.boundary.operational-success-not-goal-progress
+    file: boundaries/operational-success-not-progress.yaml

@@ -1,0 +1,17 @@
+id: core.rel.resulting-state
+symbol: resultingState
+version: 0.1.0
+status: experimental
+
+definition: Identifies the State that results from a StateChange or ExternalEffect.
+
+source:
+  - StateChange
+  - ExternalEffect
+
+target:
+  - State
+
+direction: directed
+provenance: optional
+authority_effect: none

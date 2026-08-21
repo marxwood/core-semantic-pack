@@ -1,0 +1,19 @@
+id: core.rel.admitted-by
+symbol: admittedBy
+version: 0.1.0
+status: experimental
+
+definition: Associates an object with the Admission act that established its admitted status.
+
+source:
+  - Evidence
+  - Finding
+  - State
+  - Any
+
+target:
+  - Admission
+
+direction: directed
+provenance: required
+authority_effect: admission-transition

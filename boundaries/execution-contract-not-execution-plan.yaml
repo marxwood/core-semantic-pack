@@ -1,0 +1,23 @@
+id: core.boundary.execution-contract-not-execution-plan
+expression: ExecutionContract != ExecutionPlan
+version: 0.1.0
+status: experimental
+
+left: ExecutionContract
+operator: '!='
+right: ExecutionPlan
+
+rule: ExecutionContract must not be reduced to the concrete ordering, bindings, or orchestration of an
+  ExecutionPlan.
+
+rationale: Semantic legitimacy must survive changes in runtime realization.
+
+failure_code: SEM-BOUNDARY-021
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

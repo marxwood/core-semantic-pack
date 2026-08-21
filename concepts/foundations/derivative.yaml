@@ -1,0 +1,32 @@
+id: core.derivative
+symbol: Derivative
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+definition: A semantic object produced through a declared transformation from one or more Sources or prior
+  semantic objects.
+
+exclusions:
+  - Derivative is not its Source.
+  - Derivative is not automatically authoritative.
+  - Derivative is not automatically valid.
+
+required_relations:
+  - derivedFrom
+  - hasProvenance
+
+conditional_relations:
+  - producedBy
+  - existsIn
+  - versionedBy
+
+boundaries:
+  - Source != Projection
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Derived content must remain distinguishable from origin and must not inherit authority implicitly.

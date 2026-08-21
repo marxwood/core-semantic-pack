@@ -4,27 +4,33 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Which transition requires Review?
 family: governance
+
 requires:
   concepts:
-  - Review
-  - StateChange
-  - Contract
-  - Constraint
+    - Review
+    - StateChange
+    - Contract
+    - Constraint
+
   relations:
-  - reviewsObject
-  - governedBy
-  - constrainedBy
+    - reviewsObject
+    - governedBy
+    - constrainedBy
+
 must_preserve:
-- Review != Binding
+  - Review != Binding
+
 answer_contract:
   minimum_requirements:
-  - transition_identified
-  - review_requirement_traceable
-  - review_outcome_separated_from_binding
+    - transition_identified
+    - review_requirement_traceable
+    - review_outcome_separated_from_binding
+
 failure_contract:
   failure_states:
-  - review_requirement_missing
-  - review_used_as_binding
+    - review_requirement_missing
+    - review_used_as_binding
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

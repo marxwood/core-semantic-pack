@@ -1,0 +1,18 @@
+id: core.rel.part-of-process
+symbol: partOfProcess
+version: 0.1.0
+status: experimental
+
+definition: Identifies the Process containing a Transformation.
+
+source:
+  - Transformation
+
+target:
+  - Process
+
+direction: directed
+provenance: optional
+authority_effect: none
+
+inverse: comprisesTransformation

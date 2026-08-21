@@ -1,0 +1,29 @@
+id: core.identity
+symbol: Identity
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+definition: The declared criteria or reference by which an Entity is treated as the same Entity across
+  representations, contexts, and change.
+
+exclusions:
+  - Identity is not a display label.
+  - Identity is not a semantic type.
+  - Identity is not authority.
+  - Identity is not a database primary key by necessity.
+
+required_relations: []
+
+conditional_relations:
+  - versionedBy
+  - supersedes
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Semantic continuity requires identity to survive changes in representation and implementation.

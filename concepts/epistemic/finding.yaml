@@ -1,0 +1,40 @@
+id: core.finding
+symbol: Finding
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+definition: A contextual epistemic result produced by evaluating Evidence and Inference under declared
+  validity and review conditions.
+
+not_equivalent_to:
+  - BindingDecision
+
+exclusions:
+  - Finding is not universal truth.
+  - Finding is not maintained State by default.
+  - Finding is not a polished Projection.
+
+required_relations:
+  - derivedFrom
+  - hasProvenance
+  - hasValidity
+
+conditional_relations:
+  - supportedBy
+  - contradictedBy
+  - hasUncertainty
+  - contestedBy
+  - admittedBy
+
+boundaries:
+  - Inference != Finding
+  - Finding != BindingDecision
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: A governed result must remain distinguishable from intermediate reasoning and from authority-bearing
+    decisions.

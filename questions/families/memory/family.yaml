@@ -3,18 +3,22 @@ symbol: memory
 version: 0.1.0
 status: experimental
 kind: question-family
+
 purpose: Questions about what persists, with which semantic type, provenance, status, version, and validity.
+
 authority:
   class: taxonomy-only
   defines_question_requirements: false
   requirements_are_inherited: false
+
 questions:
-- What should the system remember?
-- What exactly is being remembered?
-- Was it an Observation, Claim, Evidence item, Inference, Finding, Decision, Goal, or StateChange?
-- Under which semantic status was it admitted?
-- Which Provenance does it retain?
-- What later contradicted or superseded it?
-- Is it still valid?
-- Under which version and Context was it valid?
+  - What should the system remember?
+  - What exactly is being remembered?
+  - Was it an Observation, Claim, Evidence item, Inference, Finding, Decision, Goal, or StateChange?
+  - Under which semantic status was it admitted?
+  - Which Provenance does it retain?
+  - What later contradicted or superseded it?
+  - Is it still valid?
+  - Under which version and Context was it valid?
+
 related_questions: []

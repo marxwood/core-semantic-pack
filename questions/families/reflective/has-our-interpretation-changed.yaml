@@ -4,27 +4,33 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Has our Interpretation changed?
 family: reflective
+
 requires:
   concepts:
-  - Interpretation
-  - SemanticVersion
-  - Context
-  - Provenance
+    - Interpretation
+    - SemanticVersion
+    - Context
+    - Provenance
+
   relations:
-  - supersedes
-  - versionedBy
-  - existsIn
-  - hasProvenance
+    - supersedes
+    - versionedBy
+    - existsIn
+    - hasProvenance
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - current_and_prior_interpretation_comparable
-  - version_lineage_traceable
-  - interpretive_context_explicit
+    - current_and_prior_interpretation_comparable
+    - version_lineage_traceable
+    - interpretive_context_explicit
+
 failure_contract:
   failure_states:
-  - interpretation_drift_untracked
-  - historical_interpretation_erased
+    - interpretation_drift_untracked
+    - historical_interpretation_erased
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

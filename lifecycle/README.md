@@ -1,4 +1,3 @@
-
 # Lifecycle and status families
 
 Lifecycle records prevent several different kinds of status from collapsing into one generic `status` field.

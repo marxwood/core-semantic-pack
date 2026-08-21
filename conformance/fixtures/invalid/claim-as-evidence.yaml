@@ -1,18 +1,23 @@
 id: core.fixture.invalid.claim-as-evidence
 version: 0.1.0
 status: illustrative
+
 description: A Claim is used as support for itself without a separate admitted Evidence object.
+
 expected: invalid
+
 objects:
-- id: claim:self-supporting
-  type: Claim
+  - id: claim:self-supporting
+    type: Claim
+
 relations:
-- relation: supports
-  source: claim:self-supporting
-  target: claim:self-supporting
+  - relation: supports
+    source: claim:self-supporting
+    target: claim:self-supporting
+
 expectations:
   rules_pass: []
   rules_fail:
-  - EvidenceAdmittedAndProvenanced
+    - EvidenceAdmittedAndProvenanced
   boundaries_triggered:
-  - Claim != Evidence
+    - Claim != Evidence

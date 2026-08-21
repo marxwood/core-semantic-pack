@@ -1,55 +1,74 @@
 id: core.fixture.valid.authorized-action
 version: 0.1.0
 status: illustrative
+
 description: An Action is attributable, tied through Intent to an authorized Goal and DesiredState, and
   participates in a declared Process.
+
 expected: valid
+
 objects:
-- id: goal:maintain-protection
-  type: Goal
-- id: desired-state:coverage-retained
-  type: DesiredState
-- id: intent:identify-filings
-  type: Intent
-- id: process:portfolio-analysis
-  type: Process
-- id: action:generate-recommendations
-  type: Action
-- id: actor:analysis-agent
-  type: Actor
-- id: authority:analysis-mandate
-  type: Authority
-- id: context:portfolio-review
-  type: Context
+  - id: goal:maintain-protection
+    type: Goal
+
+  - id: desired-state:coverage-retained
+    type: DesiredState
+
+  - id: intent:identify-filings
+    type: Intent
+
+  - id: process:portfolio-analysis
+    type: Process
+
+  - id: action:generate-recommendations
+    type: Action
+
+  - id: actor:analysis-agent
+    type: Actor
+
+  - id: authority:analysis-mandate
+    type: Authority
+
+  - id: context:portfolio-review
+    type: Context
+
 relations:
-- relation: specifies
-  source: goal:maintain-protection
-  target: desired-state:coverage-retained
-- relation: authorizedBy
-  source: goal:maintain-protection
-  target: authority:analysis-mandate
-- relation: advances
-  source: intent:identify-filings
-  target: goal:maintain-protection
-- relation: realizes
-  source: action:generate-recommendations
-  target: intent:identify-filings
-- relation: participatesIn
-  source: action:generate-recommendations
-  target: process:portfolio-analysis
-- relation: performedBy
-  source: action:generate-recommendations
-  target: actor:analysis-agent
-- relation: authorizedBy
-  source: action:generate-recommendations
-  target: authority:analysis-mandate
-- relation: existsIn
-  source: action:generate-recommendations
-  target: context:portfolio-review
+  - relation: specifies
+    source: goal:maintain-protection
+    target: desired-state:coverage-retained
+
+  - relation: authorizedBy
+    source: goal:maintain-protection
+    target: authority:analysis-mandate
+
+  - relation: advances
+    source: intent:identify-filings
+    target: goal:maintain-protection
+
+  - relation: realizes
+    source: action:generate-recommendations
+    target: intent:identify-filings
+
+  - relation: participatesIn
+    source: action:generate-recommendations
+    target: process:portfolio-analysis
+
+  - relation: performedBy
+    source: action:generate-recommendations
+    target: actor:analysis-agent
+
+  - relation: authorizedBy
+    source: action:generate-recommendations
+    target: authority:analysis-mandate
+
+  - relation: existsIn
+    source: action:generate-recommendations
+    target: context:portfolio-review
+
 expectations:
   rules_pass:
-  - ActionPurposeChain
-  - CapabilityAuthoritySeparation
-  - AnswerabilityGatesConsequence
+    - ActionPurposeChain
+    - CapabilityAuthoritySeparation
+    - AnswerabilityGatesConsequence
   rules_fail: []
   boundaries_triggered: []

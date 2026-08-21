@@ -1,0 +1,16 @@
+id: core.rel.comprises-state-change
+symbol: comprisesStateChange
+version: 0.1.0
+status: experimental
+
+definition: Associates a Trajectory with an ordered or otherwise related StateChange.
+
+source:
+  - Trajectory
+
+target:
+  - StateChange
+
+direction: directed
+provenance: optional
+authority_effect: none

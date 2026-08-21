@@ -1,0 +1,30 @@
+id: core.provenance
+symbol: Provenance
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+definition: The reconstructable lineage of origin, attribution, transformation, context, and version for
+  a semantic object or relation.
+
+exclusions:
+  - Provenance is not a citation alone.
+  - Provenance is not a source identifier alone.
+  - Provenance is not proof of validity.
+
+required_relations: []
+
+conditional_relations:
+  - derivedFrom
+  - producedBy
+  - versionedBy
+  - existsIn
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Semantic continuity requires lineage to survive transfer, composition, persistence, and projection.

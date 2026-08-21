@@ -4,28 +4,34 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Who authorized this?
 family: governance
+
 requires:
   concepts:
-  - Authority
-  - Actor
-  - Role
-  - Context
+    - Authority
+    - Actor
+    - Role
+    - Context
+
   relations:
-  - authorizedBy
-  - heldBy
-  - existsIn
+    - authorizedBy
+    - heldBy
+    - existsIn
+
 must_preserve:
-- Capability != Authority
-- Intent != Authority
+  - Capability != Authority
+  - Intent != Authority
+
 answer_contract:
   minimum_requirements:
-  - authority_identified
-  - authority_holder_or_source_traceable
-  - authority_scope_context_explicit
+    - authority_identified
+    - authority_holder_or_source_traceable
+    - authority_scope_context_explicit
+
 failure_contract:
   failure_states:
-  - implicit_authority
-  - authority_scope_missing
+    - implicit_authority
+    - authority_scope_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

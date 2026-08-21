@@ -1,0 +1,36 @@
+id: core.interpretation
+symbol: Interpretation
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+definition: A contextual assignment of meaning to a Source, Observation, State, Relation, or Derivative.
+
+not_equivalent_to:
+  - Observation
+  - Evidence
+
+exclusions:
+  - Interpretation is not truth.
+  - Interpretation is not authority.
+
+required_relations:
+  - interprets
+  - existsIn
+
+conditional_relations:
+  - hasProvenance
+  - performedBy
+  - versionedBy
+
+boundaries:
+  - Observation != Claim
+  - Projection != State
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Interpretation is unavoidable; making it explicit prevents it from silently masquerading
+    as direct reality.

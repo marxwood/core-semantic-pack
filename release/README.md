@@ -1,4 +1,3 @@
-
 # Releases
 
 A semantic release identifies an immutable set of definitions, relations, boundaries, question obligations, patterns, lifecycle rules, composition rules, mappings, and conformance evidence.

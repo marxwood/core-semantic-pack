@@ -1,0 +1,16 @@
+id: core.rel.advances
+symbol: advances
+version: 0.1.0
+status: experimental
+
+definition: Associates an Intent with the Goal it is intended to advance.
+
+source:
+  - Intent
+
+target:
+  - Goal
+
+direction: directed
+provenance: optional
+authority_effect: none

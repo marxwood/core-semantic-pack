@@ -1,0 +1,37 @@
+id: core.projection
+symbol: Projection
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+definition: A purpose-oriented Derivative that represents, selects, summarizes, or composes semantic objects
+  for a declared audience or use.
+
+not_equivalent_to:
+  - Source
+  - Binding
+
+exclusions:
+  - Projection is not maintained State.
+  - Projection is not authority merely because it is final or visible.
+
+required_relations:
+  - projects
+  - hasProvenance
+
+conditional_relations:
+  - existsIn
+  - governedBy
+  - versionedBy
+
+boundaries:
+  - Source != Projection
+  - Projection != State
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Organizations require representations, but representations must not become indistinguishable
+    from their sources or maintained State.

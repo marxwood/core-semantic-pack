@@ -1,0 +1,19 @@
+id: core.rel.observed-by
+symbol: observedBy
+version: 0.1.0
+status: experimental
+
+definition: Identifies the Actor or Role responsible for producing an Observation.
+
+source:
+  - Observation
+
+target:
+  - Actor
+  - Role
+
+direction: directed
+provenance: optional
+authority_effect: none
+
+inverse: observes

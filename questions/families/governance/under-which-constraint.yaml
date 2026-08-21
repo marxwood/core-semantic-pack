@@ -4,24 +4,30 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Under which Constraint?
 family: governance
+
 requires:
   concepts:
-  - Constraint
-  - Context
+    - Constraint
+    - Context
+
   relations:
-  - constrainedBy
-  - appliesTo
-  - existsIn
+    - constrainedBy
+    - appliesTo
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - constraint_identified
-  - constrained_object_or_transition_identified
-  - constraint_context_explicit
+    - constraint_identified
+    - constrained_object_or_transition_identified
+    - constraint_context_explicit
+
 failure_contract:
   failure_states:
-  - constraint_implicit
-  - constraint_scope_ambiguous
+    - constraint_implicit
+    - constraint_scope_ambiguous
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

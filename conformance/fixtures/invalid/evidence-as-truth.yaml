@@ -1,21 +1,27 @@
 id: core.fixture.invalid.evidence-as-truth
 version: 0.1.0
 status: illustrative
+
 description: Context-bound Evidence is declared universally true.
+
 expected: invalid
+
 objects:
-- id: evidence:measurement
-  type: Evidence
-  attributes:
-    represented_as: Truth
-- id: context:test-regime
-  type: Context
+  - id: evidence:measurement
+    type: Evidence
+    attributes:
+      represented_as: Truth
+
+  - id: context:test-regime
+    type: Context
+
 relations:
-- relation: existsIn
-  source: evidence:measurement
-  target: context:test-regime
+  - relation: existsIn
+    source: evidence:measurement
+    target: context:test-regime
+
 expectations:
   rules_pass: []
   rules_fail: []
   boundaries_triggered:
-  - Evidence != Truth
+    - Evidence != Truth

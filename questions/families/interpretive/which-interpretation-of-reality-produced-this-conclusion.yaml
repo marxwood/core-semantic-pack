@@ -4,30 +4,36 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Which interpretation of reality produced this conclusion?
 family: interpretive
+
 requires:
   concepts:
-  - Interpretation
-  - Context
-  - Provenance
-  - Actor
+    - Interpretation
+    - Context
+    - Provenance
+    - Actor
+
   relations:
-  - interprets
-  - performedBy
-  - existsIn
-  - hasProvenance
+    - interprets
+    - performedBy
+    - existsIn
+    - hasProvenance
+
 must_preserve:
-- Source != Projection
+  - Source != Projection
+
 answer_contract:
   minimum_requirements:
-  - interpretation_identified
-  - interpreted_object_traceable
-  - interpretive_actor_or_role_known
-  - context_explicit
-  - provenance_preserved
+    - interpretation_identified
+    - interpreted_object_traceable
+    - interpretive_actor_or_role_known
+    - context_explicit
+    - provenance_preserved
+
 failure_contract:
   failure_states:
-  - interpretation_implicit
-  - interpretive_context_missing
+    - interpretation_implicit
+    - interpretive_context_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

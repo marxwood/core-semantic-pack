@@ -4,22 +4,28 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Which Provenance does it retain?
 family: memory
+
 requires:
   concepts:
-  - Provenance
-  - Persistence
+    - Provenance
+    - Persistence
+
   relations:
-  - hasProvenance
-  - persistsObject
+    - hasProvenance
+    - persistsObject
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - persisted_object_identified
-  - provenance_traceable
+    - persisted_object_identified
+    - provenance_traceable
+
 failure_contract:
   failure_states:
-  - provenance_missing
-  - provenance_detached
+    - provenance_missing
+    - provenance_detached
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

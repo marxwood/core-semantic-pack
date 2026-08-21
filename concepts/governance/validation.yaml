@@ -1,0 +1,36 @@
+id: core.validation
+symbol: Validation
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: governance
+
+definition: An assessment of whether a candidate semantic object, relation, or transition conforms to
+  declared requirements.
+
+not_equivalent_to:
+  - Admission
+  - Binding
+
+exclusions:
+  - Validation is not truth determination.
+  - Validation is not authority.
+
+required_relations:
+  - validatesObject
+
+conditional_relations:
+  - performedBy
+  - governedBy
+  - hasProvenance
+  - existsIn
+
+boundaries:
+  - Validation != Admission
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Syntactic or semantic conformance must not automatically promote an object into maintained
+    governed State.

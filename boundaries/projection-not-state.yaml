@@ -1,0 +1,23 @@
+id: core.boundary.projection-not-state
+expression: Projection != State
+version: 0.1.0
+status: experimental
+
+left: Projection
+operator: '!='
+right: State
+
+rule: A Projection must not be represented or persisted as maintained State without an explicit Admission
+  and StateChange.
+
+rationale: Visibility, polish, or downstream use does not create authority.
+
+failure_code: SEM-BOUNDARY-007
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

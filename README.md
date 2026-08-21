@@ -19,6 +19,16 @@ core.question.explain-action-purpose ↔ Why is this being done?
 
 There is no separate human-label or question-slug semantic layer in v0.1. Repository paths are serialization details. See [`docs/semantic-notation.md`](docs/semantic-notation.md).
 
+## Atomic semantic artifacts
+
+The repository follows one structural invariant:
+
+```text
+one referencable semantic object = one file
+```
+
+Concepts, Relations, Boundaries, and Questions are independently inspectable artifacts. Their indexes are registry/navigation bridges only: stable IDs carry registry identity, canonical symbols, expressions, and questions carry semantic reference, and paths carry serialization location.
+
 ## Core responsibilities
 
 The pack is designed to preserve distinctions such as:
@@ -73,7 +83,7 @@ See [`questions/`](questions/) and [`docs/question-contract-model.md`](docs/ques
 | Area | Responsibility |
 |---|---|
 | [`pack.yaml`](pack.yaml) | Pack identity, scope, guarantees, question model, and composition rules |
-| [`concepts/`](concepts/) | Candidate Core primitives grouped by semantic layer |
+| [`concepts/`](concepts/) | Atomic candidate Core primitives organized by semantic layer |
 | [`relations/`](relations/) | Typed relations that form the semantic graph |
 | [`boundaries/`](boundaries/) | Anti-collapse rules and semantic safety properties |
 | [`questions/`](questions/) | Atomic questions organized under taxonomy-only primary families |

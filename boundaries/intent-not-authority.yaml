@@ -1,0 +1,22 @@
+id: core.boundary.intent-not-authority
+expression: Intent != Authority
+version: 0.1.0
+status: experimental
+
+left: Intent
+operator: '!='
+right: Authority
+
+rule: Intent must not create Authority or Permission to act.
+
+rationale: Purpose does not legitimize consequence.
+
+failure_code: SEM-BOUNDARY-017
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

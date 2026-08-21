@@ -1,130 +1,176 @@
 id: core.lifecycle.status-families
 version: 0.1.0
 status: experimental
+
 families:
-- id: core.status-family.concept-authority
-  symbol: ConceptAuthorityStatus
-  purpose: Declares the governance maturity and authority of a semantic definition.
-  values:
-  - id: proposed
-    meaning: Submitted for consideration; carries no shared semantic authority.
-  - id: experimental
-    meaning: Published for testing; meaning may change under declared versioning.
-  - id: adopted
-    meaning: Approved as active semantic authority for its declared scope.
-  - id: restricted
-    meaning: Active only under explicitly declared constraints or scopes.
-  - id: superseded
-    meaning: Replaced by another active record while retained for historical interpretation.
-  - id: deprecated
-    meaning: Still interpretable but no longer recommended for new use.
-  - id: retired
-    meaning: No longer active and unavailable for new semantic compositions.
-  - id: rejected
-    meaning: Reviewed and explicitly not admitted.
-  applies_to_records:
-  - concept-records
-  - relation-records
-  - boundary-records
-  - question-contracts
-  - patterns
-- id: core.status-family.epistemic
-  symbol: EpistemicStatus
-  purpose: Declares how an epistemic object currently stands relative to support, contradiction, and contestation.
-  values:
-  - id: candidate
-    meaning: Produced or asserted but not yet evaluated under declared conditions.
-  - id: supported
-    meaning: Has admitted Evidence supporting it under a declared Context.
-  - id: contradicted
-    meaning: Has admitted Evidence contradicting it under a declared Context.
-  - id: mixed
-    meaning: Has material support and contradiction that remain unresolved.
-  - id: contested
-    meaning: Its interpretation, support, or validity is under explicit Contestation.
-  - id: invalidated
-    meaning: No longer valid under the governing conditions, with rationale retained.
-  - id: superseded
-    meaning: Replaced by a later epistemic object without erasing historical status.
-  - id: retired
-    meaning: Retained for history but excluded from current epistemic use.
-  applies_to:
-  - Statement
-  - Claim
-  - Inference
-  - Finding
-- id: core.status-family.validity
-  symbol: ValidityStatus
-  purpose: Declares conformance to explicit validity conditions within a Context.
-  values:
-  - id: unassessed
-    meaning: No declared Validation has yet evaluated the object.
-  - id: valid-under-context
-    meaning: Satisfies the declared conditions in the identified Context.
-  - id: conditionally-valid
-    meaning: Valid only while listed conditions remain satisfied.
-  - id: invalid
-    meaning: Fails one or more declared validity conditions.
-  - id: contested
-    meaning: The validity assessment itself is under Contestation.
-  - id: expired
-    meaning: A validity time or Context boundary has ended.
-  - id: revoked
-    meaning: A prior validity declaration was explicitly withdrawn.
-  applies_to:
-  - Validity
-  - Evidence
-  - Finding
-  - Projection
-- id: core.status-family.admission
-  symbol: AdmissionStatus
-  purpose: Declares whether a candidate has passed the explicit transition into maintained governed State
-    or another admitted status.
-  values:
-  - id: not-evaluated
-    meaning: No Admission decision has been attempted.
-  - id: pending
-    meaning: Admission is under evaluation and must not be treated as completed.
-  - id: admitted
-    meaning: An authorized Admission explicitly accepted the object for the declared scope.
-  - id: rejected
-    meaning: Admission was explicitly denied.
-  - id: revoked
-    meaning: A prior Admission was explicitly withdrawn while history remains reconstructable.
-  - id: superseded
-    meaning: A later admitted object replaces this object for current use.
-  scope_description:
-  - Candidate semantic objects.
-  - Maintained governed State.
-- id: core.status-family.binding
-  symbol: BindingStatus
-  purpose: Declares whether an authority-bearing commitment is institutionally operative.
-  values:
-  - id: non-binding
-    meaning: Carries no operative institutional commitment.
-  - id: proposed
-    meaning: Presented for a possible Binding act but not yet operative.
-  - id: binding
-    meaning: Made operative through an authorized Binding act.
-  - id: suspended
-    meaning: Temporarily non-operative under an explicit authority act.
-  - id: revoked
-    meaning: Explicitly withdrawn through Revocation.
-  - id: superseded
-    meaning: Replaced by a later operative Commitment.
-  - id: expired
-    meaning: No longer operative because a declared time or Context boundary ended.
-  applies_to:
-  - Binding
-  - Commitment
+  - id: core.status-family.concept-authority
+    symbol: ConceptAuthorityStatus
+    purpose: Declares the governance maturity and authority of a semantic definition.
+    values:
+      - id: proposed
+        meaning: Submitted for consideration; carries no shared semantic authority.
+
+      - id: experimental
+        meaning: Published for testing; meaning may change under declared versioning.
+
+      - id: adopted
+        meaning: Approved as active semantic authority for its declared scope.
+
+      - id: restricted
+        meaning: Active only under explicitly declared constraints or scopes.
+
+      - id: superseded
+        meaning: Replaced by another active record while retained for historical interpretation.
+
+      - id: deprecated
+        meaning: Still interpretable but no longer recommended for new use.
+
+      - id: retired
+        meaning: No longer active and unavailable for new semantic compositions.
+
+      - id: rejected
+        meaning: Reviewed and explicitly not admitted.
+    applies_to_records:
+      - concept-records
+      - relation-records
+      - boundary-records
+      - question-contracts
+      - patterns
+
+  - id: core.status-family.epistemic
+    symbol: EpistemicStatus
+    purpose: Declares how an epistemic object currently stands relative to support, contradiction, and
+      contestation.
+    values:
+
+      - id: candidate
+        meaning: Produced or asserted but not yet evaluated under declared conditions.
+
+      - id: supported
+        meaning: Has admitted Evidence supporting it under a declared Context.
+
+      - id: contradicted
+        meaning: Has admitted Evidence contradicting it under a declared Context.
+
+      - id: mixed
+        meaning: Has material support and contradiction that remain unresolved.
+
+      - id: contested
+        meaning: Its interpretation, support, or validity is under explicit Contestation.
+
+      - id: invalidated
+        meaning: No longer valid under the governing conditions, with rationale retained.
+
+      - id: superseded
+        meaning: Replaced by a later epistemic object without erasing historical status.
+
+      - id: retired
+        meaning: Retained for history but excluded from current epistemic use.
+    applies_to:
+      - Statement
+      - Claim
+      - Inference
+      - Finding
+
+  - id: core.status-family.validity
+    symbol: ValidityStatus
+    purpose: Declares conformance to explicit validity conditions within a Context.
+    values:
+
+      - id: unassessed
+        meaning: No declared Validation has yet evaluated the object.
+
+      - id: valid-under-context
+        meaning: Satisfies the declared conditions in the identified Context.
+
+      - id: conditionally-valid
+        meaning: Valid only while listed conditions remain satisfied.
+
+      - id: invalid
+        meaning: Fails one or more declared validity conditions.
+
+      - id: contested
+        meaning: The validity assessment itself is under Contestation.
+
+      - id: expired
+        meaning: A validity time or Context boundary has ended.
+
+      - id: revoked
+        meaning: A prior validity declaration was explicitly withdrawn.
+    applies_to:
+      - Validity
+      - Evidence
+      - Finding
+      - Projection
+
+  - id: core.status-family.admission
+    symbol: AdmissionStatus
+    purpose: Declares whether a candidate has passed the explicit transition into maintained governed
+      State or another admitted status.
+    values:
+
+      - id: not-evaluated
+        meaning: No Admission decision has been attempted.
+
+      - id: pending
+        meaning: Admission is under evaluation and must not be treated as completed.
+
+      - id: admitted
+        meaning: An authorized Admission explicitly accepted the object for the declared scope.
+
+      - id: rejected
+        meaning: Admission was explicitly denied.
+
+      - id: revoked
+        meaning: A prior Admission was explicitly withdrawn while history remains reconstructable.
+
+      - id: superseded
+        meaning: A later admitted object replaces this object for current use.
+    scope_description:
+      - Candidate semantic objects.
+      - Maintained governed State.
+
+  - id: core.status-family.binding
+    symbol: BindingStatus
+    purpose: Declares whether an authority-bearing commitment is institutionally operative.
+    values:
+
+      - id: non-binding
+        meaning: Carries no operative institutional commitment.
+
+      - id: proposed
+        meaning: Presented for a possible Binding act but not yet operative.
+
+      - id: binding
+        meaning: Made operative through an authorized Binding act.
+
+      - id: suspended
+        meaning: Temporarily non-operative under an explicit authority act.
+
+      - id: revoked
+        meaning: Explicitly withdrawn through Revocation.
+
+      - id: superseded
+        meaning: Replaced by a later operative Commitment.
+
+      - id: expired
+        meaning: No longer operative because a declared time or Context boundary ended.
+    applies_to:
+      - Binding
+      - Commitment
+
 status_distinctions:
-- left: ConceptAuthorityStatus
-  right: EpistemicStatus
-- left: EpistemicStatus
-  right: ValidityStatus
-- left: ValidityStatus
-  right: AdmissionStatus
-- left: AdmissionStatus
-  right: BindingStatus
+  - left: ConceptAuthorityStatus
+    right: EpistemicStatus
+
+  - left: EpistemicStatus
+    right: ValidityStatus
+
+  - left: ValidityStatus
+    right: AdmissionStatus
+
+  - left: AdmissionStatus
+    right: BindingStatus
+
 exclusions:
-- Runtime execution status is not equivalent to any Core status family.
+  - Runtime execution status is not equivalent to any Core status family.

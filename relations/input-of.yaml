@@ -1,0 +1,16 @@
+id: core.rel.input-of
+symbol: inputOf
+version: 0.1.0
+status: experimental
+
+definition: Associates a semantic object with a Transformation that consumes or evaluates it.
+
+source:
+  - Any
+
+target:
+  - Transformation
+
+direction: directed
+provenance: optional
+authority_effect: none

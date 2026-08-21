@@ -3,20 +3,24 @@ symbol: governance
 version: 0.1.0
 status: experimental
 kind: question-family
+
 purpose: Questions about authority, constraints, permission, validation, admission, review, binding, and
   revocation.
+
 authority:
   class: taxonomy-only
   defines_question_requirements: false
   requirements_are_inherited: false
+
 questions:
-- Who authorized this?
-- Under which Constraint?
-- What is permitted?
-- What may only be recommended?
-- What must be validated?
-- What may enter maintained State?
-- Which transition requires Review?
-- Which decision is Binding?
-- Can the commitment be revoked?
+  - Who authorized this?
+  - Under which Constraint?
+  - What is permitted?
+  - What may only be recommended?
+  - What must be validated?
+  - What may enter maintained State?
+  - Which transition requires Review?
+  - Which decision is Binding?
+  - Can the commitment be revoked?
+
 related_questions: []

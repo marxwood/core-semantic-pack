@@ -4,27 +4,33 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Who or what is acting?
 family: agency
+
 requires:
   concepts:
-  - Actor
-  - Action
-  - Role
-  - Provenance
+    - Actor
+    - Action
+    - Role
+    - Provenance
+
   relations:
-  - performedBy
-  - occupiesRole
-  - hasProvenance
+    - performedBy
+    - occupiesRole
+    - hasProvenance
+
 must_preserve:
-- Capability != Authority
+  - Capability != Authority
+
 answer_contract:
   minimum_requirements:
-  - action_identified
-  - actor_or_role_attributable
-  - provenance_preserved
+    - action_identified
+    - actor_or_role_attributable
+    - provenance_preserved
+
 failure_contract:
   failure_states:
-  - anonymous_material_action
-  - actor_role_ambiguous
+    - anonymous_material_action
+    - actor_role_ambiguous
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

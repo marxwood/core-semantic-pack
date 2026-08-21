@@ -1,0 +1,32 @@
+id: core.contradiction
+symbol: Contradiction
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+definition: A referable contextual assertion that two semantic objects or positions conflict under declared
+  comparison conditions.
+
+exclusions:
+  - Contradiction is not automatic invalidation.
+  - Contradiction is not proof that one side is false.
+  - Contradiction is not mere difference.
+
+required_relations:
+  - contradictionSubject
+  - contradictionObject
+  - existsIn
+
+conditional_relations:
+  - hasProvenance
+  - hasValidity
+  - contestedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Contradiction must remain visible and governable rather than being silently resolved or discarded.

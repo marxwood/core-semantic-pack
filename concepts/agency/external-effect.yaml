@@ -1,0 +1,35 @@
+id: core.external-effect
+symbol: ExternalEffect
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+definition: An authorized consequence that changes State outside the declared boundary of the governed
+  Process or semantic environment.
+
+exclusions:
+  - ExternalEffect is not a Projection.
+  - ExternalEffect is not Recommendation.
+  - ExternalEffect is not tool output.
+  - ExternalEffect is not an internal StateChange only.
+
+required_relations:
+  - causedBy
+  - authorizedBy
+  - crossesBoundary
+
+conditional_relations:
+  - hasProvenance
+  - resultingState
+  - existsIn
+
+boundaries:
+  - Review != Binding
+  - Capability != Authority
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Consequences beyond a governed process require explicit legitimacy and reconstructable causation.

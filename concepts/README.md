@@ -2,13 +2,15 @@
 
 This directory materializes the candidate Core primitives described by the architectural specification.
 
-Concepts are grouped by semantic responsibility layer rather than by runtime implementation:
+Each Concept has one file under its semantic responsibility layer rather than a runtime implementation grouping:
 
-- `foundations.yaml` — identity, context, State, Source, Projection, and semantic versioning;
-- `epistemic.yaml` — Observation, Claim, Evidence, Inference, Finding, and correction-relevant epistemic status;
-- `teleological.yaml` — Goal, DesiredState, Intent, Direction, Trajectory, and Progress;
-- `agency.yaml` — Actor, Role, Capability, Action, Process, Transformation, Transfer, Persistence, Composition, and ExternalEffect;
-- `governance.yaml` — Authority, Constraint, Permission, Contract, Validation, Admission, Review, Binding, Commitment, Revocation, and Accountability.
+- `foundations/` — identity, context, State, Source, Projection, and semantic versioning;
+- `epistemic/` — Observation, Claim, Evidence, Inference, Finding, and correction-relevant epistemic status;
+- `teleological/` — Goal, DesiredState, Intent, Direction, Trajectory, and Progress;
+- `agency/` — Actor, Role, Capability, Action, Process, Transformation, Transfer, Persistence, Composition, and ExternalEffect;
+- `governance/` — Authority, Constraint, Permission, Contract, Validation, Admission, Review, Binding, Commitment, Revocation, and Accountability.
+
+[`index.yaml`](index.yaml) bridges each canonical symbol to its stable ID, layer, and physical file. It contains lookup metadata only.
 
 ## Authority
 
@@ -16,7 +18,7 @@ Every concept is `experimental` and `candidate-core-primitive` in v0.1. Inclusio
 
 ## Record discipline
 
-Each record declares:
+Each atomic record declares:
 
 - stable `id` and canonical PascalCase `symbol`;
 - exact canonical Questions it `helps_answer`, when an audited match exists;
@@ -26,4 +28,4 @@ Each record declares:
 - canonical anti-collapse boundary expressions;
 - derivation rationale.
 
-The exact YAML serialization is non-authoritative. Stable IDs preserve registry identity, while symbols and semantic obligations are the authoring contract. Legacy free-form question-like strings without an exact canonical match are retained for review in [`docs/canonical-question-gaps.md`](../docs/canonical-question-gaps.md).
+The exact YAML serialization is non-authoritative. Stable IDs preserve registry identity, while symbols and semantic obligations are the authoring contract. The physical path is only a serialization location and never determines Concept identity. Legacy free-form question-like strings without an exact canonical match are retained for review in [`docs/canonical-question-gaps.md`](../docs/canonical-question-gaps.md).

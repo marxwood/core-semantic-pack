@@ -4,30 +4,36 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Has new Evidence contradicted a maintained Finding?
 family: reflective
+
 requires:
   concepts:
-  - Evidence
-  - Finding
-  - Contradiction
-  - Provenance
-  - Admission
+    - Evidence
+    - Finding
+    - Contradiction
+    - Provenance
+    - Admission
+
   relations:
-  - contradicts
-  - hasProvenance
-  - admittedBy
+    - contradicts
+    - hasProvenance
+    - admittedBy
+
 must_preserve:
-- Evidence != Truth
-- Inference != Finding
+  - Evidence != Truth
+  - Inference != Finding
+
 answer_contract:
   minimum_requirements:
-  - maintained_finding_identified
-  - new_evidence_identified
-  - contradiction_relation_evaluated
-  - provenance_preserved
+    - maintained_finding_identified
+    - new_evidence_identified
+    - contradiction_relation_evaluated
+    - provenance_preserved
+
 failure_contract:
   failure_states:
-  - contradicting_evidence_ignored
-  - finding_status_not_revisited
+    - contradicting_evidence_ignored
+    - finding_status_not_revisited
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

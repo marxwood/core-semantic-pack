@@ -1,0 +1,43 @@
+id: core.action
+symbol: Action
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+definition: An attributable attempt or performance by an Actor to realize an Intent, participate in a
+  Process, transform an object, or produce an effect.
+
+not_equivalent_to:
+  - Intent
+  - StateChange
+  - Authority
+
+exclusions:
+  - Action is not proof of Progress.
+
+required_relations:
+  - performedBy
+  - realizes
+  - participatesIn
+
+conditional_relations:
+  - authorizedBy
+  - permittedBy
+  - constrainedBy
+  - transforms
+  - produces
+  - causes
+  - existsIn
+
+boundaries:
+  - Action != Intent
+  - Action != StateChange
+  - OperationalSuccess != Progress
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: Execution must remain traceable to purpose, process, actor, and authority without being equated
+    with its consequence.

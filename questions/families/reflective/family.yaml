@@ -3,21 +3,25 @@ symbol: reflective
 version: 0.1.0
 status: experimental
 kind: question-family
+
 purpose: Questions that test drift, contradiction, status collapse, revision, and revocation.
+
 authority:
   class: taxonomy-only
   defines_question_requirements: false
   requirements_are_inherited: false
+
 questions:
-- Is the Goal still authorized?
-- Has CurrentState changed materially?
-- Has our Interpretation changed?
-- Is the system still moving toward DesiredState?
-- Has new Evidence contradicted a maintained Finding?
-- Did an intermediate Inference silently become institutional truth?
-- Has a Projection become indistinguishable from State?
-- Has repeated downstream use created implicit Authority?
-- Should maintained State be revised?
-- Should a previous Binding be revoked?
+  - Is the Goal still authorized?
+  - Has CurrentState changed materially?
+  - Has our Interpretation changed?
+  - Is the system still moving toward DesiredState?
+  - Has new Evidence contradicted a maintained Finding?
+  - Did an intermediate Inference silently become institutional truth?
+  - Has a Projection become indistinguishable from State?
+  - Has repeated downstream use created implicit Authority?
+  - Should maintained State be revised?
+  - Should a previous Binding be revoked?
+
 related_questions:
-- Has the Goal changed?
+  - Has the Goal changed?

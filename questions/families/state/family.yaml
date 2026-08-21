@@ -3,16 +3,20 @@ symbol: state
 version: 0.1.0
 status: experimental
 kind: question-family
+
 purpose: Questions about maintained state, before/after conditions, and attributable change.
+
 authority:
   class: taxonomy-only
   defines_question_requirements: false
   requirements_are_inherited: false
+
 questions:
-- What is currently the case?
-- What State is maintained?
-- What existed before?
-- What exists now?
-- What changed?
-- What State is expected next?
+  - What is currently the case?
+  - What State is maintained?
+  - What existed before?
+  - What exists now?
+  - What changed?
+  - What State is expected next?
+
 related_questions: []

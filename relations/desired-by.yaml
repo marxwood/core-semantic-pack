@@ -1,0 +1,18 @@
+id: core.rel.desired-by
+symbol: desiredBy
+version: 0.1.0
+status: experimental
+
+definition: Identifies the Goal for which a future State is desired.
+
+source:
+  - DesiredState
+
+target:
+  - Goal
+
+direction: directed
+provenance: optional
+authority_effect: none
+
+inverse: specifies

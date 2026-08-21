@@ -1,17 +1,22 @@
 id: core.fixture.invalid.action-as-intent
 version: 0.1.0
 status: illustrative
+
 description: An executed operation is used as its own explanation of purpose.
+
 expected: invalid
+
 objects:
-- id: action:rerank-results
-  type: Action
-  attributes:
-    represented_as: Intent
+  - id: action:rerank-results
+    type: Action
+    attributes:
+      represented_as: Intent
+
 relations: []
+
 expectations:
   rules_pass: []
   rules_fail:
-  - ActionPurposeChain
+    - ActionPurposeChain
   boundaries_triggered:
-  - Action != Intent
+    - Action != Intent

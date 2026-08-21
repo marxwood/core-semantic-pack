@@ -4,20 +4,26 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: In which Context does this meaning apply?
 family: ontological
+
 requires:
   concepts:
-  - Context
+    - Context
+
   relations:
-  - existsIn
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - applicable_context_identified
-  - context_scope_explicit
+    - applicable_context_identified
+    - context_scope_explicit
+
 failure_contract:
   failure_states:
-  - implicit_context
-  - context_scope_ambiguous
+    - implicit_context
+    - context_scope_ambiguous
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

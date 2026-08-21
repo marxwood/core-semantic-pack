@@ -27,6 +27,12 @@ def relpath(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
 
 
+def kebab_case(symbol: str) -> str:
+    value = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1-\2", symbol)
+    value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
+    return value.lower()
+
+
 def fail(message: str) -> None:
     errors.append(message)
 
@@ -90,29 +96,41 @@ yaml_paths = sorted(ROOT.rglob("*.yaml"))
 loaded = {relpath(path): load_yaml(path) for path in yaml_paths}
 
 
-# Concepts and the concept index bridge.
+# Concepts: atomic records plus the concept index bridge.
 concept_index = loaded.get("concepts/index.yaml")
 if not isinstance(concept_index, dict):
     fail("concepts/index.yaml must contain a mapping")
     concept_index = {}
 
 concept_records: list[dict[str, Any]] = []
-for group in concept_index.get("groups", []):
-    if not isinstance(group, dict):
-        fail("concepts/index.yaml: each group must be a mapping")
+concept_path_by_id: dict[str, str] = {}
+concept_entries = concept_index.get("concepts", [])
+if not isinstance(concept_entries, list):
+    fail("concepts/index.yaml: concepts must be a list")
+    concept_entries = []
+for entry in concept_entries:
+    if not isinstance(entry, dict):
+        fail("concepts/index.yaml: each concept entry must be a mapping")
         continue
-    require_fields(group, ["layer", "file", "concepts"], "concepts/index.yaml group")
-    file_name = group.get("file")
-    catalog = loaded.get(file_name) if isinstance(file_name, str) else None
-    if not isinstance(catalog, dict) or not isinstance(catalog.get("concepts"), list):
-        fail(f"{file_name}: missing or invalid concept catalog")
+    require_fields(entry, ["symbol", "id", "layer", "file"], "concepts/index.yaml concept")
+    if set(entry) != {"symbol", "id", "layer", "file"}:
+        fail("concepts/index.yaml: concept entries must contain lookup metadata only")
+    file_name = entry.get("file")
+    record = loaded.get(file_name) if isinstance(file_name, str) else None
+    if not isinstance(record, dict) or "concepts" in record:
+        fail(f"{file_name}: missing or invalid atomic Concept record")
         continue
-    records = [record for record in catalog["concepts"] if isinstance(record, dict)]
-    bridge = group.get("concepts", [])
-    expected = [{"symbol": record.get("symbol"), "id": record.get("id")} for record in records]
-    if bridge != expected:
-        fail(f"{file_name}: concept symbol/ID order differs from concepts/index.yaml")
-    concept_records.extend(records)
+    if any(record.get(field) != entry.get(field) for field in ("symbol", "id", "layer")):
+        fail(f"{file_name}: Concept symbol/ID/layer differs from concepts/index.yaml")
+    expected_file = f"concepts/{entry.get('layer')}/{Path(file_name).name}" if isinstance(file_name, str) else None
+    if file_name != expected_file:
+        fail(f"{file_name}: Concept file path must match its declared organizational layer")
+    expected_name = f"{kebab_case(str(entry.get('symbol')))}.yaml"
+    if isinstance(file_name, str) and Path(file_name).name != expected_name:
+        fail(f"{file_name}: Concept filename must be canonical lowercase kebab-case {expected_name!r}")
+    concept_records.append(record)
+    if isinstance(record.get("id"), str) and isinstance(file_name, str):
+        concept_path_by_id[record["id"]] = file_name
 
 for record in concept_records:
     where = str(record.get("id", "concept record"))
@@ -126,6 +144,23 @@ for record in concept_records:
 
 concept_by_id = index_unique(concept_records, "id", "concept ID")
 concept_by_symbol = index_unique(concept_records, "symbol", "concept symbol")
+
+legacy_concept_catalogs = {
+    "concepts/foundations.yaml",
+    "concepts/epistemic.yaml",
+    "concepts/teleological.yaml",
+    "concepts/agency.yaml",
+    "concepts/governance.yaml",
+}
+for file_name in sorted(legacy_concept_catalogs):
+    if (ROOT / file_name).exists():
+        fail(f"{file_name}: grouped Concept catalogs must not remain")
+actual_concept_paths = {relpath(path) for path in (ROOT / "concepts").glob("*/*.yaml")}
+if actual_concept_paths != set(concept_path_by_id.values()):
+    fail("concepts/index.yaml: indexed Concept paths differ from physical atomic files")
+for path in sorted((ROOT / "concepts").glob("*.yaml")):
+    if path.name != "index.yaml":
+        fail(f"{relpath(path)}: Concept files must live at concepts/<layer>/<concept>.yaml")
 
 
 # Reference-only categories are explicit but are never Core primitives.
@@ -204,13 +239,39 @@ def resolve_type(value: Any, where: str, *, allow_any: bool = False) -> bool:
     return True
 
 
-# Relations: stable identity plus unique lowerCamelCase canonical symbol.
-relation_catalog = loaded.get("relations/core-relations.yaml")
-if not isinstance(relation_catalog, dict) or not isinstance(relation_catalog.get("relations"), list):
-    fail("relations/core-relations.yaml: missing or invalid relation catalog")
-    relation_records: list[dict[str, Any]] = []
-else:
-    relation_records = [record for record in relation_catalog["relations"] if isinstance(record, dict)]
+# Relations: atomic records plus an index keyed by canonical lowerCamelCase symbol.
+relation_index = loaded.get("relations/index.yaml")
+if not isinstance(relation_index, dict):
+    fail("relations/index.yaml must contain a mapping")
+    relation_index = {}
+relation_entries = relation_index.get("relations", [])
+if not isinstance(relation_entries, list):
+    fail("relations/index.yaml: relations must be a list")
+    relation_entries = []
+relation_records: list[dict[str, Any]] = []
+relation_path_by_id: dict[str, str] = {}
+for entry in relation_entries:
+    if not isinstance(entry, dict):
+        fail("relations/index.yaml: each Relation entry must be a mapping")
+        continue
+    require_fields(entry, ["symbol", "id", "file"], "relations/index.yaml Relation")
+    if set(entry) != {"symbol", "id", "file"}:
+        fail("relations/index.yaml: Relation entries must contain lookup metadata only")
+    file_name = entry.get("file")
+    record = loaded.get(file_name) if isinstance(file_name, str) else None
+    if not isinstance(record, dict) or "relations" in record:
+        fail(f"{file_name}: missing or invalid atomic Relation record")
+        continue
+    if record.get("symbol") != entry.get("symbol") or record.get("id") != entry.get("id"):
+        fail(f"{file_name}: Relation symbol/ID differs from relations/index.yaml")
+    if not isinstance(file_name, str) or Path(file_name).parent.as_posix() != "relations":
+        fail(f"{file_name}: Relation files must remain structurally flat")
+    expected_name = f"{kebab_case(str(entry.get('symbol')))}.yaml"
+    if isinstance(file_name, str) and Path(file_name).name != expected_name:
+        fail(f"{file_name}: Relation filename must be canonical lowercase kebab-case {expected_name!r}")
+    relation_records.append(record)
+    if isinstance(record.get("id"), str) and isinstance(file_name, str):
+        relation_path_by_id[record["id"]] = file_name
 
 for record in relation_records:
     where = str(record.get("id", "relation record"))
@@ -236,6 +297,16 @@ for record in relation_records:
         elif relation_by_symbol[inverse].get("inverse") != record.get("symbol"):
             fail(f"{record['id']}: inverse relation {inverse!r} is not reciprocal")
 
+if (ROOT / "relations/core-relations.yaml").exists():
+    fail("relations/core-relations.yaml: grouped Relation catalog must not remain")
+actual_relation_paths = {
+    relpath(path) for path in (ROOT / "relations").glob("*.yaml") if path.name != "index.yaml"
+}
+if actual_relation_paths != set(relation_path_by_id.values()):
+    fail("relations/index.yaml: indexed Relation paths differ from physical atomic files")
+if (ROOT / "relations/families").exists():
+    fail("relations/families: artificial Relation taxonomy must not be introduced")
+
 
 def resolve_relation(value: Any, where: str) -> bool:
     if not isinstance(value, str):
@@ -248,13 +319,40 @@ def resolve_relation(value: Any, where: str) -> bool:
     return True
 
 
-# Boundaries: exact expression maps to one stable record and operands resolve.
-boundary_catalog = loaded.get("boundaries/core-boundaries.yaml")
-if not isinstance(boundary_catalog, dict) or not isinstance(boundary_catalog.get("boundaries"), list):
-    fail("boundaries/core-boundaries.yaml: missing or invalid boundary catalog")
-    boundary_records: list[dict[str, Any]] = []
-else:
-    boundary_records = [record for record in boundary_catalog["boundaries"] if isinstance(record, dict)]
+# Boundaries: atomic records plus an index keyed by exact canonical expression.
+boundary_index = loaded.get("boundaries/index.yaml")
+if not isinstance(boundary_index, dict):
+    fail("boundaries/index.yaml must contain a mapping")
+    boundary_index = {}
+boundary_entries = boundary_index.get("boundaries", [])
+if not isinstance(boundary_entries, list):
+    fail("boundaries/index.yaml: boundaries must be a list")
+    boundary_entries = []
+boundary_records: list[dict[str, Any]] = []
+boundary_path_by_id: dict[str, str] = {}
+for entry in boundary_entries:
+    if not isinstance(entry, dict):
+        fail("boundaries/index.yaml: each Boundary entry must be a mapping")
+        continue
+    require_fields(entry, ["expression", "id", "file"], "boundaries/index.yaml Boundary")
+    if set(entry) != {"expression", "id", "file"}:
+        fail("boundaries/index.yaml: Boundary entries must contain lookup metadata only")
+    file_name = entry.get("file")
+    record = loaded.get(file_name) if isinstance(file_name, str) else None
+    if not isinstance(record, dict) or "boundaries" in record:
+        fail(f"{file_name}: missing or invalid atomic Boundary record")
+        continue
+    if record.get("expression") != entry.get("expression") or record.get("id") != entry.get("id"):
+        fail(f"{file_name}: Boundary expression/ID differs from boundaries/index.yaml")
+    if not isinstance(file_name, str) or Path(file_name).parent.as_posix() != "boundaries":
+        fail(f"{file_name}: Boundary files must remain structurally flat")
+    if isinstance(record.get("left"), str) and isinstance(record.get("right"), str):
+        expected_name = f"{kebab_case(record['left'])}-not-{kebab_case(record['right'])}.yaml"
+        if isinstance(file_name, str) and Path(file_name).name != expected_name:
+            fail(f"{file_name}: Boundary filename must be canonical lowercase kebab-case {expected_name!r}")
+    boundary_records.append(record)
+    if isinstance(record.get("id"), str) and isinstance(file_name, str):
+        boundary_path_by_id[record["id"]] = file_name
 
 for record in boundary_records:
     where = str(record.get("id", "boundary record"))
@@ -272,6 +370,16 @@ for record in boundary_records:
 
 boundary_by_id = index_unique(boundary_records, "id", "boundary ID")
 boundary_by_expression = index_unique(boundary_records, "expression", "boundary expression")
+
+if (ROOT / "boundaries/core-boundaries.yaml").exists():
+    fail("boundaries/core-boundaries.yaml: grouped Boundary catalog must not remain")
+actual_boundary_paths = {
+    relpath(path) for path in (ROOT / "boundaries").glob("*.yaml") if path.name != "index.yaml"
+}
+if actual_boundary_paths != set(boundary_path_by_id.values()):
+    fail("boundaries/index.yaml: indexed Boundary paths differ from physical atomic files")
+if (ROOT / "boundaries/families").exists():
+    fail("boundaries/families: artificial Boundary taxonomy must not be introduced")
 
 
 def resolve_boundary(value: Any, where: str) -> bool:
@@ -717,6 +825,16 @@ if not isinstance(pack, dict):
     fail("pack.yaml must contain a mapping")
     pack = {}
 
+required_entrypoints = {
+    "concepts": "concepts/index.yaml",
+    "relations": "relations/index.yaml",
+    "boundaries": "boundaries/index.yaml",
+    "questions": "questions/index.yaml",
+    "references": "references/non-core-symbols.yaml",
+}
+for name, expected in required_entrypoints.items():
+    if pack.get("entrypoints", {}).get(name) != expected:
+        fail(f"pack.yaml: {name} entrypoint must be {expected!r}")
 if pack.get("entrypoints", {}).get("references") != "references/non-core-symbols.yaml":
     fail("pack.yaml: references entrypoint must identify the reference-only registry")
 for family in strings(pack.get("question_families", []), "pack.yaml.question_families"):
@@ -765,6 +883,13 @@ if "questions/contracts/" in question_includes:
     fail("release/0.1.0.yaml: legacy questions/contracts path must not remain")
 if "questions/families/" not in question_includes:
     fail("release/0.1.0.yaml: family-organized question path must be included")
+for section in ("concepts", "relations", "boundaries"):
+    expected = [f"{section}/"]
+    if release.get("includes", {}).get(section) != expected:
+        fail(f"release/0.1.0.yaml: {section} must include the deterministic directory collection")
+for obsolete_section in ("concept_catalogs", "relation_catalogs", "boundary_catalogs"):
+    if obsolete_section in release.get("includes", {}):
+        fail(f"release/0.1.0.yaml: obsolete {obsolete_section} section must not remain")
 if release.get("release_status") == "experimental-candidate" and release.get("git_commit") is None:
     warn("release/0.1.0.yaml: git_commit is unset, as expected before merge/tagging")
 
@@ -782,6 +907,24 @@ for path in sorted(ROOT.rglob("*")):
             continue
         if re.search(rf"\b{legacy_goal_progress}\b", text):
             fail(f"{relpath(path)}: undeclared {legacy_goal_progress} pseudo-symbol must use Progress")
+
+# Lightweight source-format checks. Semantic grouping remains an intentional
+# authoring responsibility and is not inferred by a generic formatter.
+for path in sorted(ROOT.rglob("*")):
+    if not path.is_file() or path.suffix not in {".yaml", ".md"}:
+        continue
+    text = path.read_text(encoding="utf-8")
+    if text and not text.endswith("\n"):
+        fail(f"{relpath(path)}: file must end with a newline")
+    if re.search(r"[ \t]+$", text, re.MULTILINE):
+        fail(f"{relpath(path)}: trailing whitespace is forbidden")
+    if "\n\n\n" in text:
+        fail(f"{relpath(path)}: more than one consecutive blank line is forbidden")
+    if path.suffix == ".yaml":
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            indentation = line[: len(line) - len(line.lstrip(" \t"))]
+            if "\t" in indentation:
+                fail(f"{relpath(path)}:{line_number}: tabs are forbidden in YAML indentation")
 
 
 print("Core Semantic Pack canonical notation validation")

@@ -4,26 +4,32 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What contradicts the Claim?
 family: epistemic
+
 requires:
   concepts:
-  - Claim
-  - Evidence
-  - Contradiction
-  - Provenance
+    - Claim
+    - Evidence
+    - Contradiction
+    - Provenance
+
   relations:
-  - contradicts
-  - hasProvenance
+    - contradicts
+    - hasProvenance
+
 must_preserve:
-- Evidence != Truth
+  - Evidence != Truth
+
 answer_contract:
   minimum_requirements:
-  - claim_identified
-  - contradiction_identified
-  - contradiction_provenance_traceable
+    - claim_identified
+    - contradiction_identified
+    - contradiction_provenance_traceable
+
 failure_contract:
   failure_states:
-  - contradiction_suppressed
-  - contradiction_provenance_missing
+    - contradiction_suppressed
+    - contradiction_provenance_missing
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

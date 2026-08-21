@@ -4,32 +4,38 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What Finding was derived?
 family: epistemic
+
 requires:
   concepts:
-  - Finding
-  - Inference
-  - Evidence
-  - Provenance
-  - Validity
+    - Finding
+    - Inference
+    - Evidence
+    - Provenance
+    - Validity
+
   relations:
-  - derivedFrom
-  - supportedBy
-  - hasProvenance
-  - hasValidity
+    - derivedFrom
+    - supportedBy
+    - hasProvenance
+    - hasValidity
+
 must_preserve:
-- Inference != Finding
-- Finding != BindingDecision
+  - Inference != Finding
+  - Finding != BindingDecision
+
 answer_contract:
   minimum_requirements:
-  - finding_identified
-  - derivation_traceable
-  - support_traceable
-  - validity_status_explicit
+    - finding_identified
+    - derivation_traceable
+    - support_traceable
+    - validity_status_explicit
+
 failure_contract:
   failure_states:
-  - finding_without_derivation
-  - inference_silently_promoted
-  - finding_used_as_binding_decision
+    - finding_without_derivation
+    - inference_silently_promoted
+    - finding_used_as_binding_decision
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -1,0 +1,17 @@
+id: core.rel.raised-by
+symbol: raisedBy
+version: 0.1.0
+status: experimental
+
+definition: Attributes a Contestation to the Actor or Role that raised it.
+
+source:
+  - Contestation
+
+target:
+  - Actor
+  - Role
+
+direction: directed
+provenance: required
+authority_effect: none

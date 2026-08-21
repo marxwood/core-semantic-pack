@@ -1,0 +1,16 @@
+id: core.rel.composes-object
+symbol: composesObject
+version: 0.1.0
+status: experimental
+
+definition: Identifies an input object used by a Composition.
+
+source:
+  - Composition
+
+target:
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

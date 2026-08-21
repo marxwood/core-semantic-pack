@@ -1,43 +1,57 @@
 id: core.fixture.valid.traceable-claim
 version: 0.1.0
 status: illustrative
+
 description: A Claim remains attributable to an Actor, grounded in an Observation and Source, contextualized,
   and provenanced.
+
 expected: valid
+
 objects:
-- id: source:records
-  type: Source
-- id: observation:expiry-count
-  type: Observation
-- id: claim:coverage-decrease
-  type: Claim
-  attributes:
-    epistemic_status: candidate
-- id: actor:analyst
-  type: Actor
-- id: context:portfolio-review
-  type: Context
-- id: provenance:claim-trace
-  type: Provenance
+  - id: source:records
+    type: Source
+
+  - id: observation:expiry-count
+    type: Observation
+
+  - id: claim:coverage-decrease
+    type: Claim
+    attributes:
+      epistemic_status: candidate
+
+  - id: actor:analyst
+    type: Actor
+
+  - id: context:portfolio-review
+    type: Context
+
+  - id: provenance:claim-trace
+    type: Provenance
+
 relations:
-- relation: observedFrom
-  source: observation:expiry-count
-  target: source:records
-- relation: assertedBy
-  source: claim:coverage-decrease
-  target: actor:analyst
-- relation: derivedFrom
-  source: claim:coverage-decrease
-  target: observation:expiry-count
-- relation: hasProvenance
-  source: claim:coverage-decrease
-  target: provenance:claim-trace
-- relation: existsIn
-  source: claim:coverage-decrease
-  target: context:portfolio-review
+  - relation: observedFrom
+    source: observation:expiry-count
+    target: source:records
+
+  - relation: assertedBy
+    source: claim:coverage-decrease
+    target: actor:analyst
+
+  - relation: derivedFrom
+    source: claim:coverage-decrease
+    target: observation:expiry-count
+
+  - relation: hasProvenance
+    source: claim:coverage-decrease
+    target: provenance:claim-trace
+
+  - relation: existsIn
+    source: claim:coverage-decrease
+    target: context:portfolio-review
+
 expectations:
   rules_pass:
-  - KnownSemanticReferences
-  - SemanticVersionRetained
+    - KnownSemanticReferences
+    - SemanticVersionRetained
   rules_fail: []
   boundaries_triggered: []

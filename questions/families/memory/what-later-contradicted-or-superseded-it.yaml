@@ -4,26 +4,32 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What later contradicted or superseded it?
 family: memory
+
 requires:
   concepts:
-  - Contradiction
-  - Contestation
-  - SemanticVersion
-  - Provenance
+    - Contradiction
+    - Contestation
+    - SemanticVersion
+    - Provenance
+
   relations:
-  - contradicts
-  - contestedBy
-  - supersedes
-  - hasProvenance
+    - contradicts
+    - contestedBy
+    - supersedes
+    - hasProvenance
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - later_contradiction_or_supersession_visible
-  - lineage_preserved
+    - later_contradiction_or_supersession_visible
+    - lineage_preserved
+
 failure_contract:
   failure_states:
-  - contradiction_suppressed
-  - supersession_history_erased
+    - contradiction_suppressed
+    - supersession_history_erased
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -4,32 +4,38 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Has the Goal changed?
 family: teleological
+
 requires:
   concepts:
-  - Goal
-  - SemanticVersion
-  - Context
-  - Provenance
-  - Authority
+    - Goal
+    - SemanticVersion
+    - Context
+    - Provenance
+    - Authority
+
   relations:
-  - supersedes
-  - versionedBy
-  - hasProvenance
-  - authorizedBy
-  - existsIn
+    - supersedes
+    - versionedBy
+    - hasProvenance
+    - authorizedBy
+    - existsIn
+
 must_preserve: []
+
 answer_contract:
   minimum_requirements:
-  - current_goal_identified
-  - previous_goal_or_no_previous_goal_explicit
-  - version_lineage_traceable
-  - change_authority_traceable
-  - context_explicit
+    - current_goal_identified
+    - previous_goal_or_no_previous_goal_explicit
+    - version_lineage_traceable
+    - change_authority_traceable
+    - context_explicit
+
 failure_contract:
   failure_states:
-  - goal_drift_untracked
-  - goal_version_lineage_missing
-  - unauthorized_goal_change
+    - goal_drift_untracked
+    - goal_version_lineage_missing
+    - unauthorized_goal_change
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

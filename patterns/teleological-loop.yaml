@@ -3,28 +3,33 @@ symbol: TeleologicalLoop
 version: 0.1.0
 status: experimental
 kind: composite-pattern
+
 definition: A correction loop connecting CurrentState, Goal, DesiredState, Intent, Action, StateChange,
   and Progress assessment.
+
 composes:
   concepts:
-  - State
-  - Goal
-  - DesiredState
-  - Intent
-  - Action
-  - StateChange
-  - Direction
-  - Trajectory
-  - Progress
+    - State
+    - Goal
+    - DesiredState
+    - Intent
+    - Action
+    - StateChange
+    - Direction
+    - Trajectory
+    - Progress
+
   relations:
-  - specifies
-  - advances
-  - realizes
-  - previousState
-  - resultingState
-  - evaluatedAgainst
+    - specifies
+    - advances
+    - realizes
+    - previousState
+    - resultingState
+    - evaluatedAgainst
+
 invariants:
-- Goal remains distinct from DesiredState.
-- Action success is evaluated independently from Progress.
-- Goal revision and State revision remain visible.
+  - Goal remains distinct from DesiredState.
+  - Action success is evaluated independently from Progress.
+  - Goal revision and State revision remain visible.
+
 not_a_primitive: true

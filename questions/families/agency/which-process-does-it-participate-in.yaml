@@ -4,23 +4,29 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: Which Process does it participate in?
 family: agency
+
 requires:
   concepts:
-  - Action
-  - Process
+    - Action
+    - Process
+
   relations:
-  - participatesIn
+    - participatesIn
+
 must_preserve:
-- Process != ExecutionContract
+  - Process != ExecutionContract
+
 answer_contract:
   minimum_requirements:
-  - action_identified
-  - process_identified
-  - participation_relation_traceable
+    - action_identified
+    - process_identified
+    - participation_relation_traceable
+
 failure_contract:
   failure_states:
-  - process_missing
-  - process_collapsed_with_execution_contract
+    - process_missing
+    - process_collapsed_with_execution_contract
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

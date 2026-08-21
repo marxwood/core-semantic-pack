@@ -1,0 +1,17 @@
+id: core.rel.has-capability
+symbol: hasCapability
+version: 0.1.0
+status: experimental
+
+definition: Associates an Actor or Role with a Capability without implying Permission or Authority.
+
+source:
+  - Actor
+  - Role
+
+target:
+  - Capability
+
+direction: directed
+provenance: optional
+authority_effect: none

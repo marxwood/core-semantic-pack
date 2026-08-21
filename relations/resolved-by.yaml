@@ -1,0 +1,18 @@
+id: core.rel.resolved-by
+symbol: resolvedBy
+version: 0.1.0
+status: experimental
+
+definition: Identifies the governed act that resolved or dispositioned a Contestation.
+
+source:
+  - Contestation
+
+target:
+  - Review
+  - Binding
+  - Revocation
+
+direction: directed
+provenance: required
+authority_effect: none

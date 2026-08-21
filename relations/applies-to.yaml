@@ -1,0 +1,18 @@
+id: core.rel.applies-to
+symbol: appliesTo
+version: 0.1.0
+status: experimental
+
+definition: Identifies the object, relation, role, process, or transition governed by a Constraint or
+  Contract.
+
+source:
+  - Constraint
+  - Contract
+
+target:
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

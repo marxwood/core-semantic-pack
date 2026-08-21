@@ -2,6 +2,8 @@
 
 The repository uses YAML as a working, human-reviewable serialization. YAML is not semantic authority; stable IDs, definitions, boundaries, obligations, and versioned decisions are.
 
+Each referencable Concept, Relation, Boundary, and Question occupies one file. Semantically related fields stay together and exactly one blank line separates semantic groups. Indexes remain compact lookup bridges and never duplicate full records.
+
 ## Stable identity and canonical reference
 
 Registry records retain stable `id` values. Concepts, relations, patterns, status families, conformance rules, and question families expose canonical `symbol` values. Boundaries expose canonical `expression` values. Questions expose `canonical_question` values. There is no redundant schema-level human-label field in v0.1.

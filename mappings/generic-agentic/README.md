@@ -1,4 +1,3 @@
-
 # Generic agentic mapping
 
 This mapping demonstrates how common agentic-system terms can realize Core responsibilities without entering the Core as primitives.

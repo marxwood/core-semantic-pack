@@ -1,0 +1,16 @@
+id: core.rel.previous-state
+symbol: previousState
+version: 0.1.0
+status: experimental
+
+definition: Identifies the State that existed before a StateChange.
+
+source:
+  - StateChange
+
+target:
+  - State
+
+direction: directed
+provenance: optional
+authority_effect: none

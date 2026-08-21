@@ -1,20 +1,26 @@
 id: core.fixture.invalid.capability-as-authority
 version: 0.1.0
 status: illustrative
+
 description: An Action treats a Capability as the Authority legitimizing execution.
+
 expected: invalid
+
 objects:
-- id: action:delete-record
-  type: Action
-- id: capability:delete
-  type: Capability
+  - id: action:delete-record
+    type: Action
+
+  - id: capability:delete
+    type: Capability
+
 relations:
-- relation: authorizedBy
-  source: action:delete-record
-  target: capability:delete
+  - relation: authorizedBy
+    source: action:delete-record
+    target: capability:delete
+
 expectations:
   rules_pass: []
   rules_fail:
-  - CapabilityAuthoritySeparation
+    - CapabilityAuthoritySeparation
   boundaries_triggered:
-  - Capability != Authority
+    - Capability != Authority

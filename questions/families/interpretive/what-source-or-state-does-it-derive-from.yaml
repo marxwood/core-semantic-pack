@@ -4,29 +4,35 @@ status: experimental
 kind: semantic-question-contract
 canonical_question: What Source or State does it derive from?
 family: interpretive
+
 requires:
   concepts:
-  - Derivative
-  - Projection
-  - Source
-  - State
-  - Provenance
+    - Derivative
+    - Projection
+    - Source
+    - State
+    - Provenance
+
   relations:
-  - derivedFrom
-  - projects
-  - hasProvenance
+    - derivedFrom
+    - projects
+    - hasProvenance
+
 must_preserve:
-- Source != Projection
-- Projection != State
+  - Source != Projection
+  - Projection != State
+
 answer_contract:
   minimum_requirements:
-  - derived_object_identified
-  - source_or_state_traceable
-  - provenance_preserved
+    - derived_object_identified
+    - source_or_state_traceable
+    - provenance_preserved
+
 failure_contract:
   failure_states:
-  - source_detached
-  - projection_collapse
+    - source_detached
+    - projection_collapse
+
   consequence_on_failure:
     answer_status: unresolved
     material_consequence: must-not-assume-answer

@@ -1,0 +1,23 @@
+id: core.boundary.evidence-not-truth
+expression: Evidence != Truth
+version: 0.1.0
+status: experimental
+
+left: Evidence
+operator: '!='
+right: Truth
+
+rule: Evidence must not be represented as universal truth; it supports or contradicts Claims under declared
+  conditions.
+
+rationale: Evidence remains contextual, contestable, and regime-bound.
+
+failure_code: SEM-BOUNDARY-004
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance
