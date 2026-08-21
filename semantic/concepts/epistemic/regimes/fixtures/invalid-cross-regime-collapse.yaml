@@ -1,0 +1,14 @@
+id: core.regime-fixture.invalid.cross-regime-collapse
+expected: invalid
+claim_id: claim:market-risk
+evaluations:
+- regime: core.regime.disciplined
+  outcome: maintained
+- regime: core.regime.adversarial
+  outcome: contested
+stored_validity:
+  outcome: maintained
+  regime: null
+expected_failures:
+- cross-regime-validity-collapse
+- missing-regime-context

@@ -358,3 +358,11 @@ relations:
   - symbol: supersedes
     id: core.rel.supersedes
     file: semantic/relations/supersedes.yaml
+
+  - symbol: evaluatedUnder
+    id: core.rel.evaluated-under
+    file: semantic/relations/evaluated-under.yaml
+
+  - symbol: escalatesTo
+    id: core.rel.escalates-to
+    file: semantic/relations/escalates-to.yaml

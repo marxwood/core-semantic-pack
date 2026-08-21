@@ -1,0 +1,50 @@
+id: core.regime.switching-contract
+version: 0.1.0
+status: exploratory
+kind: regime-switching-contract
+canonical_requirements:
+- Regime switching is explicit.
+- A Claim retains Provenance of every Regime applied.
+- Validity under one Regime does not imply validity under another.
+required_switch_record:
+- switch_id
+- subject_claims_or_evaluations
+- from_regime
+- to_regime
+- reason
+- initiated_by
+- authority_reference_when_required
+- semantic_version
+- timestamp
+- prior_outcomes
+- expected_evaluation_scope
+comparative_evaluation:
+  allowed: true
+  is_not_a_switch: true
+  requirements:
+  - each Regime result remains independently addressable
+  - no outcome overwrites another
+  - the Projection identifies which Regime produced each result
+  - differences remain visible rather than averaged into a universal score
+candidate_escalation_graph:
+  status: exploratory-derivation-candidate
+  edges:
+  - Open -> Disciplined
+  - Open -> Adversarial
+  - Open -> High-Assurance
+  - Disciplined -> Adversarial
+  - Disciplined -> High-Assurance
+  - Disciplined -> Locked
+  - Adversarial -> High-Assurance
+  - Adversarial -> Locked
+  - High-Assurance -> Locked
+  - Locked -> High-Assurance when explicitly reopened
+  note: The Canon describes a low-to-high constraint spectrum but does not canonically fix this complete
+    graph.
+forbidden:
+- silent regime switching
+- retroactive replacement of prior Regime context
+- treating a stricter Regime as proof that an earlier result was false
+- treating a looser Regime as permission to erase stricter results
+- using a Domain Pack identifier as a Regime identifier
+- using an Execution Contract to redefine Regime semantics

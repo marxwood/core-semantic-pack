@@ -1,0 +1,44 @@
+id: core.regime
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+symbol: Regime
+definition: A Canon-derived constraint framework that determines how Claims may be admitted, evaluated,
+  contested, invalidated, and escalated without redefining their semantic meaning.
+helps_answer:
+- Under which Regime is this Claim being evaluated?
+- Which admissibility and invalidation rules apply to this validity outcome?
+- Was the Regime changed explicitly?
+not_equivalent_to:
+- Context
+- Authority
+- Validity
+- ExecutionContract
+exclusions:
+- A Regime does not redefine concepts or semantic boundaries.
+- A Regime does not execute Actions.
+- A Regime does not create Authority or Binding.
+- A Regime is not a Domain Pack and cannot be authored as a domain-local replacement for the Core set.
+required_relations: []
+conditional_relations:
+- evaluatedUnder
+- escalatesTo
+- versionedBy
+boundaries:
+- Claim != Evidence
+- Evidence != Truth
+- Validation != Admission
+- Review != Binding
+derivation:
+  source: CORE-SEMANTIC-PACK-REGIMES.md
+  status: canon-derived-exploratory-candidate
+  canon_sources:
+  - system-momentum-canon/core/authority/regimes.md
+  - system-momentum-canon/core/authority/validity.md
+  - system-momentum-canon/core/authority/interpretation.md
+  exploration_sources:
+  - February 2026 Regime ontology and enumerative matrices
+  rationale: The Canon explicitly defines Regimes as a domain-independent validity framework and supplies
+    a closed default set. The detailed machine-readable matrices remain exploratory candidates until reviewed
+    for possible upstream Canon amendment.

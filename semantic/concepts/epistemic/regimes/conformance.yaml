@@ -1,0 +1,40 @@
+id: core.regime.conformance
+version: 0.1.0
+status: experimental
+rules:
+- id: core.regime-rule.known-regime
+  symbol: KnownRegime
+  requirement: Every Regime reference resolves to the five Core Regime definitions.
+  failure: unknown-or-domain-defined-regime
+- id: core.regime-rule.context-required
+  symbol: RegimeContextRequired
+  requirement: Every regime-governed Claim or Validity outcome identifies the Regime and its version.
+  failure: missing-regime-context
+- id: core.regime-rule.no-semantic-redefinition
+  symbol: RegimeDoesNotRedefineMeaning
+  requirement: No Regime record, Domain Pack, or Execution Contract may redefine a Core concept or boundary.
+  failure: regime-redefines-meaning
+- id: core.regime-rule.explicit-switch
+  symbol: RegimeSwitchExplicit
+  requirement: A change of governing Regime has a complete switch record and preserves prior outcomes.
+  failure: silent-regime-switch
+- id: core.regime-rule.validity-scoped
+  symbol: RegimeValidityScoped
+  requirement: Validity outcomes remain associated with the Regime, time, semantic context, and evaluation
+    that produced them.
+  failure: cross-regime-validity-collapse
+- id: core.regime-rule.projection-preserves-context
+  symbol: ProjectionPreservesRegimeContext
+  requirement: A Projection displaying a validity outcome preserves its Regime and does not present it
+    as universal truth.
+  failure: projection-hides-regime-context
+- id: core.regime-rule.domain-compatibility-not-definition
+  symbol: DomainCompatibilityNotRegimeDefinition
+  requirement: A Domain Pack may map evidence and claim specializations and declare compatibility, but
+    may not define a new Core Regime.
+  failure: domain-defines-regime
+- id: core.regime-rule.matrix-complete
+  symbol: RegimeMatrixComplete
+  requirement: Every Core Regime provides all five Canon-required matrix components.
+  failure: incomplete-regime-matrix
+validator: scripts/validate_regimes.py

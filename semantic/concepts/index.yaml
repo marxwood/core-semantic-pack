@@ -257,3 +257,8 @@ concepts:
     id: core.accountability
     layer: governance
     file: semantic/concepts/governance/accountability.yaml
+
+  - symbol: Regime
+    id: core.regime
+    layer: epistemic
+    file: semantic/concepts/epistemic/regime.yaml

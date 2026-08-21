@@ -1,97 +1,103 @@
 id: core.composition.model
 version: 0.1.0
 status: experimental
-
 layers:
-  - type: core-semantic-pack
-    authority: cross-domain semantic kernel
-    may:
-      - define candidate Core primitives
-      - define cross-domain relations
-      - define anti-collapse boundaries
-      - define Core question obligations
-    must_not:
-      - define domain-specific meaning
-      - define runtime implementation objects
-      - declare concrete execution legitimacy for every Process
-
-  - type: domain-semantic-pack
-    authority: declared domain only
-    may:
-      - specialize Core concepts
-      - restrict Core meaning
-      - add domain concepts and relations
-      - declare domain-specific questions
-    must_not:
-      - silently redefine a Core concept
-      - weaken a Core boundary
-      - claim authority outside the declared domain
-
-    requires_components:
-      - compatible Core Semantic Pack
-
-  - type: regime-pack
-    authority: declared Context and governance scope only
-    may:
-      - declare validity conditions
-      - declare Evidence admission requirements
-      - declare Review and Binding rules
-      - declare Authority and Constraint applicability
-    must_not:
-      - turn contextual validity into universal truth
-      - replace Core concept definitions
-      - grant Authority through Capability alone
-
-    requires_components:
-      - compatible Core Semantic Pack
-
-  - type: execution-contract
-    authority: declared Process and execution Context only
-    may:
-      - bind a Process to execution conditions
-      - declare permitted and forbidden transitions
-      - declare required validation, admission, review, and escalation
-      - declare consequences when answerability fails
-    must_not:
-      - be inferred from an ExecutionPlan
-      - be replaced by a workflow implementation
-      - manufacture Authority from a runtime capability
-    requires:
-      - ExecutionContract
-      - Process
-      - Authority
-      - Constraint
-
-  - type: resolved-semantic-pack
-    authority: immutable composition for a declared consumer and Context
-    may:
-      - be supplied to runtime adapters
-      - generate non-authoritative runtime artifacts
-      - serve as historical semantic reconstruction evidence
-    must_not:
-      - silently float to latest versions
-      - change after resolution
-      - erase rejected or overridden conflict information
-
-    requires_metadata:
-      - exact component versions
-      - compatibility result
-      - composition checksum
-      - resolution time
-
+- type: core-semantic-pack
+  authority: cross-domain semantic and epistemic interoperability kernel
+  may:
+  - define candidate Core primitives
+  - define cross-domain relations
+  - define anti-collapse boundaries
+  - define Core question obligations
+  - define the Core Regime set and Regime switching discipline
+  must_not:
+  - define domain-specific meaning
+  - define runtime implementation objects
+  - declare concrete execution legitimacy for every Process
+  - manufacture live validity, Authority, Admission, Binding, or Commitment
+- type: domain-semantic-pack
+  authority: declared domain only
+  may:
+  - specialize Core concepts
+  - restrict Core meaning
+  - add domain concepts and relations
+  - declare domain-specific questions
+  - map domain Claim and Evidence specializations
+  - declare compatibility with Core Regimes
+  - add stricter domain Evidence requirements
+  must_not:
+  - silently redefine a Core concept
+  - weaken a Core boundary
+  - claim authority outside the declared domain
+  - define or redefine a Core Regime
+  - replace Regime validity with domain authority
+  requires_components:
+  - compatible Core Semantic Pack
+- type: execution-contract
+  authority: declared Process and execution Context only
+  may:
+  - bind a Process to execution conditions
+  - declare permitted and forbidden transitions
+  - declare required validation, admission, review, and escalation
+  - select one primary Core Regime
+  - select explicit comparative Core Regimes
+  - declare explicit Regime-switch triggers
+  - declare consequences when answerability fails
+  must_not:
+  - be inferred from an ExecutionPlan
+  - be replaced by a workflow implementation
+  - manufacture Authority from a runtime capability
+  - define a new Regime
+  - rewrite a selected Regime matrix
+  - silently switch Regime to obtain a preferred outcome
+  requires:
+  - ExecutionContract
+  - Process
+  - Authority
+  - Constraint
+- type: resolved-semantic-pack
+  authority: immutable composition for a declared consumer and Context
+  may:
+  - be supplied to runtime adapters
+  - generate non-authoritative runtime artifacts
+  - serve as historical semantic reconstruction evidence
+  - record the selected primary and comparative Core Regimes
+  must_not:
+  - silently float to latest versions
+  - change after resolution
+  - erase rejected or overridden conflict information
+  - include an independently authored Regime Pack
+  - collapse cross-Regime outcomes into one regime-less validity
+  requires_metadata:
+  - exact component versions
+  - Core Regime ID and version
+  - Regime selection or switch provenance
+  - compatibility result
+  - composition checksum
+  - resolution time
+regime_position:
+  definition_authority: Core Semantic Pack
+  selection_authority: Execution Contract or declared evaluation Context
+  live_outcome_authority: Regime-governed evaluation under applicable contracts
+  external_regime_pack: false
+  domain_pack_role: compatibility and specialization mapping only
 resolution_order:
-  - load exact Core release
-  - verify Domain Pack compatibility
-  - apply domain specializations and restrictions without Core redefinition
-  - verify Regime Pack compatibility and Context applicability
-  - bind applicable Execution Contract
-  - evaluate boundary and relation conflicts
-  - record immutable component versions and checksum
-
+- load exact Core release including Core Regime definitions
+- verify Domain Pack compatibility
+- apply domain specializations and restrictions without Core redefinition
+- bind applicable Execution Contract
+- resolve primary and comparative Core Regime selections
+- validate explicit switching and escalation rules
+- evaluate boundary and relation conflicts
+- record immutable component versions, Regime binding, and checksum
 conflict_policy:
   core_boundary_conflict: reject-resolution
   core_definition_redefinition: reject-resolution
   relation_domain_or_range_conflict: reject-resolution
   domain_specialization_conflict: require-explicit-adoption-decision
-  regime_applicability_ambiguity: require-escalation
+  domain_defined_regime: reject-resolution
+  unknown_regime: reject-resolution
+  regime_selection_ambiguity: require-escalation
+  silent_regime_switch: reject-resolution
+  cross_regime_validity_collapse: reject-resolution
   execution_authority_ambiguity: forbid-external-effect

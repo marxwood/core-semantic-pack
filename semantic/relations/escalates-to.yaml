@@ -1,0 +1,13 @@
+id: core.rel.escalates-to
+version: 0.1.0
+status: experimental
+symbol: escalatesTo
+definition: Declares an explicit candidate path from one Regime to a stricter or otherwise different Regime
+  when the current evaluation conditions are insufficient.
+source:
+- Regime
+target:
+- Regime
+direction: directed
+provenance: required
+authority_effect: none

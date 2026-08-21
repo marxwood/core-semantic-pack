@@ -1,0 +1,86 @@
+id: core.regime.adversarial
+version: 0.1.0
+status: exploratory
+kind: canonical-regime-definition-with-exploratory-matrix
+symbol: AdversarialRegime
+canonical_name: Adversarial
+canonical_summary: Assumes active contradiction pressure and makes dispute handling and contradiction
+  tracking first-class.
+purpose: Contested environments, strategic disagreement, manipulation risk, and evaluations where counterclaims
+  are expected.
+authority:
+  regime_identity: canon-derived
+  canonical_summary: canon-derived
+  enumerative_matrix: exploratory-derivation-candidate
+  may_be_redefined_by_domain: false
+  may_be_redefined_by_execution_contract: false
+matrix:
+  claim_classes:
+    admissible:
+    - Observation
+    - Claim
+    - Inference
+    - Finding
+    restrictions:
+    - Claims expose assumptions and material dependencies.
+    - Findings remain contested while material counter-evidence is unresolved.
+    - No claim gains standing merely because opposing material was omitted.
+  evidence_classes:
+    core_class: Evidence
+    domain_specializations: allowed only through explicit Core-compatible mapping
+    minimum: Admitted Evidence supporting and contradicting the Claim is required when available; active
+      counter-evidence search is part of evaluation.
+    provenance: Strong Provenance is mandatory, including custody or transformation history where relevant.
+    additional_requirements:
+    - Source independence is assessed rather than assumed.
+    - Counter-evidence and rival Claims are explicitly represented.
+    - Evidence suppression, selective omission, and provenance manipulation are evaluation failures.
+  evaluation_rules:
+    admission: Admission requires the Disciplined minimum plus an explicit adversarial evaluation scope.
+    support: Support is tested against alternative explanations and strongest material counterclaims.
+    contradiction: Contradiction handling is mandatory; unanswered material contradiction keeps the outcome
+      contested.
+    uncertainty: Uncertainty and unresolved dispute are preserved as first-class outcomes.
+    trace: The trail records considered counterclaims, excluded material, reasons, and evaluator identity.
+    outcomes:
+    - maintained
+    - contested
+    - invalidated
+    - retired
+  invalidation_rules:
+    triggers:
+    - decisive unrefuted contradiction
+    - suppressed counter-evidence
+    - fabricated, altered, or broken Provenance
+    - failure to apply the declared dispute protocol
+    - semantic-context mismatch
+    - outcome-driven reinterpretation
+    preserve_referability: true
+    preserve_trace: true
+    deletion_is_invalidation: false
+  escalation_rules:
+    triggers:
+    - the dispute cannot be resolved with the available Evidence
+    - consequences are high-stakes
+    - independent corroboration and reproducibility are required
+    - the result is proposed as a durable baseline
+    candidate_targets:
+    - core.regime.high-assurance
+    - core.regime.locked
+    explicit_switch_required: true
+    prior_outcomes_retained: true
+invariants:
+- Regime does not redefine semantic meaning.
+- Admission into the system is not a declaration of truth.
+- Validity remains Regime-scoped and time-scoped.
+- Contradiction remains visible.
+- Invalidation preserves referability and trace.
+- Absence of contradiction is not treated as proof that adversarial search was sufficient.
+derivation:
+  canonical_source: system-momentum-canon/core/authority/regimes.md
+  validity_source: system-momentum-canon/core/authority/validity.md
+  interpretation_source: system-momentum-canon/core/authority/interpretation.md
+  exploration_source: February 2026 Regime ontology and enumerative matrices
+  review_target: candidate future Canon elaboration
+  note: The canonical identity and summary are authoritative only to the extent of the cited Canon. The
+    detailed matrix is retained as a reviewable exploration candidate.

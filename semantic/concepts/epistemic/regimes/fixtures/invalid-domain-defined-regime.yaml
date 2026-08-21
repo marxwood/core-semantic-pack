@@ -1,0 +1,9 @@
+id: core.regime-fixture.invalid.domain-defined-regime
+expected: invalid
+domain_pack: example.medical
+declared_regime:
+  id: example.regime.clinical-diagnostic
+  defined_by: domain-pack
+expected_failures:
+- domain-defines-regime
+- unknown-or-domain-defined-regime
