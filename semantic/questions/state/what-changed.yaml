@@ -1,0 +1,40 @@
+id: core.question.identify-state-change
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: What changed?
+
+family: state
+
+requires:
+  concepts:
+    - StateChange
+    - State
+    - Provenance
+
+  relations:
+    - previousState
+    - resultingState
+    - causedBy
+    - hasProvenance
+
+must_preserve:
+  - Action != StateChange
+
+answer_contract:
+  minimum_requirements:
+    - change_identified
+    - before_and_after_states_identified
+    - cause_or_cause_status_explicit
+    - provenance_traceable
+
+failure_contract:
+  failure_states:
+    - missing_before_state
+    - missing_after_state
+    - action_assumed_to_be_change
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

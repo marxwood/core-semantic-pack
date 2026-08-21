@@ -1,0 +1,20 @@
+id: core.rel.supported-by
+version: 0.1.0
+status: experimental
+
+symbol: supportedBy
+
+definition: >-
+  Associates a Claim or Finding with Evidence or a reified Support assertion.
+
+source:
+  - Claim
+  - Finding
+
+target:
+  - Evidence
+  - Support
+
+direction: directed
+provenance: required
+authority_effect: none

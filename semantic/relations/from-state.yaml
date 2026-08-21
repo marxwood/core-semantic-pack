@@ -1,0 +1,18 @@
+id: core.rel.from-state
+version: 0.1.0
+status: experimental
+
+symbol: fromState
+
+definition: >-
+  Identifies the CurrentState from which a Direction is evaluated.
+
+source:
+  - Direction
+
+target:
+  - State
+
+direction: directed
+provenance: optional
+authority_effect: none

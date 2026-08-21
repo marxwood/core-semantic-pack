@@ -1,0 +1,39 @@
+id: core.question.identify-implied-direction
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which direction of change follows from it?
+
+family: teleological
+
+requires:
+  concepts:
+    - Goal
+    - Direction
+    - State
+    - DesiredState
+
+  relations:
+    - impliesDirection
+    - fromState
+    - towardState
+
+must_preserve:
+  - Goal != DesiredState
+
+answer_contract:
+  minimum_requirements:
+    - goal_identified
+    - direction_identified
+    - origin_state_identified
+    - target_desired_state_identified
+
+failure_contract:
+  failure_states:
+    - direction_missing
+    - origin_or_target_state_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

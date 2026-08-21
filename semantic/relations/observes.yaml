@@ -1,0 +1,20 @@
+id: core.rel.observes
+version: 0.1.0
+status: experimental
+
+symbol: observes
+
+definition: >-
+  Associates an Actor or Role with an Observation it produced.
+
+source:
+  - Actor
+  - Role
+
+target:
+  - Observation
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: observedBy

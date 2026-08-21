@@ -1,0 +1,22 @@
+id: core.rel.has-identity
+version: 0.1.0
+status: experimental
+
+symbol: hasIdentity
+
+definition: >-
+  Associates a referable semantic object with the Identity criteria under which it is treated as the same
+  referent.
+
+source:
+  - Entity
+  - Source
+  - Actor
+
+target:
+  - Identity
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: identityOf

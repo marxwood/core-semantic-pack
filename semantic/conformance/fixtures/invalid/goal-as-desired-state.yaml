@@ -1,0 +1,21 @@
+id: core.fixture.invalid.goal-as-desired-state
+version: 0.1.0
+status: illustrative
+
+description: A Goal statement is used as the concrete DesiredState against which progress is measured.
+
+expected: invalid
+
+objects:
+  - id: goal:improve-safety
+    type: Goal
+    attributes:
+      represented_as: DesiredState
+
+relations: []
+
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+    - Goal != DesiredState

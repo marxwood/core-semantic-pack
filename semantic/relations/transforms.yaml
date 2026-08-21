@@ -1,0 +1,21 @@
+id: core.rel.transforms
+version: 0.1.0
+status: experimental
+
+symbol: transforms
+
+definition: >-
+  Identifies the State or semantic object affected by an Action or Transformation.
+
+source:
+  - Action
+  - Transformation
+
+target:
+  - State
+  - Entity
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

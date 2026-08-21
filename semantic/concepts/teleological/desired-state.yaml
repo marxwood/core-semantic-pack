@@ -1,0 +1,41 @@
+id: core.desired-state
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: teleological
+
+symbol: DesiredState
+
+definition: >-
+  An explicit representation of a future State whose realization or approximation would indicate advancement
+  of a Goal.
+
+not_equivalent_to:
+  - Prediction
+  - Plan
+  - Goal
+
+exclusions:
+  - DesiredState is not CurrentState.
+
+required_relations:
+  - desiredBy
+
+conditional_relations:
+  - existsIn
+  - hasValidity
+  - versionedBy
+  - supersedes
+
+boundaries:
+  - Goal != DesiredState
+  - DesiredState != Prediction
+  - DesiredState != Plan
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Goals need inspectable future-state representations so trajectory can be assessed independently from
+    action completion.

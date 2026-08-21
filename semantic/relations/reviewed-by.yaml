@@ -1,0 +1,19 @@
+id: core.rel.reviewed-by
+version: 0.1.0
+status: experimental
+
+symbol: reviewedBy
+
+definition: >-
+  Associates an object or Contestation with a Review.
+
+source:
+  - Contestation
+  - Any
+
+target:
+  - Review
+
+direction: directed
+provenance: optional
+authority_effect: none

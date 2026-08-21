@@ -1,0 +1,21 @@
+id: core.rel.support-subject
+version: 0.1.0
+status: experimental
+
+symbol: supportSubject
+
+definition: >-
+  Identifies the object providing contextual support.
+
+source:
+  - Support
+
+target:
+  - Evidence
+  - Observation
+  - Finding
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

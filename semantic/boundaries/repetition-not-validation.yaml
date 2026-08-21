@@ -1,0 +1,22 @@
+id: core.boundary.repetition-not-validation
+version: 0.1.0
+status: experimental
+
+expression:
+  Repetition != Validation
+
+rule: >-
+  Repeated appearance or downstream reuse of an object must not be treated as Validation.
+
+rationale: >-
+  Propagation does not add evidence or evaluate conformance.
+
+failure_code: SEM-BOUNDARY-012
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

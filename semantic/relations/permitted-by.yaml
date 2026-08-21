@@ -1,0 +1,21 @@
+id: core.rel.permitted-by
+version: 0.1.0
+status: experimental
+
+symbol: permittedBy
+
+definition: >-
+  Associates an activity with the Permission that allows it.
+
+source:
+  - Action
+  - Process
+  - Transfer
+  - Any
+
+target:
+  - Permission
+
+direction: directed
+provenance: optional
+authority_effect: scoped-allowance

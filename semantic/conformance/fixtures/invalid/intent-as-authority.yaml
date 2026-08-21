@@ -1,0 +1,28 @@
+id: core.fixture.invalid.intent-as-authority
+version: 0.1.0
+status: illustrative
+
+description: The fact that an Actor intends an Action is used as authorization for that Action.
+
+expected: invalid
+
+objects:
+  - id: intent:delete-record
+    type: Intent
+    attributes:
+      represented_as: Authority
+
+  - id: action:delete-record
+    type: Action
+
+relations:
+  - relation: authorizedBy
+    source: action:delete-record
+    target: intent:delete-record
+
+expectations:
+  rules_pass: []
+  rules_fail:
+    - CapabilityAuthoritySeparation
+  boundaries_triggered:
+    - Intent != Authority

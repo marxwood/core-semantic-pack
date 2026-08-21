@@ -1,0 +1,41 @@
+id: core.question.identify-claim
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: What is being claimed?
+
+family: epistemic
+
+requires:
+  concepts:
+    - Claim
+    - Actor
+    - Source
+    - Provenance
+    - Context
+
+  relations:
+    - assertedBy
+    - hasProvenance
+    - existsIn
+
+must_preserve:
+  - Observation != Claim
+  - Claim != Evidence
+
+answer_contract:
+  minimum_requirements:
+    - claim_identified
+    - assertion_attributable
+    - provenance_traceable
+    - claim_context_explicit
+
+failure_contract:
+  failure_states:
+    - claim_unattributed
+    - claim_used_as_evidence
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

@@ -1,0 +1,29 @@
+id: core.rel.derived-from
+version: 0.1.0
+status: experimental
+
+symbol: derivedFrom
+
+definition: >-
+  Declares semantic lineage from an origin or prior object.
+
+source:
+  - Derivative
+  - Inference
+  - Finding
+  - Projection
+  - Any
+
+target:
+  - Source
+  - Observation
+  - Claim
+  - Evidence
+  - Inference
+  - Finding
+  - State
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

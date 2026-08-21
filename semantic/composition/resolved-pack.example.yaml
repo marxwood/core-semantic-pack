@@ -1,0 +1,32 @@
+resolved_pack:
+  id: resolved:example-7fa31
+  status: illustrative
+  resolved_at: '2026-08-20T00:00:01Z'
+  immutable: true
+  components:
+    - type: core-semantic-pack
+      id: semantic-pack.core
+      version: 0.1.0
+
+    - type: domain-semantic-pack
+      id: example.ip
+      version: 0.1.0
+
+    - type: regime-pack
+      id: example.expert-review
+      version: 0.1.0
+
+    - type: execution-contract
+      id: example.patent-analysis
+      version: 0.1.0
+  provides_questions:
+    - What supports the Claim?
+    - Why is this being done?
+    - Under which semantic status was it admitted?
+    - Is it still valid?
+  compatibility:
+    status: compatible
+    core_boundaries_preserved: true
+    unresolved_conflicts: []
+  checksum: illustrative:not-a-release-checksum
+  note: This record demonstrates shape only. Referenced example packs are not part of the Core release.

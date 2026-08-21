@@ -1,0 +1,76 @@
+id: core.reference-only-symbol-catalog
+version: 0.1.0
+status: experimental
+
+references:
+  - id: semantic-category:truth
+    kind: reference-only-semantic-category
+    core_primitive: false
+
+    symbol: Truth
+
+    definition: >-
+      A comparison category used to preserve the distinction between contextual Evidence and universal truth.
+
+  - id: semantic-category:binding-decision
+    kind: reference-only-governance-category
+    core_primitive: false
+
+    symbol: BindingDecision
+
+    definition: >-
+      A comparison category for a decision that carries operative Binding consequence.
+
+  - id: semantic-category:repetition
+    kind: reference-only-process-category
+    core_primitive: false
+
+    symbol: Repetition
+
+    definition: >-
+      Repeated occurrence or downstream reuse, which does not itself constitute Validation.
+
+  - id: semantic-category:prediction
+    kind: reference-only-representation-category
+    core_primitive: false
+
+    symbol: Prediction
+
+    definition: >-
+      A representation of an expected future condition, kept distinct from DesiredState.
+
+  - id: semantic-category:plan
+    kind: reference-only-architecture-category
+    core_primitive: false
+
+    symbol: Plan
+
+    definition: >-
+      A proposed course of activity, kept distinct from DesiredState.
+
+  - id: semantic-category:execution-plan
+    kind: reference-only-architecture-category
+    core_primitive: false
+
+    symbol: ExecutionPlan
+
+    definition: >-
+      An optional concrete materialization of execution, not the semantic contract that legitimizes it.
+
+  - id: semantic-category:runtime
+    kind: reference-only-architecture-category
+    core_primitive: false
+
+    symbol: Runtime
+
+    definition: >-
+      The concrete environment in which execution occurs, kept distinct from an ExecutionPlan.
+
+  - id: semantic-category:operational-success
+    kind: reference-only-evaluation-category
+    core_primitive: false
+
+    symbol: OperationalSuccess
+
+    definition: >-
+      Successful completion by operational criteria, which does not itself establish Progress.

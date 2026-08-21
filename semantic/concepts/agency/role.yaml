@@ -1,0 +1,38 @@
+id: core.role
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+symbol: Role
+
+definition: >-
+  A contextual position of responsibility that constrains expected, permitted, or accountable participation
+  in a Process or governance act.
+
+not_equivalent_to:
+  - Actor
+  - Capability
+
+exclusions:
+  - Role is not Authority by default.
+  - Role is not job title by necessity.
+
+required_relations: []
+
+conditional_relations:
+  - occupiedBy
+  - hasCapability
+  - constrainedBy
+  - governedBy
+  - existsIn
+
+boundaries:
+  - Capability != Authority
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    The same Actor may participate under different responsibilities and permissions in different contexts.

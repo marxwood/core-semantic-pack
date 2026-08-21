@@ -1,0 +1,43 @@
+id: core.question.identify-attempted-action
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which Action is being attempted?
+
+family: agency
+
+requires:
+  concepts:
+    - Action
+    - Actor
+    - Intent
+    - Process
+    - Provenance
+
+  relations:
+    - performedBy
+    - realizes
+    - participatesIn
+    - hasProvenance
+
+must_preserve:
+  - Action != Intent
+  - Action != StateChange
+
+answer_contract:
+  minimum_requirements:
+    - action_identified
+    - actor_attributable
+    - intent_traceable
+    - process_traceable
+
+failure_contract:
+  failure_states:
+    - action_unattributed
+    - intent_missing
+    - action_assumed_to_be_state_change
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

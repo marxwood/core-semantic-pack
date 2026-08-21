@@ -1,0 +1,33 @@
+id: core.question.identify-retained-provenance
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which Provenance does it retain?
+
+family: memory
+
+requires:
+  concepts:
+    - Provenance
+    - Persistence
+
+  relations:
+    - hasProvenance
+    - persistsObject
+
+must_preserve: []
+
+answer_contract:
+  minimum_requirements:
+    - persisted_object_identified
+    - provenance_traceable
+
+failure_contract:
+  failure_states:
+    - provenance_missing
+    - provenance_detached
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

@@ -1,0 +1,22 @@
+id: core.rel.permits
+version: 0.1.0
+status: experimental
+
+symbol: permits
+
+definition: >-
+  Identifies what a Permission allows.
+
+source:
+  - Permission
+
+target:
+  - Actor
+  - Role
+  - Action
+  - Process
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: scoped-allowance

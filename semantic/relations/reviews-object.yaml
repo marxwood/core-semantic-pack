@@ -1,0 +1,18 @@
+id: core.rel.reviews-object
+version: 0.1.0
+status: experimental
+
+symbol: reviewsObject
+
+definition: >-
+  Identifies the object or transition evaluated by a Review.
+
+source:
+  - Review
+
+target:
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

@@ -1,0 +1,36 @@
+id: core.transfer
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+symbol: Transfer
+
+definition: >-
+  The movement of a semantic object or responsibility between Actors, Contexts, or Boundaries under declared
+  interpretation and provenance obligations.
+
+exclusions:
+  - Transfer is not a copy by definition.
+  - Transfer is not a runtime handoff by definition.
+  - Transfer is not Admission into the receiving context.
+
+required_relations:
+  - transfersObject
+  - fromContext
+  - toContext
+
+conditional_relations:
+  - hasProvenance
+  - governedBy
+  - authorizedBy
+
+boundaries:
+  - Persistence != Admission
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Semantic status and provenance must survive movement across system and organizational boundaries.

@@ -1,0 +1,36 @@
+id: core.entity
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: Entity
+
+definition: >-
+  A referable subject or object of semantic discourse that may retain identity across contexts, representations,
+  and StateChanges.
+
+helps_answer:
+  - What is this?
+
+exclusions:
+  - Entity is not a runtime object by definition.
+  - Entity is not an Actor by definition.
+  - Entity is not an authoritative object by definition.
+
+required_relations:
+  - hasIdentity
+
+conditional_relations:
+  - existsIn
+  - boundedBy
+  - hasState
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    A stable referent is required before meaning, state, provenance, or responsibility can be attached.

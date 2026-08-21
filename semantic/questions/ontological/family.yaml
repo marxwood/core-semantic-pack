@@ -1,0 +1,24 @@
+id: core.question-family.ontological
+version: 0.1.0
+status: experimental
+kind: question-family
+
+symbol: ontological
+
+purpose: >-
+  Questions about referents, identity, classification, boundaries, relations, and contextual meaning.
+
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+
+questions:
+  - What is this?
+  - What kind of thing is it?
+  - Which identity does it have?
+  - Where are its boundaries?
+  - To what is it related?
+  - In which Context does this meaning apply?
+
+related_questions: []

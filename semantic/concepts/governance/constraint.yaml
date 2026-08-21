@@ -1,0 +1,33 @@
+id: core.constraint
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: governance
+
+symbol: Constraint
+
+definition: >-
+  An explicit condition that limits interpretation, permission, transformation, admission, review, binding,
+  or other semantic use.
+
+exclusions:
+  - Constraint is not a suggestion.
+  - Constraint is not an implicit convention.
+  - Constraint is not a runtime check by necessity.
+
+required_relations: []
+
+conditional_relations:
+  - appliesTo
+  - authorizedBy
+  - existsIn
+  - versionedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Normative limits need stable meaning independent of the mechanism used to enforce them.

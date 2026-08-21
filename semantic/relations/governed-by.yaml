@@ -1,0 +1,18 @@
+id: core.rel.governed-by
+version: 0.1.0
+status: experimental
+
+symbol: governedBy
+
+definition: >-
+  Associates an object, relation, process, or transition with the Contract governing its semantic obligations.
+
+source:
+  - Any
+
+target:
+  - Contract
+
+direction: directed
+provenance: optional
+authority_effect: none

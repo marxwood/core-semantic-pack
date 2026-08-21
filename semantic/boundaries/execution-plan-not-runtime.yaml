@@ -1,0 +1,22 @@
+id: core.boundary.execution-plan-not-runtime
+version: 0.1.0
+status: experimental
+
+expression:
+  ExecutionPlan != Runtime
+
+rule: >-
+  ExecutionPlan must remain distinguishable from the execution that actually occurred.
+
+rationale: >-
+  Planned realization and historical execution are different states.
+
+failure_code: SEM-BOUNDARY-022
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

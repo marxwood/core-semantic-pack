@@ -1,0 +1,41 @@
+id: core.question.detect-projection-state-collapse
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Has a Projection become indistinguishable from State?
+
+family: reflective
+
+requires:
+  concepts:
+    - Projection
+    - State
+    - Admission
+    - Persistence
+    - Provenance
+
+  relations:
+    - projects
+    - admittedBy
+    - persistsObject
+    - hasProvenance
+
+must_preserve:
+  - Projection != State
+  - Persistence != Admission
+
+answer_contract:
+  minimum_requirements:
+    - projection_and_state_separately_identified
+    - admission_transition_traceable_if_any
+    - persistence_not_used_as_state_authority
+
+failure_contract:
+  failure_states:
+    - projection_collapse
+    - implicit_state_admission
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

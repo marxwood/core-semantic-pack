@@ -1,0 +1,24 @@
+id: core.rel.revoked-by
+version: 0.1.0
+status: experimental
+
+symbol: revokedBy
+
+definition: >-
+  Associates an object or status with the Revocation that withdrew it.
+
+source:
+  - Authority
+  - Permission
+  - Admission
+  - Binding
+  - Commitment
+  - Validity
+  - Any
+
+target:
+  - Revocation
+
+direction: directed
+provenance: required
+authority_effect: withdraws-normative-status

@@ -1,0 +1,32 @@
+id: core.question.identify-interpretive-context
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which Context shaped the interpretation?
+
+family: interpretive
+
+requires:
+  concepts:
+    - Interpretation
+    - Context
+
+  relations:
+    - existsIn
+    - interprets
+
+must_preserve: []
+
+answer_contract:
+  minimum_requirements:
+    - interpretation_identified
+    - interpretive_context_explicit
+
+failure_contract:
+  failure_states:
+    - interpretive_context_implicit
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

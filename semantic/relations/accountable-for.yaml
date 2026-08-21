@@ -1,0 +1,22 @@
+id: core.rel.accountable-for
+version: 0.1.0
+status: experimental
+
+symbol: accountableFor
+
+definition: >-
+  Associates an Actor or Role with an object or consequence for which it is accountable.
+
+source:
+  - Actor
+  - Role
+
+target:
+  - Action
+  - StateChange
+  - Commitment
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

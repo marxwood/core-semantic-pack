@@ -1,0 +1,39 @@
+id: core.validity
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+symbol: Validity
+
+definition: >-
+  The declared status of conformance, applicability, or acceptability of an object or relation under a
+  specific Context, Regime, time, and SemanticVersion.
+
+not_equivalent_to:
+  - Admission
+  - Binding
+
+exclusions:
+  - Validity is not universal truth.
+  - Validity is not runtime success.
+
+required_relations:
+  - existsIn
+
+conditional_relations:
+  - establishedBy
+  - versionedBy
+  - supersedes
+
+boundaries:
+  - Validation != Admission
+  - Evidence != Truth
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Validity is contextual and versioned; it must not silently become universal truth or institutional
+    authority.

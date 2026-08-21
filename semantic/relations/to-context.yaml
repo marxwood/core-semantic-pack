@@ -1,0 +1,18 @@
+id: core.rel.to-context
+version: 0.1.0
+status: experimental
+
+symbol: toContext
+
+definition: >-
+  Identifies the destination Context of a Transfer.
+
+source:
+  - Transfer
+
+target:
+  - Context
+
+direction: directed
+provenance: optional
+authority_effect: none

@@ -1,0 +1,39 @@
+id: core.observation
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+symbol: Observation
+
+definition: >-
+  A recorded result of perceiving, measuring, retrieving, or otherwise encountering a Source under a declared
+  Context.
+
+helps_answer:
+  - What was observed?
+
+exclusions:
+  - Observation is not a Claim.
+  - Observation is not Evidence by default.
+  - Observation is not an Interpretation beyond what was recorded.
+
+required_relations:
+  - observedFrom
+  - existsIn
+  - hasProvenance
+
+conditional_relations:
+  - observedBy
+  - hasUncertainty
+  - versionedBy
+
+boundaries:
+  - Observation != Claim
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Perception must remain distinct from what the system later asserts about what was perceived.

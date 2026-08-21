@@ -1,0 +1,18 @@
+id: core.rel.supersedes
+version: 0.1.0
+status: experimental
+
+symbol: supersedes
+
+definition: >-
+  Declares that one versioned semantic object replaces another without erasing historical lineage.
+
+source:
+  - Any
+
+target:
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

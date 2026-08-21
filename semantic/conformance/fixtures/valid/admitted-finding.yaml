@@ -1,0 +1,109 @@
+id: core.fixture.valid.admitted-finding
+version: 0.1.0
+status: illustrative
+
+description: A retrieved Source is observed, explicitly admitted as Evidence, used in an Inference, and
+  evaluated into a non-binding Finding.
+
+expected: valid
+
+objects:
+  - id: source:patent-status
+    type: Source
+
+  - id: observation:seventeen-expiries
+    type: Observation
+
+  - id: claim:coverage-will-decrease
+    type: Claim
+
+  - id: evidence:expiry-records
+    type: Evidence
+    attributes:
+      admission_status: admitted
+
+  - id: inference:exposure-increase
+    type: Inference
+
+  - id: finding:protection-gap
+    type: Finding
+    attributes:
+      binding_status: non-binding
+
+  - id: admission:evidence
+    type: Admission
+
+  - id: authority:evidence-regime
+    type: Authority
+
+  - id: validity:finding
+    type: Validity
+    attributes:
+      validity_status: valid-under-context
+
+  - id: context:portfolio-review
+    type: Context
+
+  - id: provenance:evidence
+    type: Provenance
+
+  - id: provenance:finding
+    type: Provenance
+
+relations:
+  - relation: observedFrom
+    source: observation:seventeen-expiries
+    target: source:patent-status
+
+  - relation: hasProvenance
+    source: evidence:expiry-records
+    target: provenance:evidence
+
+  - relation: existsIn
+    source: evidence:expiry-records
+    target: context:portfolio-review
+
+  - relation: admittedBy
+    source: evidence:expiry-records
+    target: admission:evidence
+
+  - relation: admitsObject
+    source: admission:evidence
+    target: evidence:expiry-records
+
+  - relation: authorizedBy
+    source: admission:evidence
+    target: authority:evidence-regime
+
+  - relation: supports
+    source: evidence:expiry-records
+    target: claim:coverage-will-decrease
+
+  - relation: inferredFrom
+    source: inference:exposure-increase
+    target: evidence:expiry-records
+
+  - relation: derivedFrom
+    source: finding:protection-gap
+    target: inference:exposure-increase
+
+  - relation: supportedBy
+    source: finding:protection-gap
+    target: evidence:expiry-records
+
+  - relation: hasProvenance
+    source: finding:protection-gap
+    target: provenance:finding
+
+  - relation: hasValidity
+    source: finding:protection-gap
+    target: validity:finding
+
+expectations:
+  rules_pass:
+    - DerivedObjectProvenance
+    - EvidenceAdmittedAndProvenanced
+    - FindingGoverned
+    - BindingExplicit
+  rules_fail: []
+  boundaries_triggered: []

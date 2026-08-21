@@ -1,0 +1,76 @@
+id: semantic-pack.core.release.0.1.0
+pack: semantic-pack.core
+version: 0.1.0
+release_status: experimental-candidate
+published_at: null
+git_commit: null
+canonical: false
+
+summary: First materialized working release of the runtime-neutral Core Semantic Pack.
+
+includes:
+  specification:
+    - CORE-SEMANTIC-PACK.md
+  concepts:
+    - semantic/concepts/
+  relations:
+    - semantic/relations/
+  boundaries:
+    - semantic/boundaries/
+  questions:
+    - semantic/questions/
+  patterns:
+    - semantic/patterns/semantic-trace.yaml
+    - semantic/patterns/teleological-loop.yaml
+    - semantic/patterns/institutional-memory.yaml
+    - semantic/patterns/execution-contract.yaml
+    - semantic/patterns/semantic-status-collapse.yaml
+  lifecycle:
+    - semantic/lifecycle/status-families.yaml
+    - semantic/lifecycle/transition-rules.yaml
+  composition:
+    - semantic/composition/composition-model.yaml
+    - semantic/composition/compatibility-rules.yaml
+  mappings:
+    - mappings/generic-agentic/mapping.yaml
+  conformance:
+    - semantic/conformance/rules.yaml
+    - semantic/conformance/coverage.yaml
+    - semantic/conformance/fixtures/valid/
+    - semantic/conformance/fixtures/invalid/
+  references:
+    - semantic/references/non-core-symbols.yaml
+
+counts:
+  concepts: 51
+  relations: 89
+  boundaries: 23
+  question_families: 9
+  question_contracts: 66
+  patterns: 5
+  status_families: 5
+  conformance_rules: 18
+  valid_fixtures: 5
+  invalid_fixtures: 24
+  reference_only_symbols: 8
+
+semantic_status:
+  all_records: experimental unless explicitly illustrative
+  candidate_core_primitives: 51
+  adopted_core_primitives: 0
+
+known_limitations:
+  - Type is required for answerability but is not admitted as a Core primitive.
+  - Regime is represented as a pack/composition responsibility, not a Core primitive.
+  - BindingDecision is represented through Binding plus Commitment.
+  - Reflection composes existing primitives rather than defining an independent primitive set.
+  - The current validator checks structural integrity and declared fixture expectations, not semantic
+    truth.
+  - Question fixtures are representative; atomic question contracts do not yet each have dedicated runtime
+    fixtures.
+  - Release commit and publication time must be assigned after merge or tagging.
+
+compatibility:
+  previous_release: null
+  classification: initial-experimental-release
+  breaking_change_policy: See semantic/composition/compatibility-rules.yaml and CONTRIBUTING.md.

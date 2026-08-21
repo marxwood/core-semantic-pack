@@ -1,0 +1,22 @@
+id: core.boundary.desired-state-not-prediction
+version: 0.1.0
+status: experimental
+
+expression:
+  DesiredState != Prediction
+
+rule: >-
+  DesiredState must not be represented as a Prediction of what will occur.
+
+rationale: >-
+  Normative future and expected future are different semantics.
+
+failure_code: SEM-BOUNDARY-014
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

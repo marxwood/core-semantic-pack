@@ -1,0 +1,19 @@
+id: core.rel.support-object
+version: 0.1.0
+status: experimental
+
+symbol: supportObject
+
+definition: >-
+  Identifies the Claim or Finding receiving contextual support.
+
+source:
+  - Support
+
+target:
+  - Claim
+  - Finding
+
+direction: directed
+provenance: optional
+authority_effect: none

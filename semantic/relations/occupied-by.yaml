@@ -1,0 +1,19 @@
+id: core.rel.occupied-by
+version: 0.1.0
+status: experimental
+
+symbol: occupiedBy
+
+definition: >-
+  Associates a Role with an Actor occupying it.
+
+source:
+  - Role
+
+target:
+  - Actor
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: occupiesRole

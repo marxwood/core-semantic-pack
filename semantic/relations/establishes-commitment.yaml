@@ -1,0 +1,18 @@
+id: core.rel.establishes-commitment
+version: 0.1.0
+status: experimental
+
+symbol: establishesCommitment
+
+definition: >-
+  Associates a Binding act with the Commitment it makes operative.
+
+source:
+  - Binding
+
+target:
+  - Commitment
+
+direction: directed
+provenance: required
+authority_effect: binding-consequence

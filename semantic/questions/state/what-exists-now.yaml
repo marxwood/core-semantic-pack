@@ -1,0 +1,37 @@
+id: core.question.identify-resulting-state
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: What exists now?
+
+family: state
+
+requires:
+  concepts:
+    - StateChange
+    - State
+    - Provenance
+
+  relations:
+    - resultingState
+    - hasProvenance
+
+must_preserve:
+  - Projection != State
+  - Action != StateChange
+
+answer_contract:
+  minimum_requirements:
+    - state_change_identified
+    - resulting_state_identified
+    - change_provenance_traceable
+
+failure_contract:
+  failure_states:
+    - resulting_state_missing
+    - projection_used_as_resulting_state
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

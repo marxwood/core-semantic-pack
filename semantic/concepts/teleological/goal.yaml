@@ -1,0 +1,41 @@
+id: core.goal
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: teleological
+
+symbol: Goal
+
+definition: >-
+  An authorized objective that gives direction to interpretation, planning, and action within a declared
+  scope.
+
+not_equivalent_to:
+  - DesiredState
+  - Intent
+  - Action
+
+exclusions:
+  - Goal is not a metric alone.
+
+required_relations:
+  - specifies
+  - authorizedBy
+
+conditional_relations:
+  - existsIn
+  - impliesDirection
+  - versionedBy
+  - supersedes
+
+boundaries:
+  - Goal != DesiredState
+  - Intent != Goal
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Autonomous action requires explicit normative direction rather than hidden objectives embedded in
+    prompts or implementation.

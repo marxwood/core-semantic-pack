@@ -1,0 +1,41 @@
+id: core.question.identify-permission
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: What is permitted?
+
+family: governance
+
+requires:
+  concepts:
+    - Permission
+    - Authority
+    - Actor
+    - Role
+    - Action
+    - Context
+
+  relations:
+    - permits
+    - authorizedBy
+    - existsIn
+
+must_preserve:
+  - Capability != Authority
+
+answer_contract:
+  minimum_requirements:
+    - permission_identified
+    - permitted_object_or_actor_identified
+    - permission_authority_traceable
+    - permission_scope_explicit
+
+failure_contract:
+  failure_states:
+    - permission_implicit
+    - capability_used_as_permission
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

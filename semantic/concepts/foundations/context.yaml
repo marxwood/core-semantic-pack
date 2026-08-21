@@ -1,0 +1,33 @@
+id: core.context
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: Context
+
+definition: >-
+  A declared interpretive frame within which meaning, validity, comparison, permission, or authority applies.
+
+helps_answer:
+  - In which Context does this meaning apply?
+
+exclusions:
+  - Context is not hidden prompt context.
+  - Context is not unbounded environmental data.
+  - Context is not universal truth.
+
+required_relations: []
+
+conditional_relations:
+  - boundedBy
+  - versionedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Interpretation, validity, and authority are contextual and must not silently become universal.

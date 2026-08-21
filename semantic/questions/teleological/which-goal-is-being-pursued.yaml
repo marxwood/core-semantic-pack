@@ -1,0 +1,39 @@
+id: core.question.identify-pursued-goal
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which Goal is being pursued?
+
+family: teleological
+
+requires:
+  concepts:
+    - Goal
+    - Intent
+    - Action
+    - Authority
+
+  relations:
+    - advances
+    - realizes
+    - authorizedBy
+
+must_preserve:
+  - Intent != Goal
+  - Intent != Authority
+
+answer_contract:
+  minimum_requirements:
+    - goal_identified
+    - intent_to_goal_relation_traceable
+    - goal_authority_traceable
+
+failure_contract:
+  failure_states:
+    - unresolved_goal
+    - goal_authority_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

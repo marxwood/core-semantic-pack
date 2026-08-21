@@ -1,0 +1,39 @@
+id: core.fixture.invalid.inference-to-maintained-state
+version: 0.1.0
+status: illustrative
+
+description: An intermediate Inference is persisted and reused as maintained State without evaluation
+  or Admission.
+
+expected: invalid
+
+objects:
+  - id: inference:tentative-cause
+    type: Inference
+    attributes:
+      epistemic_status: candidate
+
+  - id: persistence:memory-write
+    type: Persistence
+
+  - id: state:institutional-assumption
+    type: State
+
+relations:
+  - relation: persistsObject
+    source: persistence:memory-write
+    target: inference:tentative-cause
+
+  - relation: supersedes
+    source: inference:tentative-cause
+    target: state:institutional-assumption
+
+expectations:
+  rules_pass: []
+  rules_fail:
+    - InferenceCannotBecomeMaintainedWithoutAdmission
+    - AdmissionExplicit
+  boundaries_triggered:
+    - Inference != Finding
+    - Persistence != Admission
+    - Repetition != Validation

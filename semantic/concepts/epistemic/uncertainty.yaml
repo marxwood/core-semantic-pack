@@ -1,0 +1,33 @@
+id: core.uncertainty
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+symbol: Uncertainty
+
+definition: >-
+  An explicit representation of limits, confidence, ambiguity, unknowns, or incompleteness associated
+  with a semantic object or relation.
+
+exclusions:
+  - Uncertainty is not an error.
+  - Uncertainty is not invalidity by itself.
+  - Uncertainty is not a single probability by definition.
+
+required_relations: []
+
+conditional_relations:
+  - existsIn
+  - hasProvenance
+  - versionedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Correction-capable reasoning requires uncertainty to remain explicit across representations and downstream
+    use.

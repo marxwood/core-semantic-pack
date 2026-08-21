@@ -1,0 +1,39 @@
+id: core.question.assess-commitment-revocability
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Can the commitment be revoked?
+
+family: governance
+
+requires:
+  concepts:
+    - Commitment
+    - Revocation
+    - Authority
+    - Context
+
+  relations:
+    - revokesObject
+    - revokedBy
+    - authorizedBy
+    - existsIn
+
+must_preserve: []
+
+answer_contract:
+  minimum_requirements:
+    - commitment_identified
+    - revocation_path_or_nonrevocability_explicit
+    - revocation_authority_traceable
+    - context_explicit
+
+failure_contract:
+  failure_states:
+    - revocation_path_unknown
+    - revocation_authority_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

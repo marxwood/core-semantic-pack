@@ -1,0 +1,18 @@
+id: core.rel.admits-object
+version: 0.1.0
+status: experimental
+
+symbol: admitsObject
+
+definition: >-
+  Identifies the candidate object whose governed status is changed by Admission.
+
+source:
+  - Admission
+
+target:
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: admission-transition

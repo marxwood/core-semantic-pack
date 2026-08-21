@@ -1,0 +1,40 @@
+id: core.question.identify-binding-decision
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which decision is Binding?
+
+family: governance
+
+requires:
+  concepts:
+    - Binding
+    - Commitment
+    - Authority
+    - Context
+
+  relations:
+    - establishesCommitment
+    - authorizedBy
+    - existsIn
+
+must_preserve:
+  - Review != Binding
+  - Finding != BindingDecision
+
+answer_contract:
+  minimum_requirements:
+    - binding_act_identified
+    - commitment_identified
+    - binding_authority_traceable
+    - binding_context_explicit
+
+failure_contract:
+  failure_states:
+    - review_or_finding_used_as_binding
+    - binding_authority_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

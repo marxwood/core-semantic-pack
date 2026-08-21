@@ -1,0 +1,20 @@
+id: core.rel.expressed-by
+version: 0.1.0
+status: experimental
+
+symbol: expressedBy
+
+definition: >-
+  Attributes a Statement to an Actor or Source.
+
+source:
+  - Statement
+
+target:
+  - Actor
+  - Source
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: expresses

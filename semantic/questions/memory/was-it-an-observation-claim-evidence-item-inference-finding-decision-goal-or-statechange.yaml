@@ -1,0 +1,47 @@
+id: core.question.identify-remembered-semantic-type
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Was it an Observation, Claim, Evidence item, Inference, Finding, Decision, Goal, or
+  StateChange?
+
+family: memory
+
+requires:
+  concepts:
+    - Observation
+    - Claim
+    - Evidence
+    - Inference
+    - Finding
+    - Binding
+    - Commitment
+    - Goal
+    - StateChange
+    - SemanticVersion
+
+  relations:
+    - versionedBy
+
+must_preserve:
+  - Observation != Claim
+  - Claim != Evidence
+  - Inference != Finding
+  - Finding != BindingDecision
+  - Action != StateChange
+
+answer_contract:
+  minimum_requirements:
+    - semantic_type_identified
+    - type_status_not_collapsed
+    - semantic_version_known
+
+failure_contract:
+  failure_states:
+    - semantic_type_lost
+    - epistemic_or_governance_type_collapsed
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

@@ -1,0 +1,18 @@
+id: core.rel.exists-in
+version: 0.1.0
+status: experimental
+
+symbol: existsIn
+
+definition: >-
+  Declares the Context within which an object or relation is interpreted or governed.
+
+source:
+  - Any
+
+target:
+  - Context
+
+direction: directed
+provenance: optional
+authority_effect: none

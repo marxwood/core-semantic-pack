@@ -1,0 +1,33 @@
+id: core.question.identify-relations
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: To what is it related?
+
+family: ontological
+
+requires:
+  concepts:
+    - Entity
+    - Relation
+    - Context
+
+  relations:
+    - existsIn
+
+must_preserve: []
+
+answer_contract:
+  minimum_requirements:
+    - relevant_relations_identified
+    - relation_context_explicit
+
+failure_contract:
+  failure_states:
+    - relation_semantics_missing
+    - relation_context_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

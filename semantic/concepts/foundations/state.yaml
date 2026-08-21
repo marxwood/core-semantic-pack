@@ -1,0 +1,39 @@
+id: core.state
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: State
+
+definition: >-
+  A maintained representation of what is treated as currently the case for a declared Entity, Boundary,
+  and Context.
+
+exclusions:
+  - State is not reality itself.
+  - State is not a Projection.
+  - State is not a Claim by default.
+  - State is not any persisted record.
+
+required_relations:
+  - stateOf
+  - existsIn
+
+conditional_relations:
+  - hasProvenance
+  - hasValidity
+  - versionedBy
+  - contestedBy
+
+boundaries:
+  - Projection != State
+  - Persistence != Admission
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Systems need a distinguishable maintained ground against which interpretation, action, and change
+    can be assessed.

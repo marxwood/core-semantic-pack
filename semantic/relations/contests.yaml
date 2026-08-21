@@ -1,0 +1,19 @@
+id: core.rel.contests
+version: 0.1.0
+status: experimental
+
+symbol: contests
+
+definition: >-
+  Identifies the object or relation challenged by a Contestation.
+
+source:
+  - Contestation
+
+target:
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none
+inverse: contestedBy

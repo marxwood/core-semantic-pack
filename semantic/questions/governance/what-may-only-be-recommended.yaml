@@ -1,0 +1,40 @@
+id: core.question.identify-recommendation-only-scope
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: What may only be recommended?
+
+family: governance
+
+requires:
+  concepts:
+    - Permission
+    - Constraint
+    - Projection
+    - Binding
+    - Context
+
+  relations:
+    - permits
+    - constrainedBy
+    - existsIn
+
+must_preserve:
+  - Finding != BindingDecision
+  - Review != Binding
+
+answer_contract:
+  minimum_requirements:
+    - recommendation_scope_identified
+    - binding_prohibition_or_requirement_explicit
+    - context_explicit
+
+failure_contract:
+  failure_states:
+    - recommendation_treated_as_binding
+    - binding_boundary_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

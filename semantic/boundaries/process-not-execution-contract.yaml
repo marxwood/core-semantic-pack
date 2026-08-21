@@ -1,0 +1,23 @@
+id: core.boundary.process-not-execution-contract
+version: 0.1.0
+status: experimental
+
+expression:
+  Process != ExecutionContract
+
+rule: >-
+  Process must remain distinct from the ExecutionContract that governs when and under which conditions
+  it may be realized.
+
+rationale: >-
+  Ontology of change and legitimacy of execution are separate layers.
+
+failure_code: SEM-BOUNDARY-020
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

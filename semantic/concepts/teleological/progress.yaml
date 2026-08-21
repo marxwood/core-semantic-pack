@@ -1,0 +1,38 @@
+id: core.progress
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: teleological
+
+symbol: Progress
+
+definition: >-
+  A contextual assessment of how CurrentState or Trajectory relates to a DesiredState under declared criteria.
+
+not_equivalent_to:
+  - Goal
+  - Direction
+
+exclusions:
+  - Progress is not operational success.
+  - Progress is not activity volume.
+
+required_relations:
+  - evaluates
+  - evaluatedAgainst
+
+conditional_relations:
+  - hasProvenance
+  - hasUncertainty
+  - hasValidity
+  - existsIn
+
+boundaries:
+  - OperationalSuccess != Progress
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    A successful action does not establish that the system moved toward the intended state.

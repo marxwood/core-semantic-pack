@@ -1,0 +1,22 @@
+id: core.boundary.action-not-intent
+version: 0.1.0
+status: experimental
+
+expression:
+  Action != Intent
+
+rule: >-
+  Action must remain distinguishable from the Intent it realizes.
+
+rationale: >-
+  What was done and why it was done must remain separately inspectable.
+
+failure_code: SEM-BOUNDARY-018
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

@@ -1,0 +1,19 @@
+id: core.rel.implies-direction
+version: 0.1.0
+status: experimental
+
+symbol: impliesDirection
+
+definition: >-
+  Associates a Goal with the qualitative Direction it implies.
+
+source:
+  - Goal
+
+target:
+  - Direction
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: impliedBy

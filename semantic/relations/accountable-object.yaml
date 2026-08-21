@@ -1,0 +1,21 @@
+id: core.rel.accountable-object
+version: 0.1.0
+status: experimental
+
+symbol: accountableObject
+
+definition: >-
+  Identifies the object or consequence covered by an Accountability obligation.
+
+source:
+  - Accountability
+
+target:
+  - Action
+  - StateChange
+  - Commitment
+  - Any
+
+direction: directed
+provenance: optional
+authority_effect: none

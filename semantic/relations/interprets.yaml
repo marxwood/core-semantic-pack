@@ -1,0 +1,23 @@
+id: core.rel.interprets
+version: 0.1.0
+status: experimental
+
+symbol: interprets
+
+definition: >-
+  Identifies the object to which an Interpretation assigns contextual meaning.
+
+source:
+  - Interpretation
+
+target:
+  - Source
+  - Observation
+  - State
+  - Relation
+  - Derivative
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

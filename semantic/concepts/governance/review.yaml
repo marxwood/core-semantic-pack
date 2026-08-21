@@ -1,0 +1,38 @@
+id: core.review
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: governance
+
+symbol: Review
+
+definition: >-
+  An attributable evaluative act that may validate, contest, annotate, reject, or recommend change to
+  a semantic object or transition.
+
+not_equivalent_to:
+  - Binding
+
+exclusions:
+  - Review is not Authority by itself.
+  - Review is not Admission by itself.
+  - Review is not automatic approval.
+
+required_relations:
+  - reviewsObject
+  - performedBy
+
+conditional_relations:
+  - governedBy
+  - hasProvenance
+  - existsIn
+
+boundaries:
+  - Review != Binding
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Human or automated review must remain separate from the authority act that creates institutional commitment.

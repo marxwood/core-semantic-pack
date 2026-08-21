@@ -1,0 +1,39 @@
+id: core.question.assess-trajectory-progress
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Is the system still moving toward DesiredState?
+
+family: reflective
+
+requires:
+  concepts:
+    - Progress
+    - Trajectory
+    - DesiredState
+    - StateChange
+    - Direction
+
+  relations:
+    - evaluates
+    - evaluatedAgainst
+    - comprisesStateChange
+
+must_preserve:
+  - OperationalSuccess != Progress
+
+answer_contract:
+  minimum_requirements:
+    - trajectory_identified
+    - desired_state_or_direction_identified
+    - progress_evaluated_independently_of_operational_success
+
+failure_contract:
+  failure_states:
+    - progress_inferred_from_execution_success
+    - desired_state_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

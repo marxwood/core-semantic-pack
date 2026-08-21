@@ -1,0 +1,25 @@
+id: core.question-family.teleological
+version: 0.1.0
+status: experimental
+kind: question-family
+
+symbol: teleological
+
+purpose: >-
+  Questions about goals, desired states, intent, direction, trajectory, and progress.
+
+authority:
+  class: taxonomy-only
+  defines_question_requirements: false
+  requirements_are_inherited: false
+
+questions:
+  - Why is this being done?
+  - Which Goal is being pursued?
+  - Which DesiredState does that Goal imply?
+  - Which direction of change follows from it?
+  - Which Intent operationalizes the Goal here?
+  - Is the resulting StateChange advancing the DesiredState?
+  - Has the Goal changed?
+
+related_questions: []

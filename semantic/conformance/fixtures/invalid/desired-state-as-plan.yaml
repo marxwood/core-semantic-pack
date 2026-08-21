@@ -1,0 +1,21 @@
+id: core.fixture.invalid.desired-state-as-plan
+version: 0.1.0
+status: illustrative
+
+description: A DesiredState is treated as the sequence of actions required to reach it.
+
+expected: invalid
+
+objects:
+  - id: desired-state:safe-outcome
+    type: DesiredState
+    attributes:
+      represented_as: Plan
+
+relations: []
+
+expectations:
+  rules_pass: []
+  rules_fail: []
+  boundaries_triggered:
+    - DesiredState != Plan

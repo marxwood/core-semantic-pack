@@ -1,0 +1,18 @@
+id: core.rel.has-provenance
+version: 0.1.0
+status: experimental
+
+symbol: hasProvenance
+
+definition: >-
+  Associates a semantic object or relation with reconstructable lineage.
+
+source:
+  - Any
+
+target:
+  - Provenance
+
+direction: directed
+provenance: required
+authority_effect: none

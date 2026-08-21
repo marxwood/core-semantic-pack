@@ -1,0 +1,24 @@
+id: core.rel.contradicted-by
+version: 0.1.0
+status: experimental
+
+symbol: contradictedBy
+
+definition: >-
+  Associates an object with Evidence or another object that contradicts it.
+
+source:
+  - Claim
+  - Finding
+  - State
+  - Any
+
+target:
+  - Evidence
+  - Claim
+  - Finding
+  - Contradiction
+
+direction: directed
+provenance: required
+authority_effect: none

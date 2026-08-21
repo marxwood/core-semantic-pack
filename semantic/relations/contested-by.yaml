@@ -1,0 +1,19 @@
+id: core.rel.contested-by
+version: 0.1.0
+status: experimental
+
+symbol: contestedBy
+
+definition: >-
+  Associates an object or relation with a governed challenge.
+
+source:
+  - Any
+
+target:
+  - Contestation
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: contests

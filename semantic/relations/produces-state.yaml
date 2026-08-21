@@ -1,0 +1,18 @@
+id: core.rel.produces-state
+version: 0.1.0
+status: experimental
+
+symbol: producesState
+
+definition: >-
+  Associates an Admission with the maintained State it establishes or updates.
+
+source:
+  - Admission
+
+target:
+  - State
+
+direction: directed
+provenance: required
+authority_effect: admission-transition

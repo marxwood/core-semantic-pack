@@ -1,0 +1,37 @@
+id: core.persistence
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+symbol: Persistence
+
+definition: >-
+  The retention of a semantic object or State across time or a processing boundary.
+
+not_equivalent_to:
+  - Admission
+
+exclusions:
+  - Persistence is not validity.
+  - Persistence is not authority.
+  - Persistence is not institutional truth.
+
+required_relations:
+  - persistsObject
+
+conditional_relations:
+  - governedBy
+  - hasProvenance
+  - existsIn
+  - versionedBy
+
+boundaries:
+  - Persistence != Admission
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Storage must not manufacture governed status or erase the type and lineage of what is stored.

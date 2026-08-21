@@ -1,0 +1,38 @@
+id: core.composition
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: agency
+
+symbol: Composition
+
+definition: >-
+  The governed creation of a Derivative from multiple semantic objects under declared selection, ordering,
+  and interpretation rules.
+
+exclusions:
+  - Composition is not aggregation without meaning.
+  - Composition is not a Projection by necessity.
+  - Composition is not authority inherited from components.
+
+required_relations:
+  - composesObject
+  - produces
+
+conditional_relations:
+  - hasProvenance
+  - governedBy
+  - existsIn
+  - versionedBy
+
+boundaries:
+  - Source != Projection
+  - Projection != State
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Composite outputs must preserve lineage and cannot silently inherit status or authority from their
+    inputs.

@@ -1,0 +1,37 @@
+id: core.trajectory
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: teleological
+
+symbol: Trajectory
+
+definition: >-
+  An observed or proposed sequence of StateChanges over time that can be evaluated against a Direction
+  or DesiredState.
+
+not_equivalent_to:
+  - Goal
+  - Direction
+  - ExecutionPlan
+
+exclusions:
+  - Trajectory is not proof of progress.
+
+required_relations:
+  - comprisesStateChange
+
+conditional_relations:
+  - evaluatedAgainst
+  - existsIn
+  - versionedBy
+
+boundaries:
+  - OperationalSuccess != Progress
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Autonomous systems need longitudinal assessment rather than isolated success signals.

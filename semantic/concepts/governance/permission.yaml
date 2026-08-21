@@ -1,0 +1,39 @@
+id: core.permission
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: governance
+
+symbol: Permission
+
+definition: >-
+  A scoped allowance granted by Authority for an Actor, Role, Action, or Process participation under declared
+  Constraints and Context.
+
+not_equivalent_to:
+  - Capability
+
+exclusions:
+  - Permission is not Authority itself.
+  - Permission is not successful authentication.
+  - Permission is not unbounded access.
+
+required_relations:
+  - authorizedBy
+  - permits
+
+conditional_relations:
+  - constrainedBy
+  - existsIn
+  - revokedBy
+  - versionedBy
+
+boundaries:
+  - Capability != Authority
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    The ability to act and the allowance to act must remain distinct and scope-bound.

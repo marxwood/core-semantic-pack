@@ -1,0 +1,18 @@
+id: core.rel.realizes
+version: 0.1.0
+status: experimental
+
+symbol: realizes
+
+definition: >-
+  Associates an Action with the Intent it realizes.
+
+source:
+  - Action
+
+target:
+  - Intent
+
+direction: directed
+provenance: optional
+authority_effect: none

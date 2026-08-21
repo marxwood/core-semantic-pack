@@ -1,0 +1,19 @@
+id: core.rel.versioned-by
+version: 0.1.0
+status: experimental
+
+symbol: versionedBy
+
+definition: >-
+  Associates a semantic object, relation, contract, or composition with the SemanticVersion governing
+  its meaning.
+
+source:
+  - Any
+
+target:
+  - SemanticVersion
+
+direction: directed
+provenance: optional
+authority_effect: none

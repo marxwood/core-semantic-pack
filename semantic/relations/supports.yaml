@@ -1,0 +1,18 @@
+id: core.rel.supports
+version: 0.1.0
+status: experimental
+
+symbol: supports
+
+definition: >-
+  Declares that Evidence supports a Claim under a Context or Regime.
+
+source:
+  - Evidence
+
+target:
+  - Claim
+
+direction: directed
+provenance: required
+authority_effect: none

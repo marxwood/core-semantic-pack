@@ -1,0 +1,27 @@
+id: core.rel.authorized-by
+version: 0.1.0
+status: experimental
+
+symbol: authorizedBy
+
+definition: >-
+  Identifies the Authority legitimizing a normative consequence.
+
+source:
+  - Goal
+  - Action
+  - Permission
+  - Admission
+  - Binding
+  - Revocation
+  - ExternalEffect
+  - Constraint
+  - Accountability
+  - Any
+
+target:
+  - Authority
+
+direction: directed
+provenance: required
+authority_effect: required-for-normative-consequence

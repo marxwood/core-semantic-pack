@@ -1,0 +1,38 @@
+id: core.support
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+symbol: Support
+
+definition: >-
+  A referable contextual assertion that an allowed semantic object increases warranted acceptance of a
+  Claim under declared conditions.
+
+exclusions:
+  - Support is not proof.
+  - Support is not truth.
+  - Support is not the Evidence object itself.
+  - Support is not an unqualified graph edge.
+
+required_relations:
+  - supportSubject
+  - supportObject
+  - existsIn
+
+conditional_relations:
+  - hasProvenance
+  - hasValidity
+  - hasUncertainty
+
+boundaries:
+  - Evidence != Truth
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Support may need to be inspected, contested, versioned, or qualified independently from the objects
+    it connects.

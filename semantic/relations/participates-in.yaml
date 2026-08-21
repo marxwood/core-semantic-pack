@@ -1,0 +1,18 @@
+id: core.rel.participates-in
+version: 0.1.0
+status: experimental
+
+symbol: participatesIn
+
+definition: >-
+  Associates an Action with the Process whose change semantics it participates in.
+
+source:
+  - Action
+
+target:
+  - Process
+
+direction: directed
+provenance: optional
+authority_effect: none

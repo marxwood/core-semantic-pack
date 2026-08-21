@@ -1,0 +1,29 @@
+id: core.fixture.invalid.review-as-binding
+version: 0.1.0
+status: illustrative
+
+description: A Review directly establishes an operative Commitment without a separate Binding act.
+
+expected: invalid
+
+objects:
+  - id: review:approved
+    type: Review
+
+  - id: commitment:file-patent
+    type: Commitment
+    attributes:
+      binding_status: binding
+
+relations:
+  - relation: establishesCommitment
+    source: review:approved
+    target: commitment:file-patent
+
+expectations:
+  rules_pass: []
+  rules_fail:
+    - ReviewCannotSubstituteBinding
+    - BindingExplicit
+  boundaries_triggered:
+    - Review != Binding

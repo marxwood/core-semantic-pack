@@ -1,0 +1,265 @@
+id: core.example.patent-portfolio-trace
+version: 0.1.0
+status: illustrative
+
+purpose: Demonstrate the two semantic chains—reality toward knowledge and Goal toward reality—without
+  collapsing recommendation into Binding.
+
+objects:
+  - id: source:patent-records
+    type: Source
+    label: Patent status records
+
+  - id: observation:seventeen-expiries
+    type: Observation
+    label: 17 patents expire within 24 months
+
+  - id: claim:coverage-decrease
+    type: Claim
+    label: Current portfolio coverage will materially decrease
+
+  - id: evidence:expiry-records
+    type: Evidence
+    label: Admitted patent expiry records
+
+  - id: inference:competitor-exposure
+    type: Inference
+    label: Competitor exposure is likely to increase
+
+  - id: finding:protection-gap
+    type: Finding
+    label: Portfolio protection gap emerging
+
+  - id: goal:maintain-protection
+    type: Goal
+    label: Maintain strategic protection of product family X
+
+  - id: desired-state:coverage-retained
+    type: DesiredState
+    label: Critical technologies remain covered after current patents expire
+
+  - id: intent:identify-filings
+    type: Intent
+    label: Identify replacement filing opportunities
+
+  - id: process:portfolio-analysis
+    type: Process
+    label: Portfolio protection analysis
+
+  - id: action:generate-recommendations
+    type: Action
+    label: Generate filing recommendations
+
+  - id: actor:analysis-system
+    type: Actor
+    label: Analysis system
+
+  - id: authority:analysis-only
+    type: Authority
+    label: Analysis authority only
+
+  - id: projection:recommendation-report
+    type: Projection
+    label: Patent filing recommendation report
+    binding_status: non-binding
+
+  - id: review:expert
+    type: Review
+    label: Expert review
+
+  - id: binding:filing-approval
+    type: Binding
+    label: Authorized filing approval
+
+  - id: commitment:file-applications
+    type: Commitment
+    label: Commitment to file selected applications
+
+  - id: external-effect:file-applications
+    type: ExternalEffect
+    label: Applications submitted
+
+  - id: context:portfolio-review
+    type: Context
+
+  - id: admission:evidence
+    type: Admission
+
+  - id: validity:finding
+    type: Validity
+
+  - id: provenance:evidence
+    type: Provenance
+
+  - id: provenance:finding
+    type: Provenance
+
+  - id: provenance:report
+    type: Provenance
+
+  - id: provenance:filing
+    type: Provenance
+
+  - id: authority:filing-approval
+    type: Authority
+    label: Filing approval authority
+
+  - id: actor:filing-operator
+    type: Actor
+    label: Authorized filing operator
+
+  - id: intent:file-approved-applications
+    type: Intent
+    label: File the applications approved through Binding
+
+  - id: action:file-applications
+    type: Action
+    label: Submit approved patent applications
+
+  - id: contract:filing-execution
+    type: Contract
+    label: Filing execution contract
+
+relations:
+  - relation: observedFrom
+    source: observation:seventeen-expiries
+    target: source:patent-records
+
+  - relation: hasProvenance
+    source: evidence:expiry-records
+    target: provenance:evidence
+
+  - relation: existsIn
+    source: evidence:expiry-records
+    target: context:portfolio-review
+
+  - relation: admittedBy
+    source: evidence:expiry-records
+    target: admission:evidence
+
+  - relation: authorizedBy
+    source: admission:evidence
+    target: authority:analysis-only
+
+  - relation: supports
+    source: evidence:expiry-records
+    target: claim:coverage-decrease
+
+  - relation: inferredFrom
+    source: inference:competitor-exposure
+    target: evidence:expiry-records
+
+  - relation: derivedFrom
+    source: finding:protection-gap
+    target: inference:competitor-exposure
+
+  - relation: hasProvenance
+    source: finding:protection-gap
+    target: provenance:finding
+
+  - relation: hasValidity
+    source: finding:protection-gap
+    target: validity:finding
+
+  - relation: specifies
+    source: goal:maintain-protection
+    target: desired-state:coverage-retained
+
+  - relation: authorizedBy
+    source: goal:maintain-protection
+    target: authority:analysis-only
+
+  - relation: advances
+    source: intent:identify-filings
+    target: goal:maintain-protection
+
+  - relation: realizes
+    source: action:generate-recommendations
+    target: intent:identify-filings
+
+  - relation: participatesIn
+    source: action:generate-recommendations
+    target: process:portfolio-analysis
+
+  - relation: performedBy
+    source: action:generate-recommendations
+    target: actor:analysis-system
+
+  - relation: authorizedBy
+    source: action:generate-recommendations
+    target: authority:analysis-only
+
+  - relation: produces
+    source: action:generate-recommendations
+    target: projection:recommendation-report
+
+  - relation: projects
+    source: projection:recommendation-report
+    target: finding:protection-gap
+
+  - relation: hasProvenance
+    source: projection:recommendation-report
+    target: provenance:report
+
+  - relation: reviewsObject
+    source: review:expert
+    target: projection:recommendation-report
+
+  - relation: establishesCommitment
+    source: binding:filing-approval
+    target: commitment:file-applications
+
+  - relation: hasProvenance
+    source: external-effect:file-applications
+    target: provenance:filing
+
+  - relation: authorizedBy
+    source: binding:filing-approval
+    target: authority:filing-approval
+
+  - relation: advances
+    source: intent:file-approved-applications
+    target: goal:maintain-protection
+
+  - relation: realizes
+    source: action:file-applications
+    target: intent:file-approved-applications
+
+  - relation: participatesIn
+    source: action:file-applications
+    target: process:portfolio-analysis
+
+  - relation: performedBy
+    source: action:file-applications
+    target: actor:filing-operator
+
+  - relation: authorizedBy
+    source: action:file-applications
+    target: authority:filing-approval
+
+  - relation: governedBy
+    source: action:file-applications
+    target: contract:filing-execution
+
+  - relation: causedBy
+    source: external-effect:file-applications
+    target: action:file-applications
+
+  - relation: authorizedBy
+    source: external-effect:file-applications
+    target: authority:filing-approval
+
+  - relation: governedBy
+    source: external-effect:file-applications
+    target: contract:filing-execution
+
+critical_boundaries:
+  - Claim != Evidence
+  - Inference != Finding
+  - Finding != BindingDecision
+  - Review != Binding
+  - Capability != Authority
+  - Goal != DesiredState
+
+interpretive_note: Analysis authority permits recommendation only. A separate filing Authority, Binding
+  act, Intent, Action, Actor, and governing Contract are required before the ExternalEffect.

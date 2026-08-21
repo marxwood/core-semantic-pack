@@ -1,0 +1,42 @@
+id: core.state-change
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: StateChange
+
+definition: >-
+  An attributable transition from a previous State to a resulting State under a declared Context.
+
+helps_answer:
+  - What changed?
+
+exclusions:
+  - StateChange is not an Action.
+  - StateChange is not a log entry.
+  - StateChange is not an event without before-and-after State.
+  - StateChange is not operational success.
+
+required_relations:
+  - previousState
+  - resultingState
+  - existsIn
+
+conditional_relations:
+  - causedBy
+  - authorizedBy
+  - hasProvenance
+  - evaluatedAgainst
+
+boundaries:
+  - Action != StateChange
+  - OperationalSuccess != Progress
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Change must remain explicit, attributable, and reconstructable rather than inferred from current values
+    alone.

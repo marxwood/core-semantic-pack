@@ -1,0 +1,40 @@
+id: core.evidence
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: epistemic
+
+symbol: Evidence
+
+definition: >-
+  A referable object admitted under a declared Regime as support for, or contradiction of, a Claim.
+
+exclusions:
+  - Evidence is not a raw Source.
+  - Evidence is not a raw tool result.
+  - Evidence is not a Claim.
+  - Evidence is not proof of universal truth.
+
+required_relations:
+  - hasProvenance
+  - existsIn
+  - admittedBy
+
+conditional_relations:
+  - supports
+  - contradicts
+  - hasValidity
+  - hasUncertainty
+  - contestedBy
+
+boundaries:
+  - Claim != Evidence
+  - Evidence != Truth
+  - Validation != Admission
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Evidence is a governed epistemic status, not an intrinsic property of any retrieved or generated object.

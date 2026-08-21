@@ -1,0 +1,24 @@
+id: core.rel.revokes-object
+version: 0.1.0
+status: experimental
+
+symbol: revokesObject
+
+definition: >-
+  Identifies the governed status or object withdrawn by Revocation.
+
+source:
+  - Revocation
+
+target:
+  - Authority
+  - Permission
+  - Admission
+  - Binding
+  - Commitment
+  - Validity
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: withdraws-normative-status

@@ -1,0 +1,31 @@
+id: core.boundary
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: Boundary
+
+definition: >-
+  An explicit rule delimiting identity, meaning, applicability, responsibility, or permissible transition.
+
+exclusions:
+  - Boundary is not only a network or deployment boundary.
+  - Boundary is not an implicit convention.
+  - Boundary is not a runtime guard by necessity.
+
+required_relations: []
+
+conditional_relations:
+  - existsIn
+  - authorizedBy
+  - versionedBy
+
+boundaries: []
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Correction-capable systems require explicit non-equivalences and responsibility limits.

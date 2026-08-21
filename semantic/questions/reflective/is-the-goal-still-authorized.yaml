@@ -1,0 +1,40 @@
+id: core.question.assess-goal-authorization
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Is the Goal still authorized?
+
+family: reflective
+
+requires:
+  concepts:
+    - Goal
+    - Authority
+    - Context
+    - Revocation
+
+  relations:
+    - authorizedBy
+    - revokedBy
+    - existsIn
+
+must_preserve:
+  - Capability != Authority
+  - Intent != Authority
+
+answer_contract:
+  minimum_requirements:
+    - goal_identified
+    - active_authority_traceable
+    - revocation_status_checked
+    - context_explicit
+
+failure_contract:
+  failure_states:
+    - stale_or_revoked_authority_assumed
+    - authority_context_missing
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

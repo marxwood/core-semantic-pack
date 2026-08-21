@@ -1,0 +1,18 @@
+id: core.rel.bounded-by
+version: 0.1.0
+status: experimental
+
+symbol: boundedBy
+
+definition: >-
+  Declares an explicit Boundary that limits meaning, scope, responsibility, or transition.
+
+source:
+  - Any
+
+target:
+  - Boundary
+
+direction: directed
+provenance: optional
+authority_effect: none

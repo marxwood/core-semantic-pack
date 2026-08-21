@@ -1,0 +1,21 @@
+id: core.rel.established-by
+version: 0.1.0
+status: experimental
+
+symbol: establishedBy
+
+definition: >-
+  Associates a maintained status or Commitment with the act that established it.
+
+source:
+  - Commitment
+  - Validity
+
+target:
+  - Binding
+  - Validation
+  - Any
+
+direction: directed
+provenance: required
+authority_effect: none

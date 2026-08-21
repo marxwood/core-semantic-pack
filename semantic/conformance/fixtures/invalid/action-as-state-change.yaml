@@ -1,0 +1,22 @@
+id: core.fixture.invalid.action-as-state-change
+version: 0.1.0
+status: illustrative
+
+description: A successful Action invocation is recorded as StateChange without before and after State.
+
+expected: invalid
+
+objects:
+  - id: action:update-called
+    type: Action
+    attributes:
+      represented_as: StateChange
+
+relations: []
+
+expectations:
+  rules_pass: []
+  rules_fail:
+    - StateChangeReconstructable
+  boundaries_triggered:
+    - Action != StateChange

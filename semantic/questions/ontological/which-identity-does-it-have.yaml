@@ -1,0 +1,32 @@
+id: core.question.identify-identity
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which identity does it have?
+
+family: ontological
+
+requires:
+  concepts:
+    - Entity
+    - Identity
+
+  relations:
+    - hasIdentity
+
+must_preserve: []
+
+answer_contract:
+  minimum_requirements:
+    - identity_criteria_identified
+    - identity_bound_to_referent
+
+failure_contract:
+  failure_states:
+    - identity_missing
+    - identity_ambiguous
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

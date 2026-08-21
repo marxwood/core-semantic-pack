@@ -1,0 +1,22 @@
+id: core.boundary.persistence-not-admission
+version: 0.1.0
+status: experimental
+
+expression:
+  Persistence != Admission
+
+rule: >-
+  Persisting an object must not admit it into maintained governed State or change its epistemic status.
+
+rationale: >-
+  Storage does not manufacture institutional truth.
+
+failure_code: SEM-BOUNDARY-011
+severity: semantic-error
+
+applies_to:
+  - concept-records
+  - question-contracts
+  - patterns
+  - mappings
+  - conformance

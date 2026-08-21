@@ -1,0 +1,20 @@
+id: core.rel.evaluates
+version: 0.1.0
+status: experimental
+
+symbol: evaluates
+
+definition: >-
+  Identifies the State or Trajectory assessed by a Progress object.
+
+source:
+  - Progress
+
+target:
+  - State
+  - StateChange
+  - Trajectory
+
+direction: directed
+provenance: optional
+authority_effect: none

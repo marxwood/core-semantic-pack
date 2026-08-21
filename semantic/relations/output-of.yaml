@@ -1,0 +1,18 @@
+id: core.rel.output-of
+version: 0.1.0
+status: experimental
+
+symbol: outputOf
+
+definition: >-
+  Associates a semantic object with the Transformation that produced it.
+
+source:
+  - Any
+
+target:
+  - Transformation
+
+direction: directed
+provenance: optional
+authority_effect: none

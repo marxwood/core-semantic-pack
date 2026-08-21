@@ -1,0 +1,22 @@
+id: core.rel.held-by
+version: 0.1.0
+status: experimental
+
+symbol: heldBy
+
+definition: >-
+  Associates an Intent, Capability, or Authority with its holder.
+
+source:
+  - Intent
+  - Capability
+  - Authority
+
+target:
+  - Actor
+  - Role
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: holds

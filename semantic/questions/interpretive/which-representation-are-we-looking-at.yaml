@@ -1,0 +1,40 @@
+id: core.question.identify-representation
+version: 0.1.0
+status: experimental
+kind: semantic-question-contract
+
+canonical_question: Which representation are we looking at?
+
+family: interpretive
+
+requires:
+  concepts:
+    - Projection
+    - Derivative
+    - Source
+    - State
+    - Context
+
+  relations:
+    - projects
+    - derivedFrom
+    - existsIn
+
+must_preserve:
+  - Source != Projection
+  - Projection != State
+
+answer_contract:
+  minimum_requirements:
+    - representation_type_identified
+    - represented_object_traceable
+    - representation_context_explicit
+
+failure_contract:
+  failure_states:
+    - representation_type_unknown
+    - projection_treated_as_source_or_state
+
+  consequence_on_failure:
+    answer_status: unresolved
+    material_consequence: must-not-assume-answer

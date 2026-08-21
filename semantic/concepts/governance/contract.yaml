@@ -1,0 +1,40 @@
+id: core.contract
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: governance
+
+symbol: Contract
+
+definition: >-
+  A versioned set of semantic obligations, constraints, validity conditions, and permitted transitions
+  applying across declared roles, components, or boundaries.
+
+not_equivalent_to:
+  - ExecutionPlan
+
+exclusions:
+  - Contract is not a legal contract by necessity.
+  - Contract is not Workflow.
+  - Contract is not runtime configuration.
+
+required_relations:
+  - existsIn
+  - versionedBy
+
+conditional_relations:
+  - constrainedBy
+  - authorizedBy
+  - appliesTo
+
+boundaries:
+  - Process != ExecutionContract
+  - ExecutionContract != ExecutionPlan
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Semantic obligations must remain stable while their runtime enforcement and orchestration mechanisms
+    evolve.

@@ -1,0 +1,19 @@
+id: core.rel.specifies
+version: 0.1.0
+status: experimental
+
+symbol: specifies
+
+definition: >-
+  Associates a Goal with the DesiredState that makes its direction inspectable.
+
+source:
+  - Goal
+
+target:
+  - DesiredState
+
+direction: directed
+provenance: optional
+authority_effect: none
+inverse: desiredBy

@@ -1,0 +1,34 @@
+id: core.source
+version: 0.1.0
+status: experimental
+kind: candidate-core-primitive
+layer: foundations
+
+symbol: Source
+
+definition: >-
+  A referable origin from which an Observation, Derivative, Interpretation, or other semantic object is
+  obtained.
+
+exclusions:
+  - Source is not Evidence by default.
+  - Source is not truth.
+  - Source is not a citation alone.
+  - Source is not a Projection.
+
+required_relations: []
+
+conditional_relations:
+  - existsIn
+  - hasIdentity
+  - versionedBy
+
+boundaries:
+  - Source != Projection
+
+derivation:
+  source: CORE-SEMANTIC-PACK.md
+  status: working-reference
+
+  rationale: >-
+    Lineage requires a distinguishable origin that derived representations cannot redefine.

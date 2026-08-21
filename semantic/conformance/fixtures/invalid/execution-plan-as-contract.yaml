@@ -1,0 +1,31 @@
+id: core.fixture.invalid.execution-plan-as-contract
+version: 0.1.0
+status: illustrative
+
+description: A runtime ExecutionPlan is treated as the Contract that legitimizes execution.
+
+expected: invalid
+
+objects:
+  - id: process:analysis
+    type: Process
+
+  - id: plan:runtime-dag
+    type: ExecutionPlan
+
+relations:
+  - relation: governedBy
+    source: process:analysis
+    target: plan:runtime-dag
+
+expectations:
+  rules_pass: []
+  rules_fail:
+    - ExecutionContractRequired
+  boundaries_triggered:
+    - Process != ExecutionContract
+    - ExecutionContract != ExecutionPlan
+
+notes:
+  - ExecutionPlan is intentionally a reference-only architecture category, not a Core concept.
+  - the fixture demonstrates an invalid architecture mapping, not an unresolved Core reference
