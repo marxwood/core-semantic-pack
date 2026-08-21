@@ -482,6 +482,9 @@ for entry in family_entries:
     symbol = record.get("symbol")
     if not isinstance(symbol, str) or not re.fullmatch(r"[a-z][a-z0-9-]*", symbol):
         fail(f"{file_name}: family symbol must be a lowercase slug")
+    expected_family_file = f"questions/{symbol}/family.yaml"
+    if file_name != expected_family_file:
+        fail(f"{file_name}: family file must be indexed at {expected_family_file!r}")
     authority = record.get("authority", {})
     if authority.get("class") != "taxonomy-only" or authority.get("defines_question_requirements") is not False or authority.get("requirements_are_inherited") is not False:
         fail(f"{file_name}: family must be taxonomy-only and must not define/inherit requirements")
@@ -526,7 +529,7 @@ for entry in question_entries:
     family = record.get("family")
     if family not in family_by_symbol:
         fail(f"{file_name}: unknown primary family symbol {family!r}")
-    expected_parent = f"questions/families/{family}/"
+    expected_parent = f"questions/{family}/"
     if not isinstance(file_name, str) or not file_name.startswith(expected_parent) or file_name.endswith("/family.yaml"):
         fail(f"{file_name}: question must live under its declared primary family")
 
@@ -572,6 +575,10 @@ for entry in question_entries:
 
 question_by_id = index_unique(question_records, "id", "question ID")
 question_by_canonical = index_unique(question_records, "canonical_question", "canonical question")
+if len(family_by_id) != 9:
+    fail(f"Question family count must remain 9, found {len(family_by_id)}")
+if len(question_by_id) != 66:
+    fail(f"Atomic Question count must remain 66, found {len(question_by_id)}")
 
 for record in question_records:
     canonical = record["canonical_question"]
@@ -607,18 +614,28 @@ for family in family_records:
 # Physical topology and serialization/index agreement.
 if (ROOT / "questions/contracts").exists():
     fail("questions/contracts: legacy contracts hierarchy must not remain")
-for path in sorted((ROOT / "questions/families").glob("*.yaml")):
-    fail(f"{relpath(path)}: family file must live at questions/families/<family>/family.yaml")
-actual_family_paths = {relpath(path) for path in (ROOT / "questions/families").glob("*/family.yaml")}
+if (ROOT / "questions/families").exists():
+    fail("questions/families: redundant Question family wrapper must not remain")
+question_root = ROOT / "questions"
+family_directories = {path.name for path in question_root.iterdir() if path.is_dir()}
+expected_family_directories = set(family_by_symbol)
+if len(family_directories) != 9:
+    fail(f"questions/: exactly 9 Question family directories are required, found {len(family_directories)}")
+if family_directories != expected_family_directories:
+    fail("questions/: physical family directories differ from canonical family symbols")
+actual_family_paths = {relpath(path) for path in question_root.glob("*/family.yaml")}
 actual_question_paths = {
     relpath(path)
-    for path in (ROOT / "questions/families").glob("*/*.yaml")
+    for path in question_root.glob("*/*.yaml")
     if path.name != "family.yaml"
 }
 if actual_family_paths != family_path_set:
     fail("questions/index.yaml: indexed family paths differ from physical family files")
 if actual_question_paths != set(question_path_by_id.values()):
     fail("questions/index.yaml: indexed question paths differ from physical atomic question files")
+for path in sorted(question_root.glob("*.yaml")):
+    if path.name not in {"index.yaml", "migration-v0.1.yaml"}:
+        fail(f"{relpath(path)}: atomic Questions must live at questions/<family>/<question>.yaml")
 
 # Concept-to-question links resolve only by exact canonical value.
 for record in concept_records:
@@ -879,10 +896,8 @@ if release.get("pack") != pack.get("id") or release.get("version") != pack.get("
 if release.get("counts") != actual_counts:
     fail("release/0.1.0.yaml counts differ from repository")
 question_includes = release.get("includes", {}).get("questions", [])
-if "questions/contracts/" in question_includes:
-    fail("release/0.1.0.yaml: legacy questions/contracts path must not remain")
-if "questions/families/" not in question_includes:
-    fail("release/0.1.0.yaml: family-organized question path must be included")
+if question_includes != ["questions/"]:
+    fail("release/0.1.0.yaml: questions must use the deterministic questions/ directory collection")
 for section in ("concepts", "relations", "boundaries"):
     expected = [f"{section}/"]
     if release.get("includes", {}).get(section) != expected:

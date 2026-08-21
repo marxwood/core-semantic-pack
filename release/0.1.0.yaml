@@ -18,9 +18,7 @@ includes:
   boundaries:
     - boundaries/
   questions:
-    - questions/index.yaml
-    - questions/families/
-    - questions/migration-v0.1.yaml
+    - questions/
   patterns:
     - patterns/semantic-trace.yaml
     - patterns/teleological-loop.yaml

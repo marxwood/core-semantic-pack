@@ -30,7 +30,7 @@ Indexes intentionally bridge both layers:
 - canonical_question: Why is this being done?
   id: core.question.explain-action-purpose
   family: teleological
-  file: questions/families/teleological/why-is-this-being-done.yaml
+  file: questions/teleological/why-is-this-being-done.yaml
 ```
 
 ## Resolution

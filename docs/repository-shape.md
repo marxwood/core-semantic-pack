@@ -29,20 +29,22 @@ Physical paths never become semantic identity. A later release may reorganize fi
 concepts/<layer>/<concept>.yaml
 relations/<relation>.yaml
 boundaries/<boundary>.yaml
-questions/families/<family>/<question>.yaml
+questions/<family>/<question>.yaml
 ```
 
 `concepts/index.yaml`, `relations/index.yaml`, `boundaries/index.yaml`, and `questions/index.yaml` are lookup bridges. They contain registry/navigation metadata rather than complete semantic definitions. Question `family.yaml` files are the explicit taxonomy-view exception.
+
+Question family directories live directly under `questions/`. The former `questions/families/` wrapper carried no semantic information and must not be reintroduced.
 
 ## Question structure
 
 ```text
 questions/
 ├── index.yaml
-└── families/
-    └── <family>/
-        ├── family.yaml
-        └── <atomic-question>.yaml
+├── migration-v0.1.yaml
+└── <family>/
+    ├── family.yaml
+    └── <atomic-question>.yaml
 ```
 
 The family is a discovery view. Each question file is its complete atomic Semantic Question Contract and is the semantic unit of resolution.

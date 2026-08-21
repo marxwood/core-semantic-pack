@@ -15,9 +15,11 @@ Each contract declares its stable registry ID, canonical question, one primary f
 Questions live under their single primary semantic family:
 
 ```text
-questions/families/<family>/family.yaml
-questions/families/<family>/<question>.yaml
+questions/<family>/family.yaml
+questions/<family>/<question>.yaml
 ```
+
+Family directories live directly under `questions/`; there is no additional taxonomy wrapper in the physical path.
 
 The path is serialization, not identity. For example:
 
@@ -26,7 +28,7 @@ core.question.explain-action-purpose
         ↔
 Why is this being done?
         ↔
-questions/families/teleological/why-is-this-being-done.yaml
+questions/teleological/why-is-this-being-done.yaml
 ```
 
 The stable ID supports registry history. The canonical question is the authoring and exact-resolution reference.

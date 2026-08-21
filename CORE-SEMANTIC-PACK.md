@@ -1395,16 +1395,16 @@ core-semantic-pack/
 │
 ├── questions/
 │   ├── index.yaml
-│   └── families/
-│       ├── ontological/
-│       ├── state/
-│       ├── epistemic/
-│       ├── interpretive/
-│       ├── teleological/
-│       ├── agency/
-│       ├── governance/
-│       ├── memory/
-│       └── reflective/
+│   ├── migration-v0.1.yaml
+│   ├── ontological/
+│   ├── state/
+│   ├── epistemic/
+│   ├── interpretive/
+│   ├── teleological/
+│   ├── agency/
+│   ├── governance/
+│   ├── memory/
+│   └── reflective/
 │
 ├── concepts/
 │   ├── foundations/
