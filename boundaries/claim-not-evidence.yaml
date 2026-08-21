@@ -1,15 +1,18 @@
 id: core.boundary.claim-not-evidence
-expression: Claim != Evidence
 version: 0.1.0
 status: experimental
+
+expression: Claim != Evidence
 
 left: Claim
 operator: '!='
 right: Evidence
 
-rule: A Claim must not be used as Evidence for itself or acquire Evidence status without a declared Admission.
+rule: >-
+  A Claim must not be used as Evidence for itself or acquire Evidence status without a declared Admission.
 
-rationale: Assertions do not provide their own support.
+rationale: >-
+  Assertions do not provide their own support.
 
 failure_code: SEM-BOUNDARY-003
 severity: semantic-error

@@ -1,9 +1,11 @@
 id: core.rel.transfers-object
-symbol: transfersObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the semantic object or responsibility moved by a Transfer.
+symbol: transfersObject
+
+definition: >-
+  Identifies the semantic object or responsibility moved by a Transfer.
 
 source:
   - Transfer

@@ -61,6 +61,15 @@ def require_fields(record: dict[str, Any], fields: Iterable[str], where: str) ->
             fail(f"{where}: missing required field {field!r}")
 
 
+def require_key_order(record: dict[str, Any], order: Iterable[str], where: str) -> None:
+    """Require known fields to follow the canonical visual reading order."""
+    canonical = list(order)
+    actual = [key for key in record if key in canonical]
+    expected = [key for key in canonical if key in record]
+    if actual != expected:
+        fail(f"{where}: fields do not follow canonical metadata-first record layout")
+
+
 def duplicate_values(label: str, values: Iterable[str]) -> None:
     for value, count in sorted(Counter(values).items()):
         if count > 1:
@@ -135,6 +144,15 @@ for entry in concept_entries:
 for record in concept_records:
     where = str(record.get("id", "concept record"))
     require_fields(record, ["id", "symbol", "version", "status", "kind", "definition", "required_relations", "conditional_relations", "boundaries", "derivation", "layer"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "layer", "symbol", "definition",
+            "helps_answer", "not_equivalent_to", "exclusions", "required_relations",
+            "conditional_relations", "boundaries", "derivation",
+        ],
+        where,
+    )
     for forbidden in ("name", "answers", "what_it_is_not"):
         if forbidden in record:
             fail(f"{where}: legacy field {forbidden!r} must not remain")
@@ -174,6 +192,11 @@ else:
 for record in reference_records:
     where = str(record.get("id", "reference-only record"))
     require_fields(record, ["id", "symbol", "kind", "core_primitive", "definition"], where)
+    require_key_order(
+        record,
+        ["id", "version", "status", "kind", "core_primitive", "symbol", "definition"],
+        where,
+    )
     if record.get("core_primitive") is not False:
         fail(f"{where}: reference-only symbol must declare core_primitive: false")
     symbol = record.get("symbol")
@@ -194,6 +217,15 @@ for path in sorted(ROOT.glob("patterns/*.yaml")):
 for record in pattern_records:
     where = str(record.get("id", "pattern record"))
     require_fields(record, ["id", "symbol", "version", "status", "kind", "definition", "not_a_primitive"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "symbol", "definition", "composes",
+            "invariants", "detects_boundaries", "examples", "required_response",
+            "architecture_mappings", "architecture_terms", "not_a_primitive",
+        ],
+        where,
+    )
     if record.get("not_a_primitive") is not True:
         fail(f"{where}: pattern must declare not_a_primitive: true")
     if "name" in record:
@@ -276,6 +308,14 @@ for entry in relation_entries:
 for record in relation_records:
     where = str(record.get("id", "relation record"))
     require_fields(record, ["id", "symbol", "version", "status", "source", "target", "definition", "direction", "provenance", "authority_effect"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "symbol", "definition", "source",
+            "target", "direction", "provenance", "authority_effect", "inverse",
+        ],
+        where,
+    )
     if "name" in record:
         fail(f"{where}: redundant name field must not remain")
     symbol = record.get("symbol")
@@ -357,6 +397,14 @@ for entry in boundary_entries:
 for record in boundary_records:
     where = str(record.get("id", "boundary record"))
     require_fields(record, ["id", "expression", "version", "status", "left", "operator", "right", "rule", "rationale", "failure_code", "severity", "applies_to"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "expression", "left", "operator",
+            "right", "rule", "rationale", "failure_code", "severity", "applies_to",
+        ],
+        where,
+    )
     if record.get("operator") != "!=":
         fail(f"{where}: boundary operator must be '!='")
     left, right = record.get("left"), record.get("right")
@@ -475,6 +523,14 @@ for entry in family_entries:
         continue
     family_path_set.add(file_name)
     require_fields(record, ["id", "symbol", "version", "status", "kind", "purpose", "authority", "questions", "related_questions"], file_name)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "symbol", "purpose", "authority",
+            "questions", "related_questions",
+        ],
+        file_name,
+    )
     if record.get("id") != entry.get("id") or record.get("symbol") != entry.get("symbol"):
         fail(f"{file_name}: family ID/symbol differs from index")
     if record.get("kind") != "question-family":
@@ -516,6 +572,14 @@ for entry in question_entries:
         fail(f"{file_name}: atomic question file missing or invalid")
         continue
     require_fields(record, ["id", "version", "status", "kind", "canonical_question", "family", "requires", "must_preserve", "answer_contract", "failure_contract"], file_name)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "canonical_question", "family",
+            "requires", "must_preserve", "answer_contract", "failure_contract",
+        ],
+        file_name,
+    )
     for forbidden in ("classification", "composition", "name", "symbol"):
         if forbidden in record:
             fail(f"{file_name}: superseded question field {forbidden!r} must not remain")
@@ -656,6 +720,14 @@ status_records = [record for record in status_records if isinstance(record, dict
 for record in status_records:
     where = str(record.get("id", "status family"))
     require_fields(record, ["id", "symbol", "purpose", "values"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "symbol", "purpose", "applies_to",
+            "applies_to_records", "scope_description", "values",
+        ],
+        where,
+    )
     if "name" in record:
         fail(f"{where}: redundant name field must not remain")
     symbol = record.get("symbol")
@@ -693,6 +765,15 @@ rule_records = [record for record in rule_records if isinstance(record, dict)]
 for record in rule_records:
     where = str(record.get("id", "conformance rule"))
     require_fields(record, ["id", "symbol", "version", "status", "requirement", "failure"], where)
+    require_key_order(
+        record,
+        [
+            "id", "version", "status", "kind", "symbol", "scope", "scope_description",
+            "requirement", "required_concepts", "required_pattern", "required_relations",
+            "requires_one_of_relations", "required_chain", "boundaries", "failure",
+        ],
+        where,
+    )
     if "name" in record:
         fail(f"{where}: redundant name field must not remain")
     symbol = record.get("symbol")

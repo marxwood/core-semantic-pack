@@ -1,11 +1,13 @@
 id: core.pattern.teleological-loop
-symbol: TeleologicalLoop
 version: 0.1.0
 status: experimental
 kind: composite-pattern
 
-definition: A correction loop connecting CurrentState, Goal, DesiredState, Intent, Action, StateChange,
-  and Progress assessment.
+symbol: TeleologicalLoop
+
+definition: >-
+  A correction loop connecting CurrentState, Goal, DesiredState, Intent, Action, StateChange, and Progress
+  assessment.
 
 composes:
   concepts:

@@ -1,12 +1,13 @@
 id: core.validation
-symbol: Validation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An assessment of whether a candidate semantic object, relation, or transition conforms to
-  declared requirements.
+symbol: Validation
+
+definition: >-
+  An assessment of whether a candidate semantic object, relation, or transition conforms to declared requirements.
 
 not_equivalent_to:
   - Admission
@@ -32,5 +33,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Syntactic or semantic conformance must not automatically promote an object into maintained
-    governed State.
+  rationale: >-
+    Syntactic or semantic conformance must not automatically promote an object into maintained governed
+    State.

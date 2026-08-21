@@ -1,9 +1,11 @@
 id: core.rel.implied-by
-symbol: impliedBy
 version: 0.1.0
 status: experimental
 
-definition: Identifies the Goal that implies a Direction.
+symbol: impliedBy
+
+definition: >-
+  Identifies the Goal that implies a Direction.
 
 source:
   - Direction
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: impliesDirection

@@ -1,9 +1,11 @@
 id: core.rel.support-subject
-symbol: supportSubject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the object providing contextual support.
+symbol: supportSubject
+
+definition: >-
+  Identifies the object providing contextual support.
 
 source:
   - Support

@@ -1,9 +1,11 @@
 id: core.rel.revoked-by
-symbol: revokedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates an object or status with the Revocation that withdrew it.
+symbol: revokedBy
+
+definition: >-
+  Associates an object or status with the Revocation that withdrew it.
 
 source:
   - Authority

@@ -2,7 +2,9 @@ id: core.question.assess-commitment-revocability
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Can the commitment be revoked?
+
 family: governance
 
 requires:

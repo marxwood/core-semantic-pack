@@ -1,9 +1,11 @@
 id: core.rel.identity-of
-symbol: identityOf
 version: 0.1.0
 status: experimental
 
-definition: Identifies the referable semantic object whose continuity is declared by an Identity.
+symbol: identityOf
+
+definition: >-
+  Identifies the referable semantic object whose continuity is declared by an Identity.
 
 source:
   - Identity
@@ -16,5 +18,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: hasIdentity

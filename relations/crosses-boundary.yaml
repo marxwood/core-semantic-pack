@@ -1,9 +1,11 @@
 id: core.rel.crosses-boundary
-symbol: crossesBoundary
 version: 0.1.0
 status: experimental
 
-definition: Identifies the Boundary crossed by an ExternalEffect or Transfer.
+symbol: crossesBoundary
+
+definition: >-
+  Identifies the Boundary crossed by an ExternalEffect or Transfer.
 
 source:
   - ExternalEffect

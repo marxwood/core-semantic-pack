@@ -1,9 +1,11 @@
 id: core.rel.accountable-actor
-symbol: accountableActor
 version: 0.1.0
 status: experimental
 
-definition: Identifies the Actor or Role carrying an Accountability obligation.
+symbol: accountableActor
+
+definition: >-
+  Identifies the Actor or Role carrying an Accountability obligation.
 
 source:
   - Accountability

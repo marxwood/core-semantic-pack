@@ -1,12 +1,14 @@
 id: core.accountability
-symbol: Accountability
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An assignable responsibility for a semantic object, decision, Commitment, Action, or StateChange
-  together with an obligation to explain, correct, or escalate it.
+symbol: Accountability
+
+definition: >-
+  An assignable responsibility for a semantic object, decision, Commitment, Action, or StateChange together
+  with an obligation to explain, correct, or escalate it.
 
 exclusions:
   - Accountability is not Provenance alone.
@@ -29,5 +31,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Attribution of origin is insufficient unless responsibility for correction and consequence
-    is also explicit.
+  rationale: >-
+    Attribution of origin is insufficient unless responsibility for correction and consequence is also
+    explicit.

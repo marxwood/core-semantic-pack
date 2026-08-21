@@ -1,10 +1,11 @@
 id: core.rel.governed-by
-symbol: governedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates an object, relation, process, or transition with the Contract governing its semantic
-  obligations.
+symbol: governedBy
+
+definition: >-
+  Associates an object, relation, process, or transition with the Contract governing its semantic obligations.
 
 source:
   - Any

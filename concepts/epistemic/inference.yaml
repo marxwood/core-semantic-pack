@@ -1,12 +1,14 @@
 id: core.inference
-symbol: Inference
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: A Derivative conclusion produced by reasoning from one or more Observations, Claims, Evidence
-  objects, Findings, or prior Inferences.
+symbol: Inference
+
+definition: >-
+  A Derivative conclusion produced by reasoning from one or more Observations, Claims, Evidence objects,
+  Findings, or prior Inferences.
 
 helps_answer:
   - What was inferred?
@@ -37,5 +39,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Intermediate reasoning must retain provisional status and cannot become institutional truth
-    merely by being stored or reused.
+  rationale: >-
+    Intermediate reasoning must retain provisional status and cannot become institutional truth merely
+    by being stored or reused.

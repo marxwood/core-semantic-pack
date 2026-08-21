@@ -1,12 +1,14 @@
 id: core.contestation
-symbol: Contestation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: An explicit governed challenge to the meaning, support, validity, admission, authority, or
-  maintained status of a semantic object or relation.
+symbol: Contestation
+
+definition: >-
+  An explicit governed challenge to the meaning, support, validity, admission, authority, or maintained
+  status of a semantic object or relation.
 
 exclusions:
   - Contestation is not automatic invalidation.
@@ -29,4 +31,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Disagreement must remain visible, attributable, and reviewable to preserve correction capability.
+  rationale: >-
+    Disagreement must remain visible, attributable, and reviewable to preserve correction capability.

@@ -2,7 +2,9 @@ id: core.question.assess-goal-authorization
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Is the Goal still authorized?
+
 family: reflective
 
 requires:

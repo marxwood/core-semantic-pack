@@ -1,12 +1,14 @@
 id: core.entity
-symbol: Entity
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: A referable subject or object of semantic discourse that may retain identity across contexts,
-  representations, and StateChanges.
+symbol: Entity
+
+definition: >-
+  A referable subject or object of semantic discourse that may retain identity across contexts, representations,
+  and StateChanges.
 
 helps_answer:
   - What is this?
@@ -30,5 +32,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: A stable referent is required before meaning, state, provenance, or responsibility can be
-    attached.
+  rationale: >-
+    A stable referent is required before meaning, state, provenance, or responsibility can be attached.

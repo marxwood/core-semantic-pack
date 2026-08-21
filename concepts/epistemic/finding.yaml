@@ -1,12 +1,14 @@
 id: core.finding
-symbol: Finding
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: A contextual epistemic result produced by evaluating Evidence and Inference under declared
-  validity and review conditions.
+symbol: Finding
+
+definition: >-
+  A contextual epistemic result produced by evaluating Evidence and Inference under declared validity
+  and review conditions.
 
 not_equivalent_to:
   - BindingDecision
@@ -36,5 +38,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: A governed result must remain distinguishable from intermediate reasoning and from authority-bearing
+  rationale: >-
+    A governed result must remain distinguishable from intermediate reasoning and from authority-bearing
     decisions.

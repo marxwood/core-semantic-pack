@@ -2,7 +2,9 @@ id: core.question.detect-inference-institutionalization
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Did an intermediate Inference silently become institutional truth?
+
 family: reflective
 
 requires:

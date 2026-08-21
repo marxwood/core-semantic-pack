@@ -1,12 +1,13 @@
 id: core.progress
-symbol: Progress
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: teleological
 
-definition: A contextual assessment of how CurrentState or Trajectory relates to a DesiredState under
-  declared criteria.
+symbol: Progress
+
+definition: >-
+  A contextual assessment of how CurrentState or Trajectory relates to a DesiredState under declared criteria.
 
 not_equivalent_to:
   - Goal
@@ -33,4 +34,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: A successful action does not establish that the system moved toward the intended state.
+  rationale: >-
+    A successful action does not establish that the system moved toward the intended state.

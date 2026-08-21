@@ -1,9 +1,11 @@
 id: core.rel.realizes
-symbol: realizes
 version: 0.1.0
 status: experimental
 
-definition: Associates an Action with the Intent it realizes.
+symbol: realizes
+
+definition: >-
+  Associates an Action with the Intent it realizes.
 
 source:
   - Action

@@ -1,15 +1,18 @@
 id: core.boundary.desired-state-not-plan
-expression: DesiredState != Plan
 version: 0.1.0
 status: experimental
+
+expression: DesiredState != Plan
 
 left: DesiredState
 operator: '!='
 right: Plan
 
-rule: DesiredState must not be represented as the plan or sequence by which it may be reached.
+rule: >-
+  DesiredState must not be represented as the plan or sequence by which it may be reached.
 
-rationale: Target condition and execution path are different semantics.
+rationale: >-
+  Target condition and execution path are different semantics.
 
 failure_code: SEM-BOUNDARY-015
 severity: semantic-error

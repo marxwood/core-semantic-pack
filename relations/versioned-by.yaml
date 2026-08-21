@@ -1,10 +1,12 @@
 id: core.rel.versioned-by
-symbol: versionedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates a semantic object, relation, contract, or composition with the SemanticVersion
-  governing its meaning.
+symbol: versionedBy
+
+definition: >-
+  Associates a semantic object, relation, contract, or composition with the SemanticVersion governing
+  its meaning.
 
 source:
   - Any

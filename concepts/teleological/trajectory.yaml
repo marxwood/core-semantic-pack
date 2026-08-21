@@ -1,12 +1,14 @@
 id: core.trajectory
-symbol: Trajectory
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: teleological
 
-definition: An observed or proposed sequence of StateChanges over time that can be evaluated against a
-  Direction or DesiredState.
+symbol: Trajectory
+
+definition: >-
+  An observed or proposed sequence of StateChanges over time that can be evaluated against a Direction
+  or DesiredState.
 
 not_equivalent_to:
   - Goal
@@ -31,4 +33,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Autonomous systems need longitudinal assessment rather than isolated success signals.
+  rationale: >-
+    Autonomous systems need longitudinal assessment rather than isolated success signals.

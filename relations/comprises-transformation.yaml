@@ -1,9 +1,11 @@
 id: core.rel.comprises-transformation
-symbol: comprisesTransformation
 version: 0.1.0
 status: experimental
 
-definition: Associates a Process with a Transformation that forms part of its abstract change structure.
+symbol: comprisesTransformation
+
+definition: >-
+  Associates a Process with a Transformation that forms part of its abstract change structure.
 
 source:
   - Process
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: partOfProcess

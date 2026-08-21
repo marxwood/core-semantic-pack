@@ -1,12 +1,14 @@
 id: core.permission
-symbol: Permission
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: A scoped allowance granted by Authority for an Actor, Role, Action, or Process participation
-  under declared Constraints and Context.
+symbol: Permission
+
+definition: >-
+  A scoped allowance granted by Authority for an Actor, Role, Action, or Process participation under declared
+  Constraints and Context.
 
 not_equivalent_to:
   - Capability
@@ -33,4 +35,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: The ability to act and the allowance to act must remain distinct and scope-bound.
+  rationale: >-
+    The ability to act and the allowance to act must remain distinct and scope-bound.

@@ -1,10 +1,12 @@
 id: core.question-family.teleological
-symbol: teleological
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about goals, desired states, intent, direction, trajectory, and progress.
+symbol: teleological
+
+purpose: >-
+  Questions about goals, desired states, intent, direction, trajectory, and progress.
 
 authority:
   class: taxonomy-only

@@ -1,11 +1,13 @@
 id: core.persistence
-symbol: Persistence
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: The retention of a semantic object or State across time or a processing boundary.
+symbol: Persistence
+
+definition: >-
+  The retention of a semantic object or State across time or a processing boundary.
 
 not_equivalent_to:
   - Admission
@@ -31,4 +33,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Storage must not manufacture governed status or erase the type and lineage of what is stored.
+  rationale: >-
+    Storage must not manufacture governed status or erase the type and lineage of what is stored.

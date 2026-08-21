@@ -2,7 +2,9 @@ id: core.question.identify-identity
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Which identity does it have?
+
 family: ontological
 
 requires:

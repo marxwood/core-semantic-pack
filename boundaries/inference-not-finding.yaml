@@ -1,16 +1,19 @@
 id: core.boundary.inference-not-finding
-expression: Inference != Finding
 version: 0.1.0
 status: experimental
+
+expression: Inference != Finding
 
 left: Inference
 operator: '!='
 right: Finding
 
-rule: An Inference must not be represented as a Finding without the declared evaluation, validity, and
-  governance conditions required for a Finding.
+rule: >-
+  An Inference must not be represented as a Finding without the declared evaluation, validity, and governance
+  conditions required for a Finding.
 
-rationale: Intermediate reasoning does not silently become a governed result.
+rationale: >-
+  Intermediate reasoning does not silently become a governed result.
 
 failure_code: SEM-BOUNDARY-005
 severity: semantic-error

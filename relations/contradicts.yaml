@@ -1,9 +1,11 @@
 id: core.rel.contradicts
-symbol: contradicts
 version: 0.1.0
 status: experimental
 
-definition: Declares a contextual conflict with another semantic object.
+symbol: contradicts
+
+definition: >-
+  Declares a contextual conflict with another semantic object.
 
 source:
   - Evidence

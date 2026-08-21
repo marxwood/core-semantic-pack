@@ -1,9 +1,11 @@
 id: core.rel.has-uncertainty
-symbol: hasUncertainty
 version: 0.1.0
 status: experimental
 
-definition: Associates explicit uncertainty with an object or relation.
+symbol: hasUncertainty
+
+definition: >-
+  Associates explicit uncertainty with an object or relation.
 
 source:
   - Observation

@@ -1,15 +1,18 @@
 id: core.boundary.action-not-state-change
-expression: Action != StateChange
 version: 0.1.0
 status: experimental
+
+expression: Action != StateChange
 
 left: Action
 operator: '!='
 right: StateChange
 
-rule: Action must not be represented as StateChange without evidence of an actual attributable transition.
+rule: >-
+  Action must not be represented as StateChange without evidence of an actual attributable transition.
 
-rationale: Attempted or completed execution is not identical to changed reality.
+rationale: >-
+  Attempted or completed execution is not identical to changed reality.
 
 failure_code: SEM-BOUNDARY-019
 severity: semantic-error

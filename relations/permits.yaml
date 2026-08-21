@@ -1,9 +1,11 @@
 id: core.rel.permits
-symbol: permits
 version: 0.1.0
 status: experimental
 
-definition: Identifies what a Permission allows.
+symbol: permits
+
+definition: >-
+  Identifies what a Permission allows.
 
 source:
   - Permission

@@ -2,7 +2,9 @@ id: core.question.assess-state-change-progress
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Is the resulting StateChange advancing the DesiredState?
+
 family: teleological
 
 requires:

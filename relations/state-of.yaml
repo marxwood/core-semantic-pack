@@ -1,9 +1,11 @@
 id: core.rel.state-of
-symbol: stateOf
 version: 0.1.0
 status: experimental
 
-definition: Identifies the Entity for which a State is maintained.
+symbol: stateOf
+
+definition: >-
+  Identifies the Entity for which a State is maintained.
 
 source:
   - State
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: hasState

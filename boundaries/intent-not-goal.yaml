@@ -1,15 +1,18 @@
 id: core.boundary.intent-not-goal
-expression: Intent != Goal
 version: 0.1.0
 status: experimental
+
+expression: Intent != Goal
 
 left: Intent
 operator: '!='
 right: Goal
 
-rule: Intent must remain traceable to a Goal without being represented as the Goal itself.
+rule: >-
+  Intent must remain traceable to a Goal without being represented as the Goal itself.
 
-rationale: Immediate purpose and enduring normative objective are different levels.
+rationale: >-
+  Immediate purpose and enduring normative objective are different levels.
 
 failure_code: SEM-BOUNDARY-016
 severity: semantic-error

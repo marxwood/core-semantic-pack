@@ -1,12 +1,14 @@
 id: core.observation
-symbol: Observation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: A recorded result of perceiving, measuring, retrieving, or otherwise encountering a Source
-  under a declared Context.
+symbol: Observation
+
+definition: >-
+  A recorded result of perceiving, measuring, retrieving, or otherwise encountering a Source under a declared
+  Context.
 
 helps_answer:
   - What was observed?
@@ -33,4 +35,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Perception must remain distinct from what the system later asserts about what was perceived.
+  rationale: >-
+    Perception must remain distinct from what the system later asserts about what was perceived.

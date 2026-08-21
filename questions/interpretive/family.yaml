@@ -1,10 +1,12 @@
 id: core.question-family.interpretive
-symbol: interpretive
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about interpretation, representation, derivation, context, and projection collapse.
+symbol: interpretive
+
+purpose: >-
+  Questions about interpretation, representation, derivation, context, and projection collapse.
 
 authority:
   class: taxonomy-only

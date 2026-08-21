@@ -1,15 +1,18 @@
 id: core.boundary.persistence-not-admission
-expression: Persistence != Admission
 version: 0.1.0
 status: experimental
+
+expression: Persistence != Admission
 
 left: Persistence
 operator: '!='
 right: Admission
 
-rule: Persisting an object must not admit it into maintained governed State or change its epistemic status.
+rule: >-
+  Persisting an object must not admit it into maintained governed State or change its epistemic status.
 
-rationale: Storage does not manufacture institutional truth.
+rationale: >-
+  Storage does not manufacture institutional truth.
 
 failure_code: SEM-BOUNDARY-011
 severity: semantic-error

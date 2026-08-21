@@ -2,7 +2,9 @@ id: core.question.identify-interpretive-context
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Which Context shaped the interpretation?
+
 family: interpretive
 
 requires:

@@ -1,10 +1,12 @@
 id: core.question-family.state
-symbol: state
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about maintained state, before/after conditions, and attributable change.
+symbol: state
+
+purpose: >-
+  Questions about maintained state, before/after conditions, and attributable change.
 
 authority:
   class: taxonomy-only

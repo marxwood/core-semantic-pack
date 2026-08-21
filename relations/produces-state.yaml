@@ -1,9 +1,11 @@
 id: core.rel.produces-state
-symbol: producesState
 version: 0.1.0
 status: experimental
 
-definition: Associates an Admission with the maintained State it establishes or updates.
+symbol: producesState
+
+definition: >-
+  Associates an Admission with the maintained State it establishes or updates.
 
 source:
   - Admission

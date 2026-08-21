@@ -1,12 +1,13 @@
 id: core.evidence
-symbol: Evidence
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: A referable object admitted under a declared Regime as support for, or contradiction of, a
-  Claim.
+symbol: Evidence
+
+definition: >-
+  A referable object admitted under a declared Regime as support for, or contradiction of, a Claim.
 
 exclusions:
   - Evidence is not a raw Source.
@@ -35,5 +36,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Evidence is a governed epistemic status, not an intrinsic property of any retrieved or generated
-    object.
+  rationale: >-
+    Evidence is a governed epistemic status, not an intrinsic property of any retrieved or generated object.

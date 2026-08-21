@@ -1,12 +1,14 @@
 id: core.composition
-symbol: Composition
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: The governed creation of a Derivative from multiple semantic objects under declared selection,
-  ordering, and interpretation rules.
+symbol: Composition
+
+definition: >-
+  The governed creation of a Derivative from multiple semantic objects under declared selection, ordering,
+  and interpretation rules.
 
 exclusions:
   - Composition is not aggregation without meaning.
@@ -31,5 +33,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Composite outputs must preserve lineage and cannot silently inherit status or authority from
-    their inputs.
+  rationale: >-
+    Composite outputs must preserve lineage and cannot silently inherit status or authority from their
+    inputs.

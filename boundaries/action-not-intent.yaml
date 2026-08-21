@@ -1,15 +1,18 @@
 id: core.boundary.action-not-intent
-expression: Action != Intent
 version: 0.1.0
 status: experimental
+
+expression: Action != Intent
 
 left: Action
 operator: '!='
 right: Intent
 
-rule: Action must remain distinguishable from the Intent it realizes.
+rule: >-
+  Action must remain distinguishable from the Intent it realizes.
 
-rationale: What was done and why it was done must remain separately inspectable.
+rationale: >-
+  What was done and why it was done must remain separately inspectable.
 
 failure_code: SEM-BOUNDARY-018
 severity: semantic-error

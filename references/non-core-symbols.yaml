@@ -4,51 +4,73 @@ status: experimental
 
 references:
   - id: semantic-category:truth
-    symbol: Truth
     kind: reference-only-semantic-category
     core_primitive: false
-    definition: A comparison category used to preserve the distinction between contextual Evidence and
-      universal truth.
+
+    symbol: Truth
+
+    definition: >-
+      A comparison category used to preserve the distinction between contextual Evidence and universal truth.
 
   - id: semantic-category:binding-decision
-    symbol: BindingDecision
     kind: reference-only-governance-category
     core_primitive: false
-    definition: A comparison category for a decision that carries operative Binding consequence.
+
+    symbol: BindingDecision
+
+    definition: >-
+      A comparison category for a decision that carries operative Binding consequence.
 
   - id: semantic-category:repetition
-    symbol: Repetition
     kind: reference-only-process-category
     core_primitive: false
-    definition: Repeated occurrence or downstream reuse, which does not itself constitute Validation.
+
+    symbol: Repetition
+
+    definition: >-
+      Repeated occurrence or downstream reuse, which does not itself constitute Validation.
 
   - id: semantic-category:prediction
-    symbol: Prediction
     kind: reference-only-representation-category
     core_primitive: false
-    definition: A representation of an expected future condition, kept distinct from DesiredState.
+
+    symbol: Prediction
+
+    definition: >-
+      A representation of an expected future condition, kept distinct from DesiredState.
 
   - id: semantic-category:plan
-    symbol: Plan
     kind: reference-only-architecture-category
     core_primitive: false
-    definition: A proposed course of activity, kept distinct from DesiredState.
+
+    symbol: Plan
+
+    definition: >-
+      A proposed course of activity, kept distinct from DesiredState.
 
   - id: semantic-category:execution-plan
-    symbol: ExecutionPlan
     kind: reference-only-architecture-category
     core_primitive: false
-    definition: An optional concrete materialization of execution, not the semantic contract that legitimizes
-      it.
+
+    symbol: ExecutionPlan
+
+    definition: >-
+      An optional concrete materialization of execution, not the semantic contract that legitimizes it.
 
   - id: semantic-category:runtime
-    symbol: Runtime
     kind: reference-only-architecture-category
     core_primitive: false
-    definition: The concrete environment in which execution occurs, kept distinct from an ExecutionPlan.
+
+    symbol: Runtime
+
+    definition: >-
+      The concrete environment in which execution occurs, kept distinct from an ExecutionPlan.
 
   - id: semantic-category:operational-success
-    symbol: OperationalSuccess
     kind: reference-only-evaluation-category
     core_primitive: false
-    definition: Successful completion by operational criteria, which does not itself establish Progress.
+
+    symbol: OperationalSuccess
+
+    definition: >-
+      Successful completion by operational criteria, which does not itself establish Progress.

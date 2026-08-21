@@ -1,12 +1,14 @@
 id: core.action
-symbol: Action
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: An attributable attempt or performance by an Actor to realize an Intent, participate in a
-  Process, transform an object, or produce an effect.
+symbol: Action
+
+definition: >-
+  An attributable attempt or performance by an Actor to realize an Intent, participate in a Process, transform
+  an object, or produce an effect.
 
 not_equivalent_to:
   - Intent
@@ -39,5 +41,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Execution must remain traceable to purpose, process, actor, and authority without being equated
-    with its consequence.
+  rationale: >-
+    Execution must remain traceable to purpose, process, actor, and authority without being equated with
+    its consequence.

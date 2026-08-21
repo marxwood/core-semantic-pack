@@ -1,12 +1,14 @@
 id: core.review
-symbol: Review
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An attributable evaluative act that may validate, contest, annotate, reject, or recommend
-  change to a semantic object or transition.
+symbol: Review
+
+definition: >-
+  An attributable evaluative act that may validate, contest, annotate, reject, or recommend change to
+  a semantic object or transition.
 
 not_equivalent_to:
   - Binding
@@ -32,5 +34,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Human or automated review must remain separate from the authority act that creates institutional
-    commitment.
+  rationale: >-
+    Human or automated review must remain separate from the authority act that creates institutional commitment.

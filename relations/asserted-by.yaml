@@ -1,9 +1,11 @@
 id: core.rel.asserted-by
-symbol: assertedBy
 version: 0.1.0
 status: experimental
 
-definition: Attributes a Claim to the Actor or Source that asserted it.
+symbol: assertedBy
+
+definition: >-
+  Attributes a Claim to the Actor or Source that asserted it.
 
 source:
   - Claim
@@ -15,5 +17,4 @@ target:
 direction: directed
 provenance: required
 authority_effect: none
-
 inverse: asserts

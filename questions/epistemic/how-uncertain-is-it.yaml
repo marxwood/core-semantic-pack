@@ -2,7 +2,9 @@ id: core.question.identify-uncertainty
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: How uncertain is it?
+
 family: epistemic
 
 requires:

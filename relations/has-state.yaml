@@ -1,9 +1,11 @@
 id: core.rel.has-state
-symbol: hasState
 version: 0.1.0
 status: experimental
 
-definition: Associates an Entity with a maintained State.
+symbol: hasState
+
+definition: >-
+  Associates an Entity with a maintained State.
 
 source:
   - Entity
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: stateOf

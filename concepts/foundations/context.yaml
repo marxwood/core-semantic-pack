@@ -1,12 +1,13 @@
 id: core.context
-symbol: Context
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: A declared interpretive frame within which meaning, validity, comparison, permission, or authority
-  applies.
+symbol: Context
+
+definition: >-
+  A declared interpretive frame within which meaning, validity, comparison, permission, or authority applies.
 
 helps_answer:
   - In which Context does this meaning apply?
@@ -28,4 +29,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Interpretation, validity, and authority are contextual and must not silently become universal.
+  rationale: >-
+    Interpretation, validity, and authority are contextual and must not silently become universal.

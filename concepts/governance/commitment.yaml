@@ -1,12 +1,14 @@
 id: core.commitment
-symbol: Commitment
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: A maintained obligation, decision, or declared course accepted as operative through Binding
-  within a defined scope.
+symbol: Commitment
+
+definition: >-
+  A maintained obligation, decision, or declared course accepted as operative through Binding within a
+  defined scope.
 
 not_equivalent_to:
   - Goal
@@ -34,5 +36,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Binding consequences need a maintained referent that can guide action and later be revised
-    or revoked.
+  rationale: >-
+    Binding consequences need a maintained referent that can guide action and later be revised or revoked.

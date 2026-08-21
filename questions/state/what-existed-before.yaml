@@ -2,7 +2,9 @@ id: core.question.identify-previous-state
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: What existed before?
+
 family: state
 
 requires:

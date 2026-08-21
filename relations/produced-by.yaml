@@ -1,9 +1,11 @@
 id: core.rel.produced-by
-symbol: producedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates a semantic output with the operation or act that produced it.
+symbol: producedBy
+
+definition: >-
+  Associates a semantic output with the operation or act that produced it.
 
 source:
   - Derivative

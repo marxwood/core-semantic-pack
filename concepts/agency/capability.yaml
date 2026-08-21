@@ -1,12 +1,13 @@
 id: core.capability
-symbol: Capability
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: A declared ability to perform an operation, transformation, interpretation, or other class
-  of work.
+symbol: Capability
+
+definition: >-
+  A declared ability to perform an operation, transformation, interpretation, or other class of work.
 
 not_equivalent_to:
   - Authority
@@ -31,5 +32,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Ability must remain separate from legitimacy; increasing capability must not silently expand
-    authority.
+  rationale: >-
+    Ability must remain separate from legitimacy; increasing capability must not silently expand authority.

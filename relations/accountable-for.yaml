@@ -1,9 +1,11 @@
 id: core.rel.accountable-for
-symbol: accountableFor
 version: 0.1.0
 status: experimental
 
-definition: Associates an Actor or Role with an object or consequence for which it is accountable.
+symbol: accountableFor
+
+definition: >-
+  Associates an Actor or Role with an object or consequence for which it is accountable.
 
 source:
   - Actor

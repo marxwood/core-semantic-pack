@@ -1,9 +1,11 @@
 id: core.rel.established-by
-symbol: establishedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates a maintained status or Commitment with the act that established it.
+symbol: establishedBy
+
+definition: >-
+  Associates a maintained status or Commitment with the act that established it.
 
 source:
   - Commitment

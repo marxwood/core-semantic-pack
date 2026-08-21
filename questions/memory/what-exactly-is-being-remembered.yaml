@@ -2,7 +2,9 @@ id: core.question.identify-remembered-object
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: What exactly is being remembered?
+
 family: memory
 
 requires:

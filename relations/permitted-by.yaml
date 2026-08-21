@@ -1,9 +1,11 @@
 id: core.rel.permitted-by
-symbol: permittedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates an activity with the Permission that allows it.
+symbol: permittedBy
+
+definition: >-
+  Associates an activity with the Permission that allows it.
 
 source:
   - Action

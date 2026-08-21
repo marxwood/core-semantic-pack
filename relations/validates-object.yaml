@@ -1,9 +1,11 @@
 id: core.rel.validates-object
-symbol: validatesObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the candidate object, relation, or transition evaluated by Validation.
+symbol: validatesObject
+
+definition: >-
+  Identifies the candidate object, relation, or transition evaluated by Validation.
 
 source:
   - Validation

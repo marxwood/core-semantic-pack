@@ -1,11 +1,13 @@
 id: core.state-change
-symbol: StateChange
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: An attributable transition from a previous State to a resulting State under a declared Context.
+symbol: StateChange
+
+definition: >-
+  An attributable transition from a previous State to a resulting State under a declared Context.
 
 helps_answer:
   - What changed?
@@ -35,5 +37,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Change must remain explicit, attributable, and reconstructable rather than inferred from
-    current values alone.
+  rationale: >-
+    Change must remain explicit, attributable, and reconstructable rather than inferred from current values
+    alone.

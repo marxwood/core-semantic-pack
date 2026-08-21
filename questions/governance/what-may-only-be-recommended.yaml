@@ -2,7 +2,9 @@ id: core.question.identify-recommendation-only-scope
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: What may only be recommended?
+
 family: governance
 
 requires:

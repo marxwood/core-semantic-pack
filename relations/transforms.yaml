@@ -1,9 +1,11 @@
 id: core.rel.transforms
-symbol: transforms
 version: 0.1.0
 status: experimental
 
-definition: Identifies the State or semantic object affected by an Action or Transformation.
+symbol: transforms
+
+definition: >-
+  Identifies the State or semantic object affected by an Action or Transformation.
 
 source:
   - Action

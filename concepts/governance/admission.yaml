@@ -1,12 +1,14 @@
 id: core.admission
-symbol: Admission
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An explicit governed transition by which a candidate object is allowed to become maintained
-  State or acquire another declared admitted status.
+symbol: Admission
+
+definition: >-
+  An explicit governed transition by which a candidate object is allowed to become maintained State or
+  acquire another declared admitted status.
 
 not_equivalent_to:
   - Validation
@@ -35,5 +37,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Institutional memory and maintained State require an explicit status transition rather than
-    implicit promotion through storage or reuse.
+  rationale: >-
+    Institutional memory and maintained State require an explicit status transition rather than implicit
+    promotion through storage or reuse.

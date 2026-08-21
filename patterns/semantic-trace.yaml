@@ -1,11 +1,13 @@
 id: core.pattern.semantic-trace
-symbol: SemanticTrace
 version: 0.1.0
 status: experimental
 kind: composite-pattern
 
-definition: A reconstructable path connecting reality-facing Sources and Observations to Claims, Evidence,
-  Inference, Findings, Goals, Actions, Authority, and resulting StateChange.
+symbol: SemanticTrace
+
+definition: >-
+  A reconstructable path connecting reality-facing Sources and Observations to Claims, Evidence, Inference,
+  Findings, Goals, Actions, Authority, and resulting StateChange.
 
 composes:
   concepts:

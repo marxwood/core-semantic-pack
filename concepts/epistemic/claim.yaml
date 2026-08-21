@@ -1,12 +1,14 @@
 id: core.claim
-symbol: Claim
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: A Statement asserted as being possibly true or false about an Entity, State, Relation, or
-  condition under a declared Context.
+symbol: Claim
+
+definition: >-
+  A Statement asserted as being possibly true or false about an Entity, State, Relation, or condition
+  under a declared Context.
 
 not_equivalent_to:
   - Evidence
@@ -36,5 +38,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Assertions must retain their epistemic status rather than becoming true through fluency,
-    repetition, or persistence.
+  rationale: >-
+    Assertions must retain their epistemic status rather than becoming true through fluency, repetition,
+    or persistence.

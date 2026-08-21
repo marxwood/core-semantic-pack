@@ -1,12 +1,14 @@
 id: core.relation
-symbol: Relation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: A typed, directed semantic association whose source, target, meaning, and constraints are
-  explicitly declared.
+symbol: Relation
+
+definition: >-
+  A typed, directed semantic association whose source, target, meaning, and constraints are explicitly
+  declared.
 
 exclusions:
   - Relation is not mere co-occurrence.
@@ -26,5 +28,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: The Core is a semantic graph; relations must remain governed rather than inferred from adjacency
-    alone.
+  rationale: >-
+    The Core is a semantic graph; relations must remain governed rather than inferred from adjacency alone.

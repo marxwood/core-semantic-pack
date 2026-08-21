@@ -1,9 +1,11 @@
 id: core.rel.revokes-object
-symbol: revokesObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the governed status or object withdrawn by Revocation.
+symbol: revokesObject
+
+definition: >-
+  Identifies the governed status or object withdrawn by Revocation.
 
 source:
   - Revocation

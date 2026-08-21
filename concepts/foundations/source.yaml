@@ -1,12 +1,14 @@
 id: core.source
-symbol: Source
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: A referable origin from which an Observation, Derivative, Interpretation, or other semantic
-  object is obtained.
+symbol: Source
+
+definition: >-
+  A referable origin from which an Observation, Derivative, Interpretation, or other semantic object is
+  obtained.
 
 exclusions:
   - Source is not Evidence by default.
@@ -28,4 +30,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Lineage requires a distinguishable origin that derived representations cannot redefine.
+  rationale: >-
+    Lineage requires a distinguishable origin that derived representations cannot redefine.

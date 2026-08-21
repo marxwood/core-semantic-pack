@@ -1,11 +1,13 @@
 id: core.contract
-symbol: Contract
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: A versioned set of semantic obligations, constraints, validity conditions, and permitted transitions
+symbol: Contract
+
+definition: >-
+  A versioned set of semantic obligations, constraints, validity conditions, and permitted transitions
   applying across declared roles, components, or boundaries.
 
 not_equivalent_to:
@@ -33,5 +35,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Semantic obligations must remain stable while their runtime enforcement and orchestration
-    mechanisms evolve.
+  rationale: >-
+    Semantic obligations must remain stable while their runtime enforcement and orchestration mechanisms
+    evolve.

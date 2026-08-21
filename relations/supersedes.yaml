@@ -1,9 +1,11 @@
 id: core.rel.supersedes
-symbol: supersedes
 version: 0.1.0
 status: experimental
 
-definition: Declares that one versioned semantic object replaces another without erasing historical lineage.
+symbol: supersedes
+
+definition: >-
+  Declares that one versioned semantic object replaces another without erasing historical lineage.
 
 source:
   - Any

@@ -1,9 +1,11 @@
 id: core.rel.inferred-from
-symbol: inferredFrom
 version: 0.1.0
 status: experimental
 
-definition: Declares the premises or semantic objects from which an Inference was produced.
+symbol: inferredFrom
+
+definition: >-
+  Declares the premises or semantic objects from which an Inference was produced.
 
 source:
   - Inference

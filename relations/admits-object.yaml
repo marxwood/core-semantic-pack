@@ -1,9 +1,11 @@
 id: core.rel.admits-object
-symbol: admitsObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the candidate object whose governed status is changed by Admission.
+symbol: admitsObject
+
+definition: >-
+  Identifies the candidate object whose governed status is changed by Admission.
 
 source:
   - Admission

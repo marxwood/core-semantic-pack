@@ -1,9 +1,11 @@
 id: core.rel.has-validity
-symbol: hasValidity
 version: 0.1.0
 status: experimental
 
-definition: Associates an object or relation with contextual validity status.
+symbol: hasValidity
+
+definition: >-
+  Associates an object or relation with contextual validity status.
 
 source:
   - Any

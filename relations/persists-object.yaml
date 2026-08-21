@@ -1,9 +1,11 @@
 id: core.rel.persists-object
-symbol: persistsObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the semantic object retained by Persistence.
+symbol: persistsObject
+
+definition: >-
+  Identifies the semantic object retained by Persistence.
 
 source:
   - Persistence

@@ -1,11 +1,13 @@
 id: core.pattern.institutional-memory
-symbol: InstitutionalMemory
 version: 0.1.0
 status: experimental
 kind: composite-pattern
 
-definition: Persistent semantic continuity in which typed objects retain provenance, admission status,
-  validity, context, lifecycle, and SemanticVersion across time and reuse.
+symbol: InstitutionalMemory
+
+definition: >-
+  Persistent semantic continuity in which typed objects retain provenance, admission status, validity,
+  context, lifecycle, and SemanticVersion across time and reuse.
 
 composes:
   concepts:

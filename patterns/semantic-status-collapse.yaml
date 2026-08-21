@@ -1,11 +1,13 @@
 id: core.pattern.semantic-status-collapse
-symbol: SemanticStatusCollapse
 version: 0.1.0
 status: experimental
 kind: failure-pattern
 
-definition: A failure in which a semantic object acquires a stronger epistemic, admission, or authority
-  status without the explicit governed transition required for that status.
+symbol: SemanticStatusCollapse
+
+definition: >-
+  A failure in which a semantic object acquires a stronger epistemic, admission, or authority status without
+  the explicit governed transition required for that status.
 
 detects_boundaries:
   - Inference != Finding

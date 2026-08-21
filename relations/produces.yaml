@@ -1,9 +1,11 @@
 id: core.rel.produces
-symbol: produces
 version: 0.1.0
 status: experimental
 
-definition: Associates an operation or evaluative act with a semantic output.
+symbol: produces
+
+definition: >-
+  Associates an operation or evaluative act with a semantic output.
 
 source:
   - Action

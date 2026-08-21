@@ -1,9 +1,11 @@
 id: core.rel.contested-by
-symbol: contestedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates an object or relation with a governed challenge.
+symbol: contestedBy
+
+definition: >-
+  Associates an object or relation with a governed challenge.
 
 source:
   - Any
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: contests

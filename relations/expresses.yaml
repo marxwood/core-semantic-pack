@@ -1,9 +1,11 @@
 id: core.rel.expresses
-symbol: expresses
 version: 0.1.0
 status: experimental
 
-definition: Associates an Actor or Source with a Statement it expressed.
+symbol: expresses
+
+definition: >-
+  Associates an Actor or Source with a Statement it expressed.
 
 source:
   - Actor
@@ -15,5 +17,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: expressedBy

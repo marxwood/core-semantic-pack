@@ -1,12 +1,14 @@
 id: core.revocation
-symbol: Revocation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An authorized act that withdraws previously granted Authority, Permission, Admission, Binding,
-  or Commitment while preserving historical lineage.
+symbol: Revocation
+
+definition: >-
+  An authorized act that withdraws previously granted Authority, Permission, Admission, Binding, or Commitment
+  while preserving historical lineage.
 
 exclusions:
   - Revocation is not deletion.
@@ -29,5 +31,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Correction capability requires institutional consequences to remain withdrawable without
-    erasing history.
+  rationale: >-
+    Correction capability requires institutional consequences to remain withdrawable without erasing history.

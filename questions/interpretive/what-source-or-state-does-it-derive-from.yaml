@@ -2,7 +2,9 @@ id: core.question.identify-derivation-source
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: What Source or State does it derive from?
+
 family: interpretive
 
 requires:

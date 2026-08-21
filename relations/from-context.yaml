@@ -1,9 +1,11 @@
 id: core.rel.from-context
-symbol: fromContext
 version: 0.1.0
 status: experimental
 
-definition: Identifies the origin Context of a Transfer.
+symbol: fromContext
+
+definition: >-
+  Identifies the origin Context of a Transfer.
 
 source:
   - Transfer

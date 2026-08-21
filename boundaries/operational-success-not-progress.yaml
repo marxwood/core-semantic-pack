@@ -1,16 +1,19 @@
 id: core.boundary.operational-success-not-goal-progress
-expression: OperationalSuccess != Progress
 version: 0.1.0
 status: experimental
+
+expression: OperationalSuccess != Progress
 
 left: OperationalSuccess
 operator: '!='
 right: Progress
 
-rule: Successful execution must not be represented as Progress without evaluation against DesiredState
-  or Direction.
+rule: >-
+  Successful execution must not be represented as Progress without evaluation against DesiredState or
+  Direction.
 
-rationale: A correct Action can move the system in the wrong direction.
+rationale: >-
+  A correct Action can move the system in the wrong direction.
 
 failure_code: SEM-BOUNDARY-023
 severity: semantic-error

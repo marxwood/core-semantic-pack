@@ -1,12 +1,14 @@
 id: core.constraint
-symbol: Constraint
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An explicit condition that limits interpretation, permission, transformation, admission, review,
-  binding, or other semantic use.
+symbol: Constraint
+
+definition: >-
+  An explicit condition that limits interpretation, permission, transformation, admission, review, binding,
+  or other semantic use.
 
 exclusions:
   - Constraint is not a suggestion.
@@ -27,4 +29,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Normative limits need stable meaning independent of the mechanism used to enforce them.
+  rationale: >-
+    Normative limits need stable meaning independent of the mechanism used to enforce them.

@@ -1,15 +1,18 @@
 id: core.boundary.goal-not-desired-state
-expression: Goal != DesiredState
 version: 0.1.0
 status: experimental
+
+expression: Goal != DesiredState
 
 left: Goal
 operator: '!='
 right: DesiredState
 
-rule: A Goal must remain distinct from the DesiredState used to represent its future condition.
+rule: >-
+  A Goal must remain distinct from the DesiredState used to represent its future condition.
 
-rationale: Normative objective and future-state representation serve different functions.
+rationale: >-
+  Normative objective and future-state representation serve different functions.
 
 failure_code: SEM-BOUNDARY-013
 severity: semantic-error

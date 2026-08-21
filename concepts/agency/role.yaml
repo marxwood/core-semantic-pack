@@ -1,12 +1,14 @@
 id: core.role
-symbol: Role
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: A contextual position of responsibility that constrains expected, permitted, or accountable
-  participation in a Process or governance act.
+symbol: Role
+
+definition: >-
+  A contextual position of responsibility that constrains expected, permitted, or accountable participation
+  in a Process or governance act.
 
 not_equivalent_to:
   - Actor
@@ -32,5 +34,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: The same Actor may participate under different responsibilities and permissions in different
-    contexts.
+  rationale: >-
+    The same Actor may participate under different responsibilities and permissions in different contexts.

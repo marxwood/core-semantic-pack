@@ -1,9 +1,11 @@
 id: core.rel.contradiction-object
-symbol: contradictionObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the other side of a reified Contradiction.
+symbol: contradictionObject
+
+definition: >-
+  Identifies the other side of a reified Contradiction.
 
 source:
   - Contradiction

@@ -1,12 +1,14 @@
 id: core.authority
-symbol: Authority
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: Declared and attributable legitimacy to authorize Action, admit State, establish Binding,
-  or otherwise create normative consequence within a defined scope.
+symbol: Authority
+
+definition: >-
+  Declared and attributable legitimacy to authorize Action, admit State, establish Binding, or otherwise
+  create normative consequence within a defined scope.
 
 not_equivalent_to:
   - Capability
@@ -34,5 +36,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Authority must never emerge implicitly from technical capability, persistence, visibility,
-    or repeated downstream use.
+  rationale: >-
+    Authority must never emerge implicitly from technical capability, persistence, visibility, or repeated
+    downstream use.

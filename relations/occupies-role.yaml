@@ -1,9 +1,11 @@
 id: core.rel.occupies-role
-symbol: occupiesRole
 version: 0.1.0
 status: experimental
 
-definition: Associates an Actor with a contextual Role.
+symbol: occupiesRole
+
+definition: >-
+  Associates an Actor with a contextual Role.
 
 source:
   - Actor
@@ -14,5 +16,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: occupiedBy

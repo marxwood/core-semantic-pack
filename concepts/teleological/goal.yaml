@@ -1,12 +1,14 @@
 id: core.goal
-symbol: Goal
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: teleological
 
-definition: An authorized objective that gives direction to interpretation, planning, and action within
-  a declared scope.
+symbol: Goal
+
+definition: >-
+  An authorized objective that gives direction to interpretation, planning, and action within a declared
+  scope.
 
 not_equivalent_to:
   - DesiredState
@@ -34,5 +36,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Autonomous action requires explicit normative direction rather than hidden objectives embedded
-    in prompts or implementation.
+  rationale: >-
+    Autonomous action requires explicit normative direction rather than hidden objectives embedded in
+    prompts or implementation.

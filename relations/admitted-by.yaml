@@ -1,9 +1,11 @@
 id: core.rel.admitted-by
-symbol: admittedBy
 version: 0.1.0
 status: experimental
 
-definition: Associates an object with the Admission act that established its admitted status.
+symbol: admittedBy
+
+definition: >-
+  Associates an object with the Admission act that established its admitted status.
 
 source:
   - Evidence

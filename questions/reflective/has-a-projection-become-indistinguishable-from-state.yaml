@@ -2,7 +2,9 @@ id: core.question.detect-projection-state-collapse
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Has a Projection become indistinguishable from State?
+
 family: reflective
 
 requires:

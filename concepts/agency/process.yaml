@@ -1,12 +1,14 @@
 id: core.process
-symbol: Process
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: An abstract semantic structure of possible transformations, causal relations, State transition
-  logic, and invariants.
+symbol: Process
+
+definition: >-
+  An abstract semantic structure of possible transformations, causal relations, State transition logic,
+  and invariants.
 
 not_equivalent_to:
   - ExecutionContract
@@ -31,5 +33,5 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: The ontology of change must remain distinct from the contextual legitimacy and implementation
-    of execution.
+  rationale: >-
+    The ontology of change must remain distinct from the contextual legitimacy and implementation of execution.

@@ -1,9 +1,11 @@
 id: core.rel.toward-state
-symbol: towardState
 version: 0.1.0
 status: experimental
 
-definition: Identifies the DesiredState toward which a Direction points.
+symbol: towardState
+
+definition: >-
+  Identifies the DesiredState toward which a Direction points.
 
 source:
   - Direction

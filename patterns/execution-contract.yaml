@@ -1,11 +1,13 @@
 id: core.pattern.execution-contract
-symbol: ExecutionContract
 version: 0.1.0
 status: experimental
 kind: composite-pattern
 
-definition: A context-bound Contract that declares when and under which Authority, Constraints, validity
-  conditions, and admission rules a Process may be realized.
+symbol: ExecutionContract
+
+definition: >-
+  A context-bound Contract that declares when and under which Authority, Constraints, validity conditions,
+  and admission rules a Process may be realized.
 
 composes:
   concepts:

@@ -1,9 +1,11 @@
 id: core.rel.holds
-symbol: holds
 version: 0.1.0
 status: experimental
 
-definition: Associates an Actor or Role with an Intent, Capability, or Authority it holds.
+symbol: holds
+
+definition: >-
+  Associates an Actor or Role with an Intent, Capability, or Authority it holds.
 
 source:
   - Actor
@@ -17,5 +19,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: heldBy

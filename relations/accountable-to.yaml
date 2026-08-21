@@ -1,10 +1,11 @@
 id: core.rel.accountable-to
-symbol: accountableTo
 version: 0.1.0
 status: experimental
 
-definition: Associates an operative object with the Actor, Role, or Accountability record responsible
-  for it.
+symbol: accountableTo
+
+definition: >-
+  Associates an operative object with the Actor, Role, or Accountability record responsible for it.
 
 source:
   - Commitment

@@ -1,15 +1,18 @@
 id: core.boundary.capability-not-authority
-expression: Capability != Authority
 version: 0.1.0
 status: experimental
+
+expression: Capability != Authority
 
 left: Capability
 operator: '!='
 right: Authority
 
-rule: Capability must not create or imply Authority, Permission, or legitimacy.
+rule: >-
+  Capability must not create or imply Authority, Permission, or legitimacy.
 
-rationale: Ability to act is not authorization to act.
+rationale: >-
+  Ability to act is not authorization to act.
 
 failure_code: SEM-BOUNDARY-010
 severity: semantic-error

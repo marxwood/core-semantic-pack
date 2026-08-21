@@ -2,7 +2,9 @@ id: core.question.identify-goal-operationalizing-intent
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Which Intent operationalizes the Goal here?
+
 family: teleological
 
 requires:

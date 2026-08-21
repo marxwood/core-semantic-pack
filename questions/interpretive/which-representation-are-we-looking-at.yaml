@@ -2,7 +2,9 @@ id: core.question.identify-representation
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Which representation are we looking at?
+
 family: interpretive
 
 requires:

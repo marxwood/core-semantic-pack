@@ -1,15 +1,18 @@
 id: core.boundary.source-not-projection
-expression: Source != Projection
 version: 0.1.0
 status: experimental
+
+expression: Source != Projection
 
 left: Source
 operator: '!='
 right: Projection
 
-rule: A Projection must remain distinguishable from the Source or State it represents.
+rule: >-
+  A Projection must remain distinguishable from the Source or State it represents.
 
-rationale: Derived representations do not redefine their source.
+rationale: >-
+  Derived representations do not redefine their source.
 
 failure_code: SEM-BOUNDARY-001
 severity: semantic-error

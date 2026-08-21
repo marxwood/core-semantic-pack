@@ -1,9 +1,11 @@
 id: core.rel.expressed-by
-symbol: expressedBy
 version: 0.1.0
 status: experimental
 
-definition: Attributes a Statement to an Actor or Source.
+symbol: expressedBy
+
+definition: >-
+  Attributes a Statement to an Actor or Source.
 
 source:
   - Statement
@@ -15,5 +17,4 @@ target:
 direction: directed
 provenance: optional
 authority_effect: none
-
 inverse: expresses

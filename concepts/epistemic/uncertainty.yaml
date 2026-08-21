@@ -1,11 +1,13 @@
 id: core.uncertainty
-symbol: Uncertainty
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: epistemic
 
-definition: An explicit representation of limits, confidence, ambiguity, unknowns, or incompleteness associated
+symbol: Uncertainty
+
+definition: >-
+  An explicit representation of limits, confidence, ambiguity, unknowns, or incompleteness associated
   with a semantic object or relation.
 
 exclusions:
@@ -26,5 +28,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Correction-capable reasoning requires uncertainty to remain explicit across representations
-    and downstream use.
+  rationale: >-
+    Correction-capable reasoning requires uncertainty to remain explicit across representations and downstream
+    use.

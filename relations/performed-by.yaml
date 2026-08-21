@@ -1,9 +1,11 @@
 id: core.rel.performed-by
-symbol: performedBy
 version: 0.1.0
 status: experimental
 
-definition: Attributes an Action or evaluative act to an Actor or Role.
+symbol: performedBy
+
+definition: >-
+  Attributes an Action or evaluative act to an Actor or Role.
 
 source:
   - Action

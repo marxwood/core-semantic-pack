@@ -1,9 +1,11 @@
 id: core.rel.authorized-by
-symbol: authorizedBy
 version: 0.1.0
 status: experimental
 
-definition: Identifies the Authority legitimizing a normative consequence.
+symbol: authorizedBy
+
+definition: >-
+  Identifies the Authority legitimizing a normative consequence.
 
 source:
   - Goal

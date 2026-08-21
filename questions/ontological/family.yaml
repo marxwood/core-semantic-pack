@@ -1,10 +1,12 @@
 id: core.question-family.ontological
-symbol: ontological
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about referents, identity, classification, boundaries, relations, and contextual meaning.
+symbol: ontological
+
+purpose: >-
+  Questions about referents, identity, classification, boundaries, relations, and contextual meaning.
 
 authority:
   class: taxonomy-only

@@ -1,16 +1,18 @@
 id: core.boundary.observation-not-claim
-expression: Observation != Claim
 version: 0.1.0
 status: experimental
+
+expression: Observation != Claim
 
 left: Observation
 operator: '!='
 right: Claim
 
-rule: An Observation must not be represented as a Claim without an explicit assertion or interpretation
-  transition.
+rule: >-
+  An Observation must not be represented as a Claim without an explicit assertion or interpretation transition.
 
-rationale: Perception and assertion are different epistemic acts.
+rationale: >-
+  Perception and assertion are different epistemic acts.
 
 failure_code: SEM-BOUNDARY-002
 severity: semantic-error

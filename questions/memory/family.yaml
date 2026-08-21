@@ -1,10 +1,12 @@
 id: core.question-family.memory
-symbol: memory
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about what persists, with which semantic type, provenance, status, version, and validity.
+symbol: memory
+
+purpose: >-
+  Questions about what persists, with which semantic type, provenance, status, version, and validity.
 
 authority:
   class: taxonomy-only

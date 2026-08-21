@@ -1,10 +1,12 @@
 id: core.question-family.agency
-symbol: agency
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions about actors, roles, capabilities, actions, processes, and transformations.
+symbol: agency
+
+purpose: >-
+  Questions about actors, roles, capabilities, actions, processes, and transformations.
 
 authority:
   class: taxonomy-only

@@ -1,12 +1,14 @@
 id: core.binding
-symbol: Binding
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: governance
 
-definition: An authority-bearing act that makes a decision, obligation, or Commitment operative within
-  a declared scope.
+symbol: Binding
+
+definition: >-
+  An authority-bearing act that makes a decision, obligation, or Commitment operative within a declared
+  scope.
 
 not_equivalent_to:
   - Review
@@ -34,5 +36,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Institutional consequence requires an explicit authority act rather than being inferred from
-    evaluation or polished output.
+  rationale: >-
+    Institutional consequence requires an explicit authority act rather than being inferred from evaluation
+    or polished output.

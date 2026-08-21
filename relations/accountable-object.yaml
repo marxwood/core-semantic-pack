@@ -1,9 +1,11 @@
 id: core.rel.accountable-object
-symbol: accountableObject
 version: 0.1.0
 status: experimental
 
-definition: Identifies the object or consequence covered by an Accountability obligation.
+symbol: accountableObject
+
+definition: >-
+  Identifies the object or consequence covered by an Accountability obligation.
 
 source:
   - Accountability

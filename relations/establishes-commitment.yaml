@@ -1,9 +1,11 @@
 id: core.rel.establishes-commitment
-symbol: establishesCommitment
 version: 0.1.0
 status: experimental
 
-definition: Associates a Binding act with the Commitment it makes operative.
+symbol: establishesCommitment
+
+definition: >-
+  Associates a Binding act with the Commitment it makes operative.
 
 source:
   - Binding

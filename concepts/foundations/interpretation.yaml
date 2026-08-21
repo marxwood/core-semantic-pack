@@ -1,11 +1,13 @@
 id: core.interpretation
-symbol: Interpretation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: foundations
 
-definition: A contextual assignment of meaning to a Source, Observation, State, Relation, or Derivative.
+symbol: Interpretation
+
+definition: >-
+  A contextual assignment of meaning to a Source, Observation, State, Relation, or Derivative.
 
 not_equivalent_to:
   - Observation
@@ -32,5 +34,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Interpretation is unavoidable; making it explicit prevents it from silently masquerading
-    as direct reality.
+  rationale: >-
+    Interpretation is unavoidable; making it explicit prevents it from silently masquerading as direct
+    reality.

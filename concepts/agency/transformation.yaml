@@ -1,12 +1,14 @@
 id: core.transformation
-symbol: Transformation
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: A declared conversion of semantic inputs, objects, or States into outputs, Derivatives, or
-  resulting States.
+symbol: Transformation
+
+definition: >-
+  A declared conversion of semantic inputs, objects, or States into outputs, Derivatives, or resulting
+  States.
 
 exclusions:
   - Transformation is not Process as a whole.
@@ -31,5 +33,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Transformation meaning should survive whether realized by a human, agent, tool, model, or
-    other runtime mechanism.
+  rationale: >-
+    Transformation meaning should survive whether realized by a human, agent, tool, model, or other runtime
+    mechanism.

@@ -1,12 +1,14 @@
 id: core.direction
-symbol: Direction
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: teleological
 
-definition: The qualitative orientation of change implied by the relationship between CurrentState and
-  DesiredState under a Goal.
+symbol: Direction
+
+definition: >-
+  The qualitative orientation of change implied by the relationship between CurrentState and DesiredState
+  under a Goal.
 
 not_equivalent_to:
   - Trajectory
@@ -32,5 +34,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Direction allows qualitative alignment to be assessed even when no complete plan or deterministic
+  rationale: >-
+    Direction allows qualitative alignment to be assessed even when no complete plan or deterministic
     path exists.

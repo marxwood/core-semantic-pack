@@ -1,11 +1,13 @@
 id: core.actor
-symbol: Actor
 version: 0.1.0
 status: experimental
 kind: candidate-core-primitive
 layer: agency
 
-definition: An Entity to which a Role, Intent, Action, Review, decision, or responsibility may be attributed.
+symbol: Actor
+
+definition: >-
+  An Entity to which a Role, Intent, Action, Review, decision, or responsibility may be attributed.
 
 exclusions:
   - Actor is not Authority by default.
@@ -29,5 +31,6 @@ derivation:
   source: CORE-SEMANTIC-PACK.md
   status: working-reference
 
-  rationale: Attribution must work across humans, agents, organizations, and composite actors without
-    granting implicit legitimacy.
+  rationale: >-
+    Attribution must work across humans, agents, organizations, and composite actors without granting
+    implicit legitimacy.

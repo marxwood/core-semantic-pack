@@ -2,7 +2,9 @@ id: core.question.detect-material-current-state-change
 version: 0.1.0
 status: experimental
 kind: semantic-question-contract
+
 canonical_question: Has CurrentState changed materially?
+
 family: reflective
 
 requires:

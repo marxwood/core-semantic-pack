@@ -4,6 +4,30 @@ The repository uses YAML as a working, human-reviewable serialization. YAML is n
 
 Each referencable Concept, Relation, Boundary, and Question occupies one file. Semantically related fields stay together and exactly one blank line separates semantic groups. Indexes remain compact lookup bridges and never duplicate full records.
 
+## Canonical record layout
+
+Semantic definition records use one visual reading order:
+
+```text
+registry identity and metadata
+
+canonical semantic identity
+
+meaning
+
+dependencies and structure
+
+boundaries and constraints
+
+behavior and failure semantics
+
+derivation and notes
+```
+
+The metadata block contains fields such as `id`, `version`, `status`, `kind`, and `layer`. The primary semantic declaration is isolated immediately after it: `symbol` for symbol-bearing records, `expression` for a Boundary, or `canonical_question` for a Semantic Question Contract. Semantic declarations never share the metadata block.
+
+Indexes, release manifests, migration records, and example or fixture instances retain their compact registry-oriented layouts because they are lookup or instance records rather than semantic definitions.
+
 ## Stable identity and canonical reference
 
 Registry records retain stable `id` values. Concepts, relations, patterns, status families, conformance rules, and question families expose canonical `symbol` values. Boundaries expose canonical `expression` values. Questions expose `canonical_question` values. There is no redundant schema-level human-label field in v0.1.

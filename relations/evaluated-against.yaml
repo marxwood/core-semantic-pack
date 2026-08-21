@@ -1,9 +1,11 @@
 id: core.rel.evaluated-against
-symbol: evaluatedAgainst
 version: 0.1.0
 status: experimental
 
-definition: Identifies the DesiredState or Direction used as the comparison target.
+symbol: evaluatedAgainst
+
+definition: >-
+  Identifies the DesiredState or Direction used as the comparison target.
 
 source:
   - Progress

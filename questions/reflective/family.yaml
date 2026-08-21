@@ -1,10 +1,12 @@
 id: core.question-family.reflective
-symbol: reflective
 version: 0.1.0
 status: experimental
 kind: question-family
 
-purpose: Questions that test drift, contradiction, status collapse, revision, and revocation.
+symbol: reflective
+
+purpose: >-
+  Questions that test drift, contradiction, status collapse, revision, and revocation.
 
 authority:
   class: taxonomy-only
