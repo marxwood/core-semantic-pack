@@ -1,0 +1,110 @@
+id: core.regime.disciplined
+version: 0.1.0
+status: exploratory
+kind: canonical-regime-definition-with-exploratory-matrix
+
+symbol: DisciplinedRegime
+
+canonical_name: Disciplined
+canonical_summary: >-
+  Admits Claims with explicit provenance and minimum Evidence requirements and
+  is the default for systems that must remain coherent.
+
+purpose: >-
+  Routine governed knowledge work where coherence, provenance, and
+  reconstructability are required.
+
+authority:
+  regime_identity: canon-derived
+  canonical_summary: canon-derived
+  enumerative_matrix: exploratory-derivation-candidate
+  may_be_redefined_by_domain: false
+  may_be_redefined_by_execution_contract: false
+
+matrix:
+  claim_classes:
+    admissible:
+      - Observation
+      - Claim
+      - Inference
+      - Finding
+    restrictions:
+      - Every maintained Claim has explicit semantic and Regime context.
+      - Inference and Finding identify the reasoning transformation that produced them.
+      - Unsupported Statements may remain candidates but do not become maintained Claims.
+
+  evidence_classes:
+    core_class: Evidence
+    domain_specializations: allowed only through explicit Core-compatible mapping
+    minimum: >-
+      At least one admitted Evidence item is required for a maintained support
+      position; domain rules may require more.
+    provenance: Explicit Provenance is mandatory for maintained Evidence and Claims.
+    additional_requirements:
+      - Support and Contradiction sets are declared.
+      - Evidence candidates pass explicit Validation and Admission before use as Evidence.
+      - Evidence withdrawals or invalidations propagate to dependent evaluations.
+
+  evaluation_rules:
+    admission: >-
+      Candidate Claims may enter evaluation only with semantic context, Regime
+      context, and minimum Provenance.
+    support: >-
+      Support is evaluated against declared criteria and identified Evidence.
+    contradiction: >-
+      Material contradiction is recorded and must be addressed or leave the
+      Claim contested.
+    uncertainty: >-
+      Uncertainty is declared and cannot be collapsed by presentation.
+    trace: >-
+      The evaluation path is reconstructable from Claim through Evidence,
+      criteria, outcome, and time.
+    outcomes:
+      - maintained
+      - contested
+      - invalidated
+      - retired
+
+  invalidation_rules:
+    triggers:
+      - provenance failure
+      - semantic-context mismatch
+      - minimum Evidence no longer satisfied
+      - withdrawn or invalidated Evidence removes the maintained basis
+      - decisive contradiction under the declared criteria
+      - undeclared Regime switch
+    preserve_referability: true
+    preserve_trace: true
+    deletion_is_invalidation: false
+
+  escalation_rules:
+    triggers:
+      - active dispute or manipulation pressure requires adversarial handling
+      - downstream decision is high-stakes
+      - independent corroboration is required
+      - the artifact is becoming a durable baseline
+    candidate_targets:
+      - core.regime.adversarial
+      - core.regime.high-assurance
+      - core.regime.locked
+    explicit_switch_required: true
+    prior_outcomes_retained: true
+
+invariants:
+  - Regime does not redefine semantic meaning.
+  - Admission into the system is not a declaration of truth.
+  - Validity remains Regime-scoped and time-scoped.
+  - Contradiction remains visible.
+  - Invalidation preserves referability and trace.
+  - Disciplined is the default Core Regime when coherence is required and no stricter Regime is selected.
+
+derivation:
+  canonical_source: system-momentum-canon/core/authority/regimes.md
+  validity_source: system-momentum-canon/core/authority/validity.md
+  interpretation_source: system-momentum-canon/core/authority/interpretation.md
+  exploration_source: February 2026 Regime ontology and enumerative matrices
+  review_target: candidate future Canon elaboration
+  note: >-
+    The canonical identity and summary are authoritative only to the extent of
+    the cited Canon. The detailed matrix is retained as a reviewable exploration
+    candidate.

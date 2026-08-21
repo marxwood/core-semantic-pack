@@ -1,17 +1,24 @@
 id: core.rel.evaluated-under
 version: 0.1.0
 status: experimental
+
 symbol: evaluatedUnder
-definition: Associates a Claim, Evidence object, Finding, Validation, or Validity declaration with the
-  Regime whose admissibility and evaluation constraints govern it.
+
+definition: >-
+  Associates a Claim, Evidence object, Finding, Validation, or Validity
+  declaration with the Regime whose admissibility and evaluation constraints
+  govern it.
+
 source:
-- Claim
-- Evidence
-- Finding
-- Validation
-- Validity
+  - Claim
+  - Evidence
+  - Finding
+  - Validation
+  - Validity
+
 target:
-- Regime
+  - Regime
+
 direction: directed
 provenance: required
 authority_effect: none

@@ -1,0 +1,108 @@
+id: core.regime.locked
+version: 0.1.0
+status: exploratory
+kind: canonical-regime-definition-with-exploratory-matrix
+
+symbol: LockedRegime
+
+canonical_name: Locked
+canonical_summary: >-
+  Uses tightly controlled admission procedures; semantic and validity changes
+  require explicit governance for canonical baselines and long-lived public artifacts.
+
+purpose: >-
+  Canonical baselines, long-lived public artifacts, and institutional records
+  whose change must be explicit and exceptional.
+
+authority:
+  regime_identity: canon-derived
+  canonical_summary: canon-derived
+  enumerative_matrix: exploratory-derivation-candidate
+  may_be_redefined_by_domain: false
+  may_be_redefined_by_execution_contract: false
+
+matrix:
+  claim_classes:
+    admissible:
+      - Observation
+      - Claim
+      - Inference
+      - Finding
+    restrictions:
+      - Only explicitly approved Claim classes and specializations are admissible.
+      - All class mappings and semantic versions are pinned.
+      - No object enters maintained status through ordinary runtime reuse.
+
+  evidence_classes:
+    core_class: Evidence
+    domain_specializations: allowed only through explicit Core-compatible mapping
+    minimum: >-
+      Only explicitly approved Evidence classes and mapped domain specializations
+      are admissible under controlled acquisition and Admission procedures.
+    provenance: >-
+      Complete Provenance, custody, evaluation, authority, and version history are mandatory.
+    additional_requirements:
+      - Controlled Evidence acquisition or import.
+      - Pinned criteria, Evidence policy, and evaluation procedure.
+      - Explicit governance acceptance for maintained changes.
+      - Immutable or append-only evaluation and change trail.
+
+  evaluation_rules:
+    admission: >-
+      Admission occurs only through the declared controlled procedure and
+      required Authority boundary.
+    support: >-
+      Support must satisfy the pinned policy; exceptions are separate governed changes.
+    contradiction: >-
+      Contradiction is preserved and triggers explicit re-evaluation rather than silent overwrite.
+    uncertainty: >-
+      Uncertainty is retained even when the artifact is locked.
+    trace: >-
+      Every evaluation, switch, amendment, invalidation, and retirement remains reconstructable.
+    outcomes:
+      - maintained
+      - contested
+      - invalidated
+      - retired
+
+  invalidation_rules:
+    triggers:
+      - provenance or custody failure
+      - semantic-version mismatch
+      - unapproved Claim or Evidence class
+      - controlled-procedure violation
+      - decisive contradiction under the pinned rules
+      - authorized invalidation or revocation after explicit re-evaluation
+    preserve_referability: true
+    preserve_trace: true
+    deletion_is_invalidation: false
+
+  escalation_rules:
+    triggers:
+      - no stricter default Regime exists
+      - reopening requires an explicit switch to High-Assurance or another declared Regime
+      - any semantic or validity change requires explicit governance
+    candidate_targets:
+      - core.regime.high-assurance
+    explicit_switch_required: true
+    prior_outcomes_retained: true
+
+invariants:
+  - Regime does not redefine semantic meaning.
+  - Admission into the system is not a declaration of truth.
+  - Validity remains Regime-scoped and time-scoped.
+  - Contradiction remains visible.
+  - Invalidation preserves referability and trace.
+  - Locked does not mean immutable truth.
+  - Locked means changes are governed, explicit, versioned, and historically reconstructable.
+
+derivation:
+  canonical_source: system-momentum-canon/core/authority/regimes.md
+  validity_source: system-momentum-canon/core/authority/validity.md
+  interpretation_source: system-momentum-canon/core/authority/interpretation.md
+  exploration_source: February 2026 Regime ontology and enumerative matrices
+  review_target: candidate future Canon elaboration
+  note: >-
+    The canonical identity and summary are authoritative only to the extent of
+    the cited Canon. The detailed matrix is retained as a reviewable exploration
+    candidate.

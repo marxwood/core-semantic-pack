@@ -1,43 +1,68 @@
 id: core.regime-index
 version: 0.1.0
 status: experimental
+
 authority:
   regime_identity: canon-derived
   enumerative_matrices: exploratory-derivation-candidate
   canonical_source: system-momentum-canon/core/authority/regimes.md
-  note: The five Regime identities and their canonical summaries are sourced from the Canon. The detailed
-    machine-readable matrices are February 2026 exploration retained as candidate material for later Canon
-    review.
+  note: >-
+    The five Regime identities and canonical summaries are sourced from the
+    Canon. Detailed machine-readable matrices retain February 2026 exploration
+    as candidate material for later Canon review.
+
 regimes:
-- symbol: OpenRegime
-  id: core.regime.open
-  canonical_name: Open
-  file: semantic/concepts/epistemic/regimes/open.yaml
-- symbol: DisciplinedRegime
-  id: core.regime.disciplined
-  canonical_name: Disciplined
-  file: semantic/concepts/epistemic/regimes/disciplined.yaml
-- symbol: AdversarialRegime
-  id: core.regime.adversarial
-  canonical_name: Adversarial
-  file: semantic/concepts/epistemic/regimes/adversarial.yaml
-- symbol: HighAssuranceRegime
-  id: core.regime.high-assurance
-  canonical_name: High-Assurance
-  file: semantic/concepts/epistemic/regimes/high-assurance.yaml
-- symbol: LockedRegime
-  id: core.regime.locked
-  canonical_name: Locked
-  file: semantic/concepts/epistemic/regimes/locked.yaml
-shared_contract: semantic/concepts/epistemic/regimes/evaluation-contract.yaml
-switching_contract: semantic/concepts/epistemic/regimes/switching.yaml
-conformance_contract: semantic/concepts/epistemic/regimes/conformance.yaml
+  - id: core.regime.open
+    file: semantic/concepts/epistemic/regimes/R1-open.yaml
+
+    symbol: OpenRegime
+
+    canonical_name: Open
+    order: 1
+
+  - id: core.regime.disciplined
+    file: semantic/concepts/epistemic/regimes/R2-disciplined.yaml
+
+    symbol: DisciplinedRegime
+
+    canonical_name: Disciplined
+    order: 2
+
+  - id: core.regime.adversarial
+    file: semantic/concepts/epistemic/regimes/R3-adversarial.yaml
+
+    symbol: AdversarialRegime
+
+    canonical_name: Adversarial
+    order: 3
+
+  - id: core.regime.high-assurance
+    file: semantic/concepts/epistemic/regimes/R4-high-assurance.yaml
+
+    symbol: HighAssuranceRegime
+
+    canonical_name: High-Assurance
+    order: 4
+
+  - id: core.regime.locked
+    file: semantic/concepts/epistemic/regimes/R5-locked.yaml
+
+    symbol: LockedRegime
+
+    canonical_name: Locked
+    order: 5
+
+contracts:
+  evaluation: semantic/concepts/epistemic/regimes/contracts/evaluation-contract.yaml
+  switching: semantic/concepts/epistemic/regimes/contracts/switching-contract.yaml
+  conformance: semantic/concepts/epistemic/regimes/contracts/conformance-contract.yaml
+
 invariants:
-- Regimes do not redefine meaning.
-- Regimes do not execute Actions.
-- Regimes do not create Authority, Admission, Review, Binding, or Commitment by themselves.
-- Regime switching is explicit and provenanced.
-- Validity under one Regime does not imply validity under another.
-- Domain Packs may map domain evidence classes to Core Evidence but may not define or redefine Core Regimes.
-- Execution Contracts select applicable Core Regimes; they do not author Regime semantics.
-- Projections preserve Regime context and do not collapse multiple outcomes into universal truth.
+  - Regimes do not redefine meaning.
+  - Regimes do not execute Actions.
+  - Regimes do not create Authority, Admission, Review, Binding, or Commitment by themselves.
+  - Regime switching is explicit and provenanced.
+  - Validity under one Regime does not imply validity under another.
+  - Domain Packs may map domain Evidence classes to Core Evidence but may not define or redefine Core Regimes.
+  - Execution Contracts select applicable Core Regimes; they do not author Regime semantics.
+  - Projections preserve Regime context and do not collapse multiple outcomes into universal truth.

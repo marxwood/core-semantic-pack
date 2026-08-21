@@ -2,18 +2,20 @@ id: semantic-pack.core
 name: Core Semantic Pack
 version: 0.1.0
 status: experimental
+
 authority:
   class: working-reference-model
   canonical: false
   note: The pack is derived from the architectural specification; serialization is not semantic authority.
+
 scope:
   domain_neutral: true
   runtime_neutral: true
   implementation_neutral: true
   complete_ontology: false
+
 specification: CORE-SEMANTIC-PACK.md
-specification_supplements:
-- CORE-SEMANTIC-PACK-REGIMES.md
+
 entrypoints:
   concepts: semantic/concepts/index.yaml
   relations: semantic/relations/index.yaml
@@ -25,6 +27,7 @@ entrypoints:
   composition: semantic/composition/composition-model.yaml
   conformance: semantic/conformance/rules.yaml
   references: semantic/references/non-core-symbols.yaml
+
 question_model:
   atomic_contracts: true
   one_canonical_question_per_contract: true
@@ -32,74 +35,81 @@ question_model:
   families_taxonomy_only: true
   family_requirements_inherited: false
   canonical_question_resolution: exact
+
 regime_model:
   definitions_in_core: true
   externally_extensible: false
   domain_redefinable: false
   execution_contract_selects: true
   canonical_set:
-  - core.regime.open
-  - core.regime.disciplined
-  - core.regime.adversarial
-  - core.regime.high-assurance
-  - core.regime.locked
+    - core.regime.open
+    - core.regime.disciplined
+    - core.regime.adversarial
+    - core.regime.high-assurance
+    - core.regime.locked
   enumerative_matrix_status: exploratory-derivation-candidate
   canonical_source: system-momentum-canon/core/authority/regimes.md
+
 semantic_layers:
-- foundations
-- epistemic
-- teleological
-- agency
-- governance
-- reflection-through-composition
+  - foundations
+  - epistemic
+  - teleological
+  - agency
+  - governance
+  - reflection-through-composition
+
 question_families:
-- ontological
-- state
-- epistemic
-- interpretive
-- teleological
-- agency
-- governance
-- memory
-- reflective
+  - ontological
+  - state
+  - epistemic
+  - interpretive
+  - teleological
+  - agency
+  - governance
+  - memory
+  - reflective
+
 patterns:
-- SemanticTrace
-- TeleologicalLoop
-- InstitutionalMemory
-- ExecutionContract
-- SemanticStatusCollapse
+  - SemanticTrace
+  - TeleologicalLoop
+  - InstitutionalMemory
+  - ExecutionContract
+  - SemanticStatusCollapse
+
 guarantees:
-- provenance-preservation
-- projection-state-separation
-- claim-evidence-separation
-- capability-authority-separation
-- validation-admission-separation
-- review-binding-separation
-- persistence-admission-separation
-- explicit-state-change
-- explicit-goal-relation
-- desired-state-traceability
-- process-execution-separation
-- regime-meaning-separation
-- explicit-regime-switching
-- regime-scoped-validity
-- regime-context-propagation
-- domain-regime-non-redefinition
-- revocability
-- question-answerability
-- historical-semantic-reconstructability
+  - provenance-preservation
+  - projection-state-separation
+  - claim-evidence-separation
+  - capability-authority-separation
+  - validation-admission-separation
+  - review-binding-separation
+  - persistence-admission-separation
+  - explicit-state-change
+  - explicit-goal-relation
+  - desired-state-traceability
+  - process-execution-separation
+  - regime-meaning-separation
+  - explicit-regime-switching
+  - regime-scoped-validity
+  - regime-context-propagation
+  - domain-regime-non-redefinition
+  - revocability
+  - question-answerability
+  - historical-semantic-reconstructability
+
 composition:
   extensible: true
   core_redefinable: false
   resolved_pack_immutable: true
   allowed_extensions:
-  - domain-semantic-pack
-  - execution-contract
-  - architecture-mapping
+    - domain-semantic-pack
+    - execution-contract
+    - architecture-mapping
   regime_binding:
     source: Core Semantic Pack
     selected_by: Execution Contract or declared evaluation Context
     external_regime_pack_allowed: false
+
 counts:
   concepts: 52
   relations: 91
@@ -112,14 +122,16 @@ counts:
   valid_fixtures: 5
   invalid_fixtures: 24
   reference_only_symbols: 8
+
 regime_counts:
   definitions: 5
-  shared_contracts: 3
+  contracts: 3
   regime_specific_fixtures: 6
   regime_specific_rules: 8
+
 validation:
   command: python scripts/validate_pack.py
   additional_commands:
-  - python scripts/validate_regimes.py
+    - python scripts/validate_regimes.py
   structural_only: true
   does_not_determine_truth: true
