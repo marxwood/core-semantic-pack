@@ -1,5 +1,5 @@
 id: core.handshake.index
-version: 0.1.0
+version: 0.2.0
 status: experimental
 
 handshake_model:
@@ -8,6 +8,11 @@ handshake_model:
   consumption_is_governance: false
   accepted_binding_is_version_pinned: true
   upstream_updates_require_revalidation: true
+  single_invocation_complete_procedure: true
+  intermediate_conditional_is_terminal: false
+  native_capabilities_exhausted_before_extension: true
+  operational_fitness_required: true
+  handshake_authorizes_new_software: false
 
 handshakes:
   - order: H1

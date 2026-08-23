@@ -1,5 +1,5 @@
 id: core.handshake.semantic-os-adoption
-version: 0.1.0
+version: 0.2.0
 status: experimental
 kind: semantic-handshake-contract
 order: H1
@@ -7,16 +7,20 @@ order: H1
 symbol: SemanticOSAdoptionHandshake
 
 definition: >-
-  A pre-adoption semantic protocol through which a runtime demonstrates that it can operate under an exact,
-  versioned Semantic Pack while preserving the authority boundary, local semantic sovereignty, historical
-  meaning, and explicit governance of future updates.
+  A complete pre-adoption semantic procedure through which a runtime identifies an exact semantic environment,
+  resolves its semantic obligations, inspects its own physical capabilities, selects the least-additive viable
+  realization, evaluates operational fitness, proves behavior, preserves authority boundaries, and reaches a
+  reconstructable adoption decision without requiring a human to manually prompt each intermediate phase.
 
 purpose:
   - Distinguish Semantic Pack consumption from semantic governance.
-  - Establish whether a runtime can enforce the Pack rather than merely retrieve it as context.
+  - Treat adoption as one continuous procedure rather than a one-shot capability inventory.
+  - Derive runtime obligations from the exact semantic environment before judging implementation capability.
+  - Exhaust existing runtime capabilities and their compositions before proposing new runtime software.
+  - Separate semantic conformance from operational fitness for the declared workload.
   - Bind adoption to an exact semantic release and declared environment.
-  - Prevent a provider, runtime, or upstream update from acquiring undeclared semantic authority.
-  - Produce a reconstructable decision before governed operation begins.
+  - Prevent a provider, runtime, implementation choice, or upstream update from acquiring undeclared semantic authority.
+  - Produce inspectable behavioral evidence and a reconstructable final adoption decision.
 
 participants:
   semantic_authority_source:
@@ -24,74 +28,198 @@ participants:
   semantic_pack_provider:
     responsibility: Compiles, resolves, versions, and distributes governed semantic meaning without becoming its authority.
   runtime_consumer:
-    responsibility: Declares and demonstrates how Pack obligations constrain interpretation, state, and action.
+    responsibility: Resolves obligations and demonstrates how its available capabilities can realize them without acquiring semantic authority.
   environment_authority:
-    responsibility: Owns the environment-specific goals, constraints, information boundaries, and update decisions.
+    responsibility: Owns environment-specific Goals, DesiredStates, Constraints, information boundaries, workload expectations, and adoption decisions.
+
+procedure_execution:
+  single_invocation: true
+  automatic_continuation: true
+  final_decision_only_after_all_phases: true
+  intermediate_conditional_is_terminal: false
+  rules:
+    - The runtime proceeds through every applicable phase in order without requiring a separate user prompt for each phase.
+    - Discovering an unresolved obligation does not end the procedure; it enters Capability Resolution and Realization Selection.
+    - The runtime continues evaluating independent obligations even when another obligation remains unresolved.
+    - The procedure may inspect, query, calculate, compare, and create isolated non-material test evidence when permitted by the host environment.
+    - The procedure does not authorize new runtime software, production installation, material semantic Admission, environment activation, or ExternalEffect.
+    - A material human decision that cannot be inferred is recorded as unresolved while the remaining phases continue where possible.
+    - Safety, host policy, and inaccessible evidence may limit proof; the limitation remains explicit and cannot be replaced by an assertion.
 
 preconditions:
-  - The requested Core and resolved Semantic Pack components are identifiable by stable ID and exact version.
-  - The runtime and target environment are identified.
-  - The environment authority is explicit.
-  - Unknown capabilities, mappings, and conflicts remain Unknown rather than being inferred as compatible.
+  - The requested Core and resolved Semantic Pack components are identifiable by stable ID and exact version or exact immutable source identity.
+  - The runtime and target environment are identified or can be discovered during identity binding.
+  - The environment authority is explicit or can be explicitly resolved during identity binding.
+  - The declared current workload and intended operating scope are available or are recorded as Unknown.
+  - Unknown capabilities, mappings, workload properties, and conflicts remain Unknown rather than being inferred as compatible.
 
 required_declarations:
   semantic_identity:
-    - Exact Pack IDs, versions, checksums, derivation sources, and resolution inputs.
+    - Exact Pack IDs, versions, checksums or immutable source identities, derivation sources, and resolution inputs.
     - Exact runtime, adapter, provider, and environment identities.
+  environment_intent:
+    - Active Goal and DesiredState where declared.
+    - Current operating scope and workload expectations relevant to adoption.
+    - Environment authority and governing Constraints.
+  semantic_obligations:
+    - Material semantic distinctions, Questions, persistence requirements, authority requirements, execution constraints, update obligations, and reconstruction obligations the runtime must preserve.
+  capability_claims:
+    - Which physical runtime capabilities already exist.
+    - Which claims are directly demonstrated, inferred from inspectable implementation evidence, or Unknown.
+  realization:
+    - How each semantic obligation is realized using native, mapped, composed, or externally available capabilities.
+    - Which obligations remain physically missing or incompatible.
+  operational_fitness:
+    - Whether each selected realization is fit for the declared workload, including known scale, latency, throughput, retrieval, write, rendering, durability, resource, and recovery expectations.
   execution_claim:
-    - Whether the Pack is retrieved as context, mapped into runtime structures, behaviorally enforced, or all three.
-    - Which obligations are enforceable and which remain advisory.
+    - Which obligations are semantic conventions followed by the agent, which are runtime-mapped, which are behaviorally enforced, and which remain advisory or unavailable.
   authority_boundary:
     - Which source governs Core meaning.
-    - Which authority governs environment-local goals, constraints, meanings, and information boundaries.
-    - Which provider and runtime capabilities carry no semantic authority.
+    - Which authority governs environment-local Goals, DesiredStates, Constraints, meanings, information boundaries, workload acceptance, and updates.
+    - Which provider, runtime, model, adapter, storage, index, or implementation capabilities carry no semantic authority.
   precedence_and_conflict:
     - Explicit precedence rules for Core, Domain, Regime, Execution Contract, and environment-local semantics.
     - A non-silent conflict path that can reject adoption or require an authorized adaptation.
   synchronization:
-    - Version pinning, update detection, semantic diff, impact classification, compatibility validation, acceptance, and rollback policy.
+    - Version pinning, update detection, semantic diff, impact classification, compatibility validation, acceptance, rejection, rollback, and revalidation policy.
     - Historical reconstruction policy for objects produced under earlier semantic environments.
   evidence:
-    - Inspectable artifacts demonstrating every claimed enforcement and synchronization capability.
+    - Inspectable artifacts supporting every affirmative capability, realization, enforcement, synchronization, and operational-fitness claim.
+
+capability_resolution:
+  purpose: >-
+    Determine whether unresolved semantic obligations can be realized from capabilities already present in or
+    already accessible to the runtime before treating them as missing implementation requirements.
+  resolution_order:
+    - native
+    - mappable
+    - composable
+    - externally-available
+    - missing
+    - incompatible
+  realization_classes:
+    native: The runtime already exposes the required capability in a form that directly preserves the obligation.
+    mappable: An existing runtime capability can preserve the obligation through semantic mapping without new runtime software.
+    composable: Two or more existing capabilities can together preserve the obligation without new runtime software.
+    externally-available: An already available external capability can be consumed without creating a new runtime subsystem.
+    missing: No existing or already accessible capability can physically realize the obligation.
+    incompatible: Available capabilities exist but necessarily violate a material semantic invariant or authority boundary.
+  requirements:
+    - Every unresolved obligation must record which existing capabilities were considered.
+    - Generic capability similarity is not sufficient; the mapping or composition must be explicit.
+    - Existing capabilities must be exhausted in the declared order before `missing` or `incompatible` is concluded.
+    - A missing convenience abstraction does not imply a missing physical capability.
+    - Filesystem, database, Git, memory, retrieval, tool, approval, messaging, process, and external-service capabilities may be composed when they preserve the semantic obligation.
+    - New software is a proposed remedy only after native, mappable, composable, and externally available realizations fail.
+  new_software_policy:
+    handshake_may_implement: false
+    handshake_may_authorize: false
+    allowed_output: Identify the minimum missing physical capability and why existing capabilities cannot satisfy it.
+
+operational_fitness:
+  principle: >-
+    Semantic conformance does not prove that a physical realization is operationally adequate for the declared workload.
+  dimensions:
+    - expected semantic object and relation scale
+    - read latency and query frequency
+    - write frequency and contention
+    - relation traversal and semantic-fragment retrieval
+    - Renderer and agent retrieval patterns
+    - restart durability
+    - provenance and historical reconstruction cost
+    - resource consumption
+    - failure recovery and rebuildability
+    - expected concurrency
+  fitness_states:
+    fit: Demonstrated or sufficiently evidenced for the declared workload.
+    fit-with-bounds: Fit only within explicit operating bounds that cover the current declared workload and create revalidation triggers.
+    insufficient: Cannot support the declared workload without violating required operating properties.
+    unknown: Evidence or workload information is insufficient to determine fitness.
+  requirements:
+    - Fitness is evaluated for the selected realization, not for an abstract technology category.
+    - A bootstrap realization may be accepted only when its explicit bounds still cover the declared current workload.
+    - Derived indexes, caches, graphs, vector stores, or materialized views may be replaceable operational layers when canonical semantic history remains reconstructable.
+    - Technology replacement below stable semantic contracts does not itself redefine semantic meaning.
+    - Operational insufficiency must identify the limiting dimension rather than automatically prescribe a specific technology.
 
 phases:
   - id: identity-binding
     establishes:
       - Exact Pack and participant identity.
-      - The semantic authority source and target environment.
-  - id: capability-proof
+      - Exact target environment and environment authority.
+      - Immutable source identities used for this execution.
+  - id: semantic-obligation-resolution
     establishes:
-      - The difference between context availability and enforced semantic behavior.
-      - Evidence for each claimed runtime capability.
-  - id: authority-boundary
+      - The semantic Questions, distinctions, persistence, governance, execution, update, and reconstruction obligations required by the exact environment.
+      - The declared workload against which operational fitness will be judged.
+  - id: runtime-self-inspection
     establishes:
-      - Semantic authority, implementation capability, and environment authority remain distinct.
+      - Physical capabilities actually available in the runtime, host, tools, storage, memory, retrieval, approval, messaging, and accessible external environment.
+      - Inspectable evidence for affirmative capability claims.
+  - id: capability-resolution
+    establishes:
+      - Native, mappable, composable, externally available, missing, or incompatible classification for every material obligation.
+      - Evidence that existing capabilities were exhausted before a missing-capability conclusion.
+  - id: realization-selection
+    establishes:
+      - The least-additive realization that preserves each semantic obligation.
+      - Explicit separation between semantic mapping and introduction of new runtime software.
+  - id: operational-fitness
+    establishes:
+      - Whether selected realizations are fit for the declared workload and Renderer/agent access patterns.
+      - Explicit operating bounds and future revalidation triggers where relevant.
+  - id: authority-enforcement-boundary
+    establishes:
+      - Semantic authority, implementation capability, runtime policy, security enforcement, and environment authority remain distinct.
+      - Which obligations rely on agent semantic discipline versus deterministic runtime enforcement.
       - Upstream meaning cannot silently override environment-local semantic commitments.
-  - id: conformance-evaluation
+  - id: behavioral-proof
     establishes:
-      - Required distinctions, questions, provenance, and consequence policies remain operationally preservable.
+      - Concrete evidence that material selected realizations preserve required semantic distinctions and consequence boundaries.
+      - Negative evidence where required, including forbidden or unresolved transitions remaining blocked or explicitly surfaced.
   - id: synchronization-commitment
     establishes:
       - Updates are detected but do not become active through an implicit floating-latest policy.
-      - Diff, validation, acceptance, provenance, and rollback are explicit.
+      - Diff, validation, acceptance, rejection, provenance, rollback, historical reconstruction, and H1 revalidation triggers are explicit.
   - id: adoption-decision
     establishes:
-      - An accepted, conditional, or rejected outcome with reasons and unresolved conditions.
+      - One final accepted, conditional, or rejected outcome after all preceding phases have been exhausted.
+      - Exact unresolved conditions and deciding authority.
+  - id: revalidation-triggers
+    establishes:
+      - Material runtime, environment, semantic, workload, and operational-fitness changes that require H1 to execute again.
+      - Accepted operating bounds whose breach automatically invalidates the prior fitness assumption.
 
 required_questions:
-  - What exact Semantic Pack release would govern this runtime and environment?
-  - Is the Pack merely available as context, or are its contracts behaviorally enforced?
-  - Where is the boundary between upstream semantic authority and environment-local semantic authority?
-  - What prevents a provider or runtime capability from becoming undeclared semantic authority?
-  - Can an upstream update alter local goals, constraints, ontology, information boundaries, or existing meaning without explicit acceptance?
-  - How are semantic differences detected, classified, validated, accepted, rejected, and rolled back?
+  - What exact Semantic Pack release and environment would govern this runtime?
+  - Which semantic obligations does that exact environment require this runtime to preserve?
+  - What current workload and operating scope must the realization support?
+  - Which physical capabilities does the runtime already possess or already have access to?
+  - For each obligation, is realization native, mappable, composable, externally available, missing, or incompatible?
+  - Have existing capabilities been exhausted before concluding that new runtime software is required?
+  - What is the least-additive realization that preserves each obligation?
+  - Is that realization operationally fit for the declared workload, including Renderer and agent retrieval patterns?
+  - Which obligations are semantic discipline, runtime mapping, or deterministic behavioral enforcement?
+  - Where is the boundary between upstream semantic authority, environment authority, runtime policy, and implementation capability?
+  - What prevents a provider, runtime, model, storage system, or implementation capability from becoming undeclared semantic authority?
+  - Can an upstream update alter local Goals, DesiredStates, Constraints, ontology, information boundaries, or existing meaning without explicit acceptance?
+  - How are semantic differences detected, classified, validated, accepted, rejected, rolled back, and revalidated?
   - Can historical reasoning and StateChange be reconstructed under the exact semantic environment that governed them?
-  - What inspectable evidence supports every affirmative capability claim?
+  - What inspectable behavioral evidence supports every affirmative adoption claim?
+  - What changes in runtime, semantics, workload, or operating bounds require H1 revalidation?
 
 invariants:
+  - H1 is one complete procedure; a user must not have to manually prompt each phase.
   - Reading or retrieving a Semantic Pack does not establish semantic governance.
+  - A failed direct mapping does not establish that a physical capability is missing.
+  - Existing runtime capabilities and their compositions are exhausted before new runtime software is proposed.
+  - H1 itself does not authorize or implement new runtime software.
+  - Semantic conformance and operational fitness remain independently inspectable.
+  - A realization may be semantically valid yet operationally insufficient.
   - Runtime capability does not establish semantic Authority.
-  - A Semantic Pack Provider does not become the semantic authority by compiling or distributing a Pack.
+  - Deterministic technical enforcement is not assumed to be required where the declared semantic contract only requires answerable, governed agent behavior.
+  - A Semantic Pack Provider does not become semantic authority by compiling or distributing a Pack.
+  - Storage, indexing, caching, retrieval, Renderer infrastructure, and model choice do not become semantic authority by implementation role.
   - Synchronization detects upstream change; it does not admit that change into an active environment.
   - No active governed environment floats silently to the latest Semantic Pack version.
   - Conflict does not resolve automatically in favor of upstream or local meaning.
@@ -99,74 +227,135 @@ invariants:
   - Missing implementation evidence cannot be replaced by a model assertion of capability.
   - A Handshake Prompt may initiate this Contract but cannot redefine it.
 
+behavioral_proof:
+  scope: >-
+    Proof should be sufficient to distinguish a claimed semantic realization from a merely descriptive mapping while
+    avoiding material environment change that the handshake itself is not authorized to perform.
+  acceptable_evidence:
+    - read-only runtime inspection
+    - source and configuration inspection
+    - isolated or disposable test artifacts
+    - existing logs and traces
+    - non-material dry runs
+    - deterministic validation of structured semantic records
+    - negative tests showing unresolved or forbidden transitions remain surfaced rather than silently collapsed
+  restrictions:
+    - No material Admission without environment Authority.
+    - No production environment activation without environment Authority.
+    - No ExternalEffect merely to prove the handshake.
+    - No new runtime software may be implemented as part of H1 unless independently authorized outside this Contract.
+
 acceptance:
   requires:
     - Exact semantic and participant identities are recorded.
-    - Enforcement claims are separated from context-consumption claims and supported by evidence.
+    - Material semantic obligations are resolved from the exact environment.
+    - Runtime capability claims are supported by inspectable evidence.
+    - Every material obligation has a documented realization class and selected realization.
+    - Existing capabilities were exhausted before any missing-capability conclusion.
+    - Selected realizations are `fit` or `fit-with-bounds` for the declared current workload.
+    - `fit-with-bounds` realizations include explicit bounds and revalidation triggers.
+    - Semantic discipline, runtime mapping, and deterministic enforcement claims are distinguished.
+    - Behavioral evidence supports the material adoption claims.
     - Semantic and environment authority boundaries are explicit.
     - Conflicts cannot be silently collapsed or auto-admitted.
     - The active resolved semantic environment is immutable and version-pinned.
     - Upstream changes pass semantic diff, compatibility validation, and explicit acceptance before activation.
-    - Rollback and historical reconstruction remain possible.
+    - Rollback and historical reconstruction remain possible to the degree required by the declared environment.
   forbids:
     - Floating-latest activation.
-    - Implicit authority transfer to the provider or runtime.
+    - Treating inability to find a dedicated subsystem as proof that the underlying capability is missing.
+    - Introducing new runtime software before existing capability resolution is exhausted.
+    - Equating semantic conformance with operational fitness.
+    - Implicit authority transfer to the provider, model, runtime, storage, adapter, or implementation.
     - Silent local override of Core meaning.
     - Silent upstream override of environment-local semantic commitments.
-    - Capability claims without inspectable evidence.
+    - Capability or fitness claims without inspectable evidence.
 
 outcomes:
   accepted:
-    meaning: All required declarations and evidence satisfy this Contract for the identified versions and environment.
-    effect: A version-pinned governed runtime binding may be established.
+    meaning: >-
+      All material obligations have evidenced realizations that preserve the authority boundary and are operationally
+      fit for the declared current workload, with explicit revalidation triggers for material change.
+    effect: A version-pinned governed runtime binding may be established by the declared environment authority.
   conditional:
-    meaning: The authority boundary is preserved, but named capabilities or evidence remain incomplete.
-    effect: Only explicitly permitted non-material or review-gated operation may proceed.
+    meaning: >-
+      The procedure completed and preserved the authority boundary, but one or more material obligations remain
+      unresolved, operational fitness remains insufficient or Unknown, required behavioral evidence is incomplete,
+      or an independently authorized physical capability is still required.
+    effect: Only explicitly permitted non-material or review-gated operation may proceed; the record must state the minimum unresolved conditions.
   rejected:
-    meaning: A required identity, authority boundary, invariant, conflict policy, or evidence obligation is absent or violated.
-    effect: The runtime must not claim to be governed by the Semantic OS.
+    meaning: >-
+      A required identity, authority boundary, semantic invariant, conflict policy, or unavoidable capability
+      incompatibility prevents governed adoption for the identified environment.
+    effect: The runtime must not claim to be governed by the Semantic OS for that environment.
 
 handshake_record:
   required:
     - Contract ID and version.
     - Timestamp and participant identities.
-    - Requested and resolved Pack identities, versions, and checksums.
-    - Environment identity and declared environment authority.
-    - Capability claims and evidence references.
-    - Authority, precedence, conflict, synchronization, and rollback declarations.
-    - Outcome, reasons, unresolved conditions, and deciding authority.
+    - Requested and resolved Pack identities, versions, immutable source identities, and checksums where available.
+    - Environment identity, active Goal or DesiredState where declared, and environment authority.
+    - Declared workload and operating scope.
+    - Resolved material semantic obligations.
+    - Runtime capability inventory with evidence references.
+    - Per-obligation capability-resolution class and considered alternatives.
+    - Selected physical realization for each material obligation.
+    - Per-realization operational-fitness state, evidence, bounds, and limiting dimensions.
+    - Separation of semantic discipline, runtime mapping, and deterministic enforcement claims.
+    - Behavioral-proof evidence and failed or unavailable proofs.
+    - Authority, precedence, conflict, synchronization, rollback, and reconstruction declarations.
+    - New physical capabilities, if any, that remain genuinely required after capability resolution.
+    - Outcome, reasons, unresolved conditions, deciding authority, and revalidation triggers.
   lifecycle:
-    - A material runtime, adapter, provider, Pack, authority, or environment change requires revalidation.
+    - A material runtime, adapter, provider, Pack, authority, environment, workload, or selected-realization change requires revalidation.
+    - Breaching an accepted operational-fitness bound requires revalidation.
     - A new upstream version creates an update candidate, not an implicit replacement binding.
-    - Superseded and rejected records remain reconstructable.
+    - Superseded, conditional, and rejected records remain reconstructable.
 
 prompt_surface:
   name: HandshakePrompt
   authoritative: false
-  purpose: Initiates the Contract against a particular runtime or provider.
+  purpose: Initiates the complete Contract against a particular runtime and environment in one invocation.
   portability: Wording may vary by model, vendor, language, interface, or deployment environment.
-  constraint: A prompt cannot weaken, omit, or silently reinterpret Contract obligations.
+  execution_requirement: >-
+    The initiating prompt instructs the runtime to execute the complete H1 procedure autonomously through final
+    decision, not to stop after capability inventory or request separate prompts for capability resolution,
+    operational-fitness evaluation, behavioral proof, or revalidation analysis.
+  constraint: A prompt cannot weaken, omit, split, or silently reinterpret Contract obligations.
 
 failure_states:
   - code: PACK_CONTEXT_MISTAKEN_FOR_GOVERNANCE
-    meaning: The runtime can retrieve the Pack but cannot demonstrate that Pack obligations govern behavior.
+    meaning: The runtime can retrieve the Pack but cannot demonstrate a governed realization of material obligations.
+  - code: DEDICATED_SUBSYSTEM_MISTAKEN_FOR_CAPABILITY
+    meaning: The runtime declares a capability missing merely because no dedicated semantic subsystem exists, without evaluating existing capabilities and compositions.
+  - code: PREMATURE_RUNTIME_EXTENSION
+    meaning: New runtime software is proposed or implemented before native, mappable, composable, and externally available capabilities are exhausted.
+  - code: OPERATIONAL_FITNESS_UNPROVEN
+    meaning: A semantically conformant realization is treated as operationally adequate without evidence for the declared workload.
+  - code: OPERATIONAL_FITNESS_INSUFFICIENT
+    meaning: The selected realization cannot support the declared workload within acceptable operating bounds.
   - code: UNDECLARED_SEMANTIC_AUTHORITY
-    meaning: A provider, runtime, adapter, or update path can change meaning without declared Authority.
+    meaning: A provider, runtime, adapter, storage layer, model, or update path can change meaning without declared Authority.
   - code: FLOATING_SEMANTIC_ENVIRONMENT
     meaning: An active environment can silently move to an unaccepted Pack version.
   - code: LOCAL_SEMANTIC_SOVEREIGNTY_LOST
-    meaning: Upstream change can silently alter environment-local goals, constraints, ontology, information boundaries, or existing meaning.
+    meaning: Upstream change can silently alter environment-local Goals, DesiredStates, Constraints, ontology, information boundaries, or existing meaning.
   - code: SEMANTIC_CONFLICT_COLLAPSED
     meaning: Conflicting upstream and local semantics are merged or prioritized without an explicit governed decision.
   - code: HISTORICAL_MEANING_UNRECONSTRUCTABLE
-    meaning: Prior reasoning or StateChange cannot be interpreted under the semantic environment that governed it.
+    meaning: Prior reasoning or StateChange cannot be interpreted under the semantic environment that governed it to the degree required by that environment.
   - code: CAPABILITY_CLAIM_UNPROVEN
     meaning: Adoption relies on a system assertion rather than inspectable implementation evidence.
+  - code: PROCEDURE_PREMATURELY_TERMINATED
+    meaning: H1 stops after an intermediate gap or conditional finding without completing capability resolution and all remaining applicable phases.
 
 derivation:
-  source: Semantic OS provider and runtime-adoption exploration
+  source: Semantic OS runtime-adoption, AX, capability-resolution, and operational-fitness exploration
   status: working-reference
 
   rationale: >-
-    A system is not governed by a Semantic OS merely because it has read a Semantic Pack. Governance begins only
-    after an explicit, evidence-bearing, version-bound Semantic Handshake preserves authority and semantic continuity.
+    Semantic OS adoption should specify what must remain true, not prematurely prescribe how a runtime must be built.
+    A capable agent should first map semantic obligations onto the technological capabilities already present in its
+    environment, compose those capabilities where possible, evaluate whether the resulting realization is operationally
+    fit for the intended workload, and only then identify genuinely missing physical capability. H1 is therefore a
+    complete runtime boot/adoption procedure rather than a capability checklist followed by ad hoc prompts.

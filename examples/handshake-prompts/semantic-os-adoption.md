@@ -3,15 +3,23 @@
 This prompt is an illustrative invocation of `SemanticOSAdoptionHandshake`. It is not semantic authority and does not replace the Contract.
 
 ```text
-Can you take the Core Semantic Pack ([link]) and build a working agent runtime that deploys and governs agents through it as a Semantic OS—not merely injects it into their context?
+Perform the complete H1 Semantic OS Adoption Handshake for this runtime and the supplied semantic environment.
 
-The runtime must remain synchronized with upstream Semantic Pack updates while preserving local semantic sovereignty: no upstream change may silently alter the environment's top-level goals, constraints, ontology, information boundaries, or the meaning of existing state.
+Read the exact H1 contract first, then execute every applicable H1 phase autonomously through the final adoption decision. Do not stop after discovering capability gaps and do not require separate follow-up prompts for capability resolution, realization selection, operational-fitness evaluation, behavioral proof, synchronization analysis, or revalidation triggers.
 
-Demonstrate the complete lifecycle with at least one deployed agent: semantic-pack loading, version pinning, update detection, semantic diff, compatibility validation, explicit acceptance, provenance, rollback, and conflict resolution between upstream semantic authority and environment-local semantics.
+Use inspectable evidence from the actual runtime and host. Derive the material semantic obligations from the exact Pack, environment, Goal / DesiredState, Execution Contract, Constraints, and declared workload.
 
-Return a Semantic Handshake Record containing the exact Pack, runtime, provider, adapter, and environment identities; every capability claim and its inspectable evidence; the authority and precedence boundaries; the update and rollback policy; unresolved conditions; and an accepted, conditional, or rejected decision.
+For every unresolved obligation, inspect capabilities already present in or already accessible to the runtime. Resolve in this order: native -> mappable -> composable -> externally available -> missing -> incompatible. Do not conclude that a physical capability is missing merely because no dedicated semantic subsystem exists.
 
-If the current Core Semantic Pack is insufficient to guarantee this, identify the exact missing contracts instead of inventing implicit behavior. Do not claim semantic governance when the Pack is only available as retrieved context.
+Select the least-additive realization that preserves the semantic obligation. Evaluate its operational fitness for the declared workload, including relevant scale, latency, throughput, relation traversal, Renderer / agent retrieval, durability, resource use, reconstruction, concurrency, and recovery. Semantic conformance alone is not proof of operational fitness.
+
+Do not implement or authorize new runtime software as part of H1. Only if existing capabilities are exhausted may you identify the minimum genuinely missing physical capability and explain why it cannot be realized otherwise.
+
+Distinguish semantic discipline, runtime mapping, deterministic enforcement, runtime/security policy, and semantic Authority. Capability never creates Authority.
+
+Produce behavioral evidence where possible without material Admission, environment activation, or ExternalEffect. Preserve unknowns and failed proofs explicitly.
+
+Return one complete SemanticHandshakeRecord with exact identities, obligations, capability inventory, per-obligation resolution class, selected realizations, operational-fitness states and bounds, authority boundaries, behavioral evidence, update/rollback/reconstruction policy, final accepted | conditional | rejected outcome, unresolved conditions, and revalidation triggers.
 ```
 
-Vendor-specific versions may adapt the invocation surface, but they must not weaken or silently reinterpret the underlying handshake obligations.
+Vendor-specific versions may adapt the invocation surface and supply repository links, revisions, environment paths, or runtime-specific context, but they must not weaken, split, or silently reinterpret the underlying H1 procedure.

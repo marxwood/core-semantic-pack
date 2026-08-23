@@ -97,6 +97,10 @@ guarantees:
   - revocability
   - question-answerability
   - explicit-semantic-adoption
+  - complete-handshake-procedure
+  - runtime-native-first-capability-resolution
+  - operational-fitness-evaluation
+  - no-handshake-authorized-runtime-extension
   - local-semantic-sovereignty
   - governed-semantic-update
   - historical-semantic-reconstructability
