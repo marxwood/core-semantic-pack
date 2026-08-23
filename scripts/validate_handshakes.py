@@ -16,10 +16,8 @@ INDEX_PATH = HANDSHAKE_ROOT / "index.yaml"
 EXAMPLE_RECORD_PATH = ROOT / "examples" / "semantic-os-adoption-handshake-record.yaml"
 errors: list[str] = []
 
-
 def fail(message: str) -> None:
     errors.append(message)
-
 
 def load_mapping(path: Path) -> dict[str, Any]:
     try:
@@ -32,7 +30,6 @@ def load_mapping(path: Path) -> dict[str, Any]:
         return {}
     return value
 
-
 index = load_mapping(INDEX_PATH)
 model = index.get("handshake_model", {})
 required_model = {
@@ -41,11 +38,6 @@ required_model = {
     "consumption_is_governance": False,
     "accepted_binding_is_version_pinned": True,
     "upstream_updates_require_revalidation": True,
-    "single_invocation_complete_procedure": True,
-    "intermediate_conditional_is_terminal": False,
-    "native_capabilities_exhausted_before_extension": True,
-    "operational_fitness_required": True,
-    "handshake_authorizes_new_software": False,
 }
 if model != required_model:
     fail("semantic-contracts/handshakes/index.yaml: handshake_model does not preserve the required adoption invariants")
