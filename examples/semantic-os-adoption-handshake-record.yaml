@@ -1,0 +1,60 @@
+id: example.handshake.semantic-os-adoption.claude-code
+type: SemanticHandshakeRecord
+status: illustrative
+
+contract:
+  id: core.handshake.semantic-os-adoption
+  version: 0.1.0
+
+executed_at: 2026-08-21T00:00:00Z
+
+participants:
+  semantic_authority_source: system-momentum-canon
+  semantic_pack_provider: provider:example
+  runtime_consumer: runtime:example-agent-harness
+  environment_authority: authority:example-environment-owner
+
+semantic_environment:
+  requested_pack: semantic-pack.core@0.1.0
+  resolved_pack: resolved-pack:example@sha256:pending
+  version_pinned: true
+  floating_latest: false
+
+capability_claims:
+  context_loading:
+    status: demonstrated
+    evidence:
+      - artifact:pack-loader-test
+  behavioral_enforcement:
+    status: incomplete
+    evidence:
+      - artifact:pre-action-hook-prototype
+  governed_update:
+    status: incomplete
+    evidence:
+      - artifact:semantic-diff-prototype
+
+authority_boundary:
+  upstream_governs: Core semantic meaning in the accepted Pack version.
+  environment_governs: Local goals, constraints, information boundaries, and update acceptance.
+  provider_authority: none-by-capability
+  runtime_authority: none-by-capability
+
+update_policy:
+  activation: explicit-acceptance-required
+  semantic_diff: required
+  compatibility_validation: required
+  rollback: required
+  historical_reconstruction: required
+
+decision:
+  outcome: conditional
+  reason: Context loading is demonstrated, but behavioral enforcement and governed update evidence remain incomplete.
+  deciding_authority: authority:example-environment-owner
+  unresolved_conditions:
+    - Demonstrate enforcement of required semantic obligations before material Action.
+    - Demonstrate rejected-update and rollback paths.
+
+provenance:
+  produced_by: SemanticOSAdoptionHandshake
+  illustrative_only: true
