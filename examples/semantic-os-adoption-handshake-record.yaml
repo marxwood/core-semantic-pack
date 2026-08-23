@@ -1,12 +1,12 @@
-id: example.handshake.semantic-os-adoption.claude-code
+id: example.handshake.semantic-os-adoption.complete-procedure
 type: SemanticHandshakeRecord
 status: illustrative
 
 contract:
   id: core.handshake.semantic-os-adoption
-  version: 0.1.0
+  version: 0.2.0
 
-executed_at: 2026-08-21T00:00:00Z
+executed_at: 2026-08-24T00:00:00Z
 
 participants:
   semantic_authority_source: system-momentum-canon
@@ -19,41 +19,129 @@ semantic_environment:
   resolved_pack: resolved-pack:example@sha256:pending
   version_pinned: true
   floating_latest: false
+  goal: goal:first-operational-environment
+  desired_state: desired-state:first-operational-environment
 
-capability_claims:
-  context_loading:
+workload:
+  scope: first-governed-operating-loop
+  expected_objects: low-thousands
+  expected_relations: low-tens-of-thousands
+  renderer_pattern: selective semantic-fragment retrieval
+  concurrency: low
+
+semantic_obligations:
+  - id: obligation:persistent-semantic-state
+    requires:
+      - stable identity
+      - typed semantic records
+      - provenance
+      - historical reconstruction
+  - id: obligation:external-effect-authority
+    requires:
+      - explicit environment authority
+      - review before material external effect
+
+runtime_capabilities:
+  filesystem:
     status: demonstrated
     evidence:
-      - artifact:pack-loader-test
-  behavioral_enforcement:
-    status: incomplete
+      - artifact:filesystem-read-write-test
+  git:
+    status: demonstrated
     evidence:
-      - artifact:pre-action-hook-prototype
-  governed_update:
-    status: incomplete
+      - artifact:git-history-test
+  local_database:
+    status: demonstrated
     evidence:
-      - artifact:semantic-diff-prototype
+      - artifact:sqlite-runtime-inspection
+  human_approval_surface:
+    status: demonstrated
+    evidence:
+      - artifact:request-bound-approval-test
+
+capability_resolution:
+  - obligation: obligation:persistent-semantic-state
+    considered:
+      - filesystem
+      - git
+      - local_database
+    realization_class: composable
+    selected_realization:
+      canonical_history: structured semantic records plus Git history
+      current_query_state: existing local database as rebuildable materialized state
+    new_software_required: false
+  - obligation: obligation:external-effect-authority
+    considered:
+      - human_approval_surface
+      - existing tool execution path
+    realization_class: mappable
+    selected_realization: existing request-bound human approval mapped to the environment Authority decision
+    new_software_required: false
+
+operational_fitness:
+  - obligation: obligation:persistent-semantic-state
+    state: fit-with-bounds
+    evidence:
+      - artifact:bounded-query-latency-test
+    bounds:
+      max_objects: 10000
+      max_concurrency: 2
+    revalidate_when:
+      - object count exceeds 10000
+      - Renderer latency exceeds the declared threshold
+  - obligation: obligation:external-effect-authority
+    state: unknown
+    evidence:
+      - artifact:approval-positive-path
+    limiting_dimension: negative behavioral proof for denied and timed-out effects is incomplete
+
+execution_claim:
+  semantic_discipline:
+    - Claim remains distinct from Evidence.
+    - Projection remains distinct from State.
+  runtime_mapping:
+    - persistent semantic State uses existing storage capabilities through declared mappings.
+  deterministic_enforcement:
+    - request-bound human approval is claimed only for mapped effect-capable operations.
 
 authority_boundary:
   upstream_governs: Core semantic meaning in the accepted Pack version.
-  environment_governs: Local goals, constraints, information boundaries, and update acceptance.
+  environment_governs: Local Goals, DesiredStates, Constraints, information boundaries, workload acceptance, and update acceptance.
   provider_authority: none-by-capability
   runtime_authority: none-by-capability
+  storage_authority: none-by-capability
+
+behavioral_proof:
+  demonstrated:
+    - candidate semantic record survives restart without becoming admitted
+    - historical record can be reconstructed from the selected realization
+  incomplete:
+    - denied ExternalEffect leaves no material effect
+    - timed-out ExternalEffect leaves no material effect
 
 update_policy:
   activation: explicit-acceptance-required
   semantic_diff: required
   compatibility_validation: required
+  rejection_preserved: true
   rollback: required
   historical_reconstruction: required
+  h1_revalidation: required-after-material-change
 
 decision:
   outcome: conditional
-  reason: Context loading is demonstrated, but behavioral enforcement and governed update evidence remain incomplete.
+  reason: >-
+    The procedure completed and existing capabilities were sufficient to select realizations without new runtime
+    software, but ExternalEffect authority enforcement lacks the negative behavioral evidence required for adoption.
   deciding_authority: authority:example-environment-owner
   unresolved_conditions:
-    - Demonstrate enforcement of required semantic obligations before material Action.
-    - Demonstrate rejected-update and rollback paths.
+    - Demonstrate denied and timed-out ExternalEffect behavior under the selected mapping.
+
+revalidation_triggers:
+  - material Semantic Pack or Execution Contract change
+  - runtime capability or mapping change
+  - workload exceeds accepted operational-fitness bounds
+  - authority boundary change
 
 provenance:
   produced_by: SemanticOSAdoptionHandshake
