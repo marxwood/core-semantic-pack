@@ -252,8 +252,8 @@ acceptance:
     - Runtime capability claims are supported by inspectable evidence.
     - Every material obligation has a documented realization class and selected realization.
     - Existing capabilities were exhausted before any missing-capability conclusion.
-    - Selected realizations are `fit` or `fit-with-bounds` for the declared current workload.
-    - `fit-with-bounds` realizations include explicit bounds and revalidation triggers.
+    - "Selected realizations are `fit` or `fit-with-bounds` for the declared current workload."
+    - "`fit-with-bounds` realizations include explicit bounds and revalidation triggers."
     - Semantic discipline, runtime mapping, and deterministic enforcement claims are distinguished.
     - Behavioral evidence supports the material adoption claims.
     - Semantic and environment authority boundaries are explicit.

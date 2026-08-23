@@ -1,7 +1,7 @@
 # Core Semantic Pack v0.1
 
-**Status:** Working reference specification / non-canonical  
-**Scope:** Runtime-neutral  
+**Status:** Working reference specification / non-canonical
+**Scope:** Runtime-neutral
 **Purpose:** Minimal, stable semantic kernel for human-agentic systems
 
 ---
@@ -2723,7 +2723,7 @@ A runtime does not become governed by the Semantic OS merely because it can read
 Semantic Pack consumption != semantic governance
 ```
 
-Governance begins only after an explicit **Semantic Handshake** establishes that the runtime can preserve and, where claimed, enforce the Pack's semantic obligations for an identified environment.
+Governance begins only after an explicit **Semantic Handshake** establishes that the runtime can preserve the Pack's semantic obligations for an identified environment and demonstrates how those obligations are realized with the physical capabilities actually available to it.
 
 The handshake is a pre-adoption protocol among four distinct responsibilities:
 
@@ -2743,9 +2743,9 @@ The authority source governs Core meaning.
 
 The provider compiles, resolves, versions, and distributes governed meaning without becoming its authority.
 
-The runtime declares and demonstrates how the Pack affects interpretation, state, and Action.
+The runtime resolves semantic obligations, inspects its available capabilities, selects physical realizations, and demonstrates the resulting behavior without acquiring semantic Authority by implementation capability.
 
-The environment authority governs environment-local Goals, Constraints, information boundaries, and update decisions.
+The environment authority governs environment-local Goals, DesiredStates, Constraints, information boundaries, workload acceptance, and update decisions.
 
 Capability does not collapse these responsibilities:
 
@@ -2754,42 +2754,155 @@ provider capability != semantic Authority
 
 runtime capability != semantic Authority
 
+storage or index capability != semantic Authority
+
 update availability != update Admission
 ```
 
-## Adoption sequence
+## Complete adoption procedure
 
-A Semantic Handshake establishes, in order:
+H1 is one continuous procedure. One initiating Handshake Prompt starts the complete process; the runtime must not stop after finding a gap and wait for separate prompts for later phases.
 
 ```text
 identity binding
       ↓
-capability proof
+semantic obligation resolution
       ↓
-authority boundary
+runtime self-inspection
       ↓
-conformance evaluation
+capability resolution
+      ↓
+realization selection
+      ↓
+operational fitness
+      ↓
+authority / enforcement boundary
+      ↓
+behavioral proof
       ↓
 synchronization commitment
       ↓
 adoption decision
+      ↓
+revalidation triggers
 ```
+
+The final adoption decision occurs only after all applicable phases have been exhausted.
+
+An intermediate unresolved capability does not itself produce a terminal `conditional` result. Independent obligations continue to be evaluated.
+
+## Runtime-native-first Capability Resolution
+
+Semantic OS specifies **what must remain true** before prescribing how a runtime must be built.
+
+For every material semantic obligation, H1 resolves the physical realization in this order:
+
+```text
+native
+  ↓
+mappable
+  ↓
+composable
+  ↓
+externally available
+  ↓
+missing
+  ↓
+incompatible
+```
+
+A dedicated semantic subsystem is not required merely because it would be convenient.
+
+Filesystem, Git, databases, memory, retrieval, approval surfaces, messaging, tools, processes, and already accessible external capabilities may be mapped or composed when they preserve the semantic obligation.
+
+The absence of a dedicated semantic database, adapter, plugin, MCP server, or workflow engine is therefore not evidence that the underlying physical capability is missing.
+
+New runtime software is a last-resort **proposed remedy** only after native, mappable, composable, and already available external realizations have been exhausted.
+
+H1 itself does not authorize or implement that software.
+
+## Semantic discipline, mapping, enforcement, and Authority
 
 Capability proof must distinguish:
 
 ```text
 Pack available as context
 
-Pack mapped into runtime structures
+agent semantic discipline
 
-Pack obligations behaviorally enforced
+runtime mapping
+
+deterministic behavioral enforcement
+
+runtime / security policy
+
+semantic Authority
 ```
 
 These are different claims and require different Evidence.
 
+Not every semantic obligation automatically requires a bespoke hard-enforcement subsystem. The applicable semantic environment determines what behavior must remain answerable, governed, or technically blocked.
+
 A model assertion that it can follow the Pack is not implementation Evidence.
 
-## Local semantic sovereignty
+Likewise, a runtime security mechanism does not become semantic Authority merely because it can technically block an Action.
+
+## Operational Fitness
+
+Semantic conformance does not prove that a selected physical realization is useful for the declared workload.
+
+H1 therefore evaluates the selected realization against relevant operating dimensions such as:
+
+```text
+semantic object and relation scale
+read latency and query frequency
+write frequency and contention
+relation traversal
+semantic-fragment retrieval
+Renderer and agent access patterns
+restart durability
+provenance and reconstruction cost
+resource consumption
+failure recovery and rebuildability
+concurrency
+```
+
+A realization is classified as:
+
+```text
+fit
+fit-with-bounds
+insufficient
+unknown
+```
+
+A bootstrap realization may be accepted only when its explicit bounds cover the current declared workload.
+
+This permits stable semantic history to remain independent from replaceable operational layers. For example, a canonical semantic record may remain reconstructable while SQL indexes, graph projections, vector indexes, caches, or materialized views are replaced as scale and Renderer demands evolve.
+
+Technology replacement below stable semantic contracts does not itself redefine semantic meaning.
+
+## Behavioral proof
+
+H1 must distinguish a plausible architecture mapping from demonstrated behavior.
+
+Acceptable proof may include:
+
+```text
+read-only runtime inspection
+source and configuration inspection
+existing logs and traces
+isolated or disposable test artifacts
+non-material dry runs
+deterministic structured-record validation
+negative tests for forbidden or unresolved transitions
+```
+
+The handshake does not gain additional Authority merely because proof is required.
+
+H1 may not create material Admission, activate a production semantic environment, cause an ExternalEffect, or implement new runtime software merely to obtain evidence unless that Action has been independently authorized outside the Handshake Contract.
+
+## Local semantic sovereignty and synchronization
 
 Synchronization may detect and prepare upstream change.
 
@@ -2798,7 +2911,7 @@ It must not silently activate that change.
 ```text
 upstream release
       ↓
-semantic diff
+semantic + Regime diff
       ↓
 impact classification
       ↓
@@ -2809,15 +2922,15 @@ explicit environment decision
 new version-pinned binding
 ```
 
-No upstream update may silently alter environment-local Goals, Constraints, ontology, information boundaries, or the meaning of existing State.
+No upstream update may silently alter environment-local Goals, DesiredStates, Constraints, ontology, information boundaries, or the meaning of existing State.
 
 Local sovereignty does not permit silent redefinition of Core meaning either. A conflict must remain explicit and may require rejection, adaptation, or a newly authorized composition.
 
-Historical objects and StateChange remain interpretable under the exact semantic environment that governed them.
+Historical objects and StateChange remain interpretable under the exact semantic environment that governed them to the degree required by that environment.
 
 ## Handshake outcome
 
-The result is exactly one of:
+After the complete procedure, the result is exactly one of:
 
 ```text
 accepted
@@ -2825,37 +2938,46 @@ conditional
 rejected
 ```
 
-`accepted` authorizes a version-pinned governed runtime binding for the identified participants and environment.
+`accepted` means every material obligation has an evidenced realization that preserves the authority boundary and is operationally fit, or fit within explicit bounds, for the declared current workload.
 
-`conditional` permits only the explicitly stated, normally non-material or review-gated scope while named evidence or capabilities remain unresolved.
+`conditional` means the procedure completed and preserved the authority boundary, but one or more material obligations remain unresolved, operational fitness is insufficient or unknown, required behavioral Evidence is incomplete, or an independently authorized physical capability is still required.
 
-`rejected` forbids the runtime from claiming governance by the Semantic OS.
+`rejected` means a required identity, authority boundary, semantic invariant, conflict policy, or unavoidable capability incompatibility prevents governed adoption for the identified environment.
 
-A material change to the Pack, provider, adapter, runtime, environment, or authority boundary requires revalidation.
+A material change to the Pack, provider, adapter, runtime, selected realization, environment, authority boundary, or declared workload requires revalidation. Breaching an accepted Operational Fitness bound also requires revalidation.
 
 ## Handshake Prompt and Handshake Record
 
 A **Handshake Prompt** is a runtime-facing invocation surface for a Semantic Handshake Contract.
 
-Its wording may vary across Hermes, Claude Code, Codex, another model, a programming interface, or a non-prompt adapter. It is not semantic authority and cannot weaken the Contract.
+Its wording may vary across Hermes, Claude Code, Codex, another model, a programming interface, or a non-prompt adapter. It is not semantic authority and cannot weaken, split, or silently reinterpret the Contract.
 
-Every handshake produces a versioned **Handshake Record** containing:
+Every handshake produces a versioned **Handshake Record** containing at least:
 
 ```text
 contract identity
 participant identities
 Pack identities and checksums
-environment and authority boundary
-capability claims and Evidence
+environment, Goal / DesiredState, and authority boundary
+declared workload and operating scope
+resolved material semantic obligations
+runtime capability inventory
+per-obligation Capability Resolution class
+selected physical realizations
+Operational Fitness state, bounds, and limiting dimensions
+semantic-discipline / mapping / enforcement claims
+behavioral-proof Evidence
 precedence and conflict policy
-synchronization and rollback policy
+synchronization, rollback, and reconstruction policy
+genuinely missing physical capabilities, if any
 outcome and unresolved conditions
 deciding Authority
+revalidation triggers
 ```
 
 Therefore:
 
-> **A runtime becomes governed only after completing a valid Semantic Handshake for the identified Pack, runtime, environment, and authority boundary.**
+> **A runtime becomes governed only after completing a valid Semantic Handshake for the identified Pack, runtime, environment, workload, and authority boundary.**
 
 The first portable contract is materialized as:
 
