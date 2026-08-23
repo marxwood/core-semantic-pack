@@ -98,18 +98,46 @@ Domain Packs are open-ended, independently authored Core-compatible meaning exte
 
 A runtime is not governed by the Semantic OS merely because it can retrieve or read a Semantic Pack. Governance begins through an explicit, evidence-bearing, version-bound Semantic Handshake.
 
-The first contract, `SemanticOSAdoptionHandshake`, establishes:
+`SemanticOSAdoptionHandshake` is a complete single-invocation adoption procedure:
 
-- exact Pack, runtime, provider, adapter, environment, and authority identities;
-- the difference between context consumption and behavioral enforcement;
-- the boundary between upstream semantic authority and environment-local semantic authority;
-- version pinning, semantic diff, compatibility validation, explicit update acceptance, and rollback;
-- an `accepted`, `conditional`, or `rejected` adoption decision;
-- a reconstructable Handshake Record.
+```text
+identity binding
+  -> semantic obligation resolution
+  -> runtime self-inspection
+  -> capability resolution
+  -> realization selection
+  -> operational fitness
+  -> authority / enforcement boundary
+  -> behavioral proof
+  -> synchronization commitment
+  -> adoption decision
+  -> revalidation triggers
+```
 
-Handshake Prompts are portable invocation surfaces. They may vary by runtime or model, but they are non-authoritative and cannot weaken the underlying Contract.
+The runtime must continue through the applicable procedure without requiring separate human prompts after discovering an intermediate capability gap.
 
-See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [illustrative adoption prompt](examples/handshake-prompts/semantic-os-adoption.md).
+For each unresolved obligation, H1 exhausts realizations in runtime-native-first order:
+
+```text
+native
+  -> mappable
+  -> composable
+  -> externally available
+  -> missing
+  -> incompatible
+```
+
+A missing dedicated semantic subsystem does not prove that a physical capability is missing. Existing filesystem, Git, database, memory, retrieval, approval, messaging, tool, and external-service capabilities may be mapped or composed when the semantic obligation survives.
+
+H1 also separates **semantic conformance** from **operational fitness**. A realization can preserve meaning while still being too slow, too expensive, too difficult to query, or otherwise inadequate for the declared workload and Renderer / agent access patterns.
+
+New runtime software is a last-resort proposed remedy. H1 itself neither authorizes nor implements it.
+
+The final result remains exactly one of `accepted`, `conditional`, or `rejected`, recorded with the selected realizations, evidence, operational bounds, unresolved conditions, and revalidation triggers.
+
+Handshake Prompts are portable invocation surfaces. They may vary by runtime or model, but they are non-authoritative and cannot weaken or split the underlying Contract.
+
+See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [illustrative complete-procedure adoption prompt](examples/handshake-prompts/semantic-os-adoption.md).
 
 ## Repository map
 
@@ -122,7 +150,7 @@ See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [
 | [`semantic/relations/`](semantic/relations/) | Typed relations that form the semantic graph |
 | [`semantic/boundaries/`](semantic/boundaries/) | Anti-collapse rules and semantic safety properties |
 | [`semantic/questions/`](semantic/questions/) | Atomic questions organized under taxonomy-only primary families |
-| [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) | Runtime-neutral pre-adoption contracts and their registry |
+| [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) | Runtime-neutral pre-adoption procedures and their registry |
 | [`semantic/references/`](semantic/references/) | Explicit non-Core comparison categories used by structured notation |
 | [`semantic/patterns/`](semantic/patterns/) | Composite structures built from Core primitives |
 | [`semantic/lifecycle/`](semantic/lifecycle/) | Separate lifecycle and status families |
@@ -135,7 +163,7 @@ See [`semantic-contracts/handshakes/`](semantic-contracts/handshakes/) and the [
 
 ## Specification
 
-See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architectural specification, including the complete Regime and Semantic Handshake architectures.
+See [CORE-SEMANTIC-PACK.md](CORE-SEMANTIC-PACK.md) for the working v0.1 architectural specification. The machine-readable H1 Contract under `semantic-contracts/handshakes/` is the precise current handshake procedure while the working narrative specification remains subject to synchronization during the experimental phase.
 
 ## Validate the pack
 
@@ -150,7 +178,7 @@ The general validator checks registry identity, canonical-symbol uniqueness and 
 
 The Regime validator checks the ordered five-Regime set, required matrices, contract placement and naming, composition boundaries, switching discipline, and dedicated Regime fixtures.
 
-The Handshake validator checks ordered contract identity and naming, adoption phases and outcomes, authority boundaries, non-authoritative prompt status, registry consistency, and Handshake Record structure.
+The Handshake validator checks the complete ordered procedure, runtime-native-first Capability Resolution, Operational Fitness states, authority boundaries, non-authoritative prompt status, registry consistency, and complete Handshake Record structure.
 
 None of the validators determines semantic truth or acts as semantic authority.
 
