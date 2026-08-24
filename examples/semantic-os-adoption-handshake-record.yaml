@@ -4,7 +4,7 @@ status: illustrative
 
 contract:
   id: core.handshake.semantic-os-adoption
-  version: 0.2.0
+  version: 0.2.1
 
 executed_at: 2026-08-24T00:00:00Z
 
