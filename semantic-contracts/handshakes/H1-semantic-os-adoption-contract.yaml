@@ -1,5 +1,5 @@
 id: core.handshake.semantic-os-adoption
-version: 0.2.0
+version: 0.2.1
 status: experimental
 kind: semantic-handshake-contract
 order: H1
@@ -16,10 +16,11 @@ purpose:
   - Distinguish Semantic Pack consumption from semantic governance.
   - Treat adoption as one continuous procedure rather than a one-shot capability inventory.
   - Derive runtime obligations from the exact semantic environment before judging implementation capability.
+  - Distinguish the assessment target from any previously active environment or realization.
   - Exhaust existing runtime capabilities and their compositions before proposing new runtime software.
   - Separate semantic conformance from operational fitness for the declared workload.
   - Bind adoption to an exact semantic release and declared environment.
-  - Prevent a provider, runtime, implementation choice, or upstream update from acquiring undeclared semantic authority.
+  - Prevent a provider, runtime, implementation choice, prior remediation, or upstream update from acquiring undeclared semantic authority.
   - Produce inspectable behavioral evidence and a reconstructable final adoption decision.
 
 participants:
@@ -46,9 +47,28 @@ procedure_execution:
     - A material human decision that cannot be inferred is recorded as unresolved while the remaining phases continue where possible.
     - Safety, host policy, and inaccessible evidence may limit proof; the limitation remains explicit and cannot be replaced by an assertion.
 
+assessment_target_policy:
+  assessment_target:
+    definition: >-
+      The exact semantic environment supplied or requested for this H1 execution and against which adoption is being assessed.
+    authority: Drives semantic obligations, precedence, realization selection, operational fitness, behavioral proof, and the final adoption decision.
+  prior_active_environment:
+    definition: >-
+      Any environment or realization already active before this H1 execution.
+    role: baseline-evidence-only
+  rules:
+    - The assessment target and prior active environment MUST be identified separately when both exist.
+    - All adoption requirements and the final outcome are evaluated against the assessment target, not against the prior active environment.
+    - A prior active environment may be inspected and diffed as migration, compatibility, rollback, or historical evidence; it does not govern the assessment target merely because it is currently active.
+    - H1 acceptance MUST NOT require the assessment target to already be active. An accepted outcome may precede and support a later environment-authority decision to establish or change the active binding.
+    - Prior H1 evidence may be reused only when the corresponding semantic obligation, selected realization, and relevant operating assumptions are unchanged under the assessment-target diff and the evidence remains valid.
+    - Evidence affected by a semantic change MUST be re-evaluated against the assessment target.
+    - Prior candidate, remediation, staged, rejected, conditional, or repair artifacts are evidence only. They MUST NOT become required work or the selected realization unless independently re-derived as necessary under the assessment target.
+
 preconditions:
   - The requested Core and resolved Semantic Pack components are identifiable by stable ID and exact version or exact immutable source identity.
-  - The runtime and target environment are identified or can be discovered during identity binding.
+  - The runtime and assessment-target environment are identified or can be discovered during identity binding.
+  - Any prior active environment relevant to migration or evidence reuse is identified separately from the assessment target.
   - The environment authority is explicit or can be explicitly resolved during identity binding.
   - The declared current workload and intended operating scope are available or are recorded as Unknown.
   - Unknown capabilities, mappings, workload properties, and conflicts remain Unknown rather than being inferred as compatible.
@@ -56,7 +76,9 @@ preconditions:
 required_declarations:
   semantic_identity:
     - Exact Pack IDs, versions, checksums or immutable source identities, derivation sources, and resolution inputs.
+    - Exact assessment-target environment identity.
     - Exact runtime, adapter, provider, and environment identities.
+    - Prior active environment identity when one exists and is relevant to evidence, migration, update, or rollback analysis.
   environment_intent:
     - Active Goal and DesiredState where declared.
     - Current operating scope and workload expectations relevant to adoption.
@@ -85,6 +107,7 @@ required_declarations:
     - Historical reconstruction policy for objects produced under earlier semantic environments.
   evidence:
     - Inspectable artifacts supporting every affirmative capability, realization, enforcement, synchronization, and operational-fitness claim.
+    - For reused prior evidence, the assessment-target diff and reasoning showing why the evidence remains applicable.
 
 capability_resolution:
   purpose: >-
@@ -146,11 +169,12 @@ phases:
   - id: identity-binding
     establishes:
       - Exact Pack and participant identity.
-      - Exact target environment and environment authority.
+      - Exact assessment-target environment and environment authority.
+      - Prior active environment identity separately, when one exists and is relevant.
       - Immutable source identities used for this execution.
   - id: semantic-obligation-resolution
     establishes:
-      - The semantic Questions, distinctions, persistence, governance, execution, update, and reconstruction obligations required by the exact environment.
+      - The semantic Questions, distinctions, persistence, governance, execution, update, and reconstruction obligations required by the exact assessment target.
       - The declared workload against which operational fitness will be judged.
   - id: runtime-self-inspection
     establishes:
@@ -162,8 +186,9 @@ phases:
       - Evidence that existing capabilities were exhausted before a missing-capability conclusion.
   - id: realization-selection
     establishes:
-      - The least-additive realization that preserves each semantic obligation.
+      - The least-additive realization that preserves each assessment-target semantic obligation.
       - Explicit separation between semantic mapping and introduction of new runtime software.
+      - Prior remediation is not inherited unless independently re-derived as necessary.
   - id: operational-fitness
     establishes:
       - Whether selected realizations are fit for the declared workload and Renderer/agent access patterns.
@@ -177,27 +202,33 @@ phases:
     establishes:
       - Concrete evidence that material selected realizations preserve required semantic distinctions and consequence boundaries.
       - Negative evidence where required, including forbidden or unresolved transitions remaining blocked or explicitly surfaced.
+      - Prior evidence is reused only where assessment-target semantics and relevant assumptions remain unchanged.
   - id: synchronization-commitment
     establishes:
       - Updates are detected but do not become active through an implicit floating-latest policy.
       - Diff, validation, acceptance, rejection, provenance, rollback, historical reconstruction, and H1 revalidation triggers are explicit.
+      - Assessment-target acceptance is distinguished from later activation of that target.
   - id: adoption-decision
     establishes:
-      - One final accepted, conditional, or rejected outcome after all preceding phases have been exhausted.
+      - One final accepted, conditional, or rejected outcome for the assessment target after all preceding phases have been exhausted.
       - Exact unresolved conditions and deciding authority.
+      - Acceptance does not require the assessment target to already be active.
   - id: revalidation-triggers
     establishes:
       - Material runtime, environment, semantic, workload, and operational-fitness changes that require H1 to execute again.
       - Accepted operating bounds whose breach automatically invalidates the prior fitness assumption.
 
 required_questions:
-  - What exact Semantic Pack release and environment would govern this runtime?
-  - Which semantic obligations does that exact environment require this runtime to preserve?
+  - What exact Semantic Pack release and assessment-target environment would govern this runtime?
+  - What prior active environment, if any, is relevant only as baseline, migration, rollback, or reusable evidence?
+  - Which semantic obligations does the exact assessment target require this runtime to preserve?
   - What current workload and operating scope must the realization support?
   - Which physical capabilities does the runtime already possess or already have access to?
   - For each obligation, is realization native, mappable, composable, externally available, missing, or incompatible?
   - Have existing capabilities been exhausted before concluding that new runtime software is required?
   - What is the least-additive realization that preserves each obligation?
+  - Which prior evidence remains valid under the assessment-target diff, and which changed obligations require fresh evidence?
+  - Has any prior remediation or staged candidate been independently re-derived as necessary rather than merely inherited?
   - Is that realization operationally fit for the declared workload, including Renderer and agent retrieval patterns?
   - Which obligations are semantic discipline, runtime mapping, or deterministic behavioral enforcement?
   - Where is the boundary between upstream semantic authority, environment authority, runtime policy, and implementation capability?
@@ -210,6 +241,10 @@ required_questions:
 
 invariants:
   - H1 is one complete procedure; a user must not have to manually prompt each phase.
+  - The assessment target is the environment being evaluated for adoption; a prior active environment is baseline evidence, not the target by default.
+  - H1 acceptance does not require the assessment target to already be active; activation follows a separate environment-authority decision.
+  - Prior evidence is reusable only where the corresponding obligation, realization, and relevant assumptions remain unchanged under the assessment-target diff.
+  - Prior remediation, staged candidates, repair artifacts, and unresolved work do not become assessment-target requirements unless independently re-derived as necessary.
   - Reading or retrieving a Semantic Pack does not establish semantic governance.
   - A failed direct mapping does not establish that a physical capability is missing.
   - Existing runtime capabilities and their compositions are exhausted before new runtime software is proposed.
@@ -248,20 +283,25 @@ behavioral_proof:
 acceptance:
   requires:
     - Exact semantic and participant identities are recorded.
-    - Material semantic obligations are resolved from the exact environment.
+    - The exact assessment target is recorded separately from any prior active environment.
+    - Material semantic obligations are resolved from the exact assessment target.
     - Runtime capability claims are supported by inspectable evidence.
     - Every material obligation has a documented realization class and selected realization.
     - Existing capabilities were exhausted before any missing-capability conclusion.
     - "Selected realizations are `fit` or `fit-with-bounds` for the declared current workload."
     - "`fit-with-bounds` realizations include explicit bounds and revalidation triggers."
     - Semantic discipline, runtime mapping, and deterministic enforcement claims are distinguished.
-    - Behavioral evidence supports the material adoption claims.
+    - Behavioral evidence supports the material adoption claims, with prior evidence reused only where still applicable.
     - Semantic and environment authority boundaries are explicit.
     - Conflicts cannot be silently collapsed or auto-admitted.
-    - The active resolved semantic environment is immutable and version-pinned.
+    - The assessment target is immutable and version-pinned for the adoption decision.
     - Upstream changes pass semantic diff, compatibility validation, and explicit acceptance before activation.
     - Rollback and historical reconstruction remain possible to the degree required by the declared environment.
   forbids:
+    - Requiring the assessment target to already be active before it can receive an accepted H1 outcome.
+    - Treating prior active semantics as governing the assessment target merely because they are currently active.
+    - Inheriting prior remediation, repair, or staged-candidate work as a requirement without re-deriving its necessity from the assessment target.
+    - Reusing evidence for an obligation materially changed by the assessment-target diff without fresh validation.
     - Floating-latest activation.
     - Treating inability to find a dedicated subsystem as proof that the underlying capability is missing.
     - Introducing new runtime software before existing capability resolution is exhausted.
@@ -274,26 +314,28 @@ acceptance:
 outcomes:
   accepted:
     meaning: >-
-      All material obligations have evidenced realizations that preserve the authority boundary and are operationally
+      All material obligations of the exact assessment target have evidenced realizations that preserve the authority boundary and are operationally
       fit for the declared current workload, with explicit revalidation triggers for material change.
-    effect: A version-pinned governed runtime binding may be established by the declared environment authority.
+    effect: A version-pinned governed runtime binding for the assessment target may be established by the declared environment authority after H1 acceptance.
   conditional:
     meaning: >-
-      The procedure completed and preserved the authority boundary, but one or more material obligations remain
+      The procedure completed and preserved the authority boundary, but one or more material assessment-target obligations remain
       unresolved, operational fitness remains insufficient or Unknown, required behavioral evidence is incomplete,
       or an independently authorized physical capability is still required.
-    effect: Only explicitly permitted non-material or review-gated operation may proceed; the record must state the minimum unresolved conditions.
+    effect: Only explicitly permitted non-material or review-gated operation may proceed; the record must state the minimum unresolved conditions for the assessment target.
   rejected:
     meaning: >-
       A required identity, authority boundary, semantic invariant, conflict policy, or unavoidable capability
-      incompatibility prevents governed adoption for the identified environment.
-    effect: The runtime must not claim to be governed by the Semantic OS for that environment.
+      incompatibility prevents governed adoption for the identified assessment target.
+    effect: The runtime must not claim to be governed by the Semantic OS for that assessment target.
 
 handshake_record:
   required:
     - Contract ID and version.
     - Timestamp and participant identities.
     - Requested and resolved Pack identities, versions, immutable source identities, and checksums where available.
+    - Exact assessment-target environment identity.
+    - Prior active environment identity and role when relevant to evidence, migration, update, or rollback analysis.
     - Environment identity, active Goal or DesiredState where declared, and environment authority.
     - Declared workload and operating scope.
     - Resolved material semantic obligations.
@@ -303,6 +345,8 @@ handshake_record:
     - Per-realization operational-fitness state, evidence, bounds, and limiting dimensions.
     - Separation of semantic discipline, runtime mapping, and deterministic enforcement claims.
     - Behavioral-proof evidence and failed or unavailable proofs.
+    - Reused prior evidence with explicit justification that the relevant obligation and assumptions remain unchanged.
+    - Prior candidate, remediation, or staged artifacts considered, with explicit indication whether they were independently re-derived as necessary or remained evidence only.
     - Authority, precedence, conflict, synchronization, rollback, and reconstruction declarations.
     - New physical capabilities, if any, that remain genuinely required after capability resolution.
     - Outcome, reasons, unresolved conditions, deciding authority, and revalidation triggers.
@@ -315,7 +359,7 @@ handshake_record:
 prompt_surface:
   name: HandshakePrompt
   authoritative: false
-  purpose: Initiates the complete Contract against a particular runtime and environment in one invocation.
+  purpose: Initiates the complete Contract against a particular runtime and assessment-target environment in one invocation.
   portability: Wording may vary by model, vendor, language, interface, or deployment environment.
   execution_requirement: >-
     The initiating prompt instructs the runtime to execute the complete H1 procedure autonomously through final
@@ -324,6 +368,12 @@ prompt_surface:
   constraint: A prompt cannot weaken, omit, split, or silently reinterpret Contract obligations.
 
 failure_states:
+  - code: ASSESSMENT_TARGET_CONFLATED_WITH_ACTIVE_ENVIRONMENT
+    meaning: H1 evaluates the prior active environment as though it were the requested assessment target, or requires the target to already be active before it can be accepted.
+  - code: PRIOR_REMEDIATION_INHERITED_AS_REQUIREMENT
+    meaning: Prior repair, remediation, staged, conditional, or candidate work is carried into the assessment target as required work without independently re-deriving its necessity.
+  - code: STALE_EVIDENCE_REUSED_AFTER_SEMANTIC_CHANGE
+    meaning: Prior evidence is reused for an obligation or consequence boundary materially changed by the assessment-target diff without fresh validation.
   - code: PACK_CONTEXT_MISTAKEN_FOR_GOVERNANCE
     meaning: The runtime can retrieve the Pack but cannot demonstrate a governed realization of material obligations.
   - code: DEDICATED_SUBSYSTEM_MISTAKEN_FOR_CAPABILITY
