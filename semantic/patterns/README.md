@@ -8,6 +8,7 @@ v0.1 canonical pattern symbols are:
 - `TeleologicalLoop` — CurrentState, DesiredState, action, and independent Progress evaluation;
 - `InstitutionalMemory` — persistent typed objects with provenance, admission, validity, lifecycle, and version;
 - `ExecutionContract` — the semantic legitimacy bridge between Process and runtime realization;
-- `SemanticStatusCollapse` — the failure pattern in which persistence, repetition, visibility, or capability silently creates stronger status.
+- `SemanticStatusCollapse` — the failure pattern in which persistence, repetition, visibility, or capability silently creates stronger status;
+- `QuestionSetClosure` — bounded composition of atomic Questions around one semantic target, with contextual scope classification and explicit closure without automatic related-question expansion.
 
 Patterns retain stable IDs, are referencable and testable by canonical symbol, and remain explicitly marked `not_a_primitive: true`.
