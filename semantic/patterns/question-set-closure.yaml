@@ -1,0 +1,77 @@
+id: core.pattern.question-set-closure
+version: 0.1.0
+status: experimental
+kind: composite-pattern
+
+symbol: QuestionSetClosure
+
+definition: >-
+  A bounded semantic pattern that composes independently resolvable atomic Questions around
+  one target so the target can reach an honest bounded assessment without silently absorbing
+  every related Question discovered during reasoning.
+
+question_model:
+  atomic_question_identity_preserved: true
+  canonical_question_resolution: exact
+  related_questions_expand_automatically: false
+
+structure:
+  target:
+    requirement: stable semantic reference to an existing Core or Domain object
+    note: ClosureTarget is a contextual role, not a new Core primitive.
+
+  question_assignments:
+    requirement: contextual assignment of atomic Questions relative to the target
+    scope_classes:
+      ClosureCritical: unresolved blocks an honest bounded assessment
+      InScopeNonBlocking: belongs to the target but may remain explicitly open
+      ExternalDependency: relevant Question is owned by another semantic target and must be routed
+      NewClosureTarget: Question opens a distinct semantic whole rather than extending this target
+    invariant: scope class is contextual and MUST NOT become an intrinsic property of Question
+
+  assessment:
+    requirement: use the target-appropriate existing semantic object or Domain outcome
+    examples:
+      - Finding
+      - Validation
+      - Decision
+      - Progress evaluation
+    note: ClosureAssessment is not introduced as a new universal Core primitive.
+
+scope_test:
+  question: >-
+    If this Question remained unanswered, could the current bounded assessment still be stated honestly?
+  if_no: ClosureCritical
+  if_yes: classify as InScopeNonBlocking, ExternalDependency, or NewClosureTarget
+
+closure_rule:
+  required:
+    - every ClosureCritical Question has a resolved disposition
+    - unresolved InScopeNonBlocking Questions remain visible
+    - ExternalDependency Questions are routed rather than absorbed
+    - NewClosureTarget Questions are separated into distinct semantic targets
+    - the target-appropriate assessment states the outcome and unresolved bounds
+
+  resolved_disposition_may_include:
+    - answered
+    - falsified
+    - unsupported
+    - conditionally-supported
+    - insufficient-evidence
+    - not-applicable
+    - blocked-by-explicit-external-dependency
+
+invariants:
+  - Closure is completeness of the declared Question basis for a bounded assessment; it is not truth.
+  - Closure does not create Validity, Admission, Binding, Authority, success, or execution completion.
+  - PASS, FAIL, CONDITIONAL, and INSUFFICIENT may all be legitimate closed outcomes.
+  - A materially new Question MUST NOT silently expand the active target without a scope test.
+  - Atomic Semantic Question Contracts remain independently resolvable and unchanged by QuestionSet membership.
+  - External dependencies are expressed as dependencies and routing, not absorbed implementation responsibility.
+
+conformance_examples:
+  - Experiment
+  - work-session objective
+  - Public Ingress candidate review
+
+not_a_primitive: true
