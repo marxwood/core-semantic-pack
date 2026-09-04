@@ -1,0 +1,69 @@
+id: core.pattern.skill-binding
+version: 0.1.0
+status: experimental
+kind: composite-pattern
+
+symbol: SkillBinding
+
+definition: >-
+  A reusable binding between stable semantic or execution obligations and a replaceable runtime
+  instruction artifact, declaring the Process or operation to realize, required Capabilities,
+  Context boundaries, Authority conditions, conformance checks, provenance requirements, and
+  runtime-assumption boundary without making the instruction artifact itself semantic Authority.
+
+composes:
+  concepts:
+    - Contract
+    - Process
+    - Capability
+    - Actor
+    - Context
+    - Constraint
+    - Authority
+    - Permission
+    - Validation
+    - Source
+    - SemanticVersion
+
+  relations:
+    - appliesTo
+    - existsIn
+    - constrainedBy
+    - authorizedBy
+    - hasCapability
+    - heldBy
+    - versionedBy
+    - derivedFrom
+
+invariants:
+  - Contract defines semantic obligations; SkillBinding does not redefine them.
+  - ExecutionContract defines legitimate context-bound realization and remains distinct from SkillBinding.
+  - A Skill is a runtime instruction artifact referenced by the pattern, not a Core primitive.
+  - Loading or possessing a Skill does not grant Capability, Permission, or Authority by implication.
+  - Capability never substitutes for Authority.
+  - Skill execution does not imply successful conformance, Admission, or Question resolution.
+  - Runtime-specific wrappers may change invocation/configuration details without changing the bound Contract semantics.
+  - A replaceable Actor or runtime may execute a compatible Skill when required Capabilities and Context constraints are satisfied.
+  - Permanent named domain agents are not required by the pattern.
+
+architecture_terms:
+  skill: versioned portable runtime instruction artifact
+  skill_binding_manifest: concrete declaration of Contract refs, required Capabilities, execution obligations, outputs, conformance, Authority, provenance, and runtime assumptions
+  skill_execution_record: reconstructable execution receipt that excludes hidden chain-of-thought and runtime secrets
+  runtime_wrapper: replaceable host-specific invocation/configuration materialization
+
+failure_boundaries:
+  - missing Contract semantics != missing Capability
+  - Skill binding defect != runtime failure
+  - missing Capability != missing Authority
+  - successful execution != Contract conformance
+  - persistence or output existence != Admission
+  - missing mapping/configuration != missing physical capability by default
+
+relationship_to_execution_contract: >-
+  ExecutionContract answers whether and under which Authority, Constraints, validity conditions,
+  and admission rules a Process may be legitimately realized. SkillBinding answers how stable
+  obligations are portably bound to a replaceable runtime instruction artifact and Capability
+  requirements. A material execution may require both.
+
+not_a_primitive: true
