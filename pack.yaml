@@ -75,7 +75,9 @@ patterns:
   - TeleologicalLoop
   - InstitutionalMemory
   - ExecutionContract
+  - SkillBinding
   - SemanticStatusCollapse
+  - QuestionSetClosure
 
 guarantees:
   - provenance-preservation
@@ -125,7 +127,7 @@ counts:
   question_families: 9
   question_contracts: 66
   handshake_contracts: 1
-  patterns: 5
+  patterns: 7
   status_families: 5
   conformance_rules: 18
   valid_fixtures: 5
